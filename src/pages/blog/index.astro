@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHead from "../../components/PageHead.astro";
+import { getLivePosts, formatDate } from "../../lib/blog";
+
+const posts = await getLivePosts();
+---
+
+<BaseLayout
+  title="Blog: research methods and publishing | Pen of Wonder Research"
+  description="Guides on research methods, writing and publishing, and lessons from five years of research work, by Wonderful Adebagbo."
+>
+  <PageHead
+    title="Notes on research and publishing"
+    intro="Guides on research methods, writing and getting published, and the lessons I’ve learned doing the work. A new piece most weeks."
+  />
+
+  <section class="sheet mt-12" aria-label="All pieces">
+    {
+      posts.length === 0 ? (
+        <p class="border-y border-rule py-8 text-muted">The first pieces are being prepared. Please check back soon.</p>
+      ) : (
+        <ol class="border-t border-rule">
+          {posts.map((post) => (
+            <li class="border-b border-rule py-6">
+              <p class="text-sm text-muted">
+                <time datetime={post.data.publishDate.toISOString()}>{formatDate(post.data.publishDate)}</time>
+                {post.data.series === "30 Lessons" && <span> · From the 30 Lessons series</span>}
+              </p>
+              <h2 class="mt-1 text-xl">
+                <a href={`/blog/${post.id}`} class="no-underline hover:underline">
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="mt-2 max-w-[60ch]">{post.data.summary}</p>
+            </li>
+          ))}
+        </ol>
+      )
+    }
+    <p class="mt-8 text-sm"><a href="/rss.xml">Follow by RSS</a></p>
+  </section>
+</BaseLayout>
