@@ -281,11 +281,14 @@
   .prose li + li { margin-top: 0.5rem; }
   .prose li::marker { color: var(--color-muted); }
   .prose strong { font-weight: 600; }
+  /* Asides such as the Pro tip boxes in the 30 Lessons pieces: a note pinned to the page. */
   .prose blockquote {
-    padding-left: 1rem;
-    border-left: 1px solid var(--color-rule-strong);
-    color: var(--color-muted);
+    padding: 1rem 1.25rem;
+    background: var(--color-panel);
+    border: 1px solid var(--color-rule);
   }
+  .prose blockquote > * + * { margin-top: 0.5rem; }
+  .prose blockquote ul { margin-top: 0.5rem; }
   .prose > * { max-width: 65ch; }
 
   .margin-note {
