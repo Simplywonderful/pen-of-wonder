@@ -4,10 +4,10 @@
 import { readFileSync } from "node:fs";
 
 const css = readFileSync(new URL("../src/styles/global.css", import.meta.url), "utf8");
-const raw = Object.fromEntries([...css.matchAll(/--([a-z]+-\d+):\s*(oklch\([^)]+\))/g)].map((m) => [m[1], m[2]]));
+const raw = Object.fromEntries([...css.matchAll(/--([a-z-]+):\s*(oklch\([^)]+\))/g)].map((m) => [m[1], m[2]]));
 const block = (re) =>
   Object.fromEntries(
-    [...css.match(re)[1].matchAll(/--color-([a-z-]+):\s*var\(--([a-z]+-\d+)\)/g)].map((m) => [m[1], raw[m[2]]]),
+    [...css.match(re)[1].matchAll(/--color-([a-z-]+):\s*var\(--([a-z-]+)\)/g)].map((m) => [m[1], raw[m[2]]]),
   );
 const light = block(/@theme \{([\s\S]*?)\n\}/);
 const dark = { ...light, ...block(/:root\[data-theme="dark"\] \{([\s\S]*?)\n\}/) };
@@ -15,6 +15,9 @@ const pick = (t) => ({
   paper: t["bg"],
   panel: t["panel"],
   ink: t["text"],
+  heading: t["heading"],
+  gold: t["gold"],
+  markup: t["mark-del"],
   muted: t["muted"],
   accent: t["accent"],
   onAccent: t["on-accent"],
@@ -29,12 +32,15 @@ const mount = { paper: light["mount"], ink: light["mount-ink"] };
 const pairs = [
   ["ink", "paper", 4.5, "body text"],
   ["ink", "panel", 4.5, "text in comment balloons and the do/don't box"],
+  ["heading", "paper", 4.5, "headings"],
   ["muted", "paper", 4.5, "secondary text, dates, captions"],
   ["muted", "panel", 4.5, "secondary text inside panels"],
-  ["accent", "paper", 4.5, "edit marks (del/ins), hovered links"],
-  ["accent", "panel", 4.5, "edit marks inside comment panels"],
-  ["onAccent", "accent", 4.5, "primary button label"],
+  ["markup", "paper", 4.5, "tracked-change marks (del/ins)"],
+  ["accent", "paper", 4.5, "links on hover, comment labels"],
+  ["accent", "panel", 4.5, "comment labels inside balloons"],
+  ["onAccent", "accent", 4.5, "primary button label, comment markers"],
   ["accent", "paper", 3, "focus ring"],
+  ["gold", "paper", 3, "gold proof marks (graphics and large text only)"],
   ["ruleStrong", "paper", 3, "form field borders"],
 ];
 
