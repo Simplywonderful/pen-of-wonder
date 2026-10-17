@@ -192,3 +192,9 @@ slop-check (17 Oct 2026): HIGH 0. WARNs kept on purpose:
 | Terms: liability and governing law | Terms | For a lawyer, Nigeria and UK clients |
 | Privacy: providers' transfer mechanisms | Privacy | Confirm Formspree, Google, Meta, Cloudflare safeguards |
 | Cloudflare Pages deploy hook | GitHub secret CF_PAGES_DEPLOY_HOOK | Needed by the weekly rebuild workflow (Phase 3) |
+
+## 11. Launch checks (17 Oct 2026)
+
+- Live at https://penofwonderresearch.pages.dev. All 13 pages, RSS, sitemap, robots.txt, fonts and icons return 200; unknown URLs return the custom 404.
+- No cookies, no localStorage entries until someone uses the theme switch, and no third-party requests (checked in the browser on /contact before analytics is switched on).
+- PageSpeed Insights (Google's servers, mobile): Home 100 / 100 / 100 / 100 (LCP 1.5 s, TBT 0 ms, CLS 0); Publication support 100 / 100 / 100 / 100 (LCP 1.2 s, TBT 0 ms, CLS 0). Local Lighthouse on this Windows machine swings widely between identical runs (49 to 97 on the same page) because of machine load, so the PageSpeed figures are the ones to trust.
