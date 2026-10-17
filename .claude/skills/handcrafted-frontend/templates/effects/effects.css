@@ -1,0 +1,72 @@
+/*
+  Shared styles for the effect templates. Replace the custom properties with the
+  project's own tokens.
+*/
+
+/* ---- EffectFrame: poster underneath, effect layered on top ---- */
+.effect-frame {
+  position: relative;
+  isolation: isolate;
+}
+.effect-frame > img,
+.effect-frame > div:first-child {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.effect-frame__layer {
+  position: absolute;
+  inset: 0;
+}
+
+/* ---- ScrollScrubVideo ---- */
+.scrub {
+  position: relative;
+}
+.scrub__sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+.scrub__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.scrub__content {
+  position: absolute;
+  inset: auto var(--space-6, 1.5rem) var(--space-8, 2rem);
+  max-width: 36rem;
+  /* Text over footage needs its own backing. Never rely on the video being dark. */
+  background: var(--color-surface, #fff);
+  color: var(--color-text, #111);
+  padding: var(--space-4, 1rem) var(--space-6, 1.5rem);
+}
+
+/* ---- Glass surface (CSS only) ----
+   One panel over a real photo. Not every card, not the nav, not the buttons.
+   Refraction ("liquid glass") needs WebGL or a Chromium-only SVG filter; this
+   recipe gives the frosted look everywhere and stays readable. */
+.glass {
+  --glass-tint: color-mix(in oklch, var(--color-surface, #fff) 72%, transparent);
+  background: var(--color-surface, #fff); /* fallback: solid, always readable */
+  color: var(--color-text, #111);
+  border: 1px solid color-mix(in oklch, var(--color-text, #111) 12%, transparent);
+  border-radius: var(--radius-md, 6px);
+}
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass {
+    background: var(--glass-tint);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+  }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .glass {
+    background: var(--color-surface, #fff);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
