@@ -64,7 +64,7 @@ for (const file of files) {
       for (const phrase of banned) {
         if (lower.includes(phrase)) hits.push(`${file}:${i + 1}  banned phrase "${phrase}"`);
       }
-      if (line.includes("—")) hits.push(`${file}:${i + 1}  em dash`);
+      if (line.includes("\u2014")) hits.push(`${file}:${i + 1}  em dash`);
       // Exclamation marks in prose only: skip code operators like !== and !value.
       if (/[A-Za-z’'")\]]!(\s|$|<|")/.test(line) && !/^\s*(\/\/|\*|import|const|if|return)/.test(line)) {
         hits.push(`${file}:${i + 1}  exclamation mark`);
