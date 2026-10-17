@@ -1,0 +1,30 @@
+---
+import { publications } from "../data/publications";
+
+const joinAuthors = (authors: string[], owner: number) =>
+  authors.map((name, i) => ({
+    name,
+    owner: i === owner,
+    sep: i === authors.length - 1 ? "" : i === authors.length - 2 ? ", & " : ", ",
+  }));
+---
+
+<ol class="references nums space-y-5">
+  {
+    publications.map((p) => (
+      <li class="pl-8 -indent-8">
+        {joinAuthors(p.authors, p.ownerIndex).map((a) => (
+          <>
+            {a.owner ? <strong class="font-semibold">{a.name}</strong> : a.name}
+            {a.sep}
+          </>
+        ))}{" "}
+        ({p.year}). {p.title}. <cite class="italic">{p.journal}</cite>,{" "}
+        <i>{p.volume}</i>({p.issue}), {p.pages}.{" "}
+        <a href={`https://doi.org/${p.doi}`} class="break-words">
+          https://doi.org/{p.doi}
+        </a>
+      </li>
+    ))
+  }
+</ol>
