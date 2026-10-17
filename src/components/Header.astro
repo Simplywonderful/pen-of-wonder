@@ -1,6 +1,7 @@
 ---
 import { nav, site } from "../data/site";
 import { cleanPath } from "../lib/path";
+import PowWordmark from "./PowWordmark.astro";
 
 const path = cleanPath(Astro.url.pathname);
 const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`);
@@ -8,8 +9,8 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
 
 <header class="site-header border-b border-rule">
   <div class="mx-auto flex max-w-(--container-sheet) flex-wrap items-center justify-between gap-x-8 gap-y-2 px-4 py-4 md:px-8 lg:px-12">
-    <a href="/" class="wordmark font-serif text-lg no-underline" aria-label={`${site.name}, home`}>
-      {site.name}
+    <a href="/" class="logo no-underline" aria-label={`${site.name}, home`}>
+      <PowWordmark class="logo__mark" />
     </a>
     <button
       type="button"
@@ -40,9 +41,18 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
 </header>
 
 <style>
-  .wordmark {
-    letter-spacing: var(--tracking-tight);
-    color: var(--color-text);
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+  .logo :global(.logo__mark) {
+    width: 5.5rem;
+  }
+  @media (min-width: 64rem) {
+    .logo :global(.logo__mark) {
+      width: 6.25rem;
+    }
   }
   .site-nav a[aria-current="page"] {
     text-decoration-line: underline;
