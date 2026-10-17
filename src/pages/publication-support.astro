@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHead from "../components/PageHead.astro";
+import EditSpecimen from "../components/EditSpecimen.astro";
+import Faq from "../components/Faq.astro";
+import { publicationSupport as p } from "../data/pages/publication-support";
+import { resultsSpecimen } from "../data/specimens";
+
+const cta = { href: "/contact?as=researcher", label: p.cta };
+---
+
+<BaseLayout title={p.title} description={p.description}>
+  <PageHead title={p.h1} intro={p.intro} cta={cta} />
+
+  <section class="sheet mt-20" aria-labelledby="help-heading">
+    <h2 id="help-heading" class="text-2xl">{p.helpHeading}</h2>
+    <aside class="margin-note">{p.guidelineAside}</aside>
+    <dl class="help mt-6 border-t border-rule">
+      {
+        p.help.map((item) => (
+          <div class="help__row">
+            <dt class="font-semibold">{item.term}</dt>
+            <dd>
+              {item.detail === "guidelines" ? (
+                <>
+                  {p.guidelinesLead}{" "}
+                  {p.guidelines.map((g, i) => (
+                    <>
+                      <a href={g.href}>{g.name}</a> {g.use}
+                      {i < p.guidelines.length - 2 ? ", " : i === p.guidelines.length - 2 ? " and " : "."}
+                    </>
+                  ))}
+                </>
+              ) : (
+                item.detail
+              )}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="sheet mt-20" aria-labelledby="steps-heading">
+    <h2 id="steps-heading" class="text-2xl">{p.stepsHeading}</h2>
+    <ol class="steps mt-6">
+      {
+        p.steps.map((step) => (
+          <li class="steps__item">
+            <strong class="font-semibold">{step.title}</strong> {step.text}
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="sheet mt-20" aria-labelledby="specimen-heading">
+    <h2 id="specimen-heading" class="text-2xl">{p.specimenHeading}</h2>
+    <p class="mt-3 max-w-[60ch]">{p.specimenIntro}</p>
+    <div class="wide">
+      <EditSpecimen specimen={resultsSpecimen} />
+    </div>
+  </section>
+
+  <section class="sheet mt-20" aria-labelledby="faq-heading">
+    <h2 id="faq-heading" class="text-2xl">{p.faqHeading}</h2>
+    <div class="mt-6">
+      <Faq items={p.faq} />
+    </div>
+    <p class="mt-10">
+      <a class="btn btn-primary" href={cta.href}>{cta.label}</a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .help__row {
+    display: grid;
+    gap: 0.25rem;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  @media (min-width: 40rem) {
+    .help__row {
+      grid-template-columns: 13rem minmax(0, 1fr);
+      gap: 2rem;
+    }
+  }
+  .steps {
+    counter-reset: step;
+    max-width: 60ch;
+  }
+  .steps__item {
+    counter-increment: step;
+    position: relative;
+    padding: 0.75rem 0 0.75rem 2.5rem;
+  }
+  .steps__item + .steps__item {
+    border-top: 1px solid var(--color-rule);
+  }
+  .steps__item::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-muted);
+  }
+</style>

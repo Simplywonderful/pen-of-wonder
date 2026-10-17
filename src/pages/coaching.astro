@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHead from "../components/PageHead.astro";
+import DoDontBox from "../components/DoDontBox.astro";
+import Todo from "../components/Todo.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import { coaching as c } from "../data/pages/coaching";
+import { site, placeholders, prices } from "../data/site";
+
+const bookHref = site.calendlyUrl ?? "/contact?as=student";
+const gbp = (n: number) => `£${n}`;
+const priceRows = [prices.single, prices.analysis, prices.dissertation];
+---
+
+<BaseLayout title={c.title} description={c.description}>
+  <PageHead title={c.h1} intro={c.intro}>
+    <DoDontBox />
+    <p class="mt-2">
+      <a class="btn btn-primary" href={bookHref}>{c.cta}</a>
+    </p>
+  </PageHead>
+
+  {
+    c.sections.map((s) => (
+      <section class="sheet mt-16" aria-labelledby={`${s.id}-heading`}>
+        <h2 id={`${s.id}-heading`} class="text-2xl">
+          {s.heading}
+        </h2>
+        {"note" in s && <aside class="margin-note">{s.note}</aside>}
+        <p class="mt-3 max-w-[60ch]">{s.lead}</p>
+        <ul class="topics mt-3">
+          {s.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+
+  <section class="sheet mt-16" aria-labelledby="format-heading">
+    <h2 id="format-heading" class="text-2xl">{c.formatHeading}</h2>
+    <ul class="topics mt-3">
+      <li>
+        On {site.meetingPlatform ?? <Todo label={placeholders.meetingPlatform} />}.
+      </li>
+      {c.format.map((line) => <li>{line}</li>)}
+    </ul>
+  </section>
+
+  <section class="sheet mt-16" aria-labelledby="prices-heading">
+    <h2 id="prices-heading" class="text-2xl">{c.pricesHeading}</h2>
+    <table class="prices nums mt-6">
+      <caption class="sr-only">Session prices in pounds sterling</caption>
+      <thead>
+        <tr>
+          <th scope="col">Option</th>
+          <th scope="col">Sessions</th>
+          <th scope="col" class="text-right">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          priceRows.map((row) => (
+            <tr>
+              <th scope="row">
+                <span class="block font-semibold">{row.label}</span>
+                <span class="block text-sm font-normal text-muted">{row.note}</span>
+              </th>
+              <td>{row.sessions}</td>
+              <td class="text-right font-semibold">{gbp(row.price)}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+    <p class="mt-4 text-sm text-muted">{c.pricesNote}</p>
+  </section>
+
+  <section class="sheet mt-16" aria-labelledby="booking-heading">
+    <h2 id="booking-heading" class="text-2xl">{c.bookingHeading}</h2>
+    <p class="mt-3 max-w-[60ch]">
+      {c.booking}
+      {!site.calendlyUrl && <> <Todo label={placeholders.calendlyUrl} /></>}
+    </p>
+    <p class="mt-6 flex flex-wrap gap-3">
+      <a class="btn btn-primary" href={bookHref}>{c.cta}</a>
+      <WhatsAppButton />
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .topics {
+    max-width: 60ch;
+    padding-left: 1.1rem;
+    list-style: disc;
+  }
+  .topics li + li {
+    margin-top: 0.35rem;
+  }
+  .topics li::marker {
+    color: var(--color-muted);
+  }
+  .prices {
+    width: 100%;
+    max-width: 40rem;
+    border-collapse: collapse;
+  }
+  .prices th,
+  .prices td {
+    padding: 0.85rem 0.75rem 0.85rem 0;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .prices thead th {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-muted);
+    border-bottom-color: var(--color-rule-strong);
+  }
+  .prices .text-right {
+    text-align: right;
+    padding-right: 0;
+  }
+</style>

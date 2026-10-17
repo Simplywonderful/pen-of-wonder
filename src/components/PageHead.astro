@@ -1,0 +1,24 @@
+---
+// The top of an inner page: the H1, an intro paragraph, and an optional button.
+interface Props {
+  title: string;
+  intro?: string;
+  cta?: { href: string; label: string };
+}
+const { title, intro, cta } = Astro.props;
+---
+
+<header class="sheet pt-10 md:pt-16 lg:pt-20">
+  <h1 class="text-3xl tracking-(--tracking-display)">{title}</h1>
+  {intro && <p class="mt-6 max-w-[60ch] text-lg text-muted">{intro}</p>}
+  <slot />
+  {
+    cta && (
+      <p class="mt-8">
+        <a class="btn btn-primary" href={cta.href}>
+          {cta.label}
+        </a>
+      </p>
+    )
+  }
+</header>
