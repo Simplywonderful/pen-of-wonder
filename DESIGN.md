@@ -174,13 +174,12 @@ Updated 17 Oct 2026, after the owner filled the placeholders. No [TODO] markers 
 
 | Item | Where | Notes |
 |---|---|---|
-| Pack validity period | Coaching, Terms | Still my assumption: 3 months (analysis pack), 6 months (dissertation pack). Matters because unused sessions are not refunded. |
 | CV download | Work with me | Shows "Available on request". The supplied CV contains the 30%, 50% and 200% figures the site excludes; add a download once a version without them exists. |
 | Approved testimonials | Home | Written permission, initials and role only; section hidden until then |
 | Legal review | Terms, Privacy | Owner has no lawyer yet and asked for the draft banner to be removed (17 Oct 2026). Worth a lawyer's read later: liability limit, governing law for UK consumers, international transfers. |
 | Calendly | Coaching, Contact | None for now; booking goes through the contact form and WhatsApp. Set `calendlyUrl` in `src/data/site.ts` if one is created. |
 
-Filled on 17 Oct 2026: subjects and styles (confirmed), hours (flexible), Google Meet, CAC BN 7809965, retention 12 months, payment methods (Raenest or Grey in GBP, bank transfer in NGN), deposits (60% upfront, then two 20% instalments for editing; tutoring paid before sessions, my recommendation), quote validity and revisions (kept), tutoring cancellations (24 hours' notice, my recommendation, accepted by the owner), unused pack sessions (no refund), cancelled editing (pay for work done). Photographer credit and sample-review placeholders removed at the owner's request; the home page offers a sample review on request.
+Filled on 17 Oct 2026: pack validity (3 months analysis, 6 months dissertation, confirmed), subjects and styles (confirmed), hours (flexible), Google Meet, CAC BN 7809965, retention 12 months, payment methods (Raenest or Grey in GBP, bank transfer in NGN), deposits (60% upfront, then two 20% instalments for editing; tutoring paid before sessions, my recommendation), quote validity and revisions (kept), tutoring cancellations (24 hours' notice, my recommendation, accepted by the owner), unused pack sessions (no refund), cancelled editing (pay for work done). Photographer credit and sample-review placeholders removed at the owner's request; the home page offers a sample review on request.
 
 ## 11. Launch checks (17 Oct 2026)
 
