@@ -1,0 +1,35 @@
+---
+// Follows the system setting until someone chooses; the choice is remembered in localStorage.
+---
+
+<button type="button" class="theme-toggle min-h-11 text-sm underline decoration-rule-strong underline-offset-4" hidden>
+  <span class="theme-toggle__label">Switch to dark paper</span>
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(".theme-toggle");
+  const label = button?.querySelector(".theme-toggle__label");
+  const root = document.documentElement;
+  const system = window.matchMedia("(prefers-color-scheme: dark)");
+
+  const current = () => (root.dataset.theme as "light" | "dark" | undefined) ?? (system.matches ? "dark" : "light");
+  const render = () => {
+    if (label) label.textContent = current() === "dark" ? "Switch to light paper" : "Switch to dark paper";
+  };
+
+  if (button) {
+    button.hidden = false;
+    render();
+    button.addEventListener("click", () => {
+      const next = current() === "dark" ? "light" : "dark";
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem("theme", next);
+      } catch {
+        // Private browsing can block storage; the switch still works for this page.
+      }
+      render();
+    });
+    system.addEventListener("change", render);
+  }
+</script>
