@@ -1,0 +1,229 @@
+---
+// A paragraph shown as a tracked-changes edit, with Word's own view names.
+// The view switch is a plain radio group driven by CSS :has(), so it works without JavaScript.
+// Screen readers often skip <del> and <ins>, so each one carries hidden start and end words.
+import type { Specimen } from "../data/specimens";
+
+interface Props {
+  specimen: Specimen;
+}
+
+const { specimen } = Astro.props;
+const name = `view-${specimen.id}`;
+const commentId = (n: number) => `${specimen.id}-comment-${n}`;
+const views = [
+  { value: "markup", label: "All Markup" },
+  { value: "clean", label: "No Markup" },
+  { value: "original", label: "Original" },
+];
+---
+
+<figure class="specimen" aria-label={specimen.label}>
+  <fieldset class="specimen__views">
+    <legend class="specimen__legend">Show</legend>
+    <div class="specimen__segments">
+      {
+        views.map((view, i) => (
+          <label class="specimen__segment">
+            <input class="sr-only" type="radio" name={name} value={view.value} checked={i === 0} />
+            <span>{view.label}</span>
+          </label>
+        ))
+      }
+    </div>
+  </fieldset>
+
+  <div class="specimen__body">
+    <p class="specimen__text">
+      {
+        specimen.runs.map((run) => {
+          if (run.kind === "text") return run.text;
+          const marker = run.comment ? (
+            <a class="specimen__marker" href={`#${commentId(run.comment)}`}>
+              <span aria-hidden="true">WA{run.comment}</span>
+              <span class="sr-only">(comment WA{run.comment})</span>
+            </a>
+          ) : null;
+          return run.kind === "del" ? (
+            <>
+              <del>
+                <span class="sr-only specimen__sr">[deletion start] </span>
+                {run.text}
+                <span class="sr-only specimen__sr"> [deletion end]</span>
+              </del>
+              {marker}
+            </>
+          ) : (
+            <>
+              <ins>
+                <span class="sr-only specimen__sr">[insertion start] </span>
+                {run.text}
+                <span class="sr-only specimen__sr"> [insertion end]</span>
+              </ins>
+              {marker}
+            </>
+          );
+        })
+      }
+    </p>
+
+    <ol class="specimen__comments" aria-label="Editor’s comments">
+      {
+        specimen.comments.map((text, i) => (
+          <li id={commentId(i + 1)} class="specimen__comment">
+            <span class="specimen__author">WA{i + 1}</span>
+            <span class="sr-only">, Wonderful Adebagbo: </span>
+            {text}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+
+  <figcaption class="specimen__caption">An illustrative example written for this page. Not a client’s manuscript.</figcaption>
+</figure>
+
+<style>
+  .specimen {
+    margin-block: 1.5rem 0;
+  }
+
+  .specimen__views {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    margin-bottom: 1rem;
+    border: 0;
+    padding: 0;
+  }
+  .specimen__legend {
+    float: left;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .specimen__segments {
+    display: inline-flex;
+    border: 1px solid var(--color-rule-strong);
+    border-radius: var(--radius-xs);
+  }
+  .specimen__segment {
+    position: relative;
+    cursor: pointer;
+  }
+  .specimen__segment + .specimen__segment {
+    border-left: 1px solid var(--color-rule-strong);
+  }
+  .specimen__segment span {
+    display: block;
+    padding: 0.5rem 0.8rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    line-height: 1.3;
+    transition: background-color var(--duration-ui) var(--ease-out), color var(--duration-ui) var(--ease-out);
+  }
+  .specimen__segment:has(input:checked) span {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+  .specimen__segment:has(input:focus-visible) {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    z-index: 1;
+  }
+
+  .specimen__body {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 64rem) {
+    .specimen__body {
+      grid-template-columns: minmax(0, 44rem) minmax(12rem, 15rem);
+      column-gap: 4rem;
+    }
+  }
+
+  .specimen__text {
+    margin: 0;
+    padding: 1.25rem 1.25rem 1.5rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-rule);
+    line-height: 1.75;
+    max-width: none;
+  }
+  @media (min-width: 48rem) {
+    .specimen__text {
+      padding: 2rem 2.25rem 2.25rem;
+    }
+  }
+
+  .specimen del {
+    color: var(--color-mark-del);
+    text-decoration-line: line-through;
+    text-decoration-thickness: 1px;
+  }
+  .specimen ins {
+    color: var(--color-mark-ins);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  .specimen__marker {
+    display: inline-block;
+    margin-inline: 0.15em;
+    padding: 0 0.3em;
+    font-size: 0.7em;
+    font-weight: 600;
+    line-height: 1.4;
+    vertical-align: super;
+    color: var(--color-on-accent);
+    background: var(--color-accent);
+    border-radius: var(--radius-xs);
+    text-decoration: none;
+  }
+
+  .specimen__comments {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+  }
+  .specimen__comment {
+    padding: 0.75rem 0.9rem;
+    background: var(--color-comment-bg);
+    border: 1px solid var(--color-rule);
+    scroll-margin-top: 2rem;
+  }
+  .specimen__comment:target {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .specimen__author {
+    display: block;
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .specimen__caption {
+    margin-top: 0.75rem;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  /* No Markup: the edited text as it would read. Original: the text as it arrived. */
+  .specimen:has(input[value="clean"]:checked) del,
+  .specimen:has(input[value="original"]:checked) ins,
+  .specimen:has(input[value="markup"]:not(:checked)) .specimen__marker,
+  .specimen:has(input[value="markup"]:not(:checked)) .specimen__comments,
+  .specimen:has(input[value="markup"]:not(:checked)) .specimen__sr {
+    display: none;
+  }
+  .specimen:has(input[value="markup"]:not(:checked)) :is(del, ins) {
+    color: inherit;
+    text-decoration: none;
+  }
+</style>
