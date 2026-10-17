@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHead from "../../components/PageHead.astro";
+import { contact } from "../../data/pages/contact";
+
+const t = contact.thanks;
+---
+
+<BaseLayout title={t.title} description={t.description} noindex>
+  <PageHead title={t.h1} intro={t.body}>
+    <p class="mt-8"><a href="/">{t.back}</a></p>
+  </PageHead>
+</BaseLayout>

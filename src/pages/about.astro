@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PortraitMount from "../components/PortraitMount.astro";
+import ReferenceList from "../components/ReferenceList.astro";
+import Todo from "../components/Todo.astro";
+import { about as a } from "../data/pages/about";
+import { site, placeholders } from "../data/site";
+import { personLd, worksLd } from "../data/structured";
+import portrait from "../assets/portrait-arms.png";
+---
+
+<BaseLayout title={a.title} description={a.description} jsonLd={[personLd, ...worksLd]}>
+  <div class="about mx-auto max-w-(--container-sheet) px-4 pt-10 md:px-8 md:pt-16 lg:px-12 lg:pt-20">
+    <div class="about__text">
+      <h1 class="text-3xl tracking-(--tracking-display)">{a.h1}</h1>
+      <div class="prose mt-8">
+        {a.paragraphs.map((p, i) => <p class={i === 0 ? "text-lg" : undefined}>{p}</p>)}
+      </div>
+    </div>
+    <div class="about__photo">
+      <PortraitMount
+        src={portrait}
+        alt={a.portraitAlt}
+        width={790}
+        height={988}
+        sizes="(min-width: 64rem) 18rem, (min-width: 40rem) 20rem, 80vw"
+      />
+      <p class="mt-2 text-sm text-muted">
+        Photograph: {site.photographerCredit ?? <Todo label={placeholders.photographerCredit} />}
+      </p>
+    </div>
+  </div>
+
+  <section class="sheet mt-20" aria-labelledby="publications-heading">
+    <h2 id="publications-heading" class="text-2xl">{a.publicationsHeading}</h2>
+    <div class="mt-6 max-w-[65ch]">
+      <ReferenceList />
+    </div>
+  </section>
+
+  <section class="sheet mt-16" aria-labelledby="languages-heading">
+    <h2 id="languages-heading" class="text-2xl">{a.languagesHeading}</h2>
+    <p class="mt-3">{a.languages}</p>
+  </section>
+</BaseLayout>
+
+<style>
+  .about {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .about__photo {
+    max-width: 20rem;
+  }
+  @media (min-width: 64rem) {
+    .about {
+      grid-template-columns: minmax(0, 44rem) minmax(12rem, 18rem);
+      column-gap: 4rem;
+      align-items: start;
+    }
+    .about__photo {
+      margin-top: 4.5rem;
+    }
+  }
+</style>
