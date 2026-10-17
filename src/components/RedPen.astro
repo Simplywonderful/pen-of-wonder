@@ -1,6 +1,7 @@
 ---
-// One of only two hand-drawn proof marks on the site (BS 5261 style). Contact uses the ring
-// round "three changes"; the 404 page uses the caret. Do not add a third: see DESIGN.md.
+// One of only two hand-drawn proof marks on the site (BS 5261 style), drawn in the brand's gold,
+// which marks "the win" once per layout. Contact uses the ring round "three changes"; the 404
+// page uses the caret. Do not add a third: see DESIGN.md.
 interface Props {
   mark: "ring" | "caret";
 }
@@ -33,7 +34,7 @@ const { mark } = Astro.props;
     position: absolute;
     overflow: visible;
     fill: none;
-    stroke: var(--color-accent);
+    stroke: var(--color-gold);
     stroke-width: 2.2;
     stroke-linecap: round;
     stroke-linejoin: round;

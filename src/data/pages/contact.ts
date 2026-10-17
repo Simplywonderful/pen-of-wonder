@@ -5,7 +5,7 @@ export const contact = {
 
   h1: "Contact",
   intro: "Send a message here, on WhatsApp or by email. I reply within one working day.",
-  // The words inside ring are circled by the one red-pen mark on this page.
+  // The words inside ring are circled by the one gold proof mark on this page.
   reviewBefore: "For a free review, send the manuscript as a share link, the target journal if you have one, and your deadline. I’ll reply with the ",
   reviewRing: "three changes",
   reviewAfter: " I’d make first.",
