@@ -44,6 +44,7 @@ export const home = {
   background:
     "I’ve been a research writer since 2021. In 2026 I helped a researcher take two manuscripts through to publication. I analyse data in SPSS and NVivo, and at ADAC Data Consult I designed and led a six-month field study and trained the field researchers who collected its data.",
 
+  sampleReview: "Want to see what one looks like first? I can send an anonymised sample on request.",
   reviewHeading: "The free one-page review",
   review:
     "Send me your manuscript as a share link, with the journal you’re aiming for if you have one. Within 3 working days I’ll send back one page: the three changes I’d make first, and why. It costs nothing, and you don’t have to go further.",

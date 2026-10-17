@@ -4,9 +4,7 @@ import PortraitMount from "../components/PortraitMount.astro";
 import EditSpecimen from "../components/EditSpecimen.astro";
 import ReferenceList from "../components/ReferenceList.astro";
 import Testimonials from "../components/Testimonials.astro";
-import Todo from "../components/Todo.astro";
 import { home } from "../data/pages/home";
-import { placeholders } from "../data/site";
 import { methodsSpecimen } from "../data/specimens";
 import { organisationLd, personLd, worksLd } from "../data/structured";
 import portrait from "../assets/portrait-chin.png";
@@ -80,7 +78,7 @@ import portrait from "../assets/portrait-chin.png";
       <p class="mt-8">
         <a class="btn btn-primary" href="/contact?as=researcher">{home.primaryCta}</a>
       </p>
-      <p class="mt-6 text-sm text-muted"><Todo label={placeholders.sampleReview} /></p>
+      <p class="mt-6 text-sm text-muted">{home.sampleReview}</p>
     </div>
   </section>
 

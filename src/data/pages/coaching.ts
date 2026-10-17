@@ -60,5 +60,5 @@ export const coaching = {
   pricesNote: "Prices are in pounds sterling. How to pay is set out in the terms.",
 
   bookingHeading: "Booking",
-  booking: "Book a time online, or send me a WhatsApp message and we’ll find one.",
+  booking: "Send me a message through the contact form or on WhatsApp, and we’ll find a time that suits you.",
 } as const;

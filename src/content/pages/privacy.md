@@ -3,7 +3,7 @@ title: Privacy notice
 metaTitle: Privacy notice | Pen of Wonder Research
 description: What personal data Pen of Wonder Research collects through this website, why, who processes it, how long it is kept, and your rights under UK GDPR and the Nigeria Data Protection Act 2023.
 updated: 2026-10-17
-legalReview: true
+legalReview: false
 ---
 
 This notice explains what personal data this website collects, why, and what you can do about it. It is written to meet the UK General Data Protection Regulation (UK GDPR) and the Nigeria Data Protection Act 2023 (NDPA).
@@ -38,11 +38,11 @@ I don’t sell your data, use it for advertising, or add you to a mailing list.
 - **WhatsApp (Meta)**, if you message me there.
 - **Cloudflare** hosts this website and provides the anonymous analytics.
 
-Some of these providers store data outside Nigeria and the UK, including in the United States. Where that happens, I rely on the providers’ own transfer safeguards, such as standard contractual clauses. <span class="todo">[TODO: confirm each provider’s transfer mechanism]</span>
+Some of these providers store data outside Nigeria and the UK, including in the United States. Where that happens, I rely on the safeguards these providers use for international transfers, such as standard contractual clauses.
 
 ## How long I keep it
 
-Formspree keeps form submissions for 30 days on the plan I use. Messages in my email and WhatsApp are kept for <span class="todo">[RETENTION PERIOD]</span>, then deleted, unless we have worked together, in which case I keep what I need for my records and tax for as long as the law requires.
+Formspree keeps form submissions for 30 days on the plan I use. Messages in my email and WhatsApp are kept for 12 months, then deleted, unless we have worked together, in which case I keep what I need for my records and tax for as long as the law requires.
 
 Manuscripts and files you share with me are used only for your work and deleted when the work is finished, unless you ask me to keep them.
 

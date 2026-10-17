@@ -80,7 +80,6 @@ const priceRows = [prices.single, prices.analysis, prices.dissertation];
     <h2 id="booking-heading" class="text-2xl">{c.bookingHeading}</h2>
     <p class="mt-3 max-w-[60ch]">
       {c.booking}
-      {!site.calendlyUrl && <> <Todo label={placeholders.calendlyUrl} /></>}
     </p>
     <p class="mt-6 flex flex-wrap gap-3">
       <a class="btn btn-primary" href={bookHref}>{c.cta}</a>

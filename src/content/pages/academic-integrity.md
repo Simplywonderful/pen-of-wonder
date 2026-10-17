@@ -3,7 +3,7 @@ title: Academic Integrity Policy
 metaTitle: Academic Integrity Policy | Pen of Wonder Research
 description: How Pen of Wonder Research supports researchers and students without doing their work for them, and the work I turn down.
 updated: 2026-10-17
-legalReview: true
+legalReview: false
 ---
 
 Good research belongs to the person who did it. Everything I offer is built around that. This page sets out what I do, what I don’t, and why.

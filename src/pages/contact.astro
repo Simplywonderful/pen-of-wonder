@@ -4,9 +4,8 @@ import PageHead from "../components/PageHead.astro";
 import ContactForm from "../components/ContactForm.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
 import RedPen from "../components/RedPen.astro";
-import Todo from "../components/Todo.astro";
 import { contact as c } from "../data/pages/contact";
-import { site, placeholders } from "../data/site";
+import { site } from "../data/site";
 ---
 
 <BaseLayout title={c.title} description={c.description}>
@@ -26,7 +25,11 @@ import { site, placeholders } from "../data/site";
       <p class="mt-3"><WhatsAppButton label={`WhatsApp ${site.whatsapp.display}`} /></p>
       <p class="mt-4">Email: <a href={`mailto:${site.email}`} class="break-all">{site.email}</a></p>
       <p class="mt-4">
-        Book a tutoring session: {site.calendlyUrl ? <a href={site.calendlyUrl}>choose a time</a> : <Todo label={placeholders.calendlyUrl} />}
+        {site.calendlyUrl ? (
+          <>Book a tutoring session: <a href={site.calendlyUrl}>choose a time</a></>
+        ) : (
+          "To book a tutoring session, choose “Postgraduate student” in the form or message me on WhatsApp."
+        )}
       </p>
       <p class="mt-4">I reply {site.replyTime}.</p>
     </aside>

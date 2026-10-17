@@ -26,7 +26,7 @@ export const site = {
 
   formspreeId: "xdeabooe" as string | null,
   calendlyUrl: null as string | null,
-  meetingPlatform: null as string | null,
+  meetingPlatform: "Google Meet" as string | null,
   photographerCredit: null as string | null,
 
   showTestimonials: false,

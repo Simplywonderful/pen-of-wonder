@@ -9,23 +9,21 @@ export const workWithMe = {
   cta: "Ask about a test edit",
 
   detailsHeading: "The details",
-  // Values of null are rendered as visible placeholders until confirmed.
   details: [
     { term: "What I do", detail: "Freelance editing and proofreading of research manuscripts, theses and reports." },
     {
       term: "Subjects",
       detail: "Biochemistry and life sciences, public health and health sciences, social sciences, education, business.",
-      todo: "subjects",
     },
-    { term: "Referencing styles", detail: "APA, Harvard, Vancouver, AMA.", todo: "styles" },
+    { term: "Referencing styles", detail: "APA, Harvard, Vancouver, AMA." },
     {
       term: "Tools",
       detail: "Microsoft Word track changes and comments, Mendeley, Zotero, SPSS, NVivo, Excel.",
     },
-    { term: "Availability", detail: "from Nigeria (WAT, UTC+1), working to UK and US deadlines.", todo: "hours", todoFirst: true },
+    { term: "Availability", detail: "Flexible hours, from Nigeria (WAT, UTC+1), working to UK and US deadlines." },
     { term: "Test edit", detail: "Happy to do one. Send a short sample and your style sheet." },
     { term: "Background", detail: "Research writer since 2021; Lead Research Writer at NIFE Writing Consult (2022 to 2024); Senior Researcher at ADAC Data Consult (2022 to 2025); BSc Biochemistry, McPherson University; co-author of two peer-reviewed papers." },
     { term: "Languages", detail: "English, Yoruba, Hausa, Nigerian Pidgin." },
-    { term: "CV", detail: "", todo: "cv" },
+    { term: "CV", detail: "Available on request." },
   ],
 } as const;
