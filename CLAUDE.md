@@ -4,6 +4,8 @@ Website for Pen of Wonder Research, the research service of Pen of Wonder Consul
 
 Read DESIGN.md before any UI or copy change. Load the `handcrafted-frontend` skill for any UI work.
 
+The site uses the Pen of Wonder Consults brand (source: `C:\Users\User\Claude\Projects\Pen of Wonder Consults\Brand`). Colours and fonts live only in `src/styles/global.css`; run `node scripts/contrast-check.mjs` after any colour change. The brand voice says "we"; this site always says "I".
+
 ## Non-negotiables
 
 ### UK law on contract cheating (Skills and Post-16 Education Act 2022, ss. 26 to 28)

@@ -29,7 +29,7 @@ Written 17 October 2026 (Phase 0).
 ### Signature detail: the language of editing, with restraint
 
 - **Edit specimen** (`EditSpecimen` component): one paragraph shown as a tracked-changes edit, with Word's own view names (All Markup, No Markup, Original) as a CSS-only radio group, comment balloons labelled WA1, WA2, WA3 that say why each change was made, visually hidden "deletion start / end" and "insertion start / end" text for screen readers, and comments that drop below the paragraph as numbered notes on phones. Labelled: "An illustrative example written for this page. Not a client's manuscript." Used twice only: Home (methods paragraph, STROBE) and Publication support (results sentence that overclaims). Draft text is in `PHASE-0.md` for approval.
-- **Red-pen marks, two on the whole site,** hand-drawn inline SVG strokes based on BS 5261 proof-correction marks:
+- **Proof marks, two on the whole site,** hand-drawn inline SVG strokes based on BS 5261 proof-correction marks, drawn in Win Gold since the brand change:
   1. **404 page:** a caret (insertion mark) under the missing word in "This page is ⁁ here", with the margin note "Not found. Try the contents below."
   2. **Contact page, under the "free one-page review" line:** a ring round "three changes". Justification: it is the one promise that best captures what the reviewer does (picks the three things that matter most), the contact page is where a visitor decides to send work, and a single ring there is a small human touch at the moment of trust. It does not compete with the specimen, which lives on Home and Publication support, not Contact.
 - **Margin notes for asides:** on wide screens the main column sits left of centre and a narrow right margin holds short asides (a definition of STROBE, a note on predatory journals). On phones, asides sit inline in a quiet muted style. This is where the layout's asymmetry comes from.
@@ -37,50 +37,62 @@ Written 17 October 2026 (Phase 0).
 
 ## 4. Decisions
 
+**Brand change, 17 Oct 2026.** During Phase 1 the owner asked for the site to carry the Pen of Wonder Consults brand (`C:UsersUserClaudeProjectsPen of Wonder ConsultsBrand`, Brand Core v1, Oct 2026), choosing "full brand" over a sub-brand. This replaces the Phase 0 paper-and-ink palette and the Source Serif 4 / Source Sans 3 pairing. It also reverses the earlier rule to keep this site visually apart from the Meta-ads work: both now sit under one masterbrand. Kept from the brief: the manuscript concept, the edit specimen, first person singular ("I", not the brand's "we"), and no tagline (owner chose not to use "Words that make you win." here).
+
 Each line: the choice, then why.
 
-- **Mode:** light by default, following `prefers-color-scheme`, with a manual toggle. Dark is "the same manuscript under a desk lamp": warm dark paper, cream text, the red lifted for contrast. A tiny inline script in `<head>` sets `data-theme` before paint; the manual choice is stored in `localStorage` inside try/catch. Verdict: **kept**.
-- **Dominant colour (ink):** warm near-black `oklch(0.24 0.015 60)`; dark mode cream `oklch(0.92 0.022 85)`. Why: a manuscript's identity is its ink, and paper-and-ink keeps this brand apart from the blue-and-red Meta ads brand. Verdict: **kept**.
-- **Background (paper):** warm off-white `oklch(0.975 0.008 85)`; dark `oklch(0.215 0.012 60)`. Panel (comment balloons, the do/don't box): `oklch(0.945 0.012 82)`; dark `oklch(0.26 0.014 62)`. Verdict: **kept**.
-- **Accent colour (editor's red), under 10%:** `oklch(0.53 0.19 27)`; dark `oklch(0.72 0.15 32)`. Used for edit marks, the primary button, focus rings and link underlines on hover. Not used for form errors (ink text plus `aria-invalid`), so red keeps one meaning: "the editor touched this". Verdict: **kept**, dark value set to `0.72 0.15 32` to clear 4.5:1 on the dark panel.
-- **Neutrals:** muted text `oklch(0.47 0.016 62)` / dark `oklch(0.75 0.02 80)`; form borders `oklch(0.58 0.014 65)` / dark `oklch(0.55 0.016 70)`; hairline rules (decorative) `oklch(0.86 0.012 78)` / dark `oklch(0.34 0.014 65)`. All tinted warm toward the paper; no stock greys.
-- **Semantic tokens:** `--color-bg`, `--color-text`, `--color-muted`, `--color-rule`, `--color-rule-strong`, `--color-panel`, `--color-accent`, `--color-on-accent`, `--color-mark-del`, `--color-mark-ins`, `--color-comment-bg`, `--color-mount` (always light paper). Raw OKLCH palette tokens feed these; components use only semantic tokens.
-- **Heading font: Source Serif 4** (variable, optical sizes 8 to 60; Display optical size for large headings). Verdict on [PROPOSED] Newsreader: **changed**. Newsreader passes £, ₦ and curly quotes, and is not on the skill's over-used lists, but its character set lacks ṣ and Ṣ (U+1E63, U+1E62), ǹ and ḿ, which Yoruba names and words need; a heading such as a blog title with "Ṣeun" would fall back to another font mid-word. Source Serif 4 has all of them, keeps the journal-page feel (it was drawn for long-form reading and has true optical sizes like Newsreader), and is in the skill's "bookish or academic" pool. Checked with fontTools against the Google Fonts files on 17 Oct 2026.
-- **Body font: Source Sans 3.** Verdict: **kept**. Not on the over-used lists; has £, ₦, curly quotes and every Yoruba character tested, plus Hausa ɓ and ɗ. It shares a skeleton with Source Serif 4, so the pair reads as one hand. Known gap: Hausa ƙ (U+0199) is missing in all four fonts tested; it would fall back to the system font if ever used. Acceptable: no Hausa copy is planned.
-- **Third family:** none. References and dates use Source Sans 3 with `tabular-nums`; no mono is needed.
-- **Licences:** both SIL Open Font License; self-hosted WOFF2, Latin plus Latin Extended (Latin Ext Additional covers ṣ ẹ ọ), weights used only (serif 500 and 600 with opsz axis; sans 400, 400 italic, 600).
-- **Type scale ratio:** 1.25, fluid with `clamp()`. Headings large with tight tracking (-0.015em to -0.025em), `text-wrap: balance`; paragraphs `text-wrap: pretty`; body measure 65ch; `tabular-nums` on dates, prices and references. Why: 1.25 gives clear hierarchy without the shouting of an editorial 1.5 scale, which suits a working document.
-- **Spacing feel:** airy, like a manuscript margin, on one 4px-based scale (4, 8, 12, 16, 24, 32, 48, 64, 96). Why: margins are the concept.
-- **Radius:** 0, with 2px only on form fields and buttons for touch comfort. Why: paper has square corners.
-- **Borders vs shadows:** hairline rules only, like the rules between articles in a journal's contents. No shadows.
-- **Icons:** none, except an arrow glyph (→, a text character) in text links where it helps, and a WhatsApp mark on the WhatsApp button. No icon on any card.
-- **Imagery:** only Wonderful's two studio portraits, each shown as a print mounted on the page: a paper-coloured mount with a hairline rule that stays paper-coloured in dark mode, so it reads as a photo clipped to the manuscript rather than a white hole. No tilt, no shadow, no paperclip. Hand-on-chin on Home (`fetchpriority="high"`), arms-crossed on About (lazy). Astro's image pipeline outputs AVIF and WebP. Source files are 1023 px wide, enough for display up to about 500 CSS px. No watermark seen on either.
-- **Motion:** almost none. 150 to 250 ms transitions on `transform` and `opacity` only, for the theme toggle, menu, specimen toggle and form states. No scroll animation. Full `prefers-reduced-motion` handling.
+- **Mode:** light by default (Parchment), following `prefers-color-scheme`, with a manual toggle. Dark is the manuscript under a desk lamp, on the brand's Deep Ink. Inline script in `<head>` prevents a flash; the choice is stored in `localStorage` inside try/catch.
+- **Background:** Parchment `#EDEEE7` / `oklch(0.946 0.009 113.2)`. Dark: Deep Ink `#1B2420`. Why: the brand's main background, and close to the manuscript paper the concept asks for.
+- **Panels** (comment balloons, the do/don't box, the photo mount): Cream `#F4F0E4`. Dark panels: `oklch(0.302 0.022 166.8)`, a lifted Deep Ink. The photo mount stays Cream in both modes so the white-backed portraits read as mounted prints.
+- **Text:** Deep Ink `#1B2420`; dark mode Cream. **Headings:** Ink Green `#0F433B` (brand: "logo, headings, buttons"); dark mode Cream.
+- **Actions** (primary button, focus ring, comment labels and markers, link underline on hover): Ink Green with Cream text. Dark mode: Spark Gold `#D4A24A` with Deep Ink text (brand: Spark Gold on dark or green grounds only).
+- **Gold:** Win Gold `#A5701F` marks "the win" once per layout, as the brand rules say. On this site it is used only for the two proof marks (Contact ring, 404 caret) and the drop in the OG image. At 3.6:1 it is never used for small text.
+- **Tracked-change red:** `oklch(0.504 0.168 28.3)` (dark `oklch(0.721 0.137 29)`), used only for `<del>` and `<ins>` inside the edit specimen, because it depicts Word's markup. It is the one colour outside the brand palette, kept on purpose (owner approved in the brand question).
+- **Neutrals:** Quill Grey `#5B6661` for secondary text; hairline rules `oklch(0.868 0.014 120.3)`; form borders `oklch(0.596 0.015 159.7)`. Dark equivalents in `global.css`.
+- **Semantic tokens:** `--color-bg`, `--color-panel`, `--color-text`, `--color-heading`, `--color-muted`, `--color-rule`, `--color-rule-strong`, `--color-accent`, `--color-on-accent`, `--color-gold`, `--color-mark-del`, `--color-mark-ins`, `--color-comment-bg`, `--color-mount`. Raw OKLCH palette tokens (converted from the brand hex values, which are noted beside each) feed them.
+- **Heading font: Fraunces** (brand). Static instance at weight 700, optical size 72, SOFT 0, WONK 0: the brand's headline face, held back from the board's heaviest weight because this is a reading site. Covers £, ₦, ẹ, ọ, ṣ; lacks ǹ and ḿ (rare in headings). 19 KB for basic Latin.
+- **Body font: Inter** (brand). Variable 400 to 600 at optical size 16, plus a 400 italic for journal names. Inter is on the skill's over-used list; the written reason is that it is the masterbrand's body face and consistency across the brand outweighs novelty here. Covers every Yoruba and Hausa character tested.
+- **Numbers: IBM Plex Mono** (brand, "numbers and proof"): prices, dates, the contents numbers on Home and the step numbers. Not used for reference lists, which stay in Inter with tabular figures for readability. Subset to ASCII plus £, ₦, ·, en dash, arrow.
+- **Self-hosting:** all three families as WOFF2 in `public/fonts`, split into basic and extended Latin with `unicode-range`; Inter and Fraunces basic files are preloaded. No Google Fonts request.
+- **Type scale ratio:** 1.25, fluid with `clamp()`; headings tracked -0.012em to -0.02em, `text-wrap: balance`; paragraphs `text-wrap: pretty`; body measure about 65ch.
+- **Spacing feel:** airy, like a manuscript margin, on Tailwind's 4px step (4, 8, 12, 16, 24, 32, 48, 64, 96 in use).
+- **Radius:** 0, with 2px on buttons, inputs and the specimen toggle. Why: paper has square corners.
+- **Borders vs shadows:** hairline rules only. No shadows.
+- **Icons:** none, except the arrow character in text links and a WhatsApp glyph on WhatsApp buttons.
+- **Logo:** the emblem (quill circle) in the footer at 144px, green on light and cream on dark, cropped from the brand's transparent PNGs to the circle. The brand says not to show the emblem below about 120px, so the header keeps a Fraunces text wordmark instead of a tiny emblem. Favicon, touch icon and 512px icon are the brand's ink-drop files (Brand/Icons), unchanged. The POW mark is not used on the site (brand: avatars and social).
+- **Imagery:** only Wonderful's two studio portraits, cropped to 4:5 around the subject, in Cream mounts. Hand-on-chin on Home (`fetchpriority="high"`), arms-crossed on About (lazy). AVIF and WebP with JPEG fallback.
+- **Motion:** 150 to 250ms transitions on colour, `transform` and `opacity` for buttons, menu, specimen toggle, FAQ. No scroll animation. Full `prefers-reduced-motion` handling.
 
 ### Contrast check
 
-Output of `node scripts/contrast-check.mjs` (17 Oct 2026). WCAG 2.x ratios; body text needs 4.5:1, large text and UI 3:1.
+Output of `node scripts/contrast-check.mjs` (17 Oct 2026, reads the tokens from `src/styles/global.css`):
 
 ```
-light  ink on paper           15.34:1  needs 4.5  pass  body text
-light  ink on panel           14.04:1  needs 4.5  pass  text in comment balloons and the do/don't box
-light  muted on paper          6.37:1  needs 4.5  pass  secondary text, dates, captions
-light  muted on panel          5.83:1  needs 4.5  pass  secondary text inside panels
-light  accent on paper         5.41:1  needs 4.5  pass  edit marks (del/ins), hovered links
-light  accent on panel         4.95:1  needs 4.5  pass  edit marks inside comment panels
-light  onAccent on accent      5.41:1  needs 4.5  pass  primary button label
-light  accent on paper         5.41:1  needs 3  pass  focus ring
-light  ruleStrong on paper     4.00:1  needs 3  pass  form field borders
-dark   ink on paper           13.85:1  needs 4.5  pass  body text
-dark   ink on panel           12.29:1  needs 4.5  pass  text in comment balloons and the do/don't box
-dark   muted on paper          7.88:1  needs 4.5  pass  secondary text, dates, captions
-dark   muted on panel          6.99:1  needs 4.5  pass  secondary text inside panels
-dark   accent on paper         6.65:1  needs 4.5  pass  edit marks (del/ins), hovered links
-dark   accent on panel         5.91:1  needs 4.5  pass  edit marks inside comment panels
-dark   onAccent on accent      6.65:1  needs 4.5  pass  primary button label
-dark   accent on paper         6.65:1  needs 3  pass  focus ring
-dark   ruleStrong on paper     3.61:1  needs 3  pass  form field borders
-both   ink on mount           15.34:1  needs 4.5  pass  photo mount (fixed paper in both modes)
+light  ink on paper           13.61:1  needs 4.5  pass  body text
+light  ink on panel           13.97:1  needs 4.5  pass  text in comment balloons and the do/don't box
+light  heading on paper        9.52:1  needs 4.5  pass  headings
+light  muted on paper          5.11:1  needs 4.5  pass  secondary text, dates, captions
+light  muted on panel          5.24:1  needs 4.5  pass  secondary text inside panels
+light  markup on paper         5.49:1  needs 4.5  pass  tracked-change marks (del/ins)
+light  accent on paper         9.52:1  needs 4.5  pass  links on hover, comment labels
+light  accent on panel         9.77:1  needs 4.5  pass  comment labels inside balloons
+light  onAccent on accent      9.77:1  needs 4.5  pass  primary button label, comment markers
+light  accent on paper         9.52:1  needs 3  pass  focus ring
+light  gold on paper           3.64:1  needs 3  pass  gold proof marks (graphics and large text only)
+light  ruleStrong on paper     3.41:1  needs 3  pass  form field borders
+dark   ink on paper           13.97:1  needs 4.5  pass  body text
+dark   ink on panel           11.77:1  needs 4.5  pass  text in comment balloons and the do/don't box
+dark   heading on paper       13.97:1  needs 4.5  pass  headings
+dark   muted on paper          7.66:1  needs 4.5  pass  secondary text, dates, captions
+dark   muted on panel          6.46:1  needs 4.5  pass  secondary text inside panels
+dark   markup on paper         6.08:1  needs 4.5  pass  tracked-change marks (del/ins)
+dark   accent on paper         6.86:1  needs 4.5  pass  links on hover, comment labels
+dark   accent on panel         5.78:1  needs 4.5  pass  comment labels inside balloons
+dark   onAccent on accent      6.86:1  needs 4.5  pass  primary button label, comment markers
+dark   accent on paper         6.86:1  needs 3  pass  focus ring
+dark   gold on paper           6.86:1  needs 3  pass  gold proof marks (graphics and large text only)
+dark   ruleStrong on paper     4.02:1  needs 3  pass  form field borders
+both   ink on mount           13.97:1  needs 4.5  pass  photo mount (fixed paper in both modes)
 
 All pairs pass.
 ```
@@ -114,7 +126,7 @@ Other pages follow section 5 of the build prompt. Footer on every page: the busi
 
 ## 7. What this site will NOT do
 
-- No purple or blue, and no gradients (except possibly the OG image).
+- No purple or blue, and no gradients.
 - No glowing blobs, glassmorphism, aurora, noise textures, marquees, WebGL, 3D or shader effects (`immersive-effects.md` read only to confirm none is needed).
 - No badge pill above the H1. No eyebrow labels, except at most two on the whole site.
 - No three identical icon cards. No icon on any card.
@@ -122,7 +134,7 @@ Other pages follow section 5 of the build prompt. Footer on every page: the busi
 - No testimonial carousel; no testimonials at all until approved.
 - No coloured left-border stripes on callouts. No hover lift on cards. No shadows.
 - No fade-up on scroll.
-- No strikethrough jokes or red underlines outside the specimen and the two red-pen marks.
+- No strikethrough jokes or red underlines outside the specimen, and no proof marks beyond the two gold ones.
 - No emoji, exclamation marks, em dashes or buzzwords. No "Get started" or "Learn more".
 - No social links or icons, no link to wonderfuladebagbo.link.
 - No percentages from the CV, no "150 researchers" claim, no postgraduate study.
@@ -134,9 +146,15 @@ Other pages follow section 5 of the build prompt. Footer on every page: the busi
 
 ## 9. Intentional exceptions
 
-Anything slop-check flags that is kept on purpose (filled in Phase 1).
+slop-check (17 Oct 2026): HIGH 0. WARNs kept on purpose:
 
-- En dashes in APA page ranges (145–170) are typographic convention, not em dashes. slop-check only matches U+2014, so they are not flagged; noted here so no one "fixes" them into em dashes.
+- **`_source/` (em dashes, emoji, slop words: over 1,100 hits).** These are Wonderful's original LinkedIn posts, kept as source material. `_source/` is gitignored and never built or deployed. The blog rewrites remove all of it.
+- **Inter (over-used font).** The Pen of Wonder Consults brand sets Inter as its body face; brand consistency is the reason. See section 4.
+- **`console.log` in `scripts/`.** These are command-line tools whose job is to print results. None is in `src/`.
+- **TODO markers in the footer pages.** Deliberate visible placeholders for the owner and a lawyer; listed in section 10.
+- **En dashes in APA page ranges (145–170)** are typographic convention, not em dashes. slop-check only matches U+2014.
+- **Hex values** in `BaseLayout.astro` (`theme-color` meta), `site.webmanifest` and `scripts/make-brand-assets.py` are the brand's hex values in places that cannot read CSS variables.
+- **Eyebrow labels:** two on the whole site, "Where to start" above the contents list on Home and "What I do and don't do" on the Coaching box.
 
 ## Decisions confirmed by the owner (17 Oct 2026)
 
@@ -146,7 +164,8 @@ Anything slop-check flags that is kept on purpose (filled in Phase 1).
 - H1 (left to me): "I help researchers get their manuscripts ready for a journal and through peer review."
 - Edit specimens approved as drafted in PHASE-0.md section 5.
 - Coaching prices approved: £40 single session, £110 for 3 sessions (SPSS or NVivo), £210 for 6 dissertation sessions.
-- Font change approved: Source Serif 4 headings, Source Sans 3 body.
+- Font change approved: Source Serif 4 headings, Source Sans 3 body. Superseded the same day by the brand change (section 4).
+- Brand: full Pen of Wonder Consults brand (colours, Fraunces, Inter, IBM Plex Mono, emblem, ink-drop icons). No tagline. Tracked-change marks stay red inside the specimen only.
 
 ## 10. Open TODOs for the owner
 
