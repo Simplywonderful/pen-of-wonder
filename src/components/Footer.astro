@@ -22,7 +22,7 @@ const year = new Date().getFullYear();
       <p class="font-serif text-lg text-heading">{site.name}</p>
       <p class="max-w-[60ch] text-muted">
         {site.businessLine}
-        {site.cacNumber ? ` Business name number ${site.cacNumber}.` : <> <Todo label={placeholders.cacNumber} /></>}
+        {site.cacNumber ? ` Business Name Registration No. ${site.cacNumber} (Corporate Affairs Commission).` : <> <Todo label={placeholders.cacNumber} /></>}
       </p>
       <p class="text-muted">
         Based in {site.city}, {site.country}, {site.timezone}. I reply {site.replyTime}.

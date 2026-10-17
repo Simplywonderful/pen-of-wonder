@@ -182,7 +182,6 @@ slop-check (17 Oct 2026): HIGH 0. WARNs kept on purpose:
 | [CONFIRM PAYMENT METHODS] | Terms | Raenest, Grey, NGN bank transfer |
 | [CONFIRM REFUND POLICY], deposits | Terms | |
 | [RETENTION PERIOD] | Privacy | Note: Formspree free keeps submissions 30 days; copies also sit in your email |
-| [CAC BN NUMBER] | Footer | Optional |
 | [PHOTOGRAPHER CREDIT] | About or footer | |
 | [HIGH-RESOLUTION ORIGINALS] | Photos | Not needed at current sizes; only if larger display is wanted |
 | Approved testimonials | Home | Written permission, initials and role only; section hidden until then |
