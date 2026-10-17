@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { formatDate } from "../lib/blog";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+  return pages.map((entry) => ({ params: { page: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+
+<BaseLayout title={d.metaTitle} description={d.description}>
+  <article class="sheet pt-10 md:pt-16 lg:pt-20">
+    <header>
+      <h1 class="text-3xl tracking-(--tracking-display)">{d.title}</h1>
+      <p class="mt-4 text-sm text-muted">
+        Last updated <time datetime={d.updated.toISOString().slice(0, 10)}>{formatDate(d.updated)}</time>
+      </p>
+      {
+        d.legalReview && (
+          <p class="mt-6 max-w-[60ch] border border-rule-strong bg-panel px-4 py-3 text-sm">
+            <strong class="font-semibold">Draft.</strong> This page is awaiting review by a lawyer and may change.
+          </p>
+        )
+      }
+    </header>
+    <div class="prose legal mt-10">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
