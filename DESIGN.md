@@ -160,7 +160,7 @@ slop-check (17 Oct 2026): HIGH 0. WARNs kept on purpose:
 ## Decisions confirmed by the owner (17 Oct 2026)
 
 - Email: adebagbo.wonderfull@gmail.com.
-- Host: Cloudflare Pages, free plan, with Cloudflare Web Analytics. Commercial use permitted under the Self-Serve Subscription Agreement (https://www.cloudflare.com/terms/, last updated 12 Sep 2025, checked 17 Oct 2026). Web Analytics "does not use any client-side state, such as cookies or localStorage" (https://www.cloudflare.com/web-analytics/, checked 17 Oct 2026).
+- Host: Cloudflare Pages, free plan, with Cloudflare Web Analytics. Live address: https://penofwonderresearch.pages.dev (project name without hyphens), connected to the private GitHub repo Simplywonderful/pen-of-wonder-research for automatic deploys from main. Commercial use permitted under the Self-Serve Subscription Agreement (https://www.cloudflare.com/terms/, last updated 12 Sep 2025, checked 17 Oct 2026). Web Analytics "does not use any client-side state, such as cookies or localStorage" (https://www.cloudflare.com/web-analytics/, checked 17 Oct 2026).
 - Formspree free plan, reCAPTCHA off. No-JavaScript submissions land on Formspree's own thank-you page; JavaScript submissions go to /contact/thanks.
 - H1 (left to me): "I help researchers get their manuscripts ready for a journal and through peer review."
 - Edit specimens approved as drafted in PHASE-0.md section 5.

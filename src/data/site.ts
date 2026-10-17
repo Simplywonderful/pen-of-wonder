@@ -4,7 +4,7 @@
 export const site = {
   name: "Pen of Wonder Research",
   owner: "Wonderful Adebagbo",
-  url: "https://pen-of-wonder-research.pages.dev",
+  url: "https://penofwonderresearch.pages.dev",
   locale: "en-GB",
   city: "Ibadan",
   region: "Oyo State",
