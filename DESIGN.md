@@ -106,7 +106,7 @@ All pairs pass.
 | Testimonials | No | Component built, `showTestimonials: false` until written-permission quotes arrive |
 | Photos | Yes | Two studio portraits in `_source/`; [PHOTOGRAPHER CREDIT] |
 | Credentials | Yes | Two DOIs verified 17 Oct 2026 via Crossref; BSc (McPherson, 4.88/5.0); roles listed in the brief |
-| Contact | Partly | WhatsApp and email confirmed; [FORMSPREE FORM ID]; [CALENDLY LINK] |
+| Contact | Partly | WhatsApp, email and Formspree form (xdeabooe) confirmed; [CALENDLY LINK] |
 | FAQs | Yes | Publication support FAQ from the brief |
 | Blog | Source only | 120 posts and the content plan in `_source/`; six launch pieces in Phase 2 |
 
@@ -172,7 +172,6 @@ slop-check (17 Oct 2026): HIGH 0. WARNs kept on purpose:
 
 | Placeholder | Where | Notes |
 |---|---|---|
-| [FORMSPREE FORM ID] | Contact form | Create the form on the free plan; switch reCAPTCHA off (it is Google's and sets cookies) |
 | [CONFIRM SUBJECTS] | Work with me | Draft: biochemistry and life sciences, public health and health sciences, social sciences, education, business |
 | [CONFIRM STYLES] | Work with me | Draft: APA, Harvard, Vancouver, AMA |
 | [HOURS PER WEEK] | Work with me | |
@@ -191,7 +190,6 @@ slop-check (17 Oct 2026): HIGH 0. WARNs kept on purpose:
 | Terms: quote validity, revisions, session notice period, unused pack sessions | Terms | Drafted with assumptions (14 days) marked [TODO]; confirm or change |
 | Terms: liability and governing law | Terms | For a lawyer, Nigeria and UK clients |
 | Privacy: providers' transfer mechanisms | Privacy | Confirm Formspree, Google, Meta, Cloudflare safeguards |
-| Cloudflare Pages deploy hook | GitHub secret CF_PAGES_DEPLOY_HOOK | Needed by the weekly rebuild workflow (Phase 3) |
 
 ## 11. Launch checks (17 Oct 2026)
 

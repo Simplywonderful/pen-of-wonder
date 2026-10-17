@@ -1,7 +1,8 @@
-# Rebuilds the site every Monday morning so blog pieces whose publishDate has passed go live.
-# Cloudflare Pages builds the site itself; this only calls its deploy hook.
-# Set up once: Cloudflare dashboard > Workers & Pages > the project > Settings > Builds >
-# Deploy hooks > Add (branch: main), then save the URL as the repository secret CF_PAGES_DEPLOY_HOOK.
+# Rebuilds the site every Monday morning so blog pieces whose releaseDate has passed go live.
+# Cloudflare Pages rebuilds on every push to main, so this pushes an empty commit. No secrets or
+# Cloudflare settings are needed: the built-in GITHUB_TOKEN is enough.
+# It only pushes when a piece is scheduled (draft: false with a releaseDate), so history stays quiet
+# when nothing is waiting. Run it by hand from the Actions tab with "Run workflow".
 name: Weekly rebuild
 
 on:
@@ -9,18 +10,21 @@ on:
     - cron: "0 6 * * 1"
   workflow_dispatch:
 
-permissions: {}
+permissions:
+  contents: write
 
 jobs:
   rebuild:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Cloudflare Pages build
-        env:
-          HOOK: ${{ secrets.CF_PAGES_DEPLOY_HOOK }}
+      - uses: actions/checkout@v4
+      - name: Push an empty commit if a piece is scheduled
         run: |
-          if [ -z "$HOOK" ]; then
-            echo "CF_PAGES_DEPLOY_HOOK is not set." >&2
-            exit 1
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || grep -l "^releaseDate:" src/content/blog/*.md 2>/dev/null | xargs -r grep -L "^draft: true" | grep -q .; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit --allow-empty -m "Weekly rebuild for scheduled blog pieces"
+            git push
+          else
+            echo "No scheduled pieces; nothing to rebuild."
           fi
-          curl --fail --silent --show-error -X POST "$HOOK"
