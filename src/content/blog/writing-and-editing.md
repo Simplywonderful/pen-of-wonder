@@ -10,7 +10,7 @@ serviceLink: /work-with-me
 serviceLine: Clear structure and plain language are what I edit for, whether I’m working on a researcher’s manuscript or as a freelance editor for a firm or research team.
 draft: false
 publishDate: 2025-10-06
-releaseDate: 2026-11-09
+releaseDate: 2026-11-16
 ---
 
 In 2025 I shared thirty lessons from my years as a researcher, one at a time. This piece brings together four of them about writing: how to start, how to be understood, how to improve a draft, and how to keep going until it is finished.

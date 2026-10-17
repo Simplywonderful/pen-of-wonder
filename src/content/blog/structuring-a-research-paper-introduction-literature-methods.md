@@ -10,7 +10,7 @@ serviceLink: /publication-support
 serviceLine: If your paper is drafted and you’d like a careful second reader on its structure before you submit, I offer a free one-page review of your manuscript with the three changes I’d make first.
 draft: false
 publishDate: 2024-06-28
-releaseDate: 2026-11-16
+releaseDate: 2026-11-23
 ---
 
 Picture yourself at your desk, surrounded by notes and data printouts. The research is done, and now you have to turn it into a paper. Organising that paper can feel as hard as the research itself.

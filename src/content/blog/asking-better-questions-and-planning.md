@@ -10,7 +10,7 @@ serviceLink: /coaching
 serviceLine: If you’re a student planning a dissertation or thesis, I offer one-to-one coaching on questions, outlines and timelines. You do the research and the writing; I help you plan it and keep it on track.
 draft: false
 publishDate: 2025-10-17
-releaseDate: 2026-10-26
+releaseDate: 2026-11-02
 ---
 
 In 2025 I shared thirty lessons from my years as a researcher, one at a time. This piece brings together five of them about the groundwork: asking the right question, using what you already have, outlining, planning your time and keeping your research organised. None of it is glamorous, but it is what makes the rest of the work possible.

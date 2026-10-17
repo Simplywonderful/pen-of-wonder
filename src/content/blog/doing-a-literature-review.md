@@ -10,7 +10,7 @@ serviceLink: /publication-support
 serviceLine: If you’d like a careful second reader on the literature review in your manuscript before you submit, that is part of the publication support I offer.
 draft: false
 publishDate: 2024-03-27
-releaseDate: 2026-11-02
+releaseDate: 2026-11-09
 ---
 
 Starting a literature review can feel like setting sail on a very large sea. Every wave is another paper, and it is easy to lose your bearings. The review is also what gives your study its direction, so it pays to approach it with a method.
