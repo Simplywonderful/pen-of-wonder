@@ -9,7 +9,7 @@ series: guide
 serviceLink: /coaching
 serviceLine: If you’re a postgraduate student working on your proposal, I offer one-to-one dissertation coaching. You write the proposal; I help you plan it, question it and strengthen it, within what your university allows.
 draft: false
-publishDate: 2026-10-17
+publishDate: 2024-02-28
 ---
 
 An architect sketches every detail of a building before anyone lays a foundation. A research proposal does the same job for a study. It sets out what you will investigate, how, and why it matters, before you collect a single piece of data.

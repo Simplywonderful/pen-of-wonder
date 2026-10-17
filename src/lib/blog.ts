@@ -1,9 +1,11 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
-// A piece is live when it is not a draft and its publish date has passed at build time.
-// The weekly GitHub Action rebuilds the site, so the next scheduled piece appears on its date.
+// A piece is live when it is not a draft and its release date (or, without one, its publish date)
+// has passed at build time. publishDate is the original LinkedIn date, so it is usually in the past;
+// releaseDate is what schedules a piece. The weekly GitHub Action rebuilds the site so a scheduled
+// piece appears on its release date.
 export const isLive = (entry: CollectionEntry<"blog">, now = new Date()) =>
-  !entry.data.draft && entry.data.publishDate.getTime() <= now.getTime();
+  !entry.data.draft && (entry.data.releaseDate ?? entry.data.publishDate).getTime() <= now.getTime();
 
 export async function getLivePosts() {
   const posts = await getCollection("blog", (entry) => isLive(entry));

@@ -9,7 +9,7 @@ series: guide
 serviceLink: /work-with-me
 serviceLine: These are the habits I edit for, whether I’m working on a researcher’s manuscript or as a freelance editor for a firm or research team.
 draft: false
-publishDate: 2026-10-17
+publishDate: 2024-07-19
 ---
 
 Research writing links the work of finding things out with the work of telling people what you found. Most papers follow a familiar structure: question, method, results, conclusions. But structure alone doesn’t make a paper readable. Clear and concise writing is what makes sure your message is understood.

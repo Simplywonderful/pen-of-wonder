@@ -9,7 +9,7 @@ series: guide
 serviceLink: /publication-support
 serviceLine: If your reviews have just come back and you’d like help answering them point by point, that is part of the publication support I offer.
 draft: false
-publishDate: 2026-10-17
+publishDate: 2024-10-07
 ---
 
 You pressed submit, waited weeks, and the email finally arrives. You open the reviewers’ comments and they aren’t what you hoped. Some are helpful, some are vague, and one or two feel unfair. How you respond decides whether the paper moves forward.

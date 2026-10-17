@@ -9,7 +9,7 @@ series: 30 Lessons
 serviceLink: /publication-support
 serviceLine: If you’d like a second pair of eyes on the sources and literature review in your manuscript, I can help.
 draft: false
-publishDate: 2026-10-17
+publishDate: 2025-09-17
 ---
 
 In 2025 I shared thirty lessons from my years as a researcher, one at a time. This piece brings together six of them, all about the same thing: finding the right sources, reading them well, and knowing which ones to trust.

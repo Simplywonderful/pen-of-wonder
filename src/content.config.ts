@@ -15,7 +15,11 @@ const blog = defineCollection({
     serviceLink: z.enum(["/publication-support", "/work-with-me", "/coaching"]),
     serviceLine: z.string(),
     draft: z.boolean(),
+    // The date shown on the piece: the last date of the original LinkedIn posts.
     publishDate: z.coerce.date(),
+    // Optional: when the piece goes live on this site. Leave it out to publish on the next build.
+    // Set a future date to schedule it; the weekly rebuild releases it on that date.
+    releaseDate: z.coerce.date().optional(),
   }),
 });
 

@@ -9,7 +9,7 @@ series: guide
 serviceLink: /publication-support
 serviceLine: If you’d like a careful second reader before you submit, I offer a free one-page review of your manuscript with the three changes I’d make first.
 draft: false
-publishDate: 2026-10-17
+publishDate: 2024-09-27
 ---
 
 You’ve done the hard part. The research is complete and the findings are worth sharing. Now you have to get the work into the right journal, and that is more complicated than it looks. It isn’t only about impact factors or prestige. It’s about matching your paper to a journal’s readers, and then giving the editor no easy reason to say no.
