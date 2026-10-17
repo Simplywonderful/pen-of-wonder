@@ -187,3 +187,7 @@ slop-check (17 Oct 2026): HIGH 0. WARNs kept on purpose:
 | [HIGH-RESOLUTION ORIGINALS] | Photos | Not needed at current sizes; only if larger display is wanted |
 | Approved testimonials | Home | Written permission, initials and role only; section hidden until then |
 | [TODO: anonymised sample one-page review] | Home | Optional |
+| Terms: quote validity, revisions, session notice period, unused pack sessions | Terms | Drafted with assumptions (14 days) marked [TODO]; confirm or change |
+| Terms: liability and governing law | Terms | For a lawyer, Nigeria and UK clients |
+| Privacy: providers' transfer mechanisms | Privacy | Confirm Formspree, Google, Meta, Cloudflare safeguards |
+| Cloudflare Pages deploy hook | GitHub secret CF_PAGES_DEPLOY_HOOK | Needed by the weekly rebuild workflow (Phase 3) |
