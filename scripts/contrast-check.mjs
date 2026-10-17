@@ -1,30 +1,29 @@
 // Checks WCAG 2.x contrast for every text/background pair the site uses, in both modes.
-// The token values here must match src/styles/global.css; Phase 1 will read them from there.
+// Token values are read from src/styles/global.css, so this always tests what ships.
 // Usage: node scripts/contrast-check.mjs   (exits 1 if any pair fails)
+import { readFileSync } from "node:fs";
 
-const modes = {
-  light: {
-    paper: "oklch(0.975 0.008 85)",
-    panel: "oklch(0.945 0.012 82)",
-    ink: "oklch(0.24 0.015 60)",
-    muted: "oklch(0.47 0.016 62)",
-    accent: "oklch(0.53 0.19 27)",
-    onAccent: "oklch(0.975 0.008 85)",
-    ruleStrong: "oklch(0.58 0.014 65)",
-  },
-  dark: {
-    paper: "oklch(0.215 0.012 60)",
-    panel: "oklch(0.26 0.014 62)",
-    ink: "oklch(0.92 0.022 85)",
-    muted: "oklch(0.75 0.02 80)",
-    accent: "oklch(0.72 0.15 32)",
-    onAccent: "oklch(0.215 0.012 60)",
-    ruleStrong: "oklch(0.55 0.016 70)",
-  },
-};
+const css = readFileSync(new URL("../src/styles/global.css", import.meta.url), "utf8");
+const raw = Object.fromEntries([...css.matchAll(/--([a-z]+-\d+):\s*(oklch\([^)]+\))/g)].map((m) => [m[1], m[2]]));
+const block = (re) =>
+  Object.fromEntries(
+    [...css.match(re)[1].matchAll(/--color-([a-z-]+):\s*var\(--([a-z]+-\d+)\)/g)].map((m) => [m[1], raw[m[2]]]),
+  );
+const light = block(/@theme \{([\s\S]*?)\n\}/);
+const dark = { ...light, ...block(/:root\[data-theme="dark"\] \{([\s\S]*?)\n\}/) };
+const pick = (t) => ({
+  paper: t["bg"],
+  panel: t["panel"],
+  ink: t["text"],
+  muted: t["muted"],
+  accent: t["accent"],
+  onAccent: t["on-accent"],
+  ruleStrong: t["rule-strong"],
+});
+const modes = { light: pick(light), dark: pick(dark) };
 
-// The photo mount stays paper-coloured in both modes, so its caption pair is fixed.
-const mount = { paper: "oklch(0.975 0.008 85)", ink: "oklch(0.24 0.015 60)" };
+// The photo mount stays paper-coloured in both modes, so its pair is fixed.
+const mount = { paper: light["mount"], ink: light["mount-ink"] };
 
 // [foreground, background, minimum ratio, what it is]
 const pairs = [

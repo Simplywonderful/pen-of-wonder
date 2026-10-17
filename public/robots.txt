@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pen-of-wonder-research.pages.dev/sitemap-index.xml

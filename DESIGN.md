@@ -90,11 +90,11 @@ All pairs pass.
 | Content | Have it? | Source / TODO |
 |---|---|---|
 | Services | Yes | This brief; Publication support, Work with me, Coaching |
-| Prices | Coaching only, pending | GBP proposal in PHASE-0.md; [PRICES AWAITING APPROVAL]. No prices for researchers or firms (quoted after review) |
+| Prices | Coaching only | Approved GBP prices (see below). No prices for researchers or firms (quoted after review) |
 | Testimonials | No | Component built, `showTestimonials: false` until written-permission quotes arrive |
 | Photos | Yes | Two studio portraits in `_source/`; [PHOTOGRAPHER CREDIT] |
 | Credentials | Yes | Two DOIs verified 17 Oct 2026 via Crossref; BSc (McPherson, 4.88/5.0); roles listed in the brief |
-| Contact | Partly | WhatsApp confirmed; [CONFIRM EMAIL]; [FORMSPREE FORM ID]; [CALENDLY LINK] |
+| Contact | Partly | WhatsApp and email confirmed; [FORMSPREE FORM ID]; [CALENDLY LINK] |
 | FAQs | Yes | Publication support FAQ from the brief |
 | Blog | Source only | 120 posts and the content plan in `_source/`; six launch pieces in Phase 2 |
 
