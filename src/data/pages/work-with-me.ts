@@ -24,6 +24,6 @@ export const workWithMe = {
     { term: "Test edit", detail: "Happy to do one. Send a short sample and your style sheet." },
     { term: "Background", detail: "Research writer since 2021; Lead Research Writer at NIFE Writing Consult (2022 to 2024); Senior Researcher at ADAC Data Consult (2022 to 2025); BSc Biochemistry, McPherson University; co-author of two peer-reviewed papers." },
     { term: "Languages", detail: "English, Yoruba, Hausa, Nigerian Pidgin." },
-    { term: "CV", detail: "Available on request." },
+    { term: "CV", detail: "Download my CV (PDF, 2 pages)", href: "/files/Wonderful-Adebagbo-CV.pdf" },
   ],
 } as const;

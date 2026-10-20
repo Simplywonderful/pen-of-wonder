@@ -1,9 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHead from "../components/PageHead.astro";
-import Todo from "../components/Todo.astro";
 import { workWithMe as w } from "../data/pages/work-with-me";
-import { placeholders } from "../data/site";
 
 const cta = { href: "/contact?as=editing-firm", label: w.cta };
 ---
@@ -15,25 +13,12 @@ const cta = { href: "/contact?as=editing-firm", label: w.cta };
     <h2 id="details-heading" class="text-2xl">{w.detailsHeading}</h2>
     <dl class="mt-6 border-t border-rule">
       {
-        w.details.map((d) => {
-          const todo = "todo" in d ? <Todo label={placeholders[d.todo]} /> : null;
-          return (
-            <div class="row">
-              <dt class="font-semibold">{d.term}</dt>
-              <dd>
-                {"todoFirst" in d ? (
-                  <>
-                    {todo} {d.detail}
-                  </>
-                ) : (
-                  <>
-                    {d.detail} {todo}
-                  </>
-                )}
-              </dd>
-            </div>
-          );
-        })
+        w.details.map((d) => (
+          <div class="row">
+            <dt class="font-semibold">{d.term}</dt>
+            <dd>{"href" in d ? <a href={d.href}>{d.detail}</a> : d.detail}</dd>
+          </div>
+        ))
       }
     </dl>
     <p class="mt-10">
