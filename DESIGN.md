@@ -168,12 +168,16 @@ slop-check (17 Oct 2026): HIGH 0. WARNs kept on purpose:
 - Font change approved: Source Serif 4 headings, Source Sans 3 body. Superseded the same day by the brand change (section 4).
 - Brand: full Pen of Wonder Consults brand (colours, Fraunces, Inter, IBM Plex Mono, emblem, ink-drop icons). No tagline. Tracked-change marks stay red inside the specimen only.
 
+- Company voice (24 Oct 2026, owner request): the site speaks as Pen of Wonder Research ("we"), with Wonderful Adebagbo as founder and face of the brand, so the business is not tied to one person as it grows. Guardrail: no invented team (no "our editors", staff counts or roles that don't exist). Blog posts keep the author's first person with a byline ("By Wonderful Adebagbo, founder"); the edit specimen's margin comments stay in a single editor's voice. "Work with me" became "Work with us" at /work-with-us, with a 301 from /work-with-me in public/_redirects.
+- Imagery (24 Oct 2026, owner request): the founder's portrait moved off the home page; About now opens with the company and has an "Our founder" section with the arms-crossed portrait. The home page will carry one photo of the work itself (a manuscript being marked up, or papers and notes on a desk), royalty-free or the owner's own; it should not show posed people who could be mistaken for staff. Until it arrives the opening is text only. The hand-on-chin portrait (src/assets/portrait-chin.png) is kept but unused.
+
 ## 10. Open TODOs for the owner
 
 Updated 17 Oct 2026, after the owner filled the placeholders. No [TODO] markers remain on the live site.
 
 | Item | Where | Notes |
 |---|---|---|
+| Home photo of the work | Home | Landscape, at least 1600 px wide, royalty-free (Pexels, Unsplash, Pixabay) or the owner's own: a manuscript or printed paper being marked up, or a research desk. No posed people. |
 | Approved testimonials | Home | Written permission, initials and role only; section hidden until then |
 | Legal review | Terms, Privacy | Owner has no lawyer yet and asked for the draft banner to be removed (17 Oct 2026). Worth a lawyer's read later: liability limit, governing law for UK consumers, international transfers. |
 | Calendly | Coaching, Contact | None for now; booking goes through the contact form and WhatsApp. Set `calendlyUrl` in `src/data/site.ts` if one is created. |

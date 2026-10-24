@@ -4,7 +4,7 @@ Website for Pen of Wonder Research, the research service of Pen of Wonder Consul
 
 Read DESIGN.md before any UI or copy change. Load the `handcrafted-frontend` skill for any UI work.
 
-The site uses the Pen of Wonder Consults brand (source: `C:\Users\User\Claude\Projects\Pen of Wonder Consults\Brand`). Colours and fonts live only in `src/styles/global.css`; run `node scripts/contrast-check.mjs` after any colour change. The brand voice says "we"; this site always says "I".
+The site uses the Pen of Wonder Consults brand (source: `C:\Users\User\Claude\Projects\Pen of Wonder Consults\Brand`). Colours and fonts live only in `src/styles/global.css`; run `node scripts/contrast-check.mjs` after any colour change. The site speaks as the company ("we"), with Wonderful Adebagbo as founder and the face of the brand (owner decision, 24 Oct 2026).
 
 ## Non-negotiables
 
@@ -13,10 +13,10 @@ The site uses the Pen of Wonder Consults brand (source: `C:\Users\User\Claude\Pr
 - Student pages sell teaching, never doing. The student always writes the work and runs the analysis.
 - Never use: "we write your dissertation", "assignment help", "do my assignment", "guaranteed grade", "pass guaranteed", "100% plagiarism-free", "undetectable", "AI-free", "write my essay", or anything offering to complete work. No "done for you", "we handle it", "leave it to us" on student-facing pages.
 - No proofreading or editing offered to students. Editing is for researchers' manuscripts and for firms.
-- `scripts/integrity-check.mjs` fails the build on banned phrases in `src/`. Run it with slop-check.
+- `scripts/integrity-check.mjs` fails the build on banned phrases in `src/`. Run it with slop-check. With the company voice, watch for "we write…", "we do…", "we handle…" on student pages: teaching only.
 
 ### Mixed audience
-- Every student page has a visible "What I do and don't do" box near the top.
+- Every student page has a visible "What we do and don't do" box near the top.
 - The Academic Integrity Policy is linked in the footer of every page.
 
 ### No invented proof
@@ -27,7 +27,10 @@ The site uses the Pen of Wonder Consults brand (source: `C:\Users\User\Claude\Pr
 - The 2026 work is described only as: "helped a researcher take two manuscripts through to publication". Never name the papers or the client.
 
 ### Voice
-- Plain, warm, direct. British spelling. First person singular ("I"), never "we".
+- Plain, warm, direct. British spelling.
+- Company pages speak as Pen of Wonder Research: "we", "our", "us". Never invent a team: no "our team of editors", "our statisticians", staff counts or named roles that don't exist. Wonderful is named as founder.
+- Blog posts keep the author's first-person voice ("I") with a byline; they are his experiences.
+- The edit specimen's margin comments stay in the editor's singular voice ("I've taken these from…"), as real editor comments would.
 - No em dashes anywhere: copy, alt text, meta, code comments.
 - No exclamation marks. No emoji.
 - No buzzwords: leverage, elevate, unlock, empower, seamless, cutting-edge, world-class, tailored solutions, journey, delve, robust, game-changing, "in today's fast-paced world", "whether you're X or Y".
