@@ -65,7 +65,7 @@ def main(display_path, body_path):
     line1, _ = text_path(display, "Pen of Wonder", left, 300, 108, -0.02)
     line2, w2 = text_path(display, "Research", left, 414, 108, -0.02)
     sub, _ = text_path(body, "Manuscript editing and publication support", left, 494, 32)
-    place, _ = text_path(body, "Wonderful Adebagbo · Ibadan, Nigeria", left, 542, 26)
+    place, _ = text_path(body, "Dissertation coaching, SPSS and NVivo tutoring · Ibadan, Nigeria", left, 542, 26)
     og = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="{PARCHMENT}"/>
   <path d="M{left} 150H1104M{left} 572H1104" stroke="{RULE}" stroke-width="2"/>
