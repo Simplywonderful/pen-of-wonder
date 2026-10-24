@@ -3,19 +3,27 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PortraitMount from "../components/PortraitMount.astro";
 import ReferenceList from "../components/ReferenceList.astro";
 import { about as a } from "../data/pages/about";
-import { personLd, worksLd } from "../data/structured";
+import { organisationLd, personLd, worksLd } from "../data/structured";
 import portrait from "../assets/portrait-arms.png";
 ---
 
-<BaseLayout title={a.title} description={a.description} jsonLd={[personLd, ...worksLd]}>
-  <div class="about mx-auto max-w-(--container-sheet) px-4 pt-10 md:px-8 md:pt-16 lg:px-12 lg:pt-20">
-    <div class="about__text">
-      <h1 class="text-3xl tracking-(--tracking-display)">{a.h1}</h1>
-      <div class="prose mt-8">
-        {a.paragraphs.map((p, i) => <p class={i === 0 ? "text-lg" : undefined}>{p}</p>)}
+<BaseLayout title={a.title} description={a.description} jsonLd={[organisationLd, personLd, ...worksLd]}>
+  <header class="sheet pt-10 md:pt-16 lg:pt-20">
+    <h1 class="text-3xl tracking-(--tracking-display)">{a.h1}</h1>
+    <div class="prose mt-8">
+      {a.paragraphs.map((p, i) => <p class={i === 0 ? "text-lg" : undefined}>{p}</p>)}
+    </div>
+  </header>
+
+  <section class="founder mx-auto mt-20 max-w-(--container-sheet) px-4 md:px-8 lg:px-12" aria-labelledby="founder-heading">
+    <div class="founder__text">
+      <h2 id="founder-heading" class="text-2xl">{a.founderHeading}</h2>
+      <p class="mt-2 text-sm text-muted">{a.founderName}, {a.founderRole.toLowerCase()}</p>
+      <div class="prose mt-6">
+        {a.founder.map((p) => <p>{p}</p>)}
       </div>
     </div>
-    <div class="about__photo">
+    <div class="founder__photo">
       <PortraitMount
         src={portrait}
         alt={a.portraitAlt}
@@ -24,7 +32,7 @@ import portrait from "../assets/portrait-arms.png";
         sizes="(min-width: 64rem) 18rem, (min-width: 40rem) 20rem, 80vw"
       />
     </div>
-  </div>
+  </section>
 
   <section class="sheet mt-20" aria-labelledby="publications-heading">
     <h2 id="publications-heading" class="text-2xl">{a.publicationsHeading}</h2>
@@ -40,21 +48,18 @@ import portrait from "../assets/portrait-arms.png";
 </BaseLayout>
 
 <style>
-  .about {
+  .founder {
     display: grid;
     gap: 2.5rem;
   }
-  .about__photo {
+  .founder__photo {
     max-width: 20rem;
   }
   @media (min-width: 64rem) {
-    .about {
+    .founder {
       grid-template-columns: minmax(0, 44rem) minmax(12rem, 18rem);
       column-gap: 4rem;
       align-items: start;
-    }
-    .about__photo {
-      margin-top: 4.5rem;
     }
   }
 </style>

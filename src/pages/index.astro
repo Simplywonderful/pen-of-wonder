@@ -1,13 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import PortraitMount from "../components/PortraitMount.astro";
 import EditSpecimen from "../components/EditSpecimen.astro";
 import ReferenceList from "../components/ReferenceList.astro";
 import Testimonials from "../components/Testimonials.astro";
 import { home } from "../data/pages/home";
 import { methodsSpecimen } from "../data/specimens";
 import { organisationLd, personLd, worksLd } from "../data/structured";
-import portrait from "../assets/portrait-chin.png";
 ---
 
 <BaseLayout title={home.title} description={home.description} jsonLd={[organisationLd, personLd, ...worksLd]}>
@@ -19,16 +17,6 @@ import portrait from "../assets/portrait-chin.png";
         <a class="btn btn-primary" href="/contact?as=researcher">{home.primaryCta}</a>
       </p>
     </div>
-    <PortraitMount
-      class="opening__portrait"
-      src={portrait}
-      alt={home.portraitAlt}
-      width={600}
-      height={750}
-      position="center"
-      priority
-      sizes="(min-width: 64rem) 20rem, (min-width: 40rem) 22rem, 80vw"
-    />
   </section>
 
   <section class="sheet mt-16 md:mt-20" aria-labelledby="doors-heading">
@@ -86,22 +74,9 @@ import portrait from "../assets/portrait-chin.png";
 </BaseLayout>
 
 <style>
-  .opening {
-    display: grid;
-    gap: 2.5rem;
-  }
-  .opening__portrait {
-    max-width: 22rem;
-  }
-  @media (min-width: 64rem) {
-    .opening {
-      grid-template-columns: minmax(0, 44rem) minmax(15rem, 20rem);
-      column-gap: 4rem;
-      align-items: end;
-    }
-    .opening__portrait {
-      max-width: none;
-    }
+  /* Text-only opening until a photo of the work is supplied (see DESIGN.md section 10). */
+  .opening__text {
+    max-width: 50rem;
   }
 
   .door {
