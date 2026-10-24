@@ -15,7 +15,7 @@ export const site = {
   whatsapp: {
     display: "+234 704 641 8092",
     link: "https://wa.me/2347046418092?text=" +
-      encodeURIComponent("Hello Wonderful, I found Pen of Wonder Research and would like to ask about "),
+      encodeURIComponent("Hello, I found Pen of Wonder Research and would like to ask about "),
   },
   replyTime: "within one working day",
   reviewTurnaround: "3 working days",
@@ -68,7 +68,7 @@ export const prices = {
 
 export const nav = [
   { href: "/publication-support", label: "Publication support" },
-  { href: "/work-with-me", label: "Work with me" },
+  { href: "/work-with-us", label: "Work with us" },
   { href: "/coaching", label: "Coaching" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
