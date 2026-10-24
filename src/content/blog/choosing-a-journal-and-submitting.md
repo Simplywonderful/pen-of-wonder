@@ -7,7 +7,7 @@ sourceDates:
 sourcePosts: [75, 76, 77, 78, 79]
 series: guide
 serviceLink: /publication-support
-serviceLine: If you’d like a careful second reader before you submit, I offer a free one-page review of your manuscript with the three changes I’d make first.
+serviceLine: If you’d like a careful second reader before you submit, we offer a free one-page review of your manuscript with the three changes we’d make first.
 draft: false
 publishDate: 2024-09-27
 ---

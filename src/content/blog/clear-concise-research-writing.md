@@ -6,8 +6,8 @@ sourceDates:
   last: 2024-07-19
 sourcePosts: [60, 61, 62]
 series: guide
-serviceLink: /work-with-me
-serviceLine: These are the habits I edit for, whether I’m working on a researcher’s manuscript or as a freelance editor for a firm or research team.
+serviceLink: /work-with-us
+serviceLine: These are the habits we edit for, whether we’re working on a researcher’s manuscript or editing for a firm or research team.
 draft: false
 publishDate: 2024-07-19
 ---

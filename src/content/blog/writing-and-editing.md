@@ -6,8 +6,8 @@ sourceDates:
   last: 2025-10-06
 sourcePosts: [97, 98, 106, 113]
 series: 30 Lessons
-serviceLink: /work-with-me
-serviceLine: Clear structure and plain language are what I edit for, whether I’m working on a researcher’s manuscript or as a freelance editor for a firm or research team.
+serviceLink: /work-with-us
+serviceLine: Clear structure and plain language are what we edit for, whether we’re working on a researcher’s manuscript or editing for a firm or research team.
 draft: false
 publishDate: 2025-10-06
 releaseDate: 2026-11-16

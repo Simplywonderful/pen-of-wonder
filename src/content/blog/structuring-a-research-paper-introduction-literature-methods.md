@@ -7,7 +7,7 @@ sourceDates:
 sourcePosts: [51, 52, 53, 54, 55]
 series: guide
 serviceLink: /publication-support
-serviceLine: If your paper is drafted and you’d like a careful second reader on its structure before you submit, I offer a free one-page review of your manuscript with the three changes I’d make first.
+serviceLine: If your paper is drafted and you’d like a careful second reader on its structure before you submit, we offer a free one-page review of your manuscript with the three changes we’d make first.
 draft: false
 publishDate: 2024-06-28
 releaseDate: 2026-11-23

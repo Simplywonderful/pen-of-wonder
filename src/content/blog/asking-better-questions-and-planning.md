@@ -7,7 +7,7 @@ sourceDates:
 sourcePosts: [94, 95, 96, 108, 118]
 series: 30 Lessons
 serviceLink: /coaching
-serviceLine: If you’re a student planning a dissertation or thesis, I offer one-to-one coaching on questions, outlines and timelines. You do the research and the writing; I help you plan it and keep it on track.
+serviceLine: If you’re a student planning a dissertation or thesis, we offer one-to-one coaching on questions, outlines and timelines. You do the research and the writing; we help you plan it and keep it on track.
 draft: false
 publishDate: 2025-10-17
 releaseDate: 2026-11-02

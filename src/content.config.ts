@@ -11,8 +11,10 @@ const blog = defineCollection({
     summary: z.string(),
     sourceDates: z.object({ first: z.coerce.date(), last: z.coerce.date() }),
     sourcePosts: z.array(z.number().int()),
+    // The writer. Defaults to the founder; set it in front matter when someone else writes a piece.
+    author: z.string().default("Wonderful Adebagbo"),
     series: z.enum(["guide", "30 Lessons"]),
-    serviceLink: z.enum(["/publication-support", "/work-with-me", "/coaching"]),
+    serviceLink: z.enum(["/publication-support", "/work-with-us", "/coaching"]),
     serviceLine: z.string(),
     draft: z.boolean(),
     // The date shown on the piece: the last date of the original LinkedIn posts.

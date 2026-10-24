@@ -7,7 +7,7 @@ sourceDates:
 sourcePosts: [38, 39, 40]
 series: guide
 serviceLink: /coaching
-serviceLine: If you’re learning to run your own analysis in SPSS, I offer one-to-one tutoring where you work on your data and I guide you through choosing, running and reporting the tests.
+serviceLine: If you’re learning to run your own analysis in SPSS, we offer one-to-one tutoring where you work on your data and we guide you through choosing, running and reporting the tests.
 draft: false
 publishDate: 2024-05-13
 ---

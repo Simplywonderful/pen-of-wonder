@@ -7,7 +7,7 @@ sourceDates:
 sourcePosts: [80, 81, 82]
 series: guide
 serviceLink: /publication-support
-serviceLine: If your reviews have just come back and you’d like help answering them point by point, that is part of the publication support I offer.
+serviceLine: If your reviews have just come back and you’d like help answering them point by point, that is part of the publication support we offer.
 draft: false
 publishDate: 2024-10-07
 ---

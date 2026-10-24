@@ -7,7 +7,7 @@ sourceDates:
 sourcePosts: [20, 21, 22, 23, 24]
 series: guide
 serviceLink: /publication-support
-serviceLine: If you’d like a careful second reader on the literature review in your manuscript before you submit, that is part of the publication support I offer.
+serviceLine: If you’d like a careful second reader on the literature review in your manuscript before you submit, that is part of the publication support we offer.
 draft: false
 publishDate: 2024-03-27
 releaseDate: 2026-11-09

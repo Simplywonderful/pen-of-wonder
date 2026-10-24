@@ -7,7 +7,7 @@ sourceDates:
 sourcePosts: [16, 17, 18, 19]
 series: guide
 serviceLink: /publication-support
-serviceLine: If you’re preparing a review article for a journal and would like a careful second reader on its method and structure, that is part of the publication support I offer.
+serviceLine: If you’re preparing a review article for a journal and would like a careful second reader on its method and structure, that is part of the publication support we offer.
 draft: false
 publishDate: 2024-03-13
 releaseDate: 2026-10-26

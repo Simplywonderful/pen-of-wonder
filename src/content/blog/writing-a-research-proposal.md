@@ -7,7 +7,7 @@ sourceDates:
 sourcePosts: [13, 14, 15]
 series: guide
 serviceLink: /coaching
-serviceLine: If you’re a postgraduate student working on your proposal, I offer one-to-one dissertation coaching. You write the proposal; I help you plan it, question it and strengthen it, within what your university allows.
+serviceLine: If you’re a postgraduate student working on your proposal, we offer one-to-one dissertation coaching. You write the proposal; we help you plan it, question it and strengthen it, within what your university allows.
 draft: false
 publishDate: 2024-02-28
 ---

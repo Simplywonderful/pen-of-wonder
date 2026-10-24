@@ -7,7 +7,7 @@ sourceDates:
 sourcePosts: [90, 91, 92, 93, 100, 105]
 series: 30 Lessons
 serviceLink: /publication-support
-serviceLine: If you’d like a second pair of eyes on the sources and literature review in your manuscript, I can help.
+serviceLine: If you’d like a second pair of eyes on the sources and literature review in your manuscript, we can help.
 draft: false
 publishDate: 2025-09-17
 ---

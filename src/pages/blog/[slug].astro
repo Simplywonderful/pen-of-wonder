@@ -19,7 +19,7 @@ const articleLd = {
   headline: d.title,
   description: d.summary,
   datePublished: d.publishDate.toISOString(),
-  author: { "@id": `${site.url}/about#person`, "@type": "Person", name: site.owner },
+  author: d.author === site.owner ? { "@id": `${site.url}/about#person`, "@type": "Person", name: site.owner } : { "@type": "Person", name: d.author },
   publisher: { "@type": "Organization", name: site.name },
   mainEntityOfPage: `${site.url}/blog/${post.id}`,
 };
@@ -29,6 +29,8 @@ const articleLd = {
   <article class="sheet pt-10 md:pt-16 lg:pt-20">
     <header>
       <p class="text-sm text-muted">
+        By {d.author === site.owner ? <a href="/about#founder-heading">{d.author}, founder</a> : d.author}
+        <span aria-hidden="true"> · </span>
         <time datetime={d.publishDate.toISOString()}>{formatDate(d.publishDate)}</time>
       </p>
       <h1 class="mt-2 text-3xl tracking-(--tracking-display)">{d.title}</h1>
@@ -46,8 +48,8 @@ const articleLd = {
         {d.serviceLine} <a href={d.serviceLink}>{
           d.serviceLink === "/publication-support"
             ? "See how publication support works"
-            : d.serviceLink === "/work-with-me"
-              ? "Read my editing details"
+            : d.serviceLink === "/work-with-us"
+              ? "Read our editing details"
               : "See coaching and tutoring"
         }</a>.
       </p>
