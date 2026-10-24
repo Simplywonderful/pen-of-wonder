@@ -6,10 +6,10 @@ export const publicationSupport = {
 
   h1: "Publication support for researchers",
   intro:
-    "You’ve done the research. I help you turn it into a paper a journal will take seriously: clear structure, complete reporting, the right journal, and calm answers to reviewers. You stay the author throughout.",
+    "You’ve done the research. We help you turn it into a paper a journal will take seriously: clear structure, complete reporting, the right journal, and calm answers to reviewers. You stay the author throughout.",
   cta: "Send your manuscript for a free one-page review",
 
-  helpHeading: "What I help with",
+  helpHeading: "What we help with",
   help: [
     { term: "From thesis to paper", detail: "Cutting a thesis or dissertation chapter down to one argument, at journal length." },
     {
@@ -56,34 +56,34 @@ export const publicationSupport = {
   stepsHeading: "How it works",
   steps: [
     { title: "Send the manuscript.", text: "A share link is fine, with the target journal and any deadline." },
-    { title: "Free one-page review.", text: "Within 3 working days: the three changes I’d make first, and why." },
+    { title: "Free one-page review.", text: "Within 3 working days: the three changes we’d make first, and why." },
     { title: "Quote.", text: "A fixed price based on length and what the paper needs." },
     { title: "The work.", text: "Tracked changes and comments, so you see every edit and decide on each one." },
-    { title: "Reviewer responses.", text: "When the reviews come back, I help you answer them." },
+    { title: "Reviewer responses.", text: "When the reviews come back, we help you answer them." },
   ],
 
   specimenHeading: "Where papers lose reviewers",
   specimenIntro:
-    "Results sections often claim more than the design can support. Here is the kind of sentence I’d change, and why.",
+    "Results sections often claim more than the design can support. Here is the kind of sentence we’d change, and why.",
 
   faqHeading: "Questions",
   faq: [
     {
       q: "Who is the author?",
-      a: "You are. The ideas, data and conclusions are yours, and you approve every change. Where a journal asks you to acknowledge writing or editing support, I’ll help you word it.",
+      a: "You are. The ideas, data and conclusions are yours, and you approve every change. Where a journal asks you to acknowledge writing or editing support, we’ll help you word it.",
     },
     {
       q: "Do you guarantee acceptance?",
-      a: "No one honestly can. Editors and reviewers decide. I make the paper as strong as it can be and help you choose a journal that fits it.",
+      a: "No one honestly can. Editors and reviewers decide. We make the paper as strong as it can be and help you choose a journal that fits it.",
     },
-    { q: "Is my manuscript kept confidential?", a: "Yes. I don’t share manuscripts, and I don’t name clients." },
+    { q: "Is my manuscript kept confidential?", a: "Yes. We don’t share manuscripts, and we don’t name clients." },
     {
       q: "Can you tell me if a journal is predatory?",
-      a: "Yes. If a journal on your list looks predatory, I’ll tell you, and show you why.",
+      a: "Yes. If a journal on your list looks predatory, we’ll tell you, and show you why.",
     },
     {
       q: "How much does it cost?",
-      a: "I quote after the free review, because it depends on the length of the paper and what it needs. There’s no charge for the review itself.",
+      a: "We quote after the free review, because it depends on the length of the paper and what it needs. There’s no charge for the review itself.",
     },
   ],
 } as const;

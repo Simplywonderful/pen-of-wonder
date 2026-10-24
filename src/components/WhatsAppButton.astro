@@ -5,7 +5,7 @@ interface Props {
   label?: string;
   variant?: "primary" | "secondary";
 }
-const { label = "Message me on WhatsApp", variant = "secondary" } = Astro.props;
+const { label = "Message us on WhatsApp", variant = "secondary" } = Astro.props;
 ---
 
 <a class:list={["btn", variant === "primary" ? "btn-primary" : "btn-secondary"]} href={site.whatsapp.link}>

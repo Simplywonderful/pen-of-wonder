@@ -2,15 +2,15 @@
 title: Terms
 metaTitle: Terms of service | Pen of Wonder Research
 description: The terms for editing, publication support, coaching and tutoring from Pen of Wonder Research, including quotes, payment, revisions, confidentiality and cancellations.
-updated: 2026-10-17
+updated: 2026-10-24
 legalReview: false
 ---
 
-These terms apply when you buy editing, publication support, coaching or tutoring from Pen of Wonder Research, the research service of Pen of Wonder Consults, a registered business name in Nigeria. Please read them before you pay. If anything here is unclear, ask me first.
+These terms apply when you buy editing, publication support, coaching or tutoring from Pen of Wonder Research, the research service of Pen of Wonder Consults, a registered business name in Nigeria. Please read them before you pay. If anything here is unclear, ask us first.
 
 ## The service
 
-I provide editing, publication support and analysis support for researchers and firms, and coaching and tutoring for students. All work follows the [Academic Integrity Policy](/academic-integrity), which forms part of these terms. I will turn down, or stop, any work that would break it.
+We provide editing, publication support and analysis support for researchers and firms, and coaching and tutoring for students. All work follows the [Academic Integrity Policy](/academic-integrity), which forms part of these terms. We will turn down, or stop, any work that would break it.
 
 ## Quotes
 
@@ -33,31 +33,31 @@ Work starts when the first payment has been received.
 
 ## Revisions
 
-For editing and publication support, the quote includes one round of follow-up on my edits, within 14 days of delivery, at no extra cost. Changes that go beyond the original quote, such as a new section or a substantially rewritten draft, are quoted separately.
+For editing and publication support, the quote includes one round of follow-up on our edits, within 14 days of delivery, at no extra cost. Changes that go beyond the original quote, such as a new section or a substantially rewritten draft, are quoted separately.
 
 ## Your responsibilities
 
 - You are the author of your work and responsible for its content, data and conclusions.
-- You confirm you have the right to share the material you send me.
+- You confirm you have the right to share the material you send us.
 - You follow the rules of your university, employer or journal.
 
 ## Confidentiality
 
-I keep your manuscripts, data and correspondence confidential. I don’t share them, don’t name clients, and don’t use your work as an example without your written permission. Files are deleted when the work is finished unless you ask me to keep them.
+We keep your manuscripts, data and correspondence confidential. We don’t share them, don’t name clients, and don’t use your work as an example without your written permission. Files are deleted when the work is finished unless you ask us to keep them.
 
 ## Acceptance and outcomes
 
-I make the work as strong as I can, but no one can guarantee that a journal will accept a paper or that a student will get a particular mark. Payment is for the work done, not for an outcome.
+We make the work as strong as we can, but no one can guarantee that a journal will accept a paper or that a student will get a particular mark. Payment is for the work done, not for an outcome.
 
 ## Cancellations and refunds
 
-- **Tutoring sessions:** you can reschedule free of charge with at least 24 hours’ notice. A session cancelled with less than 24 hours’ notice, or missed, counts as used. If I have to cancel a session, you can choose a new time or a refund for that session.
+- **Tutoring sessions:** you can reschedule free of charge with at least 24 hours’ notice. A session cancelled with less than 24 hours’ notice, or missed, counts as used. If we have to cancel a session, you can choose a new time or a refund for that session.
 - **Packs:** sessions in a pack must be used within the period stated on the coaching page. Unused sessions are not refunded once that period ends.
-- **Editing and publication support:** you can cancel at any time. You pay for the work done up to the point you cancel; if your payments so far come to more than that, I refund the difference.
+- **Editing and publication support:** you can cancel at any time. You pay for the work done up to the point you cancel; if your payments so far come to more than that, we refund the difference.
 
 ## Liability
 
-My total liability for any claim connected with a piece of work is limited to the amount you paid for that work.
+Our total liability for any claim connected with a piece of work is limited to the amount you paid for that work.
 
 ## Law
 
