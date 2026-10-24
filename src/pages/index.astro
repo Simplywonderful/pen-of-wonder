@@ -11,7 +11,7 @@ import heroImage from "../assets/home-desk.webp";
 ---
 
 <BaseLayout title={home.title} description={home.description} jsonLd={[organisationLd, personLd, ...worksLd]}>
-  <section class="opening mx-auto max-w-(--container-sheet) px-4 pt-10 pb-4 md:px-8 md:pt-16 lg:px-12 lg:pt-20">
+  <section class="opening mx-auto max-w-(--container-sheet) px-4 pt-6 pb-4 md:px-8 md:pt-12 lg:px-12 lg:pt-20">
     <div class="opening__text">
       <h1 class="text-3xl tracking-(--tracking-display)">{home.h1}</h1>
       <p class="mt-6 max-w-[58ch] text-lg text-muted">{home.intro}</p>
@@ -23,14 +23,14 @@ import heroImage from "../assets/home-desk.webp";
       <Picture
         src={heroImage}
         alt={home.heroAlt}
-        width={1672}
-        height={760}
+        width={941}
+        height={941}
         fit="cover"
         position="center"
         formats={["avif", "webp"]}
         fallbackFormat="jpg"
-        widths={[480, 800, 1200, 1672]}
-        sizes="(min-width: 72rem) 66rem, calc(100vw - 2rem)"
+        widths={[400, 640, 941]}
+        sizes="(min-width: 64rem) 24rem, calc(100vw - 2rem)"
         loading="eager"
         fetchpriority="high"
         decoding="async"
@@ -93,22 +93,45 @@ import heroImage from "../assets/home-desk.webp";
 </BaseLayout>
 
 <style>
-  .opening__text {
-    max-width: 50rem;
+  /*
+    A photo of the work itself, not of people (see DESIGN.md, Imagery). On phones it sits above
+    the headline as a short strip so the button stays near the top; on wide screens it takes
+    the place the founder's portrait used to have, beside the text.
+  */
+  .opening {
+    display: grid;
+    gap: 1.75rem;
   }
-  /* A photo of the work itself, not of people (see DESIGN.md, Imagery). */
   .hero {
-    margin: 2.5rem 0 0;
+    order: -1;
+    margin: 0;
     border: 1px solid var(--color-rule);
   }
   .hero :global(img) {
     display: block;
     width: 100%;
     height: auto;
+    aspect-ratio: 5 / 2;
+    object-fit: cover;
+    object-position: 50% 62%;
+  }
+  @media (min-width: 48rem) {
+    .hero :global(img) {
+      aspect-ratio: 16 / 9;
+    }
   }
   @media (min-width: 64rem) {
+    .opening {
+      grid-template-columns: minmax(0, 40rem) minmax(18rem, 24rem);
+      justify-content: space-between;
+      column-gap: 4rem;
+      align-items: center;
+    }
     .hero {
-      margin-top: 3.5rem;
+      order: 0;
+    }
+    .hero :global(img) {
+      aspect-ratio: 1 / 1;
     }
   }
 
