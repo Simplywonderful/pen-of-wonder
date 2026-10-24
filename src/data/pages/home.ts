@@ -7,6 +7,8 @@ export const home = {
   intro:
     "Pen of Wonder Research is a research writing and editing service in Ibadan, founded by research writer Wonderful Adebagbo, who trained in biochemistry. We also teach postgraduate students to plan their dissertations and run their own analysis in SPSS and NVivo.",
   primaryCta: "Send your manuscript for a free one-page review",
+  heroAlt:
+    "A printed manuscript with green-ink editing marks and a fountain pen on a wooden desk, beside a notebook, reading glasses and a cup of tea.",
 
   doorsHeading: "Where to start",
   doors: [
