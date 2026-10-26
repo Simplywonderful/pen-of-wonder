@@ -1,0 +1,34 @@
+# Rebuilds the research site every Monday morning so blog pieces whose releaseDate has passed go live.
+# It calls a Cloudflare Pages deploy hook for the research project only. An empty commit would make
+# Cloudflare rebuild all six projects, because Pages builds every project on a push with no file changes.
+# The hook URL is stored as the repository secret CF_DEPLOY_HOOK_RESEARCH.
+# It only calls the hook when a piece is scheduled (draft: false with a releaseDate).
+# Run it by hand from the Actions tab with "Run workflow".
+name: Research weekly rebuild
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Call the research deploy hook if a piece is scheduled
+        env:
+          HOOK: ${{ secrets.CF_DEPLOY_HOOK_RESEARCH }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || grep -l "^releaseDate:" apps/research/src/content/blog/*.md 2>/dev/null | xargs -r grep -L "^draft: true" | grep -q .; then
+            if [ -z "$HOOK" ]; then
+              echo "CF_DEPLOY_HOOK_RESEARCH is not set."
+              exit 1
+            fi
+            curl --fail --silent --show-error -X POST "$HOOK"
+          else
+            echo "No scheduled pieces; nothing to rebuild."
+          fi
