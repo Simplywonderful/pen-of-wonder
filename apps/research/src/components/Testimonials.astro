@@ -1,0 +1,26 @@
+---
+// Renders nothing until site.showTestimonials is true and approved quotes exist in
+// src/data/testimonials.ts. Quotes need written permission and carry initials and role only.
+import { site } from "../data/site";
+import { testimonials } from "../data/testimonials";
+
+const show = site.showTestimonials && testimonials.length > 0;
+---
+
+{
+  show && (
+    <section class="sheet mt-20" aria-labelledby="testimonials-heading">
+      <h2 id="testimonials-heading" class="text-2xl">What researchers have said</h2>
+      <div class="rule-list mt-6">
+        {testimonials.map((t) => (
+          <figure class="py-6">
+            <blockquote class="max-w-[60ch] font-serif text-lg">“{t.quote}”</blockquote>
+            <figcaption class="mt-2 text-sm text-muted">
+              {t.initials}, {t.role}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  )
+}

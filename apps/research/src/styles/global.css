@@ -1,0 +1,355 @@
+/*
+  Concept: a manuscript returned by a careful editor, set in the Pen of Wonder Consults brand.
+  Parchment paper, Deep Ink text, Ink Green for headings and actions, and gold only where the
+  brand says: once per layout, to mark the win. Tracked-change marks inside the edit specimen stay
+  red because they depict Word's markup. Fraunces for headlines, Inter for body text, IBM Plex Mono
+  for numbers (prices, dates, references), as the brand board sets out. Square corners, hairline
+  rules, no shadows. See DESIGN.md before changing anything here.
+*/
+
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/fonts/fraunces-latin.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20A6, U+20AC, U+2122, U+2190-2193, U+2212;
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url("/fonts/fraunces-latin-ext.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+0300-036F, U+1E00-1EFF;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-latin.woff2") format("woff2");
+  font-weight: 400 600;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20A6, U+20AC, U+2122, U+2190-2193, U+2212;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-latin-ext.woff2") format("woff2");
+  font-weight: 400 600;
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+0300-036F, U+1E00-1EFF;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-italic-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20A6, U+20AC, U+2122, U+2190-2193, U+2212;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-italic-latin-ext.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+0300-036F, U+1E00-1EFF;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/ibm-plex-mono-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0020-007E, U+00A3, U+00B7, U+20A6, U+2013, U+2192;
+}
+
+/* Raw palette: the brand's hex values (brand-tokens.css, Oct 2026) converted to OKLCH, plus derived steps. */
+:root {
+  --parchment: oklch(0.946 0.009 113.2); /* #EDEEE7 */
+  --cream: oklch(0.955 0.016 91.6); /* #F4F0E4 */
+  --deep-ink: oklch(0.25 0.015 166.3); /* #1B2420 */
+  --ink-green: oklch(0.347 0.055 180.5); /* #0F433B */
+  --quill-grey: oklch(0.499 0.016 166.7); /* #5B6661 */
+  --win-gold: oklch(0.587 0.114 72.6); /* #A5701F, large text and graphics only */
+  --spark-gold: oklch(0.742 0.12 79.1); /* #D4A24A, on dark or green only */
+  --rule-light: oklch(0.868 0.014 120.3);
+  --rule-strong-light: oklch(0.596 0.015 159.7);
+  --markup-red: oklch(0.504 0.168 28.3);
+
+  --night-panel: oklch(0.302 0.022 166.8);
+  --night-muted: oklch(0.768 0.012 153.6);
+  --night-rule: oklch(0.367 0.023 165.1);
+  --night-rule-strong: oklch(0.597 0.019 162.4);
+  --markup-red-night: oklch(0.721 0.137 29);
+}
+
+@theme {
+  --color-*: initial;
+  --color-bg: var(--parchment);
+  --color-panel: var(--cream);
+  --color-text: var(--deep-ink);
+  --color-heading: var(--ink-green);
+  --color-muted: var(--quill-grey);
+  --color-rule: var(--rule-light);
+  --color-rule-strong: var(--rule-strong-light);
+  --color-accent: var(--ink-green);
+  --color-on-accent: var(--cream);
+  --color-gold: var(--win-gold);
+  --color-mark-del: var(--markup-red);
+  --color-mark-ins: var(--markup-red);
+  --color-comment-bg: var(--cream);
+  --color-mount: var(--cream);
+  --color-mount-ink: var(--deep-ink);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --text-xs: 0.8rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.9rem;
+  --text-sm--line-height: 1.5;
+  --text-base: clamp(1.0625rem, 1.03rem + 0.15vw, 1.125rem);
+  --text-base--line-height: 1.6;
+  --text-lg: clamp(1.2rem, 1.15rem + 0.25vw, 1.35rem);
+  --text-lg--line-height: 1.45;
+  --text-xl: clamp(1.4rem, 1.3rem + 0.5vw, 1.7rem);
+  --text-xl--line-height: 1.3;
+  --text-2xl: clamp(1.7rem, 1.5rem + 1vw, 2.15rem);
+  --text-2xl--line-height: 1.2;
+  --text-3xl: clamp(2rem, 1.65rem + 1.75vw, 3rem);
+  --text-3xl--line-height: 1.1;
+
+  --tracking-display: -0.02em;
+  --tracking-tight: -0.012em;
+
+  --radius-xs: 2px;
+
+  --container-measure: 40rem;
+  --container-sheet: 72rem;
+
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-ui: 200ms;
+}
+
+/* Dark: the same manuscript under a desk lamp, on the brand's Deep Ink. Actions turn Spark Gold,
+   the brand's gold for dark grounds. The photo mount stays cream on purpose. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: var(--deep-ink);
+    --color-panel: var(--night-panel);
+    --color-text: var(--cream);
+    --color-heading: var(--cream);
+    --color-muted: var(--night-muted);
+    --color-rule: var(--night-rule);
+    --color-rule-strong: var(--night-rule-strong);
+    --color-accent: var(--spark-gold);
+    --color-on-accent: var(--deep-ink);
+    --color-gold: var(--spark-gold);
+    --color-mark-del: var(--markup-red-night);
+    --color-mark-ins: var(--markup-red-night);
+    --color-comment-bg: var(--night-panel);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-bg: var(--deep-ink);
+  --color-panel: var(--night-panel);
+  --color-text: var(--cream);
+  --color-heading: var(--cream);
+  --color-muted: var(--night-muted);
+  --color-rule: var(--night-rule);
+  --color-rule-strong: var(--night-rule-strong);
+  --color-accent: var(--spark-gold);
+  --color-on-accent: var(--deep-ink);
+  --color-gold: var(--spark-gold);
+  --color-mark-del: var(--markup-red-night);
+  --color-mark-ins: var(--markup-red-night);
+  --color-comment-bg: var(--night-panel);
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    hanging-punctuation: first;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    font-kerning: normal;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--color-heading);
+    text-wrap: balance;
+    letter-spacing: var(--tracking-tight);
+  }
+  p, li, dd, figcaption, summary {
+    text-wrap: pretty;
+  }
+  a {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: var(--color-rule-strong);
+    transition: text-decoration-color var(--duration-ui) var(--ease-out), color var(--duration-ui) var(--ease-out);
+  }
+  a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+  time, .nums {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    font-variant-numeric: tabular-nums;
+  }
+  input, textarea, select, button {
+    font: inherit;
+    color: inherit;
+  }
+  input[type="radio"], input[type="checkbox"] {
+    accent-color: var(--color-accent);
+  }
+}
+
+@layer components {
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 50;
+    padding: 0.5rem 1rem;
+    background: var(--color-text);
+    color: var(--color-bg);
+    text-decoration: none;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  /*
+    The sheet: a main column left of centre and a narrow right margin for asides,
+    like a manuscript with room for the editor's notes. One column on phones.
+  */
+  .sheet {
+    width: 100%;
+    max-width: var(--container-sheet);
+    margin-inline: auto;
+    padding-inline: 1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 4rem;
+  }
+  @media (min-width: 48rem) {
+    .sheet { padding-inline: 2rem; }
+  }
+  @media (min-width: 64rem) {
+    .sheet {
+      grid-template-columns: [main] minmax(0, 44rem) [margin] minmax(12rem, 15rem);
+      padding-inline: 3rem;
+    }
+    .sheet > * { grid-column: main; }
+    .sheet > .wide { grid-column: main / -1; }
+    .sheet > .margin-note {
+      grid-column: margin;
+      grid-row: span 6;
+      align-self: start;
+    }
+  }
+
+  .prose > * + * { margin-top: 1rem; }
+  .prose h2 { margin-top: 3rem; font-size: var(--text-2xl); line-height: var(--text-2xl--line-height); }
+  .prose h3 { margin-top: 2rem; font-size: var(--text-xl); line-height: var(--text-xl--line-height); }
+  .prose ul, .prose ol { padding-left: 1.25rem; }
+  .prose ul { list-style: disc; }
+  .prose ol { list-style: decimal; }
+  .prose li + li { margin-top: 0.5rem; }
+  .prose li::marker { color: var(--color-muted); }
+  .prose strong { font-weight: 600; }
+  /* Asides such as the Pro tip boxes in the 30 Lessons pieces: a note pinned to the page. */
+  .prose blockquote {
+    padding: 1rem 1.25rem;
+    background: var(--color-panel);
+    border: 1px solid var(--color-rule);
+  }
+  .prose blockquote > * + * { margin-top: 0.5rem; }
+  .prose blockquote ul { margin-top: 0.5rem; }
+  .prose > * { max-width: 65ch; }
+
+  .margin-note {
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    color: var(--color-muted);
+    margin-block: 1.5rem;
+  }
+  @media (min-width: 64rem) {
+    .margin-note {
+      margin-block: 0.4rem 0;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--color-rule);
+    }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.6rem 1.15rem;
+    border-radius: var(--radius-xs);
+    font-weight: 600;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: background-color var(--duration-ui) var(--ease-out), color var(--duration-ui) var(--ease-out), transform var(--duration-ui) var(--ease-out);
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+  .btn-primary:hover { background: color-mix(in oklch, var(--color-accent) 88%, var(--color-text)); }
+  .btn-secondary {
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+  }
+  .btn-secondary:hover { background: var(--color-panel); }
+
+  .todo {
+    font-family: var(--font-sans);
+    font-size: 0.85em;
+    font-weight: 600;
+    letter-spacing: 0;
+    padding: 0.05em 0.35em;
+    border: 1px dashed var(--color-rule-strong);
+    background: var(--color-panel);
+    color: var(--color-text);
+    white-space: normal;
+  }
+
+  .rule-list > * + * { border-top: 1px solid var(--color-rule); }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHead from "../components/PageHead.astro";
+import { workWithUs as w } from "../data/pages/work-with-us";
+
+const cta = { href: "/contact?as=editing-firm", label: w.cta };
+---
+
+<BaseLayout title={w.title} description={w.description}>
+  <PageHead title={w.h1} intro={w.intro} cta={cta} />
+
+  <section class="sheet mt-16" aria-labelledby="details-heading">
+    <h2 id="details-heading" class="text-2xl">{w.detailsHeading}</h2>
+    <dl class="mt-6 border-t border-rule">
+      {
+        w.details.map((d) => (
+          <div class="row">
+            <dt class="font-semibold">{d.term}</dt>
+            <dd>{"href" in d ? <a href={d.href}>{d.detail}</a> : d.detail}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <p class="mt-10">
+      <a class="btn btn-primary" href={cta.href}>{cta.label}</a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .row {
+    display: grid;
+    gap: 0.25rem;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  @media (min-width: 40rem) {
+    .row {
+      grid-template-columns: 12rem minmax(0, 1fr);
+      gap: 2rem;
+    }
+  }
+</style>

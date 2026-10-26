@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RedPen from "../components/RedPen.astro";
+import { nav } from "../data/site";
+---
+
+<BaseLayout
+  title="Page not found | Pen of Wonder Research"
+  description="This page is not here. The contents of Pen of Wonder Research are listed below."
+  noindex
+>
+  <div class="sheet pt-10 md:pt-16 lg:pt-24">
+    <h1 class="text-3xl tracking-(--tracking-display)">
+      This page is<span class="sr-only"> not</span><RedPen mark="caret" /> here.
+    </h1>
+    <aside class="margin-note">
+      <span class="block font-semibold text-heading">WA1</span>
+      A word seems to be missing, and so does the page. The link may be old, or the address may have a typo.
+    </aside>
+    <p class="mt-6 max-w-[60ch] text-lg text-muted">
+      Sorry about that. Here is everything on the site, so you can pick up where you meant to go.
+    </p>
+    <ul class="mt-8 max-w-md border-t border-rule">
+      <li class="border-b border-rule"><a class="block py-3" href="/">Home</a></li>
+      {
+        nav.map((item) => (
+          <li class="border-b border-rule">
+            <a class="block py-3" href={item.href}>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>

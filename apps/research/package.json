@@ -1,0 +1,19 @@
+{
+  "name": "pen-of-wonder-research",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/integrity-check.mjs && astro build",
+    "preview": "astro preview",
+    "check": "node scripts/integrity-check.mjs && node scripts/contrast-check.mjs && node .claude/skills/handcrafted-frontend/scripts/slop-check.mjs ."
+  },
+  "dependencies": {
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.4",
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.3.8",
+    "sharp": "0.35.5",
+    "tailwindcss": "4.3.3"
+  }
+}

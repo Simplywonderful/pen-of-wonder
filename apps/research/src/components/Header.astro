@@ -1,0 +1,120 @@
+---
+import { nav, site } from "../data/site";
+import { cleanPath } from "../lib/path";
+import PowWordmark from "./PowWordmark.astro";
+
+const path = cleanPath(Astro.url.pathname);
+const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`);
+---
+
+<header class="site-header border-b border-rule">
+  <div class="mx-auto flex max-w-(--container-sheet) flex-wrap items-center justify-between gap-x-8 gap-y-2 px-4 py-4 md:px-8 lg:px-12">
+    <a href="/" class="logo no-underline" aria-label={`${site.name}, home`}>
+      <PowWordmark class="logo__mark" />
+    </a>
+    <button
+      type="button"
+      class="menu-button min-h-11 border border-rule-strong px-3 text-sm font-semibold lg:hidden"
+      aria-expanded="false"
+      aria-controls="site-nav"
+    >
+      Menu
+    </button>
+    <nav id="site-nav" aria-label="Main" class="site-nav w-full lg:w-auto">
+      <ul class="flex flex-col lg:flex-row lg:gap-6">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="block py-2 text-[0.975rem] no-underline lg:py-1"
+                aria-current={isCurrent(item.href) ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+  .logo :global(.logo__mark) {
+    width: 5.5rem;
+  }
+  @media (min-width: 64rem) {
+    .logo :global(.logo__mark) {
+      width: 6.25rem;
+    }
+  }
+  .site-nav a[aria-current="page"] {
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+  }
+  .site-nav a:hover {
+    text-decoration-line: underline;
+  }
+  .site-nav li + li {
+    border-top: 1px solid var(--color-rule);
+  }
+  @media (min-width: 64rem) {
+    .site-nav li + li {
+      border-top: 0;
+    }
+  }
+
+  /* Without JavaScript the links simply show; with it, phones get a Menu button. */
+  .menu-button {
+    display: none;
+  }
+  :global(html.js) .menu-button {
+    display: inline-block;
+  }
+  @media (max-width: 63.99rem) {
+    :global(html.js) .site-nav {
+      display: none;
+    }
+    :global(html.js) .site-nav[data-open] {
+      display: block;
+      animation: menu-in var(--duration-ui) var(--ease-out);
+    }
+  }
+  @media (min-width: 64rem) {
+    :global(html.js) .menu-button {
+      display: none;
+    }
+  }
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+  }
+</style>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(".menu-button");
+  const nav = document.getElementById("site-nav");
+  if (button && nav) {
+    const setOpen = (open: boolean) => {
+      button.setAttribute("aria-expanded", String(open));
+      button.textContent = open ? "Close" : "Menu";
+      nav.toggleAttribute("data-open", open);
+    };
+    button.addEventListener("click", () => setOpen(button.getAttribute("aria-expanded") !== "true"));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && button.getAttribute("aria-expanded") === "true") {
+        setOpen(false);
+        button.focus();
+      }
+    });
+  }
+</script>
