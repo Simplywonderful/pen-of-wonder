@@ -1,0 +1,8 @@
+{
+  "name": "@pow/config",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./*": "./*.ts"
+  }
+}

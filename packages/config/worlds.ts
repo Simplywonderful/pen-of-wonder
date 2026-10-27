@@ -1,0 +1,141 @@
+// Every world's address, status and menu. No world's URL is written anywhere else.
+// In development each app runs on its own port, so cross-world links work locally; set
+// PUBLIC_WORLD_URLS=local or =production to override (for example to preview a local build).
+// Menu blurbs show on every world's header, so they never mention academic work.
+
+export type WorldId = "main" | "marketing" | "writing" | "research" | "publishing" | "dev";
+export type WorldStatus = "live" | "soon";
+export type MenuItem = { label: string; path: string };
+export type World = {
+  id: WorldId;
+  label: string;
+  name: string;
+  host: string;
+  port: number;
+  status: WorldStatus;
+  /** A short label beside the world in the header menu. Only Dev has one ("Dev (Soon)" in the brief). */
+  badge?: string;
+  tagline: string;
+  menu: MenuItem[];
+};
+
+export const worlds: World[] = [
+  {
+    id: "main",
+    label: "Pen of Wonder",
+    name: "Pen of Wonder",
+    host: "penofwonder.com",
+    port: 4321,
+    status: "live",
+    tagline: "Words that make you win.",
+    menu: [],
+  },
+  {
+    id: "marketing",
+    label: "Marketing",
+    name: "Pen of Wonder Marketing",
+    host: "marketing.penofwonder.com",
+    port: 4322,
+    status: "live",
+    tagline: "Words that sell.",
+    menu: [
+      { label: "Paid ads on Meta, LinkedIn, TikTok and X", path: "/paid-ads" },
+      { label: "Ad creative built for testing", path: "/ad-creative" },
+      { label: "Landing pages", path: "/landing-pages" },
+      { label: "Copywriting", path: "/copywriting" },
+      { label: "Content writing and SEO", path: "/content-and-seo" },
+    ],
+  },
+  {
+    id: "writing",
+    label: "Writing",
+    name: "Pen of Wonder Writing",
+    host: "writing.penofwonder.com",
+    port: 4324,
+    status: "soon",
+    tagline: "Words that open doors.",
+    menu: [
+      { label: "CVs and cover letters", path: "/cvs" },
+      { label: "LinkedIn profiles", path: "/linkedin" },
+      { label: "Grant writing", path: "/grants" },
+      { label: "Business plans and proposals", path: "/business-plans" },
+    ],
+  },
+  {
+    id: "research",
+    label: "Research",
+    name: "Pen of Wonder Research",
+    host: "research.penofwonder.com",
+    port: 4323,
+    status: "live",
+    tagline: "Quiet, on request.",
+    menu: [
+      { label: "Publication support for journal manuscripts", path: "/publication-support" },
+      { label: "Freelance editing for firms and research teams", path: "/work-with-us" },
+      { label: "Methods coaching for UK postgraduates", path: "/coaching" },
+      { label: "A free one-page review of your manuscript", path: "/contact" },
+    ],
+  },
+  {
+    id: "publishing",
+    label: "Publishing",
+    name: "Pen of Wonder Publishing",
+    host: "publishing.penofwonder.com",
+    port: 4325,
+    status: "soon",
+    tagline: "Books and the people who write them.",
+    menu: [
+      { label: "The Hidden Treasures Companion Readers", path: "/books" },
+      { label: "Book writing and ghostwriting", path: "/book-writing" },
+      { label: "Editing and proofreading", path: "/editing" },
+      { label: "ISBN, layout and listing", path: "/isbn-and-listing" },
+    ],
+  },
+  {
+    id: "dev",
+    label: "Dev",
+    name: "Pen of Wonder Dev",
+    host: "dev.penofwonder.com",
+    port: 4326,
+    status: "soon",
+    badge: "Soon",
+    tagline: "Websites and business systems, soon.",
+    menu: [
+      { label: "Websites", path: "/" },
+      { label: "Automation", path: "/" },
+      { label: "Business systems", path: "/" },
+    ],
+  },
+];
+
+/** The worlds in the header menu, in menu order. Main is the home link, not a menu item. */
+export const menuWorlds = ["marketing", "writing", "research", "publishing", "dev"].map((id) => world(id as WorldId));
+
+export function world(id: WorldId): World {
+  const found = worlds.find((w) => w.id === id);
+  if (!found) throw new Error(`Unknown world: ${id}`);
+  return found;
+}
+
+type Mode = "local" | "production";
+const env = (import.meta as ImportMeta & { env?: Record<string, string | boolean | undefined> }).env ?? {};
+const defaultMode: Mode =
+  env.PUBLIC_WORLD_URLS === "local" || env.PUBLIC_WORLD_URLS === "production"
+    ? env.PUBLIC_WORLD_URLS
+    : env.DEV
+      ? "local"
+      : "production";
+
+/** The origin of a world, e.g. https://research.penofwonder.com or http://localhost:4323. */
+export function worldOrigin(id: WorldId, mode: Mode = defaultMode): string {
+  const w = world(id);
+  return mode === "local" ? `http://localhost:${w.port}` : `https://${w.host}`;
+}
+
+/** A full URL to a page in a world. A `soon` world only has its holding page, so every path goes home. */
+export function worldUrl(id: WorldId, path = "/", mode: Mode = defaultMode): string {
+  const w = world(id);
+  const target = w.status === "soon" ? "/" : path;
+  const url = new URL(target, worldOrigin(id, mode)).href;
+  return target === "/" ? url.replace(/\/$/, "") : url;
+}
