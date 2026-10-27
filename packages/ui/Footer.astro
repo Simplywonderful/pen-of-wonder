@@ -1,0 +1,106 @@
+---
+// The shared footer: links to every world, the policies, contact, the theme switch and the legal line.
+// The quill emblem needs 120 px or more, so it appears only where `emblem` is set (main and research).
+import { Image } from "astro:assets";
+import { contact, contactPlaceholders, whatsappLink } from "@pow/config/contact";
+import { legal, academicIntegrity } from "@pow/config/legal";
+import { menuWorlds, world as getWorld, worldUrl, type WorldId } from "@pow/config/worlds";
+import emblemGreen from "@pow/brand/assets/emblem-green.png";
+import emblemCream from "@pow/brand/assets/emblem-cream.png";
+import ThemeToggle from "./ThemeToggle.astro";
+import Todo from "./Todo.astro";
+
+interface Props {
+  world: WorldId;
+  /** A world's own line about itself, shown before the shared legal line. */
+  businessLine?: string;
+  emblem?: boolean;
+  privacyHref?: string;
+  termsHref?: string;
+}
+
+const {
+  world: id,
+  businessLine,
+  emblem = false,
+  privacyHref = worldUrl("main", "/privacy"),
+  termsHref = worldUrl("main", "/terms"),
+} = Astro.props;
+const here = getWorld(id);
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-rule">
+  <div class="mx-auto grid max-w-(--container-sheet) gap-8 px-4 py-10 text-sm md:px-8 lg:grid-cols-[minmax(0,44rem)_minmax(12rem,15rem)] lg:gap-x-16 lg:px-12">
+    <div class="space-y-4">
+      {
+        emblem && (
+          <a href={worldUrl(id)} class="emblem block w-36" aria-label={`${here.name}, home`}>
+            <Image class="emblem__light" src={emblemGreen} alt="" width={144} height={144} densities={[1, 2]} loading="lazy" />
+            <Image class="emblem__dark" src={emblemCream} alt="" width={144} height={144} densities={[1, 2]} loading="lazy" />
+          </a>
+        )
+      }
+      <p class="font-serif text-lg text-heading">{here.name}</p>
+      <p class="max-w-[60ch] text-muted">
+        {businessLine && <>{businessLine} </>}
+        {legal.legalLine}
+      </p>
+      <p class="text-muted">
+        Based in {legal.city}, {legal.country}, {legal.timezone}. We reply {contact.replyTime}.
+      </p>
+      <nav aria-label="Pen of Wonder worlds">
+        <ul class="flex flex-wrap gap-x-5 gap-y-1">
+          <li><a href={worldUrl("main")}>Pen of Wonder</a></li>
+          {
+            menuWorlds.map((w) => (
+              <li>
+                <a href={worldUrl(w.id)} aria-current={w.id === id ? "true" : undefined}>
+                  {w.label}
+                </a>
+                {w.status === "soon" && <span class="text-muted"> (opening soon)</span>}
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+    <div class="space-y-6">
+      <ul class="space-y-2">
+        <li><a href={whatsappLink(id)}>WhatsApp {contact.whatsapp.display}</a></li>
+        <li>{contact.email ? <a href={`mailto:${contact.email}`}>{contact.email}</a> : <Todo label={contactPlaceholders.email} />}</li>
+      </ul>
+      <ul class="space-y-2">
+        <li><a href={worldUrl(academicIntegrity.world, academicIntegrity.path)}>Academic Integrity Policy</a></li>
+        <li><a href={privacyHref}>Privacy notice</a></li>
+        <li><a href={termsHref}>Terms</a></li>
+      </ul>
+      <ThemeToggle />
+    </div>
+    <p class="text-muted lg:col-span-2">© {year} {legal.company}</p>
+  </div>
+</footer>
+
+<style>
+  .emblem__dark {
+    display: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .emblem__light {
+      display: none;
+    }
+    :global(:root:not([data-theme="light"])) .emblem__dark {
+      display: block;
+    }
+  }
+  :global(:root[data-theme="dark"]) .emblem__light {
+    display: none;
+  }
+  :global(:root[data-theme="dark"]) .emblem__dark {
+    display: block;
+  }
+  nav a[aria-current] {
+    text-decoration-color: var(--color-world-rule);
+    text-decoration-thickness: 2px;
+  }
+</style>

@@ -1,0 +1,414 @@
+---
+// The family letterhead: identical on every world, with the world named under the mark and its
+// accent ruled beneath. World labels open disclosure panels (buttons with aria-expanded, not ARIA
+// menus); without JavaScript each label is a plain link to its world. A world's own pages sit in a
+// second row on wide screens and first in the drawer on phones.
+import { menuWorlds, world as getWorld, worldUrl, type WorldId } from "@pow/config/worlds";
+import PowWordmark from "./PowWordmark.astro";
+import WhatsAppButton from "./WhatsAppButton.astro";
+
+interface Props {
+  world: WorldId;
+  /** The world's own pages. The current one is marked with aria-current. */
+  localNav?: { href: string; label: string }[];
+  currentPath?: string;
+}
+
+const { world: id, localNav = [], currentPath = "/" } = Astro.props;
+const here = getWorld(id);
+const isCurrent = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
+---
+
+<header class="site-header" data-header>
+  <div class="bar">
+    <a href={worldUrl(id)} class="brand" aria-label={`${here.name}, home`}>
+      <PowWordmark class="brand__mark" />
+      <span class="brand__name" aria-hidden="true">
+        Pen of Wonder
+        {id !== "main" && <span class="brand__world">{here.label}</span>}
+      </span>
+    </a>
+
+    <button type="button" class="menu-button" aria-expanded="false" aria-controls="site-menu" data-menu-button>
+      Menu
+    </button>
+
+    <div id="site-menu" class="menu" data-menu>
+      {
+        localNav.length > 0 && (
+          <nav class="local-nav" aria-label={`${here.label} pages`}>
+            <p class="menu-group" aria-hidden="true">{here.label}</p>
+            <ul>
+              {localNav.map((item) => (
+                <li>
+                  <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )
+      }
+
+      <nav class="worlds-nav" aria-label="Pen of Wonder">
+        {localNav.length > 0 && <p class="menu-group" aria-hidden="true">Pen of Wonder</p>}
+        <ul>
+          {
+            menuWorlds.map((w) => {
+              const soon = w.status === "soon";
+              const current = w.id === id;
+              return (
+                <li class="world-item">
+                  <a class="world-link" href={worldUrl(w.id)} aria-current={current ? "true" : undefined}>
+                    {w.label}
+                    {w.badge && <span class="soon">{w.badge}</span>}
+                  </a>
+                  <button
+                    type="button"
+                    class="world-toggle"
+                    aria-expanded="false"
+                    aria-controls={`panel-${w.id}`}
+                    aria-current={current ? "true" : undefined}
+                    data-world-toggle
+                  >
+                    {w.label}
+                    {w.badge && <span class="soon">{w.badge}</span>}
+                    <span class="chevron" aria-hidden="true" />
+                  </button>
+                  <div class="world-panel" id={`panel-${w.id}`} hidden data-world-panel>
+                    <ul>
+                      {w.menu.map((item) => (
+                        <li>{soon ? <span>{item.label}</span> : <a href={worldUrl(w.id, item.path)}>{item.label}</a>}</li>
+                      ))}
+                    </ul>
+                    <p class="world-panel__go">
+                      {soon ? (
+                        <>
+                          Opening soon. <a href={worldUrl(w.id)}>See what's coming</a>
+                        </>
+                      ) : (
+                        <a href={worldUrl(w.id)}>Go to {w.label}</a>
+                      )}
+                    </p>
+                  </div>
+                </li>
+              );
+            })
+          }
+          <li class="world-item world-item--plain"><a class="world-link world-link--plain" href={worldUrl("main", "/about")}>About</a></li>
+          <li class="world-item world-item--plain"><a class="world-link world-link--plain" href={worldUrl("main", "/contact")}>Contact</a></li>
+        </ul>
+      </nav>
+
+      <WhatsAppButton world={id} variant="primary" class="menu__whatsapp" />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .bar {
+    max-width: var(--container-sheet);
+    margin-inline: auto;
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2.75rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 3px solid var(--color-world-rule);
+    text-decoration: none;
+    color: var(--color-heading);
+  }
+  .brand :global(.brand__mark) {
+    width: 3.6rem;
+  }
+  .brand__name {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.1;
+    letter-spacing: var(--tracking-tight);
+  }
+  .brand__world {
+    display: block;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: var(--text-xs);
+    letter-spacing: 0;
+    color: var(--color-muted);
+  }
+
+  .menu-button {
+    display: none;
+    min-height: 2.75rem;
+    padding-inline: 0.85rem;
+    border: 1px solid var(--color-rule-strong);
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .menu ul {
+    list-style: none;
+    padding: 0;
+  }
+  .menu a {
+    text-decoration-line: none;
+  }
+  .menu a:hover {
+    text-decoration-line: underline;
+  }
+
+  .local-nav a,
+  .world-link,
+  .world-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 2.75rem;
+    font-size: 0.975rem;
+  }
+  .local-nav a[aria-current="page"],
+  .world-link[aria-current],
+  .world-toggle[aria-current] {
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-world-rule);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3em;
+    font-weight: 600;
+  }
+
+  /* In the drawer, a world's own pages and the family menu both have an About and a Contact,
+     so each group is labelled. Wide screens separate them by row instead. */
+  .menu-group {
+    display: none;
+    padding-block: 0.5rem 0.25rem;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-muted);
+  }
+
+  .soon {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.4;
+    padding-inline: 0.3rem;
+    border: 1px solid var(--color-rule-strong);
+    color: var(--color-muted);
+  }
+
+  /* The toggles only work with JavaScript, so without it the plain links show instead. */
+  .world-toggle {
+    display: none;
+    cursor: pointer;
+  }
+  :global(html.js) .world-toggle {
+    display: inline-flex;
+  }
+  :global(html.js) .world-link:not(.world-link--plain) {
+    display: none;
+  }
+  .chevron {
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-left: 0.1rem;
+    border-right: 1.5px solid var(--color-muted);
+    border-bottom: 1.5px solid var(--color-muted);
+    transform: translateY(-0.12rem) rotate(45deg);
+    transition: transform var(--duration-ui) var(--ease-out);
+  }
+  .world-toggle[aria-expanded="true"] .chevron {
+    transform: translateY(0.08rem) rotate(225deg);
+  }
+
+  .world-panel {
+    padding: 0.75rem 1rem 1rem;
+    background: var(--color-panel);
+    border: 1px solid var(--color-rule);
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+  }
+  .world-panel li {
+    padding-block: 0.4rem;
+  }
+  .world-panel li + li {
+    border-top: 1px solid var(--color-rule);
+  }
+  .world-panel a {
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-rule-strong);
+  }
+  .world-panel__go {
+    margin-top: 0.5rem;
+    font-weight: 600;
+  }
+  .world-panel__go a {
+    text-decoration-color: var(--color-world-rule);
+    text-decoration-thickness: 2px;
+  }
+
+  /* Phones and tablets: one drawer. The world's own pages first, then the other worlds as groups. */
+  @media (max-width: 63.99rem) {
+    :global(html.js) .menu-button {
+      display: inline-block;
+    }
+    .menu-group {
+      display: block;
+    }
+    .menu {
+      width: 100%;
+    }
+    :global(html.js) .menu {
+      display: none;
+    }
+    :global(html.js) .menu[data-open] {
+      display: block;
+      animation: menu-in var(--duration-ui) var(--ease-out);
+    }
+    .local-nav li,
+    .world-item {
+      border-top: 1px solid var(--color-rule);
+    }
+    .local-nav a,
+    .world-link,
+    .world-toggle {
+      width: 100%;
+    }
+    .worlds-nav {
+      margin-top: 0.75rem;
+    }
+    .world-panel {
+      margin-bottom: 0.75rem;
+    }
+    .menu :global(.menu__whatsapp) {
+      margin-top: 1rem;
+    }
+  }
+
+  /* Wide screens: the family menu on the first line beside the mark; the world's own pages and
+     "Chat on WhatsApp" on the second, so the menu never has to squeeze past the button. */
+  @media (min-width: 64rem) {
+    .bar {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-template-areas:
+        "brand worlds worlds"
+        "local local whatsapp";
+      padding-inline: 3rem;
+      row-gap: 0;
+    }
+    .brand {
+      grid-area: brand;
+    }
+    .menu {
+      display: contents;
+    }
+    .worlds-nav {
+      grid-area: worlds;
+      justify-self: end;
+    }
+    .worlds-nav > ul {
+      display: flex;
+      gap: 1.25rem;
+    }
+    .world-item {
+      position: relative;
+    }
+    .world-panel {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+      left: -1rem;
+      width: 21rem;
+    }
+    .world-item:nth-last-child(-n + 4) .world-panel {
+      left: auto;
+      right: -1rem;
+    }
+    .menu :global(.menu__whatsapp) {
+      grid-area: whatsapp;
+      align-self: center;
+      margin-top: 0.75rem;
+    }
+    .local-nav {
+      grid-area: local;
+      margin-top: 0.75rem;
+    }
+    .local-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 1.5rem;
+    }
+  }
+
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  const menuButton = header?.querySelector<HTMLButtonElement>("[data-menu-button]");
+  const menu = header?.querySelector<HTMLElement>("[data-menu]");
+  const toggles = [...(header?.querySelectorAll<HTMLButtonElement>("[data-world-toggle]") ?? [])];
+
+  const panelFor = (toggle: HTMLButtonElement) => document.getElementById(toggle.getAttribute("aria-controls") ?? "");
+
+  const setPanel = (toggle: HTMLButtonElement, open: boolean) => {
+    toggle.setAttribute("aria-expanded", String(open));
+    const panel = panelFor(toggle);
+    if (panel) panel.hidden = !open;
+  };
+  const closePanels = (except?: HTMLButtonElement) => toggles.forEach((t) => t !== except && setPanel(t, false));
+  const openToggle = () => toggles.find((t) => t.getAttribute("aria-expanded") === "true");
+
+  const setMenu = (open: boolean) => {
+    if (!menuButton || !menu) return;
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.textContent = open ? "Close" : "Menu";
+    menu.toggleAttribute("data-open", open);
+    if (!open) closePanels();
+  };
+
+  toggles.forEach((toggle) =>
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") !== "true";
+      closePanels(toggle);
+      setPanel(toggle, open);
+    }),
+  );
+
+  menuButton?.addEventListener("click", () => setMenu(menuButton.getAttribute("aria-expanded") !== "true"));
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const open = openToggle();
+    if (open) {
+      setPanel(open, false);
+      open.focus();
+    } else if (menuButton?.getAttribute("aria-expanded") === "true") {
+      setMenu(false);
+      menuButton.focus();
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    const open = openToggle();
+    if (open && !open.parentElement?.contains(e.target as Node)) setPanel(open, false);
+  });
+</script>

@@ -1,0 +1,8 @@
+{
+  "name": "@pow/ui",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./*": "./*"
+  }
+}

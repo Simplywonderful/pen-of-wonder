@@ -1,0 +1,37 @@
+---
+// The main route on every world: WhatsApp, prefilled with the world and, where known, the service.
+import { whatsappLink } from "@pow/config/contact";
+import type { WorldId } from "@pow/config/worlds";
+
+interface Props {
+  world: WorldId;
+  service?: string;
+  label?: string;
+  variant?: "primary" | "secondary";
+  class?: string;
+}
+const { world, service, label = "Chat on WhatsApp", variant = "secondary", class: className } = Astro.props;
+---
+
+<a class:list={["btn", variant === "primary" ? "btn-primary" : "btn-secondary", className]} href={whatsappLink(world, service)}>
+  <svg class="wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path
+      d="M12 2.6a9.4 9.4 0 0 0-8.1 14.1L2.6 21.4l4.8-1.3A9.4 9.4 0 1 0 12 2.6Z"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linejoin="round"></path>
+    <path
+      d="M9 7.6c-.3 0-.7.1-1 .5-.3.3-1 1-1 2.4s1 2.8 1.2 3c.2.2 2 3.1 4.9 4.2 2.4.9 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4l-2-1c-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.5-.5-.7-.5H9Z"
+      fill="currentColor"></path>
+  </svg>
+  {label}
+</a>
+
+<style>
+  .wa {
+    width: 1.15em;
+    height: 1.15em;
+    flex: none;
+  }
+</style>
