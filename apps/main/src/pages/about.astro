@@ -1,0 +1,150 @@
+---
+import "../styles/global.css";
+import Layout from "@pow/ui/Layout.astro";
+import PageHead from "@pow/ui/PageHead.astro";
+import PortraitMount from "@pow/ui/PortraitMount.astro";
+import HowWeWork from "@pow/ui/HowWeWork.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import { legal } from "@pow/config/legal";
+import { imprintName } from "@pow/config/books";
+import { organisationLd } from "@pow/config/structured";
+import { worldUrl } from "@pow/config/worlds";
+import { home } from "../data/home";
+import portrait from "../assets/portrait-arms.png";
+
+// Founder facts are the ones research's About page already carries, approved by the owner.
+// No postgraduate study and no CV percentages, on any world.
+const founder = [
+  "Wonderful Adebagbo founded Pen of Wonder in 2021. He studied biochemistry at McPherson University and graduated top of his class, department and faculty.",
+  "Before and alongside Pen of Wonder he was lead research writer at NIFE Writing Consult (2022 to 2024), senior researcher at ADAC Data Consult (2022 to 2025), where he designed and led a six-month field study, and Head of Academy at Ileoja Academy (2025). He is a co-author of two peer-reviewed papers, the most recent published in AIMS Medical Science in 2025.",
+  "He reads everything, a habit that started with the Bible when he was a quiet child, and he wrote the Hidden Treasures readers because he wants more children to have it.",
+];
+
+const personLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: legal.founder,
+  jobTitle: "Founder",
+  worksFor: { "@type": "Organization", name: "Pen of Wonder", legalName: legal.company },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "McPherson University" },
+};
+---
+
+<Layout
+  world="main"
+  title="About us | Pen of Wonder"
+  description="Pen of Wonder is a marketing, writing, research and publishing company in Ibadan, Nigeria, founded by Wonderful Adebagbo. Registered business name, CAC No. 7809965."
+  jsonLd={[organisationLd(), personLd]}
+  note="Marketing, writing, research and publishing, from Ibadan"
+  emblem
+>
+  <PageHead title="About Pen of Wonder">
+    <div class="prose mt-8">
+      <p class="text-lg">
+        Pen of Wonder is a marketing, writing, research and publishing company based in Ibadan, Nigeria. We run ads, write
+        the documents people use to get hired and funded, help researchers get their papers published, and make books
+        for children. Each of those has its own site, and they share one way of working.
+      </p>
+      <p>
+        That way of working comes from a lab. We start with what the work is for, decide what would show it's working,
+        test it, and tell you what we found, including when the answer isn't the one you wanted. We would rather say
+        "this won't work yet" than take money for something that can't.
+      </p>
+      <p>
+        We work remotely, so where you are matters less than what you need.
+      </p>
+    </div>
+  </PageHead>
+
+  <section class="wrap founder mt-20" aria-labelledby="founder-heading">
+    <div>
+      <h2 id="founder-heading" class="text-2xl">Our founder</h2>
+      <p class="mt-2 text-sm text-muted">{legal.founder}, founder</p>
+      <div class="prose mt-6">
+        {founder.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+    <div class="founder__photo">
+      <PortraitMount src={portrait} alt={home.portraitAlt} width={790} height={988} sizes="(min-width: 64rem) 18rem, (min-width: 40rem) 20rem, 80vw" />
+    </div>
+  </section>
+
+  <section class="wrap mt-20" aria-labelledby="values-heading">
+    <h2 id="values-heading" class="text-2xl">What we stand on</h2>
+    <dl class="values">
+      {
+        home.values.map((v) => (
+          <div>
+            <dt>{v.name.replace(".", "")}</dt>
+            <dd>{v.text}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <div class="wrap mt-20">
+    <HowWeWork />
+  </div>
+
+  <section class="wrap mt-20" aria-labelledby="registration-heading">
+    <h2 id="registration-heading" class="text-2xl">Registration</h2>
+    <div class="prose mt-4">
+      <p>{legal.legalLine}</p>
+      <p>
+        {imprintName()}, the imprint behind our founder's children's readers, is the trading name of {legal.founder} personally.
+        Pen of Wonder provides publishing services to it but is not its publisher.
+      </p>
+      <p>
+        Our Academic Integrity Policy applies to everything we do: <a href={worldUrl("main", "/academic-integrity")}>read it here</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap mt-20" aria-labelledby="talk-heading">
+    <h2 id="talk-heading" class="text-2xl">Talk to us</h2>
+    <p class="mt-3 max-w-[60ch]">Message us on WhatsApp, or use the contact form. We reply within one working day.</p>
+    <p class="mt-6 flex flex-wrap gap-3">
+      <WhatsAppButton world="main" variant="primary" />
+      <a class="btn btn-secondary" href="/contact">Send an email</a>
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .founder {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .founder__photo {
+    max-width: 20rem;
+  }
+  .values {
+    margin-top: 1.25rem;
+    display: grid;
+    gap: 1.25rem;
+    border-top: 1px solid var(--color-rule);
+    padding-top: 1.25rem;
+  }
+  .values dt {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: var(--text-xl);
+    color: var(--color-heading);
+  }
+  .values dd {
+    margin-top: 0.25rem;
+    max-width: 55ch;
+  }
+  @media (min-width: 64rem) {
+    .founder {
+      grid-template-columns: minmax(0, 44rem) minmax(12rem, 18rem);
+      column-gap: 4rem;
+      align-items: start;
+    }
+    .values {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+    }
+  }
+</style>
