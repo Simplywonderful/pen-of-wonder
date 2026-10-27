@@ -1,0 +1,97 @@
+---
+import MarketingLayout from "../layouts/MarketingLayout.astro";
+import PageHead from "@pow/ui/PageHead.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import Todo from "@pow/ui/Todo.astro";
+import { showTodos } from "@pow/ui/todos";
+import { worldServiceLd } from "@pow/config/structured";
+import { liveServices, adSpendLine } from "../data/services";
+
+const services = liveServices(showTodos);
+---
+
+<MarketingLayout
+  title="Services | Pen of Wonder Marketing"
+  description="Paid ads, ad creative, landing pages, copywriting, and content writing and SEO, run with a researcher's discipline."
+  jsonLd={[worldServiceLd("marketing", services.map((s) => s.name))]}
+>
+  <PageHead
+    title="Everything your ads need, and nothing they don't."
+    intro="Each service can be bought on its own or as part of a campaign. All of them are quoted after a free consultation."
+  />
+
+  <div class="wrap mt-12">
+    <ul class="list">
+      {
+        services.map((s) => (
+          <li>
+            <h2 class="list__name">
+              <a href={`/${s.slug}`}>{s.name}</a>
+              {!s.confirmed && <Todo label="CONFIRM THIS SERVICE IS OFFERED" />}
+            </h2>
+            <p class="list__summary">{s.summary}</p>
+            <ul class="list__includes">
+              {s.includes.map((i) => (
+                <li>{i.name}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+    {showTodos && <p class="mt-4 text-sm text-muted">Development view: unconfirmed services show here; production builds leave them out.</p>}
+
+    <p class="spend mt-12">{adSpendLine}</p>
+    <p class="mt-8"><WhatsAppButton world="marketing" service="your services" label="Ask which service fits" variant="primary" /></p>
+  </div>
+</MarketingLayout>
+
+<style>
+  .list {
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+  .list > li {
+    display: grid;
+    gap: 0.5rem;
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .list__name {
+    font-size: var(--text-xl);
+  }
+  .list__name a {
+    text-decoration-color: var(--color-world-rule);
+  }
+  .list__summary {
+    max-width: 60ch;
+  }
+  .list__includes {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .spend {
+    max-width: 60ch;
+    padding: 1rem 1.25rem;
+    background: var(--color-panel);
+    border: 1px solid var(--color-rule);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+  @media (min-width: 64rem) {
+    .list > li {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      column-gap: 2rem;
+    }
+    .list__name {
+      grid-row: span 2;
+    }
+  }
+</style>
