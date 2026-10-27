@@ -4,6 +4,9 @@
 # The hook URL is stored as the repository secret CF_DEPLOY_HOOK_RESEARCH.
 # It only calls the hook when a piece is scheduled (draft: false with a releaseDate).
 # Run it by hand from the Actions tab with "Run workflow".
+# Until research moves to this repo (at the domain cutover), the live research site is still built
+# from the old pen-of-wonder-research repo and its own weekly rebuild, so the secret isn't set here
+# and this job just says so instead of failing every Monday.
 name: Research weekly rebuild
 
 on:
@@ -25,8 +28,8 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] || grep -l "^releaseDate:" apps/research/src/content/blog/*.md 2>/dev/null | xargs -r grep -L "^draft: true" | grep -q .; then
             if [ -z "$HOOK" ]; then
-              echo "CF_DEPLOY_HOOK_RESEARCH is not set."
-              exit 1
+              echo "CF_DEPLOY_HOOK_RESEARCH is not set yet; research still deploys from the old repo."
+              exit 0
             fi
             curl --fail --silent --show-error -X POST "$HOOK"
           else
