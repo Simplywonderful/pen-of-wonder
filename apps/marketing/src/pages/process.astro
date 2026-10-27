@@ -1,0 +1,97 @@
+---
+import MarketingLayout from "../layouts/MarketingLayout.astro";
+import PageHead from "@pow/ui/PageHead.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import HowWeWork from "@pow/ui/HowWeWork.astro";
+import { steps } from "../data/process";
+---
+
+<MarketingLayout
+  title="Process: diagnose, hypothesise, build, test, scale | Pen of Wonder Marketing"
+  description="How we run a paid ads campaign, as a test log: diagnose, hypothesise, build, test, then scale and report in plain English."
+>
+  <PageHead
+    title="Run like an experiment."
+    intro="Every campaign follows the same five steps, in this order, because each one depends on the one before."
+  />
+
+  <ol class="wrap log mt-12">
+    {
+      steps.map((s, i) => (
+        <li class="entry">
+          <p class="entry__n nums">Step {String(i + 1).padStart(2, "0")}</p>
+          <h2 class="entry__name">{s.name}</h2>
+          <div class="entry__body">
+            <p class="entry__line">{s.line}</p>
+            {s.detail.map((p) => (
+              <p>{p}</p>
+            ))}
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+
+  <section class="wrap mt-16" aria-labelledby="need-heading">
+    <h2 id="need-heading" class="text-2xl">What we need from you</h2>
+    <ul class="need">
+      <li>Access to your ad accounts, or permission to set them up in your name.</li>
+      <li>The truth about what you've sold so far, and to whom.</li>
+      <li>Someone who replies to new leads quickly.</li>
+      <li>A decision-maker who can answer questions within a day or two.</li>
+    </ul>
+  </section>
+
+  <div class="wrap mt-16">
+    <HowWeWork heading="Before any of that: how we start" />
+  </div>
+
+  <p class="wrap mt-12"><WhatsAppButton world="marketing" service="paid ads" label="Chat about your ads" variant="primary" /></p>
+</MarketingLayout>
+
+<style>
+  .log {
+    list-style: none;
+    display: grid;
+    gap: 0;
+  }
+  .entry {
+    display: grid;
+    gap: 0.4rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--color-rule-strong);
+  }
+  .entry__n {
+    color: var(--color-world-rule);
+    font-size: var(--text-sm);
+  }
+  .entry__name {
+    font-size: var(--text-2xl);
+  }
+  .entry__body {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 60ch;
+  }
+  .entry__line {
+    font-weight: 600;
+  }
+  .need {
+    margin-top: 1rem;
+    padding-left: 1.25rem;
+    list-style: disc;
+    max-width: 60ch;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .need li::marker {
+    color: var(--color-muted);
+  }
+  @media (min-width: 64rem) {
+    .entry {
+      grid-template-columns: 8rem 14rem minmax(0, 1fr);
+      gap: 2rem;
+      align-items: baseline;
+    }
+  }
+</style>

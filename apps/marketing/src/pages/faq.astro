@@ -1,0 +1,20 @@
+---
+import MarketingLayout from "../layouts/MarketingLayout.astro";
+import PageHead from "@pow/ui/PageHead.astro";
+import Faq from "@pow/ui/Faq.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import { faqLd } from "@pow/ui/faq-ld";
+import { questions } from "../data/faq";
+---
+
+<MarketingLayout
+  title="Questions | Pen of Wonder Marketing"
+  description="Platforms, ad budgets, creatives, leads, results and how to start working with Pen of Wonder Marketing."
+  jsonLd={[faqLd(questions)]}
+>
+  <PageHead title="Questions" intro="The things people ask before they hire us. If yours isn't here, ask it on WhatsApp." />
+  <div class="wrap mt-10">
+    <Faq items={questions} heading="Frequently asked" />
+    <p class="mt-10"><WhatsAppButton world="marketing" label="Ask your question on WhatsApp" variant="primary" /></p>
+  </div>
+</MarketingLayout>
