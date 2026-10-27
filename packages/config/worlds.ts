@@ -2,6 +2,12 @@
 // In development each app runs on its own port, so cross-world links work locally; set
 // PUBLIC_WORLD_URLS=local or =production to override (for example to preview a local build).
 // Menu blurbs show on every world's header, so they never mention academic work.
+//
+// penofwonder.com isn't registered yet (owner, 27 Oct 2026), so the live sites run on Cloudflare's
+// free addresses: each world's interimHost. Every canonical URL, sitemap and cross-world link uses
+// them until domainLive is switched on. Research's interim address is the existing research site,
+// which stays live and untouched until the domain arrives.
+export const domainLive = false;
 
 export type WorldId = "main" | "marketing" | "writing" | "research" | "publishing" | "dev";
 export type WorldStatus = "live" | "soon";
@@ -22,6 +28,8 @@ export type World = {
   label: string;
   name: string;
   host: string;
+  /** The free Cloudflare address used until the domain is registered. */
+  interimHost: string;
   port: number;
   status: WorldStatus;
   /** A short label beside the world in the header menu. Only Dev has one ("Dev (Soon)" in the brief). */
@@ -37,6 +45,7 @@ export const worlds: World[] = [
     label: "Pen of Wonder",
     name: "Pen of Wonder",
     host: "penofwonder.com",
+    interimHost: "penofwonder.pages.dev",
     port: 4321,
     status: "live",
     tagline: "Words that make you win.",
@@ -47,6 +56,7 @@ export const worlds: World[] = [
     label: "Marketing",
     name: "Pen of Wonder Marketing",
     host: "marketing.penofwonder.com",
+    interimHost: "penofwonder-marketing.pages.dev",
     port: 4322,
     status: "live",
     tagline: "Words that sell.",
@@ -63,6 +73,7 @@ export const worlds: World[] = [
     label: "Writing",
     name: "Pen of Wonder Writing",
     host: "writing.penofwonder.com",
+    interimHost: "penofwonder-writing.pages.dev",
     port: 4324,
     status: "soon",
     tagline: "Words that open doors.",
@@ -90,6 +101,7 @@ export const worlds: World[] = [
     label: "Research",
     name: "Pen of Wonder Research",
     host: "research.penofwonder.com",
+    interimHost: "penofwonderresearch.pages.dev",
     port: 4323,
     status: "live",
     tagline: "Quiet, on request.",
@@ -105,6 +117,7 @@ export const worlds: World[] = [
     label: "Publishing",
     name: "Pen of Wonder Publishing",
     host: "publishing.penofwonder.com",
+    interimHost: "penofwonder-publishing.pages.dev",
     port: 4325,
     status: "soon",
     tagline: "Books and the people who write them.",
@@ -131,6 +144,7 @@ export const worlds: World[] = [
     label: "Dev",
     name: "Pen of Wonder Dev",
     host: "dev.penofwonder.com",
+    interimHost: "penofwonder-dev.workers.dev", // [TODO: the real address is penofwonder-dev.<account>.workers.dev; set once the Worker exists]
     port: 4326,
     status: "soon",
     badge: "Soon",
@@ -169,10 +183,10 @@ const defaultMode: Mode =
       ? "local"
       : "production";
 
-/** The origin of a world, e.g. https://research.penofwonder.com or http://localhost:4323. */
+/** The origin of a world, e.g. https://research.penofwonder.com (or its interim address) or http://localhost:4323. */
 export function worldOrigin(id: WorldId, mode: Mode = defaultMode): string {
   const w = world(id);
-  return mode === "local" ? `http://localhost:${w.port}` : `https://${w.host}`;
+  return mode === "local" ? `http://localhost:${w.port}` : `https://${domainLive ? w.host : w.interimHost}`;
 }
 
 /** A full URL to a page in a world. A `soon` world only has its holding page, so every path goes home. */
