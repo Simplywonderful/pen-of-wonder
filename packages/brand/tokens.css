@@ -122,6 +122,9 @@
   --color-world-accent: var(--world-accent);
   --color-on-world-accent: var(--world-on-accent);
   --color-world-rule: var(--world-rule);
+  /* Photo mounts stay paper-coloured in both modes, so a white-backed portrait reads as a print. */
+  --color-mount: var(--cream);
+  --color-mount-ink: var(--deep-ink);
   --color-transparent: transparent;
   --color-current: currentColor;
 
@@ -313,6 +316,40 @@
   }
 
   .rule-list > * + * { border-top: 1px solid var(--color-rule); }
+
+  /* Long-form text: blog posts, policies, service detail. */
+  .prose > * + * { margin-top: 1rem; }
+  .prose h2 { margin-top: 3rem; font-size: var(--text-2xl); line-height: var(--text-2xl--line-height); }
+  .prose h3 { margin-top: 2rem; font-size: var(--text-xl); line-height: var(--text-xl--line-height); }
+  .prose ul, .prose ol { padding-left: 1.25rem; }
+  .prose ul { list-style: disc; }
+  .prose ol { list-style: decimal; }
+  .prose li + li { margin-top: 0.5rem; }
+  .prose li::marker { color: var(--color-muted); }
+  .prose strong { font-weight: 600; }
+  /* Asides such as the Pro tip boxes in the 30 Lessons pieces: a note pinned to the page. */
+  .prose blockquote {
+    padding: 1rem 1.25rem;
+    background: var(--color-panel);
+    border: 1px solid var(--color-rule);
+  }
+  .prose blockquote > * + * { margin-top: 0.5rem; }
+  .prose blockquote ul { margin-top: 0.5rem; }
+  .prose > * { max-width: 65ch; }
+
+  /* The page column for worlds that don't use research's manuscript sheet. */
+  .wrap {
+    width: 100%;
+    max-width: var(--container-sheet);
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 48rem) {
+    .wrap { padding-inline: 2rem; }
+  }
+  @media (min-width: 64rem) {
+    .wrap { padding-inline: 3rem; }
+  }
 
   .visually-hidden {
     position: absolute;

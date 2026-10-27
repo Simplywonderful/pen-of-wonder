@@ -1,0 +1,137 @@
+---
+// The one-page site a world shows while its status is "soon": what's coming, its three key services,
+// and WhatsApp prefilled with the world's name. Copy lives in packages/config/worlds.ts.
+// Dev's page sits on faint graph paper: it is honest about being unbuilt.
+import { world as getWorld, worldUrl, type WorldId } from "@pow/config/worlds";
+import WhatsAppButton from "./WhatsAppButton.astro";
+
+interface Props {
+  world: WorldId;
+}
+const { world: id } = Astro.props;
+const w = getWorld(id);
+const h = w.holding;
+if (!h) throw new Error(`${id} has no holding copy in worlds.ts`);
+// Writing states its boundary on its home page, word for word (CLAUDE.md).
+const boundary = "We don't write or edit academic or assessed work. For research support, see our Research team.";
+---
+
+<section class="band" aria-labelledby="holding-heading">
+  {
+    id === "dev" && (
+      <svg class="band__grid" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="graph" width="24" height="24" patternUnits="userSpaceOnUse">
+            <path d="M24 0H0V24" fill="none" stroke="currentColor" stroke-width="1" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#graph)" />
+      </svg>
+    )
+  }
+  <div class="wrap band__inner">
+    <p class="band__kicker">{w.name} · opening soon</p>
+    <h1 id="holding-heading" class="band__title">{h.headline}</h1>
+  </div>
+</section>
+
+<div class="wrap holding">
+  <p class="holding__line">{h.line}</p>
+
+  <h2 class="holding__h2">What's coming</h2>
+  <ul class="holding__services">
+    {h.services.map((s) => <li>{s}</li>)}
+  </ul>
+
+  <p class="mt-8">
+    <WhatsAppButton world={id} service={h.ask} label={h.button} variant="primary" />
+  </p>
+  <p class="holding__email">
+    Prefer email? <a href={`${worldUrl("main", "/contact")}?world=${id}`}>Send us a message</a>.
+  </p>
+
+  {
+    id === "writing" && (
+      <p class="holding__boundary">
+        {boundary.split("Research team")[0]}
+        <a href={worldUrl("research")}>Research team</a>.
+      </p>
+    )
+  }
+  {
+    h.aside && (
+      <p class="holding__aside">
+        {h.aside.text} <a href={worldUrl(h.aside.world)}>{h.aside.label}</a>.
+      </p>
+    )
+  }
+</div>
+
+<style>
+  .band {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-world-accent);
+    color: var(--color-on-world-accent);
+  }
+  .band__grid {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--color-on-world-accent);
+    opacity: 0.14;
+  }
+  .band__inner {
+    position: relative;
+    padding-block: 3rem 3.5rem;
+  }
+  .band__kicker {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+  .band__title {
+    margin-top: 0.75rem;
+    max-width: 20ch;
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    letter-spacing: var(--tracking-display);
+    color: inherit;
+  }
+  .holding {
+    padding-top: 2.5rem;
+  }
+  .holding__line {
+    max-width: 60ch;
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+  }
+  .holding__h2 {
+    margin-top: 2.5rem;
+    font-size: var(--text-xl);
+  }
+  .holding__services {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.75rem;
+    max-width: 40rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  .holding__services li {
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .holding__email,
+  .holding__aside,
+  .holding__boundary {
+    margin-top: 1rem;
+    max-width: 60ch;
+    color: var(--color-muted);
+  }
+  .holding__boundary {
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-rule);
+    color: var(--color-text);
+  }
+</style>

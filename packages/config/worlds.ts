@@ -6,6 +6,17 @@
 export type WorldId = "main" | "marketing" | "writing" | "research" | "publishing" | "dev";
 export type WorldStatus = "live" | "soon";
 export type MenuItem = { label: string; path: string };
+/** What a world's one-page holding site says while its status is "soon". */
+export type Holding = {
+  headline: string;
+  line: string;
+  services: [string, string, string];
+  button: string;
+  /** What the prefilled WhatsApp message asks about. */
+  ask: string;
+  aside?: { text: string; world: WorldId; label: string };
+};
+
 export type World = {
   id: WorldId;
   label: string;
@@ -17,6 +28,7 @@ export type World = {
   badge?: string;
   tagline: string;
   menu: MenuItem[];
+  holding?: Holding;
 };
 
 export const worlds: World[] = [
@@ -60,6 +72,18 @@ export const worlds: World[] = [
       { label: "Grant writing", path: "/grants" },
       { label: "Business plans and proposals", path: "/business-plans" },
     ],
+    holding: {
+      headline: "CVs, grant applications and business plans that get read.",
+      line: "Pen of Wonder Writing opens soon, for job seekers, professionals, founders, NGOs and anyone applying for funding. If you need something written now, tell us on WhatsApp and we'll say honestly whether we can take it on yet.",
+      services: [
+        "CVs, cover letters and LinkedIn profiles",
+        "Grant applications, concept notes and budget narratives",
+        "Business plans, proposals and company profiles",
+      ],
+      button: "Ask about writing on WhatsApp",
+      ask: "a writing job",
+      aside: { text: "Need copy that sells?", world: "marketing", label: "That's our Marketing team" },
+    },
   },
   {
     id: "research",
@@ -90,6 +114,17 @@ export const worlds: World[] = [
       { label: "Editing and proofreading", path: "/editing" },
       { label: "ISBN, layout and listing", path: "/isbn-and-listing" },
     ],
+    holding: {
+      headline: "Books children want to read, and help for the people who write them.",
+      line: "Pen of Wonder Publishing opens soon. It will show the Hidden Treasures Companion Readers, written by our founder for Nigerian primary classes, and offer book services to authors, churches, schools and organisations.",
+      services: [
+        "The Hidden Treasures Companion Readers, Basic 1 to 6",
+        "Book writing, editing and ISBN registration",
+        "Illustration and printing, quoted per project",
+      ],
+      button: "Ask about the books on WhatsApp",
+      ask: "the Hidden Treasures readers",
+    },
   },
   {
     id: "dev",
@@ -105,6 +140,14 @@ export const worlds: World[] = [
       { label: "Automation", path: "/" },
       { label: "Business systems", path: "/" },
     ],
+    holding: {
+      headline: "Websites and business systems, soon.",
+      line: "Pen of Wonder Dev will build websites, automation and the systems a small business runs on. We aren't taking dev projects yet. Join the waitlist on WhatsApp and we'll tell you when we open.",
+      services: ["Websites", "Automation", "Business systems"],
+      button: "Join the waitlist on WhatsApp",
+      ask: "joining the Dev waitlist",
+      aside: { text: "Need a landing page now?", world: "marketing", label: "Our Marketing team builds them" },
+    },
   },
 ];
 

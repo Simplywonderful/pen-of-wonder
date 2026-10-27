@@ -1,0 +1,14 @@
+# Security headers for every world, copied into each app by scripts/sync-brand.mjs.
+# The sites are static and cookie-free. Scripts come from the site itself, except Cloudflare's own
+# analytics beacon; the contact form posts to Formspree. 'unsafe-inline' covers the small theme
+# script in <head> and the scripts Astro inlines.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  X-Frame-Options: DENY
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formspree.io https://cloudflareinsights.com; form-action 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

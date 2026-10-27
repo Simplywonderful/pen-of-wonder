@@ -11,10 +11,12 @@ interface Props {
   world: WorldId;
   /** The world's own pages. The current one is marked with aria-current. */
   localNav?: { href: string; label: string }[];
+  /** A short line for the second row on wide screens, for worlds with no pages of their own yet. */
+  note?: string;
   currentPath?: string;
 }
 
-const { world: id, localNav = [], currentPath = "/" } = Astro.props;
+const { world: id, localNav = [], note, currentPath = "/" } = Astro.props;
 const here = getWorld(id);
 const isCurrent = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
 ---
@@ -50,6 +52,8 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
           </nav>
         )
       }
+
+      {localNav.length === 0 && note && <p class="local-note">{note}</p>}
 
       <nav class="worlds-nav" aria-label="Pen of Wonder">
         {localNav.length > 0 && <p class="menu-group" aria-hidden="true">Pen of Wonder</p>}
@@ -201,6 +205,10 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     color: var(--color-muted);
   }
 
+  .local-note {
+    display: none;
+  }
+
   .soon {
     font-family: var(--font-mono);
     font-size: 0.7rem;
@@ -345,6 +353,14 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     .local-nav {
       grid-area: local;
       margin-top: 0.75rem;
+    }
+    .local-note {
+      display: block;
+      grid-area: local;
+      align-self: center;
+      margin-top: 0.75rem;
+      font-size: var(--text-sm);
+      color: var(--color-muted);
     }
     .local-nav ul {
       display: flex;

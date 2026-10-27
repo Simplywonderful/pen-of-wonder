@@ -1,0 +1,111 @@
+---
+// Proof from the register, never typed in a page. Static figures in Plex Mono, each linked to the
+// case study or page that explains it. Pending entries show as [TODO] markers in development and
+// are left out of production builds. No animated counters.
+import { proofEntry, type ProofEntry } from "@pow/config/proof";
+import { worldUrl } from "@pow/config/worlds";
+import { showTodos } from "./todos";
+import Todo from "./Todo.astro";
+
+interface Props {
+  ids: string[];
+  heading?: string;
+  headingId?: string;
+  /** Set out as a row of figures (marketing's readings) or as sentences (the main site's strip). */
+  layout?: "figures" | "sentences";
+  label?: string;
+  class?: string;
+}
+
+const { ids, heading, headingId = "proof-heading", layout = "sentences", label, class: className } = Astro.props;
+const entries = ids.map(proofEntry).filter((p) => p.status === "live" || showTodos);
+const href = (p: ProofEntry) => (p.link ? worldUrl(p.world, p.link.path) : undefined);
+const sentence = (p: ProofEntry) => {
+  const text = p.figure && !p.wording.startsWith(p.figure) ? `${p.figure} ${p.wording}` : p.wording;
+  const withYear = p.dateRange && !text.includes(p.dateRange) ? `${text} in ${p.dateRange}` : text;
+  return withYear.charAt(0).toUpperCase() + withYear.slice(1);
+};
+---
+
+{
+  entries.length > 0 && (
+    <section class:list={["proof", `proof--${layout}`, className]} aria-labelledby={heading ? headingId : undefined}>
+      {heading && <h2 id={headingId} class="text-2xl">{heading}</h2>}
+      <ul class="proof__list">
+        {entries.map((p) => (
+          <li class="proof__item">
+            {p.status === "pending" ? (
+              <Todo label={`TODO: ${p.figure ? `${p.figure} ` : ""}${p.wording}. Needs ${p.needs}`} />
+            ) : layout === "figures" && p.figure ? (
+              <>
+                <span class="proof__figure nums">{p.figure}</span>
+                <span class="proof__words">{p.wording}</span>
+              </>
+            ) : (
+              <span class="proof__sentence">{sentence(p)}.</span>
+            )}
+            {p.status === "live" && href(p) && (
+              <a class="proof__link" href={href(p)}>
+                {p.link?.label}
+              </a>
+            )}
+            {p.ownProject && p.status === "live" && <span class="proof__own">Our own project</span>}
+          </li>
+        ))}
+      </ul>
+      {label && <p class="proof__label">{label}</p>}
+    </section>
+  )
+}
+
+<style>
+  .proof__list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.25rem;
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+  .proof__item {
+    display: grid;
+    gap: 0.35rem;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .proof__sentence {
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    max-width: 60ch;
+  }
+  .proof__figure {
+    font-size: var(--text-3xl);
+    line-height: 1;
+    color: var(--color-heading);
+  }
+  .proof__words {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .proof__link {
+    font-size: var(--text-sm);
+    justify-self: start;
+  }
+  .proof__own {
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+  }
+  .proof__label {
+    margin-top: 0.75rem;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    max-width: 60ch;
+  }
+  @media (min-width: 48rem) {
+    .proof--figures .proof__list {
+      grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+      gap: 0 2rem;
+    }
+  }
+</style>

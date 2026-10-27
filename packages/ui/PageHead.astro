@@ -1,0 +1,14 @@
+---
+// The top of an inner page: the H1, an intro paragraph and anything slotted after it.
+interface Props {
+  title: string;
+  intro?: string;
+}
+const { title, intro } = Astro.props;
+---
+
+<header class="wrap pt-10 md:pt-16 lg:pt-20">
+  <h1 class="max-w-[22ch] text-3xl tracking-(--tracking-display)">{title}</h1>
+  {intro && <p class="mt-6 max-w-[60ch] text-lg text-muted">{intro}</p>}
+  <slot />
+</header>

@@ -2,7 +2,7 @@
   Concept: a manuscript returned by a careful editor, set in the Pen of Wonder Consults brand.
   The family tokens (packages/brand/tokens.css) carry the paper, ink, type and buttons. This file
   adds only what is research's own: the tracked-change red, which appears inside the edit specimen
-  because it depicts Word's markup, the photo mount, and the manuscript sheet with its margin notes.
+  because it depicts Word's markup, and the manuscript sheet with its margin notes.
   See apps/research/DESIGN.md and the root DESIGN.md before changing anything here.
 */
 
@@ -18,11 +18,9 @@
   --color-mark-del: var(--markup-red);
   --color-mark-ins: var(--markup-red);
   --color-comment-bg: var(--cream);
-  --color-mount: var(--cream);
-  --color-mount-ink: var(--deep-ink);
 }
 
-/* Dark: the specimen's red lifts for Deep Ink. The photo mount stays cream on purpose. */
+/* Dark: the specimen's red lifts for Deep Ink. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --color-mark-del: var(--markup-red-night);
@@ -66,25 +64,6 @@
       align-self: start;
     }
   }
-
-  .prose > * + * { margin-top: 1rem; }
-  .prose h2 { margin-top: 3rem; font-size: var(--text-2xl); line-height: var(--text-2xl--line-height); }
-  .prose h3 { margin-top: 2rem; font-size: var(--text-xl); line-height: var(--text-xl--line-height); }
-  .prose ul, .prose ol { padding-left: 1.25rem; }
-  .prose ul { list-style: disc; }
-  .prose ol { list-style: decimal; }
-  .prose li + li { margin-top: 0.5rem; }
-  .prose li::marker { color: var(--color-muted); }
-  .prose strong { font-weight: 600; }
-  /* Asides such as the Pro tip boxes in the 30 Lessons pieces: a note pinned to the page. */
-  .prose blockquote {
-    padding: 1rem 1.25rem;
-    background: var(--color-panel);
-    border: 1px solid var(--color-rule);
-  }
-  .prose blockquote > * + * { margin-top: 0.5rem; }
-  .prose blockquote ul { margin-top: 0.5rem; }
-  .prose > * { max-width: 65ch; }
 
   .margin-note {
     font-size: var(--text-sm);

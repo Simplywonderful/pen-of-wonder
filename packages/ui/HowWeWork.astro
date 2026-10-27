@@ -1,0 +1,74 @@
+---
+// The same four steps on every world, in order, because the order is the point.
+import { contact } from "@pow/config/contact";
+
+interface Props {
+  heading?: string;
+  class?: string;
+}
+const { heading = "How we work", class: className } = Astro.props;
+
+const steps = [
+  { title: "Message us.", body: `Tell us on WhatsApp or by email what you need. We reply ${contact.replyTime}.` },
+  { title: "Free consultation.", body: "A short chat to understand the job, and an honest answer on whether we're the right fit." },
+  { title: "Written quote.", body: "What we'll do, what it costs and when you'll have it. Nothing starts until you agree." },
+  { title: "Delivery and revisions.", body: "The work arrives on the agreed date, with the revisions your quote sets out." },
+];
+---
+
+<section class:list={["how", className]} aria-labelledby="how-heading">
+  <h2 id="how-heading" class="text-2xl">{heading}</h2>
+  <ol class="how__steps">
+    {
+      steps.map((s, i) => (
+        <li>
+          <span class="how__n nums" aria-hidden="true">
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <p>
+            <strong>{s.title}</strong> {s.body}
+          </p>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .how__steps {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+  .how__steps li {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 0.5rem;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .how__n {
+    color: var(--color-muted);
+    padding-top: 0.15rem;
+  }
+  .how__steps strong {
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+  @media (min-width: 64rem) {
+    .how__steps {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 0;
+      gap: 2rem;
+    }
+    .how__steps li {
+      grid-template-columns: minmax(0, 1fr);
+      border-bottom: 0;
+      border-top: 1px solid var(--color-rule-strong);
+      padding-top: 0.75rem;
+    }
+  }
+</style>

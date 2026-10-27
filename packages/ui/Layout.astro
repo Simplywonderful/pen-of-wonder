@@ -1,0 +1,56 @@
+---
+// The page shell for every world built on the shared packages: head, header, main, footer.
+// Research keeps its own layout (apps/research/src/layouts/BaseLayout.astro) with the same parts.
+import type { WorldId } from "@pow/config/worlds";
+import SeoHead from "./SeoHead.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import Analytics from "./Analytics.astro";
+
+interface Props {
+  world: WorldId;
+  title: string;
+  description: string;
+  ogType?: "website" | "article";
+  noindex?: boolean;
+  jsonLd?: object[];
+  rss?: boolean;
+  localNav?: { href: string; label: string }[];
+  note?: string;
+  emblem?: boolean;
+  privacyHref?: string;
+  termsHref?: string;
+}
+
+const { world, title, description, ogType, noindex, jsonLd, rss, localNav, note, emblem, privacyHref, termsHref } = Astro.props;
+
+// Static builds use file output (about.html); pages are linked and served without the extension.
+const path = Astro.url.pathname.replace(/\/index\.html$/, "/").replace(/\.html$/, "").replace(/(.)\/$/, "$1") || "/";
+---
+
+<!doctype html>
+<html lang="en-GB" data-world={world}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SeoHead world={world} title={title} description={description} path={path} ogType={ogType} noindex={noindex} jsonLd={jsonLd} rss={rss} />
+
+    {/* Runs before paint so a stored theme never flashes the wrong one. */}
+    <script is:inline>
+      try {
+        const t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch {}
+      document.documentElement.classList.add("js");
+    </script>
+    <Analytics world={world} />
+  </head>
+  <body class="flex min-h-dvh flex-col">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header world={world} localNav={localNav} currentPath={path} note={note} />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer world={world} emblem={emblem} privacyHref={privacyHref} termsHref={termsHref} />
+  </body>
+</html>

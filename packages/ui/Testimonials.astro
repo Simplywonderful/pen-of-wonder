@@ -1,0 +1,65 @@
+---
+// Approved quotes only, as a static set: no carousel, no rotation, no stars. Renders nothing until
+// the world's flag is on and each quote has written permission on file (packages/config/testimonials.ts).
+import { approvedQuotes } from "@pow/config/testimonials";
+import type { WorldId } from "@pow/config/worlds";
+
+interface Props {
+  worlds: WorldId[];
+  heading?: string;
+  class?: string;
+}
+const { worlds, heading = "What clients say", class: className } = Astro.props;
+const quotes = worlds.flatMap((w) => approvedQuotes(w));
+---
+
+{
+  quotes.length > 0 && (
+    <section class:list={["quotes", className]} aria-labelledby="quotes-heading">
+      <h2 id="quotes-heading" class="text-2xl">{heading}</h2>
+      <div class="quotes__list">
+        {quotes.map((q) => (
+          <figure class="quote">
+            <blockquote class="quote__text">“{q.quote}”</blockquote>
+            <figcaption class="quote__by">
+              <strong>{q.by}</strong>, {q.role}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .quotes__list {
+    margin-top: 1.25rem;
+    display: grid;
+    gap: 2rem;
+  }
+  .quote {
+    margin: 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  .quote__text {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+    max-width: 55ch;
+  }
+  .quote__by {
+    margin-top: 0.5rem;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .quote__by strong {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  @media (min-width: 64rem) {
+    .quotes__list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

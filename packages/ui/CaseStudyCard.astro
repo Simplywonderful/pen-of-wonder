@@ -1,0 +1,65 @@
+---
+// One case study in a list. A case is a separate object, so it gets a card; the result line comes
+// from the proof register and is left out until its evidence is on file.
+import { proofEntry } from "@pow/config/proof";
+import { showTodos } from "./todos";
+import Todo from "./Todo.astro";
+
+interface Props {
+  href: string;
+  client: string;
+  sector: string;
+  platforms: string;
+  summary: string;
+  resultId?: string;
+  label?: string;
+}
+const { href, client, sector, platforms, summary, resultId, label = "Client case study" } = Astro.props;
+const result = resultId ? proofEntry(resultId) : undefined;
+---
+
+<article class="case">
+  <p class="case__meta"><span class="nums">{label}</span> · {sector} · {platforms}</p>
+  <h3 class="case__title"><a href={href}>{client}</a></h3>
+  <p class="case__summary">{summary}</p>
+  {
+    result &&
+      (result.status === "live" ? (
+        <p class="case__result nums">{result.wording}</p>
+      ) : (
+        showTodos && (
+          <p class="case__result">
+            <Todo label={`TODO: ${result.wording}. Needs ${result.needs}`} />
+          </p>
+        )
+      ))
+  }
+</article>
+
+<style>
+  .case {
+    padding: 1.25rem;
+    background: var(--color-panel);
+    border: 1px solid var(--color-rule);
+  }
+  .case__meta {
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+  }
+  .case__title {
+    margin-top: 0.4rem;
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
+  }
+  .case__title a {
+    text-decoration-color: var(--color-world-rule);
+    text-decoration-thickness: 2px;
+  }
+  .case__summary {
+    margin-top: 0.6rem;
+    max-width: 60ch;
+  }
+  .case__result {
+    margin-top: 0.75rem;
+  }
+</style>

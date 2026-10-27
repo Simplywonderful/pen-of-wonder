@@ -1,0 +1,21 @@
+---
+// Cloudflare Web Analytics beacon, only where Cloudflare doesn't inject it itself (Workers).
+import { analyticsTokens } from "@pow/config/analytics";
+import type { WorldId } from "@pow/config/worlds";
+
+interface Props {
+  world: WorldId;
+}
+const token = analyticsTokens[Astro.props.world];
+---
+
+{
+  token && !import.meta.env.DEV && (
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={JSON.stringify({ token })}
+    />
+  )
+}

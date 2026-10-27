@@ -1,0 +1,61 @@
+---
+// Questions as native <details>, so they open without JavaScript and keyboards work for free.
+interface Props {
+  heading?: string;
+  id?: string;
+  items: { q: string; a: string }[];
+  class?: string;
+}
+const { heading = "Questions", id = "faq-heading", items, class: className } = Astro.props;
+---
+
+<section class:list={["faq", className]} aria-labelledby={id}>
+  <h2 id={id} class="text-2xl">{heading}</h2>
+  <div class="faq__list">
+    {
+      items.map((item) => (
+        <details>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .faq__list {
+    margin-top: 1.25rem;
+    max-width: 48rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  details {
+    border-bottom: 1px solid var(--color-rule);
+  }
+  summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.75rem;
+    padding-block: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::after {
+    content: "+";
+    font-family: var(--font-mono);
+    color: var(--color-muted);
+    transition: transform var(--duration-ui) var(--ease-out);
+  }
+  details[open] summary::after {
+    transform: rotate(45deg);
+  }
+  details p {
+    max-width: 65ch;
+    padding-bottom: 1rem;
+  }
+</style>

@@ -12,3 +12,4 @@ apps/*/public/favicon.svg
 apps/*/public/favicon.ico
 apps/*/public/apple-touch-icon.png
 apps/*/public/icon-512.png
+apps/*/public/_headers
