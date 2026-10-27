@@ -1,0 +1,14 @@
+---
+import "../styles/global.css";
+import Layout from "@pow/ui/Layout.astro";
+import HoldingPage from "@pow/ui/HoldingPage.astro";
+import { world } from "@pow/config/worlds";
+import { worldServiceLd } from "@pow/config/structured";
+
+const w = world("publishing");
+const h = w.holding!;
+---
+
+<Layout world="publishing" title={`${w.name}: opening soon`} description={`${h.headline} ${h.services.join(", ")}. Opening soon; message us on WhatsApp.`} jsonLd={[worldServiceLd("publishing", h.services)]} note="Opening soon">
+  <HoldingPage world="publishing" />
+</Layout>

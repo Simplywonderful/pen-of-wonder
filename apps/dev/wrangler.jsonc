@@ -1,0 +1,10 @@
+// Dev is served by Cloudflare Workers static assets, not Pages: Pages allows five projects per
+// repository and the family has six apps (root DESIGN.md, section 13.1). It is one static page.
+{
+  "name": "pow-dev",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}

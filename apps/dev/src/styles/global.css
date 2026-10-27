@@ -1,0 +1,9 @@
+/*
+  Dev: graph paper, not yet drawn on. One holding page on a faint grid; Graphite is the accent
+  because the world isn't built yet.
+  The family tokens live in packages/brand/tokens.css; the world's accent is chosen there by the
+  data-world attribute on <html>. See the root DESIGN.md before changing anything here.
+*/
+
+@import "tailwindcss";
+@import "@pow/brand/tokens.css";
