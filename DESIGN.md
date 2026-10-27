@@ -155,6 +155,7 @@ slop-check (17 Oct 2026): HIGH 0. WARNs kept on purpose:
 - **En dashes in APA page ranges (145–170)** are typographic convention, not em dashes. slop-check only matches U+2014.
 - **Hex values** in `BaseLayout.astro` (`theme-color` meta), `site.webmanifest` and `scripts/make-brand-assets.py` are the brand's hex values in places that cannot read CSS variables.
 - **"Think. Check. Submit." (triad)** in the G23 blog guide is the real name of the publishing-industry checklist it links to, not a slogan.
+- **"State-of-the-art" (slop-word)** in the G7 blog guide is the established name of a review type (Grant and Booth, 2009), not marketing copy.
 - **Eyebrow labels:** two on the whole site, "Where to start" above the contents list on Home and "What I do and don't do" on the Coaching box.
 
 ## Decisions confirmed by the owner (17 Oct 2026)

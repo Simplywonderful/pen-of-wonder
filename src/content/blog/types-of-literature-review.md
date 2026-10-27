@@ -82,7 +82,7 @@ A critical review goes beyond summary. It examines the key ideas, claims and met
 
 ### Rapid review
 
-A rapid review is a streamlined review used when evidence is needed quickly. It simplifies or limits some steps of a systematic review, for example by narrowing the search, and is open about what it left out.
+A rapid review is a shortened review used when evidence is needed quickly. It simplifies or limits some steps of a systematic review, for example by narrowing the search, and is open about what it left out.
 
 **Example:** early in the COVID-19 pandemic, a rapid review of new treatments could bring the emerging evidence together quickly enough to inform clinical and policy decisions.
 
