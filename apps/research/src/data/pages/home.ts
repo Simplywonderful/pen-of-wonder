@@ -1,3 +1,8 @@
+// The 2026 publication line is read from the proof register, so it is written once, word for word.
+import { proofEntry } from "@pow/config/proof";
+
+const manuscripts = proofEntry("research-manuscripts");
+
 export const home = {
   title: "Pen of Wonder Research: manuscript editing and publication support",
   description:
@@ -43,7 +48,7 @@ export const home = {
 
   publishedHeading: "Our founder’s published work",
   background:
-    "Wonderful Adebagbo has been a research writer since 2021 and is a co-author of both papers above. In 2026 he helped a researcher take two manuscripts through to publication. He analyses data in SPSS and NVivo, and at ADAC Data Consult he designed and led a six-month field study and trained the field researchers who collected its data.",
+    `Wonderful Adebagbo has been a research writer since 2021 and is a co-author of both papers above. In ${manuscripts.dateRange} he ${manuscripts.wording}. He analyses data in SPSS and NVivo, and at ADAC Data Consult he designed and led a six-month field study and trained the field researchers who collected its data.`,
 
   sampleReview: "Want to see what one looks like first? We can send an anonymised sample on request.",
   reviewHeading: "The free one-page review",

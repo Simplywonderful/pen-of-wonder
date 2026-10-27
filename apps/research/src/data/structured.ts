@@ -32,7 +32,7 @@ export const organisationLd = {
   "@type": "ProfessionalService",
   name: site.name,
   url: site.url,
-  email: site.email,
+  ...(site.email ? { email: site.email } : {}),
   telephone: "+2347046418092",
   image: `${site.url}/og.png`,
   description:

@@ -65,4 +65,4 @@ These terms are governed by the laws of the Federal Republic of Nigeria. If you 
 
 ## Contact
 
-Questions about these terms: [adebagbo.wonderfull@gmail.com](mailto:adebagbo.wonderfull@gmail.com).
+Questions about these terms: {email}.

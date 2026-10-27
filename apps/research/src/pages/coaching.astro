@@ -2,8 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHead from "../components/PageHead.astro";
 import DoDontBox from "../components/DoDontBox.astro";
-import Todo from "../components/Todo.astro";
-import WhatsAppButton from "../components/WhatsAppButton.astro";
+import Todo from "@pow/ui/Todo.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
 import { coaching as c } from "../data/pages/coaching";
 import { site, placeholders, prices } from "../data/site";
 
@@ -83,7 +83,7 @@ const priceRows = [prices.single, prices.analysis, prices.dissertation];
     </p>
     <p class="mt-6 flex flex-wrap gap-3">
       <a class="btn btn-primary" href={bookHref}>{c.cta}</a>
-      <WhatsAppButton />
+      <WhatsAppButton world="research" label="Message us on WhatsApp" />
     </p>
   </section>
 </BaseLayout>

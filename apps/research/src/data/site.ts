@@ -1,52 +1,42 @@
-// Contact details, feature flags and every placeholder the owner still has to fill.
-// A value of null renders as a visible [TODO] marker on the page, so nothing is ever invented.
+// Research's own settings. Contact details, the address and the legal identity come from the
+// shared config in packages/config, so they are written once for every world.
+// A value of null renders as a visible [TODO] marker, so nothing is ever invented.
+import { contact, contactPlaceholders, whatsappLink } from "@pow/config/contact";
+import { legal } from "@pow/config/legal";
+import { world, worldOrigin } from "@pow/config/worlds";
 
 export const site = {
-  name: "Pen of Wonder Research",
-  owner: "Wonderful Adebagbo",
-  url: "https://penofwonderresearch.pages.dev",
+  world: "research",
+  name: world("research").name,
+  owner: legal.founder,
+  // Canonical URLs, sitemap, RSS and JSON-LD always use the live address, even in development.
+  url: worldOrigin("research", "production"),
   locale: "en-GB",
-  city: "Ibadan",
-  region: "Oyo State",
-  country: "Nigeria",
-  timezone: "WAT (UTC+1)",
+  city: legal.city,
+  region: legal.region,
+  country: legal.country,
+  timezone: legal.timezone,
 
-  email: "adebagbo.wonderfull@gmail.com",
+  email: contact.email,
   whatsapp: {
-    display: "+234 704 641 8092",
-    link: "https://wa.me/2347046418092?text=" +
-      encodeURIComponent("Hello, I found Pen of Wonder Research and would like to ask about "),
+    display: contact.whatsapp.display,
+    link: whatsappLink("research"),
   },
-  replyTime: "within one working day",
+  replyTime: contact.replyTime,
   reviewTurnaround: "3 working days",
 
-  businessLine:
-    "Pen of Wonder Research is the research service of Pen of Wonder Consults, a registered business name in Nigeria.",
-  cacNumber: "7809965" as string | null,
+  businessLine: "Pen of Wonder Research is the research service of Pen of Wonder Consults.",
 
-  formspreeId: "xdeabooe" as string | null,
+  formspreeId: contact.formspreeId,
   calendlyUrl: null as string | null,
   meetingPlatform: "Google Meet" as string | null,
-  photographerCredit: null as string | null,
-
-  showTestimonials: false,
 } as const;
 
 export const placeholders = {
-  cacNumber: "CAC BN NUMBER, optional",
-  formspreeId: "FORMSPREE FORM ID",
+  email: contactPlaceholders.email,
+  formspreeId: contactPlaceholders.formspreeId,
   calendlyUrl: "CALENDLY LINK",
   meetingPlatform: "ZOOM / GOOGLE MEET",
-  photographerCredit: "PHOTOGRAPHER CREDIT",
-  subjects: "CONFIRM SUBJECTS",
-  styles: "CONFIRM STYLES",
-  hours: "HOURS PER WEEK",
-  cv: "HOLD: no CV link until a revised CV is supplied",
-  paymentMethods: "CONFIRM PAYMENT METHODS",
-  refundPolicy: "CONFIRM REFUND POLICY",
-  deposits: "CONFIRM DEPOSITS",
-  retention: "RETENTION PERIOD",
-  sampleReview: "TODO: anonymised sample one-page review, optional",
 } as const;
 
 export const prices = {

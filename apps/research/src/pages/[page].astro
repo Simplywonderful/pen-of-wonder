@@ -1,15 +1,17 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
+import { withContactEmail } from "@pow/ui/contact-email";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { formatDate } from "../lib/blog";
 
 export async function getStaticPaths() {
-  const pages = await getCollection("pages");
+  // The Academic Integrity Policy now lives on the main site; the build adds a 301 from the old address.
+  const pages = await getCollection("pages", (entry) => entry.id !== "academic-integrity");
   return pages.map((entry) => ({ params: { page: entry.id }, props: { entry } }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
+const html = withContactEmail(entry.rendered?.html ?? "");
 const d = entry.data;
 ---
 
@@ -29,7 +31,7 @@ const d = entry.data;
       }
     </header>
     <div class="prose legal mt-10">
-      <Content />
+      <Fragment set:html={html} />
     </div>
   </article>
 </BaseLayout>

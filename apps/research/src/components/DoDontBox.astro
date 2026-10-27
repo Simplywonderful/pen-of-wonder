@@ -1,5 +1,7 @@
 ---
 // Near the top of every student page, so a lecturer who lands here sees the rules first.
+import { academicIntegrity } from "@pow/config/legal";
+import { worldUrl } from "@pow/config/worlds";
 ---
 
 <aside class="dodont" aria-labelledby="dodont-heading">
@@ -23,7 +25,7 @@
     </div>
   </div>
   <p class="dodont__foot">
-    Your university’s rules come first. Read the full <a href="/academic-integrity">Academic Integrity Policy</a>.
+    Your university’s rules come first. Read the full <a href={worldUrl(academicIntegrity.world, academicIntegrity.path)}>Academic Integrity Policy</a>.
   </p>
 </aside>
 

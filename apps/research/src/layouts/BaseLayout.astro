@@ -1,8 +1,8 @@
 ---
 import "../styles/global.css";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { site } from "../data/site";
+import Header from "@pow/ui/Header.astro";
+import Footer from "@pow/ui/Footer.astro";
+import { nav, site } from "../data/site";
 import { cleanPath } from "../lib/path";
 
 interface Props {
@@ -16,10 +16,11 @@ interface Props {
 const { title, description, ogType = "website", noindex = false, jsonLd = [] } = Astro.props;
 const canonical = new URL(cleanPath(Astro.url.pathname), site.url).href;
 const ogImage = new URL("/og.png", site.url).href;
+const path = cleanPath(Astro.url.pathname);
 ---
 
 <!doctype html>
-<html lang="en-GB">
+<html lang="en-GB" data-world={site.world}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -68,10 +69,10 @@ const ogImage = new URL("/og.png", site.url).href;
   </head>
   <body class="flex min-h-dvh flex-col">
     <a class="skip-link" href="#main">Skip to content</a>
-    <Header />
+    <Header world={site.world} localNav={[...nav]} currentPath={path} />
     <main id="main" class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer world={site.world} businessLine={site.businessLine} emblem privacyHref="/privacy" termsHref="/terms" />
   </body>
 </html>

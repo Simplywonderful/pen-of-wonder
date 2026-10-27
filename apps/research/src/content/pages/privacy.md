@@ -10,7 +10,7 @@ This notice explains what personal data this website collects, why, and what you
 
 ## Who we are
 
-Pen of Wonder Research is the research service of Pen of Wonder Consults, a registered business name in Nigeria, founded by Wonderful Adebagbo and based in Ibadan, Oyo State. Pen of Wonder Consults is the data controller for the personal data described here. You can reach us at [adebagbo.wonderfull@gmail.com](mailto:adebagbo.wonderfull@gmail.com).
+Pen of Wonder Research is the research service of Pen of Wonder Consults, a registered business name in Nigeria, founded by Wonderful Adebagbo and based in Ibadan, Oyo State. Pen of Wonder Consults is the data controller for the personal data described here. You can reach us at {email}.
 
 ## What we collect
 
@@ -56,7 +56,7 @@ You can ask us to:
 - restrict or object to how we use it;
 - give you your data in a portable format.
 
-Email [adebagbo.wonderfull@gmail.com](mailto:adebagbo.wonderfull@gmail.com) to use any of these rights. We’ll reply within one month.
+Email {email} to use any of these rights. We’ll reply within one month.
 
 ## Complaints
 

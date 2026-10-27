@@ -191,3 +191,15 @@ Filled on 17 Oct 2026: CV download (20 Oct 2026; a web copy at /files/Wonderful-
 - Cloudflare Web Analytics is on (beacon from static.cloudflareinsights.com). With it running, the site still sets no cookies and writes nothing to storage (checked in the browser on /contact).
 - Contact form connected to Formspree form xdeabooe (free plan, reCAPTCHA off). A test message sent through the live form on 17 Oct 2026 was accepted and the visitor was taken to /contact/thanks. The owner confirmed it arrived in their inbox.
 - Weekly rebuild: the GitHub Action pushes an empty commit on Mondays when a blog piece has a releaseDate, which triggers a Cloudflare build. No deploy hook or secret needed.
+
+## 12. Move into the Pen of Wonder monorepo (26 Oct 2026, Phase 1A)
+
+Research now lives at `apps/research` in the Pen of Wonder repo, imported with its history. The root DESIGN.md covers the family; this file still governs research. What changed, and nothing else:
+- **Header and footer** are the shared ones (`packages/ui`). The header shows the POW mark with "Pen of Wonder / Research", a Sage rule under it, the family menu (Marketing, Writing, Research, Publishing, Dev, About, Contact) with disclosure panels, and "Chat on WhatsApp". Research's own pages (Publication support, Work with us, Coaching, About, Blog, Contact) sit in a second row on wide screens and first in the drawer on phones. The footer keeps the emblem and research's business line, followed by the shared legal line, and adds links to every world.
+- **Accent:** Sage (`#396F5E`, dark `#87BFAB`) marks only the rule under the logo and the current menu item. Buttons, links and focus stay Ink Green (Spark Gold in dark), as before (owner decision, option B).
+- **Tokens and fonts** moved to `packages/brand`; this app's `global.css` keeps only the specimen red, the photo mount, the sheet and the prose styles. Contrast figures are unchanged (root `scripts/contrast-check.mjs`).
+- **Address:** https://research.penofwonder.com for `site`, canonical URLs, sitemap, robots.txt, RSS, JSON-LD and the OG image URL.
+- **Email:** the Gmail address is gone from the pages. Footer, contact page, privacy and terms show `[BUSINESS EMAIL]` until the business address exists and is set in `packages/config/contact.ts`. JSON-LD leaves `email` out until then. The web CV PDF still carries the Gmail address (listed in the root DESIGN.md section 10).
+- **Academic Integrity Policy:** the page is no longer built here; `/academic-integrity` 301s to penofwonder.com/academic-integrity. The source file stays in `src/content/pages/` until the main site takes it over in Phase 1B.
+- **Weekly rebuild** (section 11): replaced. The root workflow calls the `CF_DEPLOY_HOOK_RESEARCH` deploy hook instead of pushing an empty commit, which would rebuild every project in the monorepo.
+- **The 2026 publication line** is read from the proof register; its evidence goes in `_source/proof/research/two-manuscripts-2026/`. The local build stops until it is there.
