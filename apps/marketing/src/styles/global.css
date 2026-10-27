@@ -1,0 +1,10 @@
+/*
+  Marketing: a lab notebook for ad tests. Hypothesis, variant, result, decision. Proof is
+  set like readings in Plex Mono; the process is a numbered test log. Raspberry marks the buttons,
+  the hero band and the rule under the logo, like a winning-variant mark.
+  The family tokens live in packages/brand/tokens.css; the world's accent is chosen there by the
+  data-world attribute on <html>. See the root DESIGN.md before changing anything here.
+*/
+
+@import "tailwindcss";
+@import "@pow/brand/tokens.css";

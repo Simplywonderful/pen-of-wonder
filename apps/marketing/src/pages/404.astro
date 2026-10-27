@@ -1,0 +1,17 @@
+---
+import "../styles/global.css";
+import Layout from "@pow/ui/Layout.astro";
+import { world, worldUrl } from "@pow/config/worlds";
+
+const w = world("marketing");
+---
+
+<Layout world="marketing" title={`Page not found | ${w.name}`} description={`This page isn't here. Start again from ${w.name}.`} noindex note={w.status === "soon" ? "Opening soon" : undefined}>
+  <div class="wrap pt-10 md:pt-16 lg:pt-24">
+    <h1 class="max-w-[22ch] text-3xl tracking-(--tracking-display)">This page isn't here.</h1>
+    <p class="mt-6 max-w-[60ch] text-lg text-muted">
+      The link may be old, or the address may have a typo. Everything that exists is one step away.
+    </p>
+    <p class="mt-8"><a class="btn btn-primary" href={worldUrl("marketing")}>Go to the {w.name} home page</a></p>
+  </div>
+</Layout>

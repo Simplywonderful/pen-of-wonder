@@ -1,0 +1,27 @@
+---
+// Marketing's pages all sit in the shared layout with marketing's own page nav.
+import "../styles/global.css";
+import Layout from "@pow/ui/Layout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  ogType?: "website" | "article";
+  noindex?: boolean;
+  jsonLd?: object[];
+}
+
+const nav = [
+  { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
+  { href: "/process", label: "Process" },
+  { href: "/blog", label: "Blog" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
+];
+const props = Astro.props;
+---
+
+<Layout world="marketing" {...props} localNav={nav} rss>
+  <slot />
+</Layout>

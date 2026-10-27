@@ -1,0 +1,310 @@
+---
+// Copy approved by the owner on 26 Oct 2026 (PHASE-0.md section 5). Numbers come from the proof
+// register and stay off production pages until their evidence is on file.
+import MarketingLayout from "../layouts/MarketingLayout.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import ProofStrip from "@pow/ui/ProofStrip.astro";
+import Testimonials from "@pow/ui/Testimonials.astro";
+import Faq from "@pow/ui/Faq.astro";
+import CaseStudyCard from "@pow/ui/CaseStudyCard.astro";
+import { faqLd } from "@pow/ui/faq-ld";
+import { showTodos } from "@pow/ui/todos";
+import { worldServiceLd } from "@pow/config/structured";
+import { liveServices, adSpendLine } from "../data/services";
+import { steps } from "../data/process";
+import { questions } from "../data/faq";
+import { getLivePosts, formatDate } from "../lib/blog";
+
+const services = liveServices(showTodos);
+const posts = (await getLivePosts()).slice(0, 3);
+const homeQuestions = questions.filter((q) => q.home);
+---
+
+<MarketingLayout
+  title="Pen of Wonder Marketing: paid ads run like experiments"
+  description="Paid ads on Meta, LinkedIn, TikTok and X, with ad creative, landing pages and copy, for coaches, course creators and online businesses. Tracked, tested, reported plainly."
+  jsonLd={[worldServiceLd("marketing", services.map((s) => s.name)), faqLd(homeQuestions)]}
+>
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="wrap hero__inner">
+      <p class="hero__kicker">Words that sell</p>
+      <h1 id="hero-heading" class="hero__title">Profitable ads, run like experiments.</h1>
+      <p class="hero__lead">
+        We plan, build and run paid ads on Meta, LinkedIn, TikTok and X for coaches, course creators and online
+        businesses, and we show you which naira brought which lead.
+      </p>
+      <p class="hero__actions">
+        <WhatsAppButton world="marketing" service="paid ads" label="Chat about your ads" class="btn-on-band" />
+        <a class="btn btn-band-outline" href="/work/northern-star">Read the Northern Star case</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap problem mt-16" aria-labelledby="problem-heading">
+    <h2 id="problem-heading" class="text-2xl">Most ad budgets are spent on guesses.</h2>
+    <div class="problem__text">
+      <p>
+        Boosted posts, audiences picked by feel, one creative nobody tested, and a dashboard nobody can read. Money goes
+        out, a few leads come in, and no one can say which part worked, so nothing can be scaled.
+      </p>
+      <p>
+        Our founder trained in a lab, and we run ads the same way: a clear hypothesis, a controlled test, honest
+        measurement, and a budget that follows the evidence.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap mt-16" aria-labelledby="services-heading">
+    <h2 id="services-heading" class="text-2xl">What we do</h2>
+    <ul class="services">
+      {
+        services.map((s) => (
+          <li>
+            <a class="services__name" href={`/${s.slug}`}>{s.name}</a>
+            <span class="services__summary">{s.summary}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <div class="wrap mt-16">
+    <ProofStrip
+      ids={["marketing-campaigns", "marketing-cpl", "marketing-roas", "marketing-spend"]}
+      heading="The readings so far"
+      layout="figures"
+      label="Across 12+ client campaigns since [FIRST CAMPAIGN YEAR]. Ask us for the breakdown behind any figure."
+    />
+  </div>
+
+  <section class="wrap mt-16" aria-labelledby="case-heading">
+    <h2 id="case-heading" class="text-2xl">Featured case</h2>
+    <div class="mt-5 max-w-[48rem]">
+      <CaseStudyCard
+        href="/work/northern-star"
+        client="Northern Star Business Consult"
+        sector="Business consulting"
+        platforms="Meta and LinkedIn"
+        summary="A business consultancy was boosting posts with no tracking in place. We rebuilt the account, narrowed it to high-intent audiences on Meta and LinkedIn, wrote and tested new angles, and installed proper conversion tracking, so every lead could be traced to the campaign that brought it."
+        resultId="northern-star-cpl"
+      />
+    </div>
+  </section>
+
+  <section class="wrap mt-16" aria-labelledby="log-heading">
+    <h2 id="log-heading" class="text-2xl">How a campaign runs</h2>
+    <ol class="log">
+      {
+        steps.map((s, i) => (
+          <li>
+            <span class="log__n nums">{String(i + 1).padStart(2, "0")}</span>
+            <span class="log__name">{s.name}</span>
+            <span class="log__line">{s.line}</span>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="mt-4"><a href="/process">The whole process, step by step</a></p>
+  </section>
+
+  <section class="wrap mt-16" aria-labelledby="spend-heading">
+    <h2 id="spend-heading" class="visually-hidden">Ad spend</h2>
+    <p class="spend">{adSpendLine}</p>
+  </section>
+
+  <div class="wrap mt-16">
+    <Testimonials worlds={["marketing"]} />
+  </div>
+
+  {
+    posts.length > 0 && (
+      <section class="wrap mt-16" aria-labelledby="blog-heading">
+        <h2 id="blog-heading" class="text-2xl">From the blog</h2>
+        <ul class="posts">
+          {posts.map((p) => (
+            <li>
+              <a class="posts__title" href={`/blog/${p.id}`}>{p.data.title}</a>
+              <span class="posts__meta">
+                By Wonderful Adebagbo, founder · <time datetime={p.data.publishDate.toISOString()}>{formatDate(p.data.publishDate)}</time>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <div class="wrap mt-16">
+    <Faq items={homeQuestions} />
+    <p class="mt-4"><a href="/faq">More questions</a></p>
+  </div>
+
+  <section class="wrap mt-16" aria-labelledby="final-heading">
+    <div class="final">
+      <h2 id="final-heading" class="text-2xl">Make your ad spend accountable.</h2>
+      <p class="mt-3 max-w-[60ch]">
+        Tell us about your offer and your goal. If ads are the right move, we'll show you how we'd test it. If they
+        aren't yet, we'll say so.
+      </p>
+      <p class="mt-6"><WhatsAppButton world="marketing" service="paid ads" label="Chat about your ads" variant="primary" /></p>
+    </div>
+  </section>
+</MarketingLayout>
+
+<style>
+  .hero {
+    background: var(--color-world-accent);
+    color: var(--color-on-world-accent);
+  }
+  .hero__inner {
+    padding-block: 3rem 3.5rem;
+  }
+  .hero__kicker {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+  .hero__title {
+    margin-top: 0.75rem;
+    max-width: 16ch;
+    font-size: clamp(2.3rem, 1.7rem + 3vw, 4rem);
+    line-height: 1.04;
+    letter-spacing: var(--tracking-display);
+    color: inherit;
+  }
+  .hero__lead {
+    margin-top: 1.25rem;
+    max-width: 54ch;
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+  }
+  .hero__actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .hero :global(.btn-on-band) {
+    background: var(--color-on-world-accent);
+    color: var(--color-world-accent);
+    border: 0;
+  }
+  .hero :global(.btn-band-outline) {
+    border: 1px solid var(--color-on-world-accent);
+    color: var(--color-on-world-accent);
+  }
+
+  .problem {
+    display: grid;
+    gap: 1rem;
+  }
+  .problem__text {
+    display: grid;
+    gap: 1rem;
+    max-width: 60ch;
+  }
+
+  .services {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  .services li {
+    display: grid;
+    gap: 0.25rem;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .services__name {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: var(--text-xl);
+    color: var(--color-heading);
+    text-decoration-color: var(--color-world-rule);
+  }
+  .services__summary {
+    max-width: 60ch;
+    color: var(--color-muted);
+  }
+
+  .log {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--color-rule-strong);
+  }
+  .log li {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.25rem 1rem;
+    padding-block: 0.8rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .log__n {
+    grid-row: span 2;
+    color: var(--color-world-rule);
+  }
+  .log__name {
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+  .log__line {
+    color: var(--color-muted);
+  }
+
+  .spend {
+    max-width: 60ch;
+    padding: 1rem 1.25rem;
+    background: var(--color-panel);
+    border: 1px solid var(--color-rule);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+
+  .posts {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  .posts li {
+    display: grid;
+    gap: 0.25rem;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .posts__title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: var(--text-lg);
+    color: var(--color-heading);
+  }
+  .posts__meta {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  .final {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-rule-strong);
+  }
+
+  @media (min-width: 64rem) {
+    .problem {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      gap: 3rem;
+    }
+    .services li {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      gap: 2rem;
+      align-items: baseline;
+    }
+    .log li {
+      grid-template-columns: 2.5rem 12rem minmax(0, 1fr);
+    }
+    .log__n {
+      grid-row: auto;
+    }
+  }
+</style>

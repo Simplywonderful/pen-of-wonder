@@ -1,0 +1,23 @@
+{
+  "name": "@pow/marketing",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node ../../scripts/sync-brand.mjs marketing",
+    "dev": "astro dev",
+    "prebuild": "node ../../scripts/sync-brand.mjs marketing && node ../../scripts/integrity-check.mjs marketing && node ../../scripts/proof-check.mjs",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.4",
+    "@pow/brand": "*",
+    "@pow/config": "*",
+    "@pow/ui": "*",
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.3.8",
+    "sharp": "0.35.5",
+    "tailwindcss": "4.3.3"
+  }
+}
