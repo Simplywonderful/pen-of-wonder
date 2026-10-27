@@ -24,7 +24,7 @@ for (const id of ids) {
   // The Cloudflare project name is the first part of the world's interim address.
   const project = world(id).interimHost.split(".")[0];
   process.stdout.write(`Building ${id} for ${project}... `);
-  const run = spawnSync("npm", ["run", "build", "-w", `apps/${id}`], { cwd: root, shell: true, encoding: "utf8", env: { ...process.env, ASTRO_TELEMETRY_DISABLED: "1" } });
+  const run = spawnSync(`npm run build -w apps/${id}`, { cwd: root, shell: true, encoding: "utf8", env: { ...process.env, ASTRO_TELEMETRY_DISABLED: "1" } });
   if (run.status !== 0) {
     const reason = `${run.stdout}${run.stderr}`.split("\n").filter((l) => /problem|missing|error|fail/i.test(l)).slice(0, 4).join("\n    ");
     console.log("failed");
