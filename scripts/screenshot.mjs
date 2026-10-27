@@ -84,6 +84,7 @@ const once = (method) => new Promise((resolve) => waiters.push({ method, resolve
 await send("Page.enable");
 mkdirSync(outDir, { recursive: true });
 const written = [];
+const overflow = [];
 
 for (const path of paths) {
   for (const width of widths) {
@@ -101,6 +102,8 @@ for (const path of paths) {
       });
       const { result } = await send("Runtime.evaluate", { expression: "document.documentElement.scrollHeight" });
       const height = result.value;
+      const wide = await send("Runtime.evaluate", { expression: "document.documentElement.scrollWidth" });
+      if (wide.result.value > width) overflow.push(`${path} at ${width}px (${mode}): page is ${wide.result.value}px wide`);
       await send("Emulation.setDeviceMetricsOverride", { width, height, deviceScaleFactor: 1, mobile: width < 768 });
       const shot = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true });
       const name = `${label}${path === "/" ? "home" : path.replace(/^\//, "").replace(/\//g, "-")}-${width}-${mode}.png`;
@@ -113,3 +116,5 @@ for (const path of paths) {
 ws.close();
 chrome.kill();
 console.log(`Wrote ${written.length} screenshots to ${outDir}:\n  ${written.join("\n  ")}`);
+console.log(overflow.length ? `\nHorizontal overflow:\n  ${overflow.join("\n  ")}` : "\nNo horizontal overflow.");
+process.exit(overflow.length ? 1 : 0);

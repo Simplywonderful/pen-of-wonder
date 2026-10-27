@@ -170,6 +170,9 @@ Carried from research (Inter as body face, `console.log` in scripts, en dashes i
 - **Hex values** in the `theme-color` meta and `site.webmanifest`, as research already records; they can't read CSS variables.
 - **slop-check WARNs in research's blog** (26 Oct 2026): "state-of-the-art review" is the established name of a literature review type, and "streamlined" sits inside the standard definition of a rapid review (`types-of-literature-review.md`). Kept: the guide teaches those terms.
 - **`_redirects` to another world** is written at build time from `worlds.ts` (research's `astro.config.mjs`), not typed into `public/_redirects`.
+- **The canonical Academic Integrity Policy** (`apps/main/src/content/pages/academic-integrity.md`) is exempt from the academic-terms check outside research. It has to name assignments, dissertations and exams to say we refuse them. Nothing else on main is exempt.
+- **slop-check "stripe-border" WARN on main's world dividers** (`WorldDividers.astro`, 27 Oct 2026). The 3px top edge in each world's accent is the edge of a binder divider under its tab: the concept itself, not a decorative callout stripe. Kept.
+- **Hex values in `scripts/make-og.py`.** An image can't read CSS, so the OG script writes the brand and accent colours out again. They must match `packages/brand/tokens.css`.
 
 ## 10. Open TODOs for the owner
 
@@ -185,7 +188,10 @@ Carried from research (Inter as body face, `console.log` in scripts, en dashes i
 | [TESTIMONIAL PERMISSION SCREENSHOTS] | `_source/proof/` | Nife, Beulah Fayinka, Yetty. The brief says confirmed; the rule needs the written "yes" on file |
 | [CONFIRM THIS SERVICE IS OFFERED] | Marketing | Social media marketing; page built, kept out of the menu |
 | [META PIXEL ID] | Marketing | Not at launch (decided 26 Oct 2026); needed only when the opt-in is added |
-| [APPROVE FOUNDER BIO FOR MAIN SITE] | Main | Draft in `PHASE-0.md`; portraits already exist |
+| [APPROVE FOUNDER BIO FOR MAIN SITE] | Main home and About | Built as drafted, taking "copy as drafted" (26 Oct 2026) to include it. The About page's longer bio reuses research's approved founder facts. Say if either needs changing |
+| [EMAIL PROVIDER] | Main privacy notice | Zoho Mail or Google Workspace, named as a processor |
+| Proof register, pending | `packages/config/proof.ts` | Seven entries wait for evidence or a fact; development shows them as [TODO], production leaves them out. Marketing's four figures and main's marketing line won't appear until then |
+| Plex Mono × glyph | `packages/brand/public/fonts` | The Plex subset has no ×; "3.4×" would fall back to another font for that one character. Re-subset when the figure goes live |
 | [RESEARCH PROOF EVIDENCE] | `_source/proof/research/two-manuscripts-2026/` | The acceptance or publication emails behind "two manuscripts through to publication in 2026". The local build fails until it's there |
 | [CV EMAIL] | Research `/files/Wonderful-Adebagbo-CV.pdf` | The web CV still shows the Gmail address; rebuild it from `_source/research/cv/` once the business email exists |
 | [SOCIAL LINKS] | Footers | None until company accounts exist |
@@ -202,7 +208,7 @@ Carried from research (Inter as body face, `console.log` in scripts, en dashes i
 
 ## 11. Questions for the owner (Phase 0)
 
-**Answered 26 Oct 2026:** (1) the latest three posts only; (2) no Meta Pixel at launch; (3) option B, research's buttons stay Ink Green; (4) dev on Workers static assets; (5) accents as proposed; copy as drafted in `PHASE-0.md`. Still open: whether 34% and 3.4× are Northern Star's figures or averages (needs the evidence files), and the founder bio.
+**Answered 26 Oct 2026:** (1) the latest three posts only; (2) no Meta Pixel at launch; (3) option B, research's buttons stay Ink Green; (4) dev on Workers static assets; (5) accents as proposed; copy as drafted in `PHASE-0.md`. Still open: whether 34% and 3.4× are Northern Star's figures or averages (needs the evidence files).
 
 1. **Marketing blog scope.** The brief and build prompt say "the three October 2026 posts". The live portfolio blog has 47 posts, from 9 June to 16 October 2026 (7 of them in October). Move only the latest three (16, 14, 12 Oct) or all 47? Moving all would need each post fact-checked and the portfolio's copies canonicalised.
 2. **Meta Pixel.** Recommendation in section 13.3: launch marketing without it.
@@ -366,3 +372,21 @@ Before and after: screenshots of `/` and `/publication-support` at 360 and 1440 
 - The portfolio's 47 blog posts (11, question 1).
 - The portfolio's WhatsApp buttons all use the old number, +234 903 572 2959. They go on the portfolio fix list in `PHASE-0.md`.
 - Research's own DESIGN.md (section 11) still describes the empty-commit rebuild; it gets updated in Phase 1A.
+
+## 16. Phase 1B: what was built, and what changed from the plan (27 Oct 2026)
+
+**Built, locally:** main (home, About, Contact and thanks, Academic Integrity Policy, Privacy, Terms, 404), marketing (home, Services, five service pages, Work, the Northern Star case, Process, FAQ, Blog with the three October posts and RSS, Contact and thanks, 404), and holding sites for writing, publishing and dev. Each world has its sitemap, robots.txt, canonical URLs, Open Graph and Twitter tags, an OG image and JSON-LD (Organization on main with each live world as a sub-organisation; ProfessionalService on each world; Service and FAQPage on marketing; BlogPosting on posts). Security headers for every world come from `packages/brand/public/_headers`.
+
+**Changes from the plan:**
+1. **Pending proof.** The build prompt says proof-check fails on any register entry without evidence. Marketing's four figures, the summary line for main, Northern Star's figure and publishing's "printed in 2026" are in the register as `pending`. They render as [TODO] markers in development and review builds (`PUBLIC_SHOW_TODOS=true`) and are left out of production, the same rule the book facts follow. proof-check still fails on any `live` entry without evidence. Result: in production, main's proof strip shows only research's line, and marketing shows no figures yet.
+2. **Hidden Treasures on main** lists the six readers as a reading ladder by class, read from `books.ts`, because there are no clean cover files yet. "Printed in 2026" is shown only once its proof entry is live.
+3. **The header's second row** carries a short line on worlds without their own page nav: main and the holding pages.
+4. **No hero images.** No world image is approved yet, so pages carry none, rather than placeholder boxes. The photo styles in section 4 still stand.
+5. **Social media marketing** is built but appears only in development and review builds, out of the menu and the sitemap, until confirmed.
+6. **The 16 October post's lead figures (133 leads, two paid) are cut**, because there is no evidence on file; see `_source/fact-check-log-marketing.md`.
+7. **Main's Privacy and Terms are new drafts** for every world except research, which keeps its own. Terms deliberately leave payment splits, quote validity and revision rounds to each written quote, since only research's are approved. For a lawyer: liability cap, governing law for UK consumers, refunds of ad spend, international transfers, and whether the NDPA needs a named data protection contact.
+8. **Research's prose styles and portrait mount** moved into the shared packages unchanged, so main and marketing use the same ones.
+
+**Checks (27 Oct 2026, all six apps built as on Cloudflare):** integrity-check clean (139 files); proof-check passes on Cloudflare and fails locally only on research's missing evidence folder; contrast-check passes across six worlds in both modes; link-check resolves 2,737 references, cross-world links included; slop-check HIGH 0 everywhere (WARNs recorded in section 9). Screenshots of every page at 360, 768 and 1440 px in light and dark: 174 images in `_source/screenshots/phase-1b/`, no horizontal overflow on any. Lighthouse 13.5.0 mobile, local, home pages: main 97/100/100/100, marketing 94/100/100/100, writing 98/100/100/100, publishing 100/100/100/100, dev 97/100/100/100, research 99/100/100/100. Local runs vary with machine load; PageSpeed after deploy is the measure.
+
+**Could each page belong to a different business if the name were swapped?** Main: no. The binder dividers, the founder's lab story and P-E-N, and the readers by class are specific to this company. Marketing: mostly no. The test log, the ad-spend line in naira and the honest Northern Star case are specific, but the home page leans on its proof readings, which can't show until the evidence is in; until then it reads closer to a generic agency page. The holding pages are deliberately plain.

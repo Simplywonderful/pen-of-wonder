@@ -10,7 +10,7 @@ If a request seems to conflict with a rule below, point it out before doing it.
 
 - `apps/<world>`: main, marketing, research, writing, publishing, dev.
 - `packages/brand` (tokens, fonts, logos), `packages/ui` (shared components), `packages/config` (contact, worlds, proof, testimonials, legal, books).
-- `scripts/`: integrity-check, proof-check, contrast-check, accent-check, link-check, slop-check runner.
+- `scripts/`: integrity-check, proof-check, contrast-check, link-check, slop-check runner, books-ready, sync-brand (copies fonts, icons and `_headers` into each app), dev-all, screenshot (full-page, light and dark, flags overflow), make-og.
 - `_source/`: gitignored. CV, phone numbers, raw posts, brief, book files, proof. Never commit or deploy it.
 - Brand hex values live in exactly one file in `packages/brand`. World URLs live only in `packages/config/worlds.ts`. Contact details live only in `packages/config/contact.ts`.
 
