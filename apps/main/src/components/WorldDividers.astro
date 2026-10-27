@@ -1,0 +1,166 @@
+---
+// "Choose your world" as a binder's tab dividers. Each world is a divider with its tab set a little
+// further along, in that world's accent, the way real dividers stagger so every tab shows. Content
+// differs per world, so the dividers differ in height; dev is the narrow last tab. On main, these
+// tabs are the one place the five world accents appear together.
+import { whatsappLink } from "@pow/config/contact";
+import { world as getWorld, worldUrl, type WorldId } from "@pow/config/worlds";
+
+interface Props {
+  dividers: { world: WorldId; who: string; services: string[] }[];
+  dev: { line: string; link: string };
+}
+const { dividers, dev } = Astro.props;
+---
+
+<ol class="dividers">
+  {
+    dividers.map((d, i) => {
+      const w = getWorld(d.world);
+      const soon = w.status === "soon";
+      return (
+        <li class="divider" data-tab={d.world} style={`--offset: ${i}`}>
+          <h3 class="divider__tab">
+            <a href={worldUrl(d.world)}>{w.label}</a>
+          </h3>
+          <div class="divider__sheet">
+            <p class="divider__who">{d.who}</p>
+            <ul class="divider__services">
+              {d.services.map((s) => (
+                <li>{s}</li>
+              ))}
+            </ul>
+            <p class="divider__go">
+              {soon ? (
+                <>
+                  <span class="divider__soon">Opening soon.</span> <a href={worldUrl(d.world)}>See what's coming</a>
+                </>
+              ) : (
+                <a href={worldUrl(d.world)}>Go to {w.label}</a>
+              )}
+            </p>
+          </div>
+        </li>
+      );
+    })
+  }
+  <li class="divider divider--narrow" data-tab="dev" style={`--offset: ${dividers.length}`}>
+    <h3 class="divider__tab"><a href={worldUrl("dev")}>Dev: coming soon</a></h3>
+    <div class="divider__sheet">
+      <p class="divider__who">{dev.line} <a href={whatsappLink("dev", "joining the Dev waitlist")}>{dev.link}</a></p>
+    </div>
+  </li>
+</ol>
+
+<style>
+  .dividers {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .divider {
+    --tab: var(--ink-green);
+    --tab-ink: var(--cream);
+  }
+  .divider[data-tab="marketing"] { --tab: var(--raspberry); }
+  .divider[data-tab="writing"] { --tab: var(--olive); }
+  .divider[data-tab="research"] { --tab: var(--sage); }
+  .divider[data-tab="publishing"] { --tab: var(--terracotta); }
+  .divider[data-tab="dev"] { --tab: var(--graphite); }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .divider { --tab-ink: var(--deep-ink); }
+    :global(:root:not([data-theme="light"])) .divider[data-tab="marketing"] { --tab: var(--raspberry-night); }
+    :global(:root:not([data-theme="light"])) .divider[data-tab="writing"] { --tab: var(--olive-night); }
+    :global(:root:not([data-theme="light"])) .divider[data-tab="research"] { --tab: var(--sage-night); }
+    :global(:root:not([data-theme="light"])) .divider[data-tab="publishing"] { --tab: var(--terracotta-night); }
+    :global(:root:not([data-theme="light"])) .divider[data-tab="dev"] { --tab: var(--graphite-night); }
+  }
+  :global(:root[data-theme="dark"]) .divider { --tab-ink: var(--deep-ink); }
+  :global(:root[data-theme="dark"]) .divider[data-tab="marketing"] { --tab: var(--raspberry-night); }
+  :global(:root[data-theme="dark"]) .divider[data-tab="writing"] { --tab: var(--olive-night); }
+  :global(:root[data-theme="dark"]) .divider[data-tab="research"] { --tab: var(--sage-night); }
+  :global(:root[data-theme="dark"]) .divider[data-tab="publishing"] { --tab: var(--terracotta-night); }
+  :global(:root[data-theme="dark"]) .divider[data-tab="dev"] { --tab: var(--graphite-night); }
+
+  .divider__tab {
+    display: inline-block;
+    margin-left: calc(var(--offset) * 0.75rem);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+  .divider__tab a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    background: var(--tab);
+    color: var(--tab-ink);
+    border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+    text-decoration: none;
+  }
+  .divider__tab a:hover {
+    text-decoration: underline;
+  }
+  .divider__sheet {
+    padding: 1.25rem;
+    background: var(--color-panel);
+    border: 1px solid var(--color-rule);
+    border-top: 3px solid var(--tab);
+  }
+  .divider__who {
+    max-width: 55ch;
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+  }
+  .divider__services {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.75rem;
+  }
+  .divider__services li {
+    padding-block: 0.4rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  .divider__go {
+    margin-top: 0.75rem;
+    font-weight: 600;
+  }
+  .divider__go a {
+    text-decoration-color: var(--tab);
+    text-decoration-thickness: 2px;
+  }
+  .divider__soon {
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+  .divider--narrow .divider__who {
+    font-size: var(--text-base);
+  }
+
+  /* Wide screens: the tabs stagger across the width, as on a real set of dividers. */
+  @media (min-width: 64rem) {
+    .divider__tab {
+      margin-left: calc(var(--offset) * 18%);
+    }
+    .divider__sheet {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      gap: 0 2.5rem;
+      align-items: start;
+    }
+    .divider__who {
+      grid-row: span 2;
+    }
+    .divider__services {
+      margin-top: 0;
+    }
+    .divider--narrow .divider__sheet {
+      display: block;
+    }
+  }
+</style>

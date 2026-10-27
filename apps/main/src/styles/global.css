@@ -1,0 +1,10 @@
+/*
+  Main: a binder with five tab dividers. The home page is the contents of one binder, and
+  "Choose your world" shows each world as a divider whose tab carries that world's accent. Main's
+  own accent is the family green.
+  The family tokens live in packages/brand/tokens.css; the world's accent is chosen there by the
+  data-world attribute on <html>. See the root DESIGN.md before changing anything here.
+*/
+
+@import "tailwindcss";
+@import "@pow/brand/tokens.css";

@@ -1,0 +1,224 @@
+---
+import "../styles/global.css";
+import Layout from "@pow/ui/Layout.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import ProofStrip from "@pow/ui/ProofStrip.astro";
+import HowWeWork from "@pow/ui/HowWeWork.astro";
+import Testimonials from "@pow/ui/Testimonials.astro";
+import PortraitMount from "@pow/ui/PortraitMount.astro";
+import Todo from "@pow/ui/Todo.astro";
+import { showTodos } from "@pow/ui/todos";
+import { organisationLd } from "@pow/config/structured";
+import { imprintName, titles } from "@pow/config/books";
+import { proofEntry } from "@pow/config/proof";
+import { worldUrl } from "@pow/config/worlds";
+import WorldDividers from "../components/WorldDividers.astro";
+import { home } from "../data/home";
+import portrait from "../assets/portrait-arms.png";
+
+const printed = proofEntry("publishing-readers");
+const covers = titles.filter((t) => t.coverImage);
+---
+
+<Layout world="main" title={home.title} description={home.description} jsonLd={[organisationLd()]} note="Marketing, writing, research and publishing, from Ibadan" emblem>
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="wrap hero__inner">
+      <h1 id="hero-heading" class="hero__title">{home.h1}</h1>
+      <p class="hero__lead">{home.lead}</p>
+      <p class="hero__actions">
+        <a class="btn btn-on-band" href="#worlds">Find your service</a>
+        <WhatsAppButton world="main" class="btn-band-outline" />
+      </p>
+    </div>
+  </section>
+
+  <section id="worlds" class="wrap mt-16 scroll-mt-6" aria-labelledby="worlds-heading">
+    <h2 id="worlds-heading" class="text-2xl">{home.worldsHeading}</h2>
+    <p class="mt-3 max-w-[60ch] text-muted">{home.worldsIntro}</p>
+    <WorldDividers dividers={home.dividers} dev={home.dev} />
+  </section>
+
+  <div class="wrap mt-20">
+    <ProofStrip ids={["marketing-cpl-summary", "research-manuscripts", "publishing-readers"]} heading={home.proofHeading} />
+  </div>
+
+  <div id="how-we-work" class="wrap mt-20">
+    <HowWeWork />
+  </div>
+
+  <section id="hidden-treasures" class="wrap mt-20" aria-labelledby="books-heading">
+    <h2 id="books-heading" class="text-2xl">{home.booksHeading}</h2>
+    <div class="books">
+      <div>
+        <p class="max-w-[60ch]">
+          {imprintName()} is Wonderful Adebagbo's own imprint. He wrote the {titles.length === 6 ? "six" : titles.length} Companion
+          Readers for Nigerian primary classes, from picture words in Basic 1 to a final-year story in Basic 6{printed.status === "live" ? ", and they were printed in 2026" : ""}.
+          Our publishing services grew out of making them.
+        </p>
+        {showTodos && printed.status === "pending" && <p class="mt-3 text-sm"><Todo label={`TODO: "${printed.wording}" waits for ${printed.needs}`} /></p>}
+        <p class="mt-6"><a class="btn btn-primary" href={worldUrl("publishing")}>{home.booksButton}</a></p>
+      </div>
+      <ol class="ladder" aria-label="The Companion Readers, by class">
+        {
+          titles.map((t) => (
+            <li>
+              <span class="ladder__level nums">{t.level}</span>
+              <span class="ladder__title">{t.title}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+    {showTodos && covers.length === 0 && <p class="mt-4 text-sm"><Todo label="FRONT COVERS: clean cover files for the six readers (intake Q5)" /></p>}
+  </section>
+
+  <section id="founder" class="wrap founder mt-20" aria-labelledby="founder-heading">
+    <div>
+      <h2 id="founder-heading" class="text-2xl">{home.founderHeading}</h2>
+      <div class="prose mt-6">
+        {home.founder.map((p) => <p>{p}</p>)}
+      </div>
+      <p class="mt-8 font-semibold">{home.valuesIntro}</p>
+      <dl class="values">
+        {
+          home.values.map((v) => (
+            <div>
+              <dt>{v.name}</dt>
+              <dd>{v.text}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="mt-6"><a href="/about">More about us and our founder</a></p>
+    </div>
+    <div class="founder__photo">
+      <PortraitMount src={portrait} alt={home.portraitAlt} width={790} height={988} sizes="(min-width: 64rem) 18rem, (min-width: 40rem) 20rem, 80vw" />
+    </div>
+  </section>
+
+  <div class="wrap mt-20">
+    <Testimonials worlds={["marketing", "research"]} />
+  </div>
+
+  <section class="wrap mt-20" aria-labelledby="final-heading">
+    <div class="final">
+    <h2 id="final-heading" class="text-2xl">{home.finalHeading}</h2>
+    <p class="mt-3 max-w-[60ch]">{home.final}</p>
+    <p class="mt-6 flex flex-wrap gap-3">
+      <WhatsAppButton world="main" variant="primary" />
+      <a class="btn btn-secondary" href="/contact">Send an email</a>
+    </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    background: var(--color-world-accent);
+    color: var(--color-on-world-accent);
+  }
+  .hero__inner {
+    padding-block: 3.5rem 4rem;
+  }
+  .hero__title {
+    max-width: 14ch;
+    font-size: clamp(2.4rem, 1.8rem + 3vw, 4.25rem);
+    line-height: 1.02;
+    letter-spacing: var(--tracking-display);
+    color: inherit;
+  }
+  .hero__lead {
+    margin-top: 1.5rem;
+    max-width: 52ch;
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+  }
+  .hero__actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .hero :global(.btn-on-band) {
+    background: var(--color-on-world-accent);
+    color: var(--color-world-accent);
+  }
+  .hero :global(.btn-on-band:hover) {
+    background: color-mix(in oklch, var(--color-on-world-accent) 88%, var(--color-world-accent));
+  }
+  .hero :global(.btn-band-outline) {
+    border-color: var(--color-on-world-accent);
+    color: var(--color-on-world-accent);
+  }
+  .hero :global(.btn-band-outline:hover) {
+    background: color-mix(in oklch, var(--color-world-accent) 85%, var(--color-on-world-accent));
+  }
+
+  .books {
+    margin-top: 1.25rem;
+    display: grid;
+    gap: 2rem;
+  }
+  .ladder {
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+  .ladder li {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: 0.6rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .ladder__level {
+    color: var(--color-muted);
+  }
+  .ladder__title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--color-heading);
+  }
+
+  .founder {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .founder__photo {
+    max-width: 20rem;
+  }
+  .values {
+    margin-top: 0.75rem;
+    display: grid;
+    gap: 0.6rem;
+    max-width: 60ch;
+  }
+  .values dt {
+    display: inline;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--color-heading);
+  }
+  .values dd {
+    display: inline;
+    margin-left: 0.25rem;
+  }
+
+  .final {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-rule-strong);
+  }
+
+  @media (min-width: 64rem) {
+    .books {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 4rem;
+      align-items: start;
+    }
+    .founder {
+      grid-template-columns: minmax(0, 44rem) minmax(12rem, 18rem);
+      column-gap: 4rem;
+      align-items: start;
+    }
+  }
+</style>
