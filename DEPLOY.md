@@ -11,10 +11,10 @@ For each row, in the Cloudflare dashboard: **Workers & Pages → Create → Page
 | Project name (type exactly) | Build command | Build output directory |
 |---|---|---|
 | `penofwonder` | `npm run build -w apps/main` | `apps/main/dist` |
-| `penofwonder-marketing` | `npm run build -w apps/marketing` | `apps/marketing/dist` |
-| `penofwonder-writing` | `npm run build -w apps/writing` | `apps/writing/dist` |
-| `penofwonder-publishing` | `npm run build -w apps/publishing` | `apps/publishing/dist` |
-| `penofwonder-dev` | `npm run build -w apps/dev` | `apps/dev/dist` |
+| `penofwondermarketing` | `npm run build -w apps/marketing` | `apps/marketing/dist` |
+| `penofwonderwriting` | `npm run build -w apps/writing` | `apps/writing/dist` |
+| `penofwonderpublishing` | `npm run build -w apps/publishing` | `apps/publishing/dist` |
+| `penofwonderdev` | `npm run build -w apps/dev` | `apps/dev/dist` |
 
 For all five:
 - **Production branch:** `main`.
