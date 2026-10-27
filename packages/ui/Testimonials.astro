@@ -6,11 +6,13 @@ import type { WorldId } from "@pow/config/worlds";
 
 interface Props {
   worlds: WorldId[];
+  /** Only quotes from these people, e.g. on a case study. */
+  by?: string[];
   heading?: string;
   class?: string;
 }
-const { worlds, heading = "What clients say", class: className } = Astro.props;
-const quotes = worlds.flatMap((w) => approvedQuotes(w));
+const { worlds, by, heading = "What clients say", class: className } = Astro.props;
+const quotes = worlds.flatMap((w) => approvedQuotes(w)).filter((q) => !by || by.includes(q.by));
 ---
 
 {

@@ -1,0 +1,140 @@
+---
+// Northern Star is an independent client (owner, 26 Oct 2026), written up fresh rather than copied
+// from the portfolio. The cost-per-lead figure stays out until Northern Star's own figure and its
+// evidence are on file; the quote stays out until Nife's written permission is.
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import Testimonials from "@pow/ui/Testimonials.astro";
+import Todo from "@pow/ui/Todo.astro";
+import { showTodos } from "@pow/ui/todos";
+import { proofEntry } from "@pow/config/proof";
+
+const result = proofEntry("northern-star-cpl");
+const facts = [
+  ["Client", "Northern Star Business Consult"],
+  ["Industry", "Business consulting"],
+  ["Platforms", "Meta and LinkedIn"],
+  ["When", "2025, over three months"],
+];
+---
+
+<MarketingLayout
+  title="Northern Star Business Consult: case study | Pen of Wonder Marketing"
+  description="How a business consultancy went from boosted posts with no tracking to tested Meta and LinkedIn campaigns where every lead could be traced."
+  ogType="article"
+>
+  <article>
+    <header class="wrap pt-10 md:pt-16 lg:pt-20">
+      <p class="text-sm text-muted"><a href="/work">Work</a> · Client case study</p>
+      <h1 class="mt-3 max-w-[20ch] text-3xl tracking-(--tracking-display)">Northern Star Business Consult</h1>
+      <dl class="facts">
+        {
+          facts.map(([k, v]) => (
+            <div>
+              <dt>{k}</dt>
+              <dd>{v}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </header>
+
+    <div class="wrap log mt-12">
+      <section class="entry" aria-labelledby="challenge">
+        <h2 id="challenge" class="entry__h"><span class="nums">01</span> The problem</h2>
+        <p>
+          Northern Star was boosting posts with no real tracking in place. Money went out and a few leads came in, but
+          nobody could say which campaign, audience or creative had brought them, so nothing could be scaled with
+          confidence.
+        </p>
+      </section>
+
+      <section class="entry" aria-labelledby="hypothesis">
+        <h2 id="hypothesis" class="entry__h"><span class="nums">02</span> The hypothesis</h2>
+        <p>
+          The reach was there; the targeting and the offer were too broad. A tighter audience built around the
+          highest-intent people on Meta and LinkedIn, with clearer offer messaging and proper conversion tracking, should
+          bring the cost per lead down and make every result measurable.
+        </p>
+      </section>
+
+      <section class="entry" aria-labelledby="work">
+        <h2 id="work" class="entry__h"><span class="nums">03</span> What we did</h2>
+        <ul>
+          <li>Rebuilt the account structure and campaign hierarchy from scratch.</li>
+          <li>Researched and narrowed to high-intent audiences on Meta and LinkedIn.</li>
+          <li>Wrote and split-tested new ad angles and creatives.</li>
+          <li>Installed the pixel, Conversions API, event tracking and UTM tags.</li>
+        </ul>
+      </section>
+
+      <section class="entry" aria-labelledby="result">
+        <h2 id="result" class="entry__h"><span class="nums">04</span> The result</h2>
+        <p>Every lead could be traced to the campaign, audience and ad that brought it, so budget could follow what worked.</p>
+        {result.status === "live" && <p class="nums mt-3">{result.wording}.</p>}
+        {showTodos && result.status === "pending" && <p class="mt-3"><Todo label={`TODO: ${result.wording}. Needs ${result.needs}`} /></p>}
+      </section>
+    </div>
+
+    <div class="wrap mt-12">
+      <Testimonials worlds={["marketing"]} by={["Nife"]} heading="What Northern Star said" />
+    </div>
+
+    <section class="wrap mt-16" aria-labelledby="next-heading">
+      <div class="next">
+        <h2 id="next-heading" class="text-2xl">Want your spend to be traceable too?</h2>
+        <p class="mt-3 max-w-[60ch]">Tell us what you're running now. We'll tell you what we'd test first.</p>
+        <p class="mt-6"><WhatsAppButton world="marketing" service="the Northern Star case" label="Chat about your ads" variant="primary" /></p>
+      </div>
+    </section>
+  </article>
+</MarketingLayout>
+
+<style>
+  .facts {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 1rem 2rem;
+    max-width: 48rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  .facts dt {
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+  }
+  .facts dd {
+    font-weight: 600;
+  }
+  .log {
+    display: grid;
+    gap: 0;
+  }
+  .entry {
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--color-rule-strong);
+    max-width: 48rem;
+  }
+  .entry__h {
+    font-size: var(--text-xl);
+    margin-bottom: 0.6rem;
+  }
+  .entry__h .nums {
+    color: var(--color-world-rule);
+    margin-right: 0.5rem;
+  }
+  .entry p {
+    max-width: 60ch;
+  }
+  .entry ul {
+    padding-left: 1.25rem;
+    list-style: disc;
+    display: grid;
+    gap: 0.4rem;
+  }
+  .next {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-rule-strong);
+  }
+</style>

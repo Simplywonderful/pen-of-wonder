@@ -1,0 +1,38 @@
+---
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
+import PageHead from "@pow/ui/PageHead.astro";
+import CaseStudyCard from "@pow/ui/CaseStudyCard.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+---
+
+<MarketingLayout
+  title="Work: case studies | Pen of Wonder Marketing"
+  description="Case studies from Pen of Wonder Marketing, written up with the client's agreement. Figures appear only when the evidence is on file."
+>
+  <PageHead
+    title="Campaigns, written up honestly."
+    intro="Each case is written with the client's agreement. We show the method in full, and a figure only once the evidence behind it is on file. No composites, no rounded-up averages."
+  />
+  <div class="wrap mt-12 cases">
+    <CaseStudyCard
+      href="/work/northern-star"
+      client="Northern Star Business Consult"
+      sector="Business consulting"
+      platforms="Meta and LinkedIn"
+      summary="Boosted posts with no tracking, rebuilt into a tested account where every lead could be traced to the campaign that brought it."
+      resultId="northern-star-cpl"
+    />
+  </div>
+  <p class="wrap mt-12 max-w-[60ch]">
+    More cases will be added as clients agree to them. If you'd like to know how we'd approach your campaign, ask.
+  </p>
+  <p class="wrap mt-6"><WhatsAppButton world="marketing" service="paid ads" label="Chat about your ads" variant="primary" /></p>
+</MarketingLayout>
+
+<style>
+  .cases {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 48rem;
+  }
+</style>
