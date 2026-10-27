@@ -1,0 +1,58 @@
+---
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
+import PageHead from "@pow/ui/PageHead.astro";
+import { getLivePosts, formatDate } from "../../lib/blog";
+
+const posts = await getLivePosts();
+---
+
+<MarketingLayout
+  title="Blog: paid ads, taught in public | Pen of Wonder Marketing"
+  description="Our founder's notes from real campaigns: what to have in place before you spend, how many creatives you need, and where advising on leads ends."
+>
+  <PageHead
+    title="Paid ads, taught in public."
+    intro="Notes from real campaigns by our founder, Wonderful Adebagbo: the setups, the mistakes and the fixes."
+  />
+  <ul class="wrap posts mt-10">
+    {
+      posts.map((p) => (
+        <li>
+          <p class="posts__meta">
+            <time datetime={p.data.publishDate.toISOString()}>{formatDate(p.data.publishDate)}</time> · {p.data.topics.join(", ")}
+          </p>
+          <h2 class="posts__title">
+            <a href={`/blog/${p.id}`}>{p.data.title}</a>
+          </h2>
+          <p class="posts__summary">{p.data.summary}</p>
+        </li>
+      ))
+    }
+  </ul>
+</MarketingLayout>
+
+<style>
+  .posts {
+    list-style: none;
+  }
+  .posts li {
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--color-rule);
+    max-width: 48rem;
+  }
+  .posts__meta {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .posts__title {
+    margin-top: 0.35rem;
+    font-size: var(--text-xl);
+  }
+  .posts__title a {
+    text-decoration-color: var(--color-world-rule);
+  }
+  .posts__summary {
+    margin-top: 0.5rem;
+    max-width: 60ch;
+  }
+</style>

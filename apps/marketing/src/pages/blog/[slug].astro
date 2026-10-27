@@ -1,0 +1,58 @@
+---
+import { render } from "astro:content";
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
+import Faq from "@pow/ui/Faq.astro";
+import { whatsappLink } from "@pow/config/contact";
+import { legal } from "@pow/config/legal";
+import { worldOrigin, worldUrl } from "@pow/config/worlds";
+import { faqLd } from "@pow/ui/faq-ld";
+import { getLivePosts, formatDate } from "../../lib/blog";
+
+export async function getStaticPaths() {
+  const posts = await getLivePosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+
+const articleLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: d.title,
+  description: d.summary,
+  datePublished: d.publishDate.toISOString(),
+  author: { "@type": "Person", name: legal.founder, jobTitle: "Founder" },
+  publisher: { "@type": "Organization", name: "Pen of Wonder Marketing" },
+  mainEntityOfPage: `${worldOrigin("marketing", "production")}/blog/${post.id}`,
+};
+---
+
+<MarketingLayout title={`${d.title} | Pen of Wonder Marketing`} description={d.summary} ogType="article" jsonLd={d.questions.length ? [articleLd, faqLd(d.questions)] : [articleLd]}>
+  <article class="wrap pt-10 md:pt-16 lg:pt-20">
+    <header class="max-w-[48rem]">
+      <p class="text-sm text-muted">
+        By <a href={worldUrl("main", "/about")}>{legal.founder}, founder</a>
+        <span aria-hidden="true"> · </span>
+        <time datetime={d.publishDate.toISOString()}>{formatDate(d.publishDate)}</time>
+      </p>
+      <h1 class="mt-2 text-3xl tracking-(--tracking-display)">{d.title}</h1>
+      <p class="mt-5 max-w-[60ch] border-t border-rule pt-4 text-lg text-muted">{d.summary}</p>
+    </header>
+    <div class="prose mt-10">
+      <Content />
+    </div>
+    {
+      d.questions.length > 0 && (
+        <div class="mt-12">
+          <Faq items={d.questions} heading="Questions this answers" id="post-questions" />
+        </div>
+      )
+    }
+    <footer class="mt-12 max-w-[65ch] border-t border-rule-strong pt-6">
+      {d.closing && <p>{d.closing} <a href={whatsappLink("marketing", `your post "${d.title}"`)}>Tell me on WhatsApp</a>.</p>}
+      <p class="mt-6 text-sm"><a href="/blog">All posts</a></p>
+    </footer>
+  </article>
+</MarketingLayout>
