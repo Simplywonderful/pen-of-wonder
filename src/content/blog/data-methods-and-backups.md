@@ -9,8 +9,7 @@ series: 30 Lessons
 serviceLink: /coaching
 serviceLine: If you’re learning to run your own analysis in SPSS, we offer one-to-one tutoring where you work on your own data and we guide you through choosing, running and reporting the tests.
 draft: false
-publishDate: 2025-10-15
-releaseDate: 2026-12-14
+publishDate: 2026-12-14
 ---
 
 In 2025 I shared thirty lessons from my years as a researcher, one at a time. This piece brings together four of them about the evidence your research rests on: your data, your methods, the files that hold them, and your ability to make sense of the numbers.

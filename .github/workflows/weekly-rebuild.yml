@@ -1,8 +1,8 @@
-# Rebuilds the site every Monday morning so blog pieces whose releaseDate has passed go live.
+# Rebuilds the site every Monday morning so blog pieces whose publishDate has arrived go live.
 # Cloudflare Pages rebuilds on every push to main, so this pushes an empty commit. No secrets or
 # Cloudflare settings are needed: the built-in GITHUB_TOKEN is enough.
-# It only pushes when a piece is scheduled (draft: false with a releaseDate), so history stays quiet
-# when nothing is waiting. Run it by hand from the Actions tab with "Run workflow".
+# It only pushes when a piece is due this week or scheduled later (publishDate on or after six days ago),
+# so history stays quiet when nothing is waiting. Run it by hand from the Actions tab with "Run workflow".
 name: Weekly rebuild
 
 on:
@@ -20,7 +20,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Push an empty commit if a piece is scheduled
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || grep -l "^releaseDate:" src/content/blog/*.md 2>/dev/null | xargs -r grep -L "^draft: true" | grep -q .; then
+          cutoff=$(date -u -d "6 days ago" +%F)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || grep -L "^draft: true" src/content/blog/*.md | xargs -r grep -h "^publishDate:" | awk -v c="$cutoff" '$2 >= c' | grep -q .; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git commit --allow-empty -m "Weekly rebuild for scheduled blog pieces"

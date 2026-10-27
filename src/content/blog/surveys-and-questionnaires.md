@@ -9,8 +9,7 @@ series: guide
 serviceLink: /coaching
 serviceLine: If you’ve collected survey data and are learning to analyse it yourself in SPSS, we offer one-to-one tutoring where you work on your own data and we guide you through choosing, running and reporting the tests.
 draft: false
-publishDate: 2024-04-12
-releaseDate: 2026-12-28
+publishDate: 2026-12-28
 ---
 
 Surveys and questionnaires are among the most common ways to collect data in academic research, especially quantitative data. Used well, they tell you what large numbers of people think, believe and do. Used carelessly, they produce a spreadsheet full of answers nobody can rely on.

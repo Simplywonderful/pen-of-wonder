@@ -9,8 +9,7 @@ series: guide
 serviceLink: /coaching
 serviceLine: If you’re a postgraduate student shaping the questions for your dissertation, we offer one-to-one coaching. You write the questions and hypotheses; we help you test them, sharpen them and check they fit your design.
 draft: false
-publishDate: 2024-02-05
-releaseDate: 2026-12-07
+publishDate: 2026-12-07
 ---
 
 Most research projects begin with something that looks simple: a question. That question then becomes the basis of the whole study. It decides what you read, what data you collect, how you analyse it and what you can claim at the end.

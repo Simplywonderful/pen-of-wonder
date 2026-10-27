@@ -9,8 +9,7 @@ series: guide
 serviceLink: /coaching
 serviceLine: If you’re learning to analyse your own interviews or documents in NVivo, we offer one-to-one tutoring. You do the coding and the interpretation; we show you how to use the software and how to explain your process.
 draft: false
-publishDate: 2024-05-20
-releaseDate: 2026-12-21
+publishDate: 2026-12-21
 ---
 
 Qualitative data analysis is where participants’ stories come to life, and words build a picture.

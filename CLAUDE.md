@@ -50,6 +50,6 @@ The site uses the Pen of Wonder Consults brand (source: `C:\Users\User\Claude\Pr
 - `_source/` holds the CV, phone numbers and raw posts. It is gitignored and must never be committed or deployed.
 
 ## Blog batches
-- Dates: `publishDate` is the last date of the original LinkedIn posts (it is what readers see). To schedule a piece for the weekly release, set `draft: false` and a future `releaseDate`; to release one now, set `draft: false` and leave `releaseDate` out (or set it to today), then push.
+- Dates (owner decision, 27 Oct 2026): `publishDate` is the day the piece goes up on this site. Readers see it, and the blog list and RSS are ordered by it, newest first. The launch six are dated 17 Oct 2026; later pieces take consecutive Mondays. To schedule a piece, set `draft: false` and a future `publishDate`, then push; the weekly rebuild releases it. The original LinkedIn dates go in `sourceDates` and appear only in the "Adapted from posts first shared on LinkedIn" line. Never back-date a piece.
 - Follow `_source/blog-content-plan.md`. About five pieces per session.
 - Fact-check every statistic, named study and dated fact against the original source; correct or cut, never invent or repair a reference. Log each in `_source/fact-check-log.md`.
