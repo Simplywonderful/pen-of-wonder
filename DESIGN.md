@@ -59,7 +59,9 @@ Brand v1 tokens are unchanged. Everything below the brand comes from research's 
 - **Imagery:** no stock photos of people, no AI-generated people, nobody posed who could be mistaken for staff. The founder's two studio portraits are the only photos of a person. Each world may use an approved AI-generated or owner-made still life of the work itself, no people, no readable text, approved image by image. Proposed styles: main, a desk with the five kinds of paper; marketing, a printed ad proof beside a phone showing a results screen with no readable numbers; writing, an envelope and a folded CV on good paper; publishing, the printed readers themselves (real photos once supplied); dev, none. Until approved, a sized placeholder box, never a stock image.
 - **Motion:** 150 to 250ms colour and transform transitions on buttons, menu panels and FAQs. No scroll animation, no animated counters. Full `prefers-reduced-motion` handling.
 
-### 4.1 World accents (proposal, `[DECIDE]`)
+### 4.1 World accents (approved 26 Oct 2026)
+
+How it is built: the raw pairs live in `packages/brand/tokens.css`, the only file with brand colour values. Each app sets `data-world` on `<html>`, and the tokens map that to `--color-world-accent`, `--color-on-world-accent` and `--color-world-rule`, in both modes. Research is the exception the owner chose (26 Oct 2026, option B): its buttons and accent stay Ink Green (Spark Gold in dark), and Sage marks only the rule under the logo and the current menu item. Main uses the family green for all three.
 
 Each accent is a light/dark pair on one hue. A single colour cannot do all four jobs asked of it: Cream button text at 4.5:1 needs an accent darker than about 0.154 relative luminance, and 3:1 against Deep Ink needs one lighter than about 0.148, which leaves almost nothing in between. So dark mode lifts the lightness on the same hue, exactly as research already swaps Ink Green for Spark Gold. Light-mode buttons carry Cream text; dark-mode buttons carry Deep Ink text.
 
@@ -136,7 +138,9 @@ Full draft copy for both home pages is in `PHASE-0.md`.
 - The current world's label carries a 2px underline in its accent.
 - Right: "Chat on WhatsApp", in the world's accent, prefilled with the world.
 - Phones (below 64rem): the wordmark, then a "Menu" button that opens one drawer. Worlds are native `<details>` groups (the current world open, marked with an accent bar), About and Contact are plain links, and "Chat on WhatsApp" sits at the end.
-- Mocked at desktop and phone width on `design/accents.html`.
+- **A world's own pages** (research's Publication support, Coaching, Blog and so on) sit in a second row under the family bar on wide screens, with the current page underlined in the world's rule colour, and first in the drawer on phones. The brief's header doesn't mention them, but without this row a world would lose its own navigation. Added in Phase 1A.
+- The family menu sits on the first line from 64rem (1024px), with the world's own pages and "Chat on WhatsApp" on the second; below 64rem, the drawer.
+- Built as `packages/ui/Header.astro`. The Phase 0 mock-up (`design/accents.html`) was removed once the accents were approved; it is in the git history.
 
 ### Footer (every world)
 Links to every world, About, Contact, Academic Integrity Policy (main site), Privacy, Terms, the theme toggle, then "Pen of Wonder Consults, a registered business name in Nigeria, CAC Business Name No. 7809965." Research keeps its business line first ("Pen of Wonder Research is the research service of Pen of Wonder Consults…") followed by the shared line.
@@ -162,7 +166,10 @@ Everything in `apps/research/DESIGN.md` section 7, family-wide, plus:
 ## 9. Intentional exceptions
 
 Carried from research (Inter as body face, `console.log` in scripts, en dashes in APA ranges, hex values where CSS variables can't reach, eyebrow labels on research). New:
-- `design/accents.html` is a local test page with hex and OKLCH values written into it; it is not part of any site and is not deployed.
+- **Printed blurbs in `packages/config/books.ts`.** The integrity check bans academic terms outside research. The Last Assembly's printed back cover mentions a "Common Entrance Examination" and "any exam". That's story content, not a service, and the blurb is quoted word for word, so `text:` lines in `books.ts` are exempt. Nothing else is.
+- **Hex values** in the `theme-color` meta and `site.webmanifest`, as research already records; they can't read CSS variables.
+- **slop-check WARNs in research's blog** (26 Oct 2026): "state-of-the-art review" is the established name of a literature review type, and "streamlined" sits inside the standard definition of a rapid review (`types-of-literature-review.md`). Kept: the guide teaches those terms.
+- **`_redirects` to another world** is written at build time from `worlds.ts` (research's `astro.config.mjs`), not typed into `public/_redirects`.
 
 ## 10. Open TODOs for the owner
 
@@ -176,11 +183,11 @@ Carried from research (Inter as body face, `console.log` in scripts, en dashes i
 | [EVIDENCE FILES FOR ALL FOUR NUMBERS] | `_source/proof/` | Screenshots for 12+, 34%, 3.4×, ₦18M+ |
 | [NORTHERN STAR CPL FIGURE + EVIDENCE] | Main proof strip, marketing Work | The portfolio already states "Down about 34%" for Northern Star, labelled "directional". Needs an evidence file to be used as a client figure |
 | [TESTIMONIAL PERMISSION SCREENSHOTS] | `_source/proof/` | Nife, Beulah Fayinka, Yetty. The brief says confirmed; the rule needs the written "yes" on file |
-| [MARKETING BLOG SCOPE] | Marketing blog | Three posts (as the brief says) or all 47 on the portfolio. Section 11, question 1 |
 | [CONFIRM THIS SERVICE IS OFFERED] | Marketing | Social media marketing; page built, kept out of the menu |
-| [META PIXEL ID] and consent decision | Marketing | Section 11, question 2 |
-| [APPROVE FOUNDER BIO FOR MAIN SITE] | Main | Portraits already exist |
-| [APPROVE ACCENTS] | All worlds | Section 4.1 |
+| [META PIXEL ID] | Marketing | Not at launch (decided 26 Oct 2026); needed only when the opt-in is added |
+| [APPROVE FOUNDER BIO FOR MAIN SITE] | Main | Draft in `PHASE-0.md`; portraits already exist |
+| [RESEARCH PROOF EVIDENCE] | `_source/proof/research/two-manuscripts-2026/` | The acceptance or publication emails behind "two manuscripts through to publication in 2026". The local build fails until it's there |
+| [CV EMAIL] | Research `/files/Wonderful-Adebagbo-CV.pdf` | The web CV still shows the Gmail address; rebuild it from `_source/research/cv/` once the business email exists |
 | [SOCIAL LINKS] | Footers | None until company accounts exist |
 | [BUSINESS PLAN CLIENT PERMISSION] | Writing Samples | Phase 2 |
 | [PRICES OR QUOTE ONLY] | Writing | Phase 2 |
@@ -194,6 +201,8 @@ Carried from research (Inter as body face, `console.log` in scripts, en dashes i
 | Legal review | Privacy, Terms, cookie notice | Section 13 lists what a lawyer should check |
 
 ## 11. Questions for the owner (Phase 0)
+
+**Answered 26 Oct 2026:** (1) the latest three posts only; (2) no Meta Pixel at launch; (3) option B, research's buttons stay Ink Green; (4) dev on Workers static assets; (5) accents as proposed; copy as drafted in `PHASE-0.md`. Still open: whether 34% and 3.4× are Northern Star's figures or averages (needs the evidence files), and the founder bio.
 
 1. **Marketing blog scope.** The brief and build prompt say "the three October 2026 posts". The live portfolio blog has 47 posts, from 9 June to 16 October 2026 (7 of them in October). Move only the latest three (16, 14, 12 Oct) or all 47? Moving all would need each post fact-checked and the portfolio's copies canonicalised.
 2. **Meta Pixel.** Recommendation in section 13.3: launch marketing without it.
@@ -313,7 +322,7 @@ A change under `packages/` or `scripts/` rebuilds all six: 6 of the 500 monthly 
 - **UK (ICO):** guidance on storage and access technologies, finalised after the Data (Use and Access) Act 2025 (page last updated 29 Apr 2026). "The use of storage and access technologies for online advertising purposes requires consent", and advertising measurement is covered by that same consent ([Online advertising](https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-the-use-of-storage-and-access-technologies/how-do-the-rules-apply-to-online-advertising/)). Technologies "are only set when valid consent is gathered", refusing must be "as easy" as accepting, and withdrawal must have "the same ease" ([Managing consent](https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-the-use-of-storage-and-access-technologies/how-do-we-manage-consent-in-practice/)). The new statistical exception covers aggregate analytics, not advertising.
 - **Nigeria (NDPA 2023 and the NDPC's GAID 2025, issued 20 Mar 2025):** Article 19 says the use of cookies "requires consent", needs "yes or no" (accept or reject) options for anything beyond necessary cookies, and applies the same rules to any tracking tool that works like a cookie. Article 19(7)(a): the banner must be conspicuous, and a visitor "shall not be required to scroll" to see it. Article 7(1)(l): the cookie notice should "significantly obstruct" the middle, left or right of the home page, and a notice at the bottom where it may be ignored is "tantamount to lack of transparency" ([GAID PDF](https://ndpc.gov.ng/wp-content/uploads/2025/07/NDP-ACT-GAID-2025-MARCH-20TH.pdf)). Commentary dates it operational from 19 Sep 2025; I did not find that date in the PDF itself.
 - **What it means:** the Pixel sets `_fbp` and is an advertising tracker, so both regimes need prior opt-in consent, with reject as easy as accept, and the Pixel must not load until accepted. Under the GAID, a small bottom consent bar is not enough: it has to be prominent on the home page. That makes option (b) heavier than the build prompt pictured.
-- **Recommendation:** (a) launch marketing without the Pixel. Every world then stays cookie-free with no banner. Add the Pixel later, with a prominent opt-in panel on marketing only, a "Cookie settings" link in its footer and an updated privacy notice, when you start running ads that send traffic to marketing.penofwonder.com and need conversion data from it. Cloudflare Web Analytics covers traffic counts meanwhile.
+- **Decided 26 Oct 2026: (a).** Recommendation as written: launch marketing without the Pixel. Every world then stays cookie-free with no banner. Add the Pixel later, with a prominent opt-in panel on marketing only, a "Cookie settings" link in its footer and an updated privacy notice, when you start running ads that send traffic to marketing.penofwonder.com and need conversion data from it. Cloudflare Web Analytics covers traffic counts meanwhile.
 
 ### 13.4 Email DNS checklist (before launch)
 
