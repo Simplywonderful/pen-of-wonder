@@ -2,7 +2,8 @@
 // has no `isbnEvidence` or a wrong check digit, or if an approved quote has no permission on file.
 // When run locally (not on Cloudflare or CI), it also fails if an evidence file is missing from
 // _source/proof/ or _source/books/, which never leaves this machine.
-// Usage: node scripts/proof-check.mjs
+// Usage: node scripts/proof-check.mjs [world ...]   (no world = every claim; with worlds, only the
+// claims those worlds' pages show, so one site isn't blocked by evidence for a claim it doesn't carry)
 import { existsSync, readdirSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { join } from "node:path";
@@ -13,6 +14,8 @@ import { testimonials } from "../packages/config/testimonials.ts";
 const root = fileURLToPath(new URL("..", import.meta.url));
 const local = !process.env.CF_PAGES && !process.env.WORKERS_CI && !process.env.CI;
 const problems = [];
+const only = process.argv.slice(2);
+const shownOn = (p) => !only.length || [p.world, ...(p.alsoOn ?? [])].some((w) => only.includes(w));
 
 // Evidence may be a file or a folder of files; "page 2" style notes after a comma are ignored.
 function present(base, path) {
@@ -21,7 +24,7 @@ function present(base, path) {
   return statSync(full).isDirectory() ? readdirSync(full).length > 0 : true;
 }
 
-for (const p of proof) {
+for (const p of proof.filter(shownOn)) {
   // Pending entries never render in production (see packages/config/proof.ts), so they may wait.
   if (p.status === "pending") continue;
   if (!p.evidence) problems.push(`proof "${p.id}": no evidence named`);

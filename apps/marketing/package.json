@@ -5,7 +5,7 @@
   "scripts": {
     "predev": "node ../../scripts/sync-brand.mjs marketing",
     "dev": "astro dev",
-    "prebuild": "node ../../scripts/sync-brand.mjs marketing && node ../../scripts/integrity-check.mjs marketing && node ../../scripts/proof-check.mjs",
+    "prebuild": "node ../../scripts/sync-brand.mjs marketing && node ../../scripts/integrity-check.mjs marketing && node ../../scripts/proof-check.mjs marketing",
     "build": "astro build",
     "preview": "astro preview"
   },

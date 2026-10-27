@@ -9,6 +9,8 @@ import type { WorldId } from "./worlds.ts";
 export type ProofEntry = {
   id: string;
   world: WorldId;
+  /** Other worlds whose pages show this claim too (main's proof strip, for example). */
+  alsoOn?: WorldId[];
   status: "live" | "pending";
   /** The figure on its own, for a proof strip; omit for a sentence-only claim. */
   figure?: string;
@@ -27,6 +29,7 @@ export const proof: ProofEntry[] = [
   {
     id: "research-manuscripts",
     world: "research",
+    alsoOn: ["main"],
     status: "live",
     wording: "helped a researcher take two manuscripts through to publication",
     dateRange: "2026",
@@ -76,6 +79,7 @@ export const proof: ProofEntry[] = [
   {
     id: "marketing-cpl-summary",
     world: "marketing",
+    alsoOn: ["main"],
     status: "pending",
     figure: "34%",
     wording: "lower average cost per lead across 12+ client campaigns since [FIRST CAMPAIGN YEAR]",
@@ -96,6 +100,7 @@ export const proof: ProofEntry[] = [
   {
     id: "publishing-readers",
     world: "publishing",
+    alsoOn: ["main"],
     status: "pending",
     wording: "Six Companion Readers, printed in 2026",
     dateRange: "2026",
