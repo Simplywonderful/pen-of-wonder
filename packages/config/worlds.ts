@@ -144,7 +144,7 @@ export const worlds: World[] = [
     label: "Dev",
     name: "Pen of Wonder Dev",
     host: "dev.penofwonder.com",
-    interimHost: "penofwonder-dev.workers.dev", // [TODO: the real address is penofwonder-dev.<account>.workers.dev; set once the Worker exists]
+    interimHost: "penofwonder-dev.pages.dev",
     port: 4326,
     status: "soon",
     badge: "Soon",

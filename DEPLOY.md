@@ -1,69 +1,47 @@
 # Deploying to Cloudflare (interim, before the domain)
 
-penofwonder.com isn't registered yet, so the worlds go live on Cloudflare's free addresses. Research stays on its existing site (penofwonderresearch.pages.dev, built from the old repo) until the domain arrives. Settings checked against Cloudflare's docs on 26 Oct 2026 (DESIGN.md section 13.1).
+penofwonder.com isn't registered yet, so the worlds go live on Cloudflare's free `pages.dev` addresses, uploaded by hand (owner's choice, 27 Oct 2026). Research stays on its existing site (penofwonderresearch.pages.dev, built from the old repo) until the domain arrives.
 
-The repo is private on GitHub: `Simplywonderful/pen-of-wonder`, branch `main`.
+The code is also on GitHub as a private repo, `Simplywonderful/pen-of-wonder`, but Cloudflare doesn't build from it: each site is built on this machine and uploaded.
 
-## 1. Four Pages projects (main, marketing, writing, publishing)
+## 1. Build the upload folders
 
-For each row below, in the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect to Git**. Pick `Simplywonderful/pen-of-wonder` (the first time, Cloudflare asks to install its GitHub app; give it access to this repository only). Then:
+From the repo root:
 
-| Project name | Build command | Build output directory |
-|---|---|---|
-| `penofwonder` | `npm run build -w apps/main` | `apps/main/dist` |
-| `penofwonder-marketing` | `npm run build -w apps/marketing` | `apps/marketing/dist` |
-| `penofwonder-writing` | `npm run build -w apps/writing` | `apps/writing/dist` |
-| `penofwonder-publishing` | `npm run build -w apps/publishing` | `apps/publishing/dist` |
-
-For all four:
-- **Production branch:** `main`.
-- **Framework preset:** None.
-- **Root directory:** leave empty (the repo root).
-- **Environment variables:** none needed. The Node version comes from `.node-version` in the repo.
-- Save and deploy. The first build takes a few minutes.
-
-Then, in each project's **Settings → Build → Build watch paths**, set **Include paths** to these (one per line), with that project's own app in the first line:
-
-```
-apps/main/*
-packages/*
-scripts/*
-package.json
-package-lock.json
-.node-version
+```bash
+node scripts/prepare-upload.mjs
 ```
 
-(`apps/marketing/*` for marketing, and so on.) Leave **Exclude paths** empty. This stops a change to one world from rebuilding the others. A change under `packages/` or `scripts/` still rebuilds all of them, which is intended.
+It builds main, marketing, writing, publishing and dev with every check, including the evidence files in `_source/proof/`, and copies each into `_deploy/<project name>/`. A site that fails a check isn't copied; the script says why. `_deploy/` is gitignored.
 
-Finally, in each project's **Metrics → Web Analytics**, turn it on. It's cookie-free.
+## 2. Upload each folder (first time)
 
-**Check the address each project was given.** It's shown at the top of the project, normally `<project name>.pages.dev`. If Cloudflare added anything to a name (it does when a name is taken), tell me: the addresses are written in `packages/config/worlds.ts`, and every link between the worlds uses them.
+For each project, in the Cloudflare dashboard: **Workers & Pages → Create → Pages → Upload assets** (also called "Drag and drop your files"):
 
-## 2. One Worker for dev
+| Project name (type exactly) | Folder to upload |
+|---|---|
+| `penofwonder` | `_deploy/penofwonder` |
+| `penofwonder-marketing` | `_deploy/penofwonder-marketing` |
+| `penofwonder-writing` | `_deploy/penofwonder-writing` |
+| `penofwonder-publishing` | `_deploy/penofwonder-publishing` |
+| `penofwonder-dev` | `_deploy/penofwonder-dev` |
 
-Pages allows five projects per repository, and research will need the fifth when it moves in, so dev runs on Workers.
+1. Type the project name, then **Create project**.
+2. Drag the whole folder (or choose it) onto the upload box. Upload the folder's contents, with `index.html` at the top level, not a folder that contains it.
+3. **Deploy site.**
+4. Note the address it shows. If it isn't exactly `<project name>.pages.dev` (Cloudflare adds a suffix when a name is taken), tell me: every link between the worlds uses these addresses, so I'd rebuild and you'd upload again.
+5. In the project, **Metrics → Web Analytics → Enable**. It's cookie-free.
 
-**Workers & Pages → Create → Workers → Import a repository**, pick `Simplywonderful/pen-of-wonder`, then:
+A project that already exists and was created from Git can't take uploads. If you made Git-connected projects earlier, delete them first, or upload under the names above.
 
-- **Project name:** `penofwonder-dev` (it must match `name` in `apps/dev/wrangler.jsonc`).
-- **Root directory:** leave empty.
-- **Build command:** `npm run build -w apps/dev`
-- **Deploy command:** `npx wrangler deploy --config apps/dev/wrangler.jsonc`
-- **Build watch paths** (Settings → Build): `apps/dev/*`, `packages/*`, `scripts/*`, `package.json`, `package-lock.json`, `.node-version`.
+## 3. Updating a site later
 
-**Tell me the Worker's address.** It looks like `penofwonder-dev.<your-account>.workers.dev`. Until I put it in `worlds.ts`, the Dev links on the other worlds point at a placeholder address and won't work.
-
-Web Analytics isn't injected on Workers; once the Worker exists, add a site for it under **Web Analytics** and send me the token, which goes in `packages/config/analytics.ts`.
-
-## 3. After the first deploys
-
-- I update `worlds.ts` with the real addresses (dev at least) and push; every project rebuilds once.
-- Push in batches of fewer than 20 commits. A push of 20 or more, or one with no file changes, makes every project build.
-- Formspree: leave "Restrict to domain" off until the domain exists. One domain covers all subdomains, but the `pages.dev` addresses are all different domains.
+Run `node scripts/prepare-upload.mjs` (or `node scripts/prepare-upload.mjs marketing` for one site), then in the project: **Deployments → Create deployment → upload the folder again**.
 
 ## 4. When penofwonder.com is registered (Phase 1C proper)
 
 1. Add each custom domain in its project (**Custom domains → Set up a domain**).
-2. Set `domainLive = true` in `packages/config/worlds.ts`, fill in the Worker's custom domain, and push.
-3. Create the new research Pages project from this repo (`npm run build -w apps/research`, output `apps/research/dist`), its deploy hook, and the `CF_DEPLOY_HOOK_RESEARCH` repository secret.
-4. Cut the old research site over to a redirect, as DESIGN.md section 14 and the build prompt describe.
+2. Set `domainLive = true` in `packages/config/worlds.ts`, rebuild and upload everything.
+3. Move research here: build `apps/research`, upload it to a new project, and cut the old research site over to a redirect, as DESIGN.md section 14 and the build prompt describe.
+4. Redirect each `pages.dev` address to its custom domain (Cloudflare Bulk Redirects), so search engines don't see two copies.
+5. Optional: switch to Git-connected builds then. Pages allows five Git-connected projects per repository, so dev would move to a Worker (`apps/dev/wrangler.jsonc` is ready for that).
