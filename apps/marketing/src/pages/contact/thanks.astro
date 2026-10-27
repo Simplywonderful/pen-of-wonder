@@ -1,0 +1,11 @@
+---
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
+import PageHead from "@pow/ui/PageHead.astro";
+import { contact } from "@pow/config/contact";
+---
+
+<MarketingLayout title="Message sent | Pen of Wonder Marketing" description="Thank you for your message to Pen of Wonder Marketing." noindex>
+  <PageHead title="Thank you. Your message is on its way." intro={`We reply ${contact.replyTime}.`}>
+    <p class="mt-8"><a href="/">Back to the home page</a></p>
+  </PageHead>
+</MarketingLayout>
