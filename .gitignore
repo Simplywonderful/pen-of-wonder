@@ -5,3 +5,10 @@ dist/
 .env
 .env.*
 .DS_Store
+
+# Copied from packages/brand/public by scripts/sync-brand.mjs before each dev and build.
+apps/*/public/fonts/
+apps/*/public/favicon.svg
+apps/*/public/favicon.ico
+apps/*/public/apple-touch-icon.png
+apps/*/public/icon-512.png
