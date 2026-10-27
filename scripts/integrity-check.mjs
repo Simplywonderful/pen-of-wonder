@@ -55,6 +55,8 @@ const academic = /\b(dissertations?|thes[ie]s|assignments?|essays?|coursework|ho
 const boundary = "We don't write or edit academic or assessed work. For research support, see our Research team.";
 // Recorded in DESIGN.md section 9: the books' own printed back-cover blurbs are quoted word for word.
 const isPrintedBlurb = (file, line) => file.endsWith(join("packages", "config", "books.ts")) && /^\s*text: "/.test(line);
+// Also recorded there: the canonical Academic Integrity Policy has to name the work it refuses.
+const isPolicy = (file) => file.endsWith(join("apps", "main", "src", "content", "pages", "academic-integrity.md"));
 
 function files(dir) {
   const out = [];
@@ -83,7 +85,7 @@ function scan(paths, strict) {
         if (/[A-Za-z’'")\]]!(\s|$|<|")/.test(line) && !/^\s*(\/\/|\*|import|const|if|return)/.test(line)) {
           hits.push(`${where}  exclamation mark`);
         }
-        if (strict && !isPrintedBlurb(file, line)) {
+        if (strict && !isPrintedBlurb(file, line) && !isPolicy(file)) {
           const m = line.replace(boundary, "").match(academic);
           if (m) hits.push(`${where}  academic term "${m[0]}" outside research`);
         }
