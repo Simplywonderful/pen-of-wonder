@@ -22,6 +22,8 @@ function present(base, path) {
 }
 
 for (const p of proof) {
+  // Pending entries never render in production (see packages/config/proof.ts), so they may wait.
+  if (p.status === "pending") continue;
   if (!p.evidence) problems.push(`proof "${p.id}": no evidence named`);
   else if (local && !present("proof", p.evidence)) problems.push(`proof "${p.id}": _source/proof/${p.evidence} is missing`);
 }
@@ -49,4 +51,4 @@ if (problems.length) {
   console.error(`proof-check: ${problems.length} problem(s)${local ? "" : " (file presence not checked off this machine)"}\n  ${problems.join("\n  ")}`);
   process.exit(1);
 }
-console.log(`proof-check: ${proof.length} register entries, ${titles.filter((t) => t.isbn).length} ISBNs and every approved quote have their evidence${local ? " on file" : ""}.`);
+console.log(`proof-check: ${proof.filter((p) => p.status === "live").length} live register entries (${proof.filter((p) => p.status === "pending").length} pending, not shown in production), ${titles.filter((t) => t.isbn).length} ISBNs and every approved quote have their evidence${local ? " on file" : ""}.`);
