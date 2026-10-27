@@ -45,7 +45,7 @@ export const worlds: World[] = [
     label: "Pen of Wonder",
     name: "Pen of Wonder",
     host: "penofwonder.com",
-    interimHost: "pen-of-wonder.pages.dev",
+    interimHost: "penofwonder.pages.dev",
     port: 4321,
     status: "live",
     tagline: "Words that make you win.",

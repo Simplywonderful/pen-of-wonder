@@ -10,7 +10,7 @@ For each row, in the Cloudflare dashboard: **Workers & Pages → Create → Page
 
 | Project name (type exactly) | Build command | Build output directory |
 |---|---|---|
-| `pen-of-wonder` (created 27 Oct 2026) | `npm run build -w apps/main` | `apps/main/dist` |
+| `penofwonder` | `npm run build -w apps/main` | `apps/main/dist` |
 | `penofwonder-marketing` | `npm run build -w apps/marketing` | `apps/marketing/dist` |
 | `penofwonder-writing` | `npm run build -w apps/writing` | `apps/writing/dist` |
 | `penofwonder-publishing` | `npm run build -w apps/publishing` | `apps/publishing/dist` |
