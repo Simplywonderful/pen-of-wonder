@@ -1,47 +1,55 @@
 # Deploying to Cloudflare (interim, before the domain)
 
-penofwonder.com isn't registered yet, so the worlds go live on Cloudflare's free `pages.dev` addresses, uploaded by hand (owner's choice, 27 Oct 2026). Research stays on its existing site (penofwonderresearch.pages.dev, built from the old repo) until the domain arrives.
+penofwonder.com isn't registered yet, so the worlds go live on Cloudflare's free `pages.dev` addresses. Cloudflare builds each site from the private GitHub repo `Simplywonderful/pen-of-wonder` whenever `main` is pushed (owner's choice, 27 Oct 2026). Research stays on its existing site (penofwonderresearch.pages.dev, built from the old repo) until the domain arrives.
 
-The code is also on GitHub as a private repo, `Simplywonderful/pen-of-wonder`, but Cloudflare doesn't build from it: each site is built on this machine and uploaded.
+You must be signed in to GitHub as **Simplywonderful** to see the repo, and when Cloudflare asks to connect to GitHub.
 
-## 1. Build the upload folders
+## 1. Five Pages projects, connected to GitHub
 
-From the repo root:
+For each row, in the Cloudflare dashboard: **Workers & Pages → Create → Pages → Import an existing Git repository** (it may say **Connect to Git**). The first time, Cloudflare asks to install its GitHub app: choose the **Simplywonderful** account and give it access to the `pen-of-wonder` repository only. Then pick `pen-of-wonder` and set:
 
-```bash
-node scripts/prepare-upload.mjs
+| Project name (type exactly) | Build command | Build output directory |
+|---|---|---|
+| `penofwonder` | `npm run build -w apps/main` | `apps/main/dist` |
+| `penofwonder-marketing` | `npm run build -w apps/marketing` | `apps/marketing/dist` |
+| `penofwonder-writing` | `npm run build -w apps/writing` | `apps/writing/dist` |
+| `penofwonder-publishing` | `npm run build -w apps/publishing` | `apps/publishing/dist` |
+| `penofwonder-dev` | `npm run build -w apps/dev` | `apps/dev/dist` |
+
+For all five:
+- **Production branch:** `main`.
+- **Framework preset:** None.
+- **Root directory:** leave empty (the repo root).
+- **Environment variables:** none. The Node version comes from `.node-version` in the repo.
+- **Save and Deploy.** The first build takes a few minutes. Check it says **Success** under **Deployments**; if it fails, send me the build log.
+
+Then in each project, **Settings → Build → Build watch paths → Include paths**, one per line, with that project's own app in the first line:
+
+```
+apps/main/*
+packages/*
+scripts/*
+package.json
+package-lock.json
+.node-version
 ```
 
-It builds main, marketing, writing, publishing and dev with every check, including the evidence files in `_source/proof/`, and copies each into `_deploy/<project name>/`. A site that fails a check isn't copied; the script says why. `_deploy/` is gitignored.
+(`apps/marketing/*` for marketing, `apps/dev/*` for dev, and so on.) Leave **Exclude paths** empty. A change to one world then rebuilds only that world; a change under `packages/` or `scripts/` rebuilds all five, which is intended.
 
-## 2. Upload each folder (first time)
+Finally, in each project, **Metrics → Web Analytics → Enable**. It's cookie-free.
 
-For each project, in the Cloudflare dashboard: **Workers & Pages → Create → Pages → Upload assets** (also called "Drag and drop your files"):
+**Check each address.** It's shown at the top of the project, normally `<project name>.pages.dev`. If Cloudflare added anything to a name (it does when a name is taken), tell me: every link between the worlds uses these addresses (`packages/config/worlds.ts`).
 
-| Project name (type exactly) | Folder to upload |
-|---|---|
-| `penofwonder` | `_deploy/penofwonder` |
-| `penofwonder-marketing` | `_deploy/penofwonder-marketing` |
-| `penofwonder-writing` | `_deploy/penofwonder-writing` |
-| `penofwonder-publishing` | `_deploy/penofwonder-publishing` |
-| `penofwonder-dev` | `_deploy/penofwonder-dev` |
+## 2. Updating the sites
 
-1. Type the project name, then **Create project**.
-2. Drag the whole folder (or choose it) onto the upload box. Upload the folder's contents, with `index.html` at the top level, not a folder that contains it.
-3. **Deploy site.**
-4. Note the address it shows. If it isn't exactly `<project name>.pages.dev` (Cloudflare adds a suffix when a name is taken), tell me: every link between the worlds uses these addresses, so I'd rebuild and you'd upload again.
-5. In the project, **Metrics → Web Analytics → Enable**. It's cookie-free.
+Push to `main` on GitHub. Each project rebuilds when its own files change. Push in batches of fewer than 20 commits: a push of 20 or more, or one with no file changes, rebuilds every project.
 
-A project that already exists and was created from Git can't take uploads. If you made Git-connected projects earlier, delete them first, or upload under the names above.
+If GitHub isn't reachable, `node scripts/prepare-upload.mjs` still builds upload-ready copies in `_deploy/`, but a project connected to Git can't take uploads.
 
-## 3. Updating a site later
-
-Run `node scripts/prepare-upload.mjs` (or `node scripts/prepare-upload.mjs marketing` for one site), then in the project: **Deployments → Create deployment → upload the folder again**.
-
-## 4. When penofwonder.com is registered (Phase 1C proper)
+## 3. When penofwonder.com is registered (Phase 1C proper)
 
 1. Add each custom domain in its project (**Custom domains → Set up a domain**).
-2. Set `domainLive = true` in `packages/config/worlds.ts`, rebuild and upload everything.
-3. Move research here: build `apps/research`, upload it to a new project, and cut the old research site over to a redirect, as DESIGN.md section 14 and the build prompt describe.
-4. Redirect each `pages.dev` address to its custom domain (Cloudflare Bulk Redirects), so search engines don't see two copies.
-5. Optional: switch to Git-connected builds then. Pages allows five Git-connected projects per repository, so dev would move to a Worker (`apps/dev/wrangler.jsonc` is ready for that).
+2. Set `domainLive = true` in `packages/config/worlds.ts` and push.
+3. Move research here. Pages allows five Git-connected projects per repository, so dev moves to a Worker first (`apps/dev/wrangler.jsonc` is ready; DESIGN.md section 13.1), then research gets a Pages project (`npm run build -w apps/research`, output `apps/research/dist`), a deploy hook, and the `CF_DEPLOY_HOOK_RESEARCH` repository secret for the weekly rebuild.
+4. Cut the old research site over to a redirect, as DESIGN.md section 14 and the build prompt describe.
+5. Redirect each `pages.dev` address to its custom domain (Cloudflare Bulk Redirects), so search engines don't see two copies.
