@@ -43,7 +43,7 @@ If a request seems to conflict with a rule below, point it out before doing it.
 ### Contact
 - WhatsApp Business: +234 704 641 8092, `https://wa.me/2347046418092`, prefilled with the world and, where known, the service.
 - Never use the old number +234 903 572 2959, in any spacing. Don't copy either number printed on the book covers.
-- Email: the business address in `packages/config/contact.ts`. Until it exists and the owner confirms it works, show the `[TODO]` placeholder. No Gmail fallback on the new worlds.
+- Email: the address in `packages/config/contact.ts`, and nowhere else. Until penofwonder.com has a working business address, the owner chose penofwonder@gmail.com (27 Oct 2026); that replaces the earlier "no Gmail fallback" rule for now. Don't use any other Gmail address.
 - Reply time: within one working day.
 - No social links or icons on any world until the owner supplies company accounts. No link to wonderfuladebagbo.link.
 

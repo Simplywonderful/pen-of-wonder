@@ -33,7 +33,7 @@ We don't sell your data, use it for advertising, or add you to a mailing list.
 ## Who processes it
 
 - **Formspree** receives contact form messages and forwards them to our email. Formspree is based in the United States.
-- **Our email provider** hosts our business email. <span class="todo">[EMAIL PROVIDER: ZOHO MAIL OR GOOGLE WORKSPACE]</span>
+- **Google (Gmail)** hosts our email.
 - **WhatsApp (Meta)**, if you message us there.
 - **Cloudflare** hosts these websites and provides the anonymous analytics.
 

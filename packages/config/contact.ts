@@ -8,9 +8,10 @@ export const contact = {
     display: "+234 704 641 8092",
     number: "2347046418092",
   },
-  // The business address on penofwonder.com, once it exists and the owner has confirmed it works.
-  // No Gmail fallback on the new worlds.
-  email: null as string | null,
+  // Interim address chosen by the owner on 27 Oct 2026, while penofwonder.com is unregistered. It
+  // replaces the "no Gmail fallback" rule for now; switch to the business address on the domain
+  // (e.g. hello@penofwonder.com) once it exists and works.
+  email: "penofwonder@gmail.com" as string | null,
   replyTime: "within one working day",
   formspreeId: "xdeabooe" as string | null,
 } as const;

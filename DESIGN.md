@@ -181,7 +181,7 @@ Carried from research (Inter as body face, `console.log` in scripts, en dashes i
 | [DOMAIN REGISTERED] | Everything | penofwonder.com at Cloudflare; Phase 1C gate |
 | [SECOND DOMAIN] | Redirect | penofwonderconsults.com, if cheap |
 | [PENOFWONDERRESEARCH.COM REGISTERED?] | Redirect | |
-| [BUSINESS EMAIL] | All worlds | Provider [ZOHO MAIL OR GOOGLE WORKSPACE]; Phase 1C gate |
+| [BUSINESS EMAIL] | All worlds | Interim: penofwonder@gmail.com (owner, 27 Oct 2026). Replace with the address on penofwonder.com, provider [ZOHO MAIL OR GOOGLE WORKSPACE], at Phase 1C; update the privacy notice's processor line too |
 | [FIRST CAMPAIGN YEAR] | Marketing proof | For "across 12+ client campaigns since …". The portfolio dates Northern Star to 2025, so the year is 2025 or earlier |
 | [EVIDENCE FILES FOR ALL FOUR NUMBERS] | `_source/proof/` | Screenshots for 12+, 34%, 3.4×, ₦18M+ |
 | [NORTHERN STAR CPL FIGURE + EVIDENCE] | Main proof strip, marketing Work | The portfolio already states "Down about 34%" for Northern Star, labelled "directional". Needs an evidence file to be used as a client figure |
@@ -189,7 +189,6 @@ Carried from research (Inter as body face, `console.log` in scripts, en dashes i
 | [CONFIRM THIS SERVICE IS OFFERED] | Marketing | Social media marketing; page built, kept out of the menu |
 | [META PIXEL ID] | Marketing | Not at launch (decided 26 Oct 2026); needed only when the opt-in is added |
 | [APPROVE FOUNDER BIO FOR MAIN SITE] | Main home and About | Built as drafted, taking "copy as drafted" (26 Oct 2026) to include it. The About page's longer bio reuses research's approved founder facts. Say if either needs changing |
-| [EMAIL PROVIDER] | Main privacy notice | Zoho Mail or Google Workspace, named as a processor |
 | Proof register, pending | `packages/config/proof.ts` | Seven entries wait for evidence or a fact; development shows them as [TODO], production leaves them out. Marketing's four figures and main's marketing line won't appear until then |
 | Plex Mono × glyph | `packages/brand/public/fonts` | The Plex subset has no ×; "3.4×" would fall back to another font for that one character. Re-subset when the figure goes live |
 | [RESEARCH PROOF EVIDENCE] | `_source/proof/research/two-manuscripts-2026/` | The acceptance or publication emails behind "two manuscripts through to publication in 2026". The local build fails until it's there |
