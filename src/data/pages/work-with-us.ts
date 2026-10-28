@@ -7,6 +7,7 @@ export const workWithUs = {
   intro:
     "We edit and proofread research manuscripts, theses and reports for editing firms and research teams. Here are the details you’d want before sending a test edit.",
   cta: "Ask about a test edit",
+  imageAlt: "A hand marking up a printed manuscript in green pen, with a laptop, books and a mug of tea on the desk.",
 
   detailsHeading: "The details",
   details: [

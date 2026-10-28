@@ -1,24 +1,97 @@
 ---
-// The top of an inner page: the H1, an intro paragraph, and an optional button.
+// The top of an inner page: the H1, an intro paragraph, an optional button, and an optional photo.
+// With a photo, the text sits left and the photo right on wide screens; on phones the photo comes
+// first. Photos show clients or the work, never posed "staff" (see DESIGN.md, Imagery).
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Props {
   title: string;
   intro?: string;
   cta?: { href: string; label: string };
+  image?: ImageMetadata;
+  imageAlt?: string;
+  /** CSS object-position for the crop, so faces stay in frame. */
+  imagePosition?: string;
 }
-const { title, intro, cta } = Astro.props;
+const { title, intro, cta, image, imageAlt = "", imagePosition = "50% 40%" } = Astro.props;
 ---
 
-<header class="sheet pt-10 md:pt-16 lg:pt-20">
-  <h1 class="text-3xl tracking-(--tracking-display)">{title}</h1>
-  {intro && <p class="mt-6 max-w-[60ch] text-lg text-muted">{intro}</p>}
-  <slot />
+<header
+  class:list={[
+    image
+      ? "pagehead mx-auto max-w-(--container-sheet) px-4 pt-6 md:px-8 md:pt-12 lg:px-12 lg:pt-20"
+      : "sheet pt-10 md:pt-16 lg:pt-20",
+  ]}
+>
+  <div class="pagehead__text">
+    <h1 class="text-3xl tracking-(--tracking-display)">{title}</h1>
+    {intro && <p class="mt-6 max-w-[60ch] text-lg text-muted">{intro}</p>}
+    <slot />
+    {
+      cta && (
+        <p class="mt-8">
+          <a class="btn btn-primary" href={cta.href}>
+            {cta.label}
+          </a>
+        </p>
+      )
+    }
+  </div>
   {
-    cta && (
-      <p class="mt-8">
-        <a class="btn btn-primary" href={cta.href}>
-          {cta.label}
-        </a>
-      </p>
+    image && (
+      <figure class="pagehead__photo" style={`--pos: ${imagePosition}`}>
+        <Picture
+          src={image}
+          alt={imageAlt}
+          width={1024}
+          height={1024}
+          fit="cover"
+          position="center"
+          formats={["avif", "webp"]}
+          fallbackFormat="jpg"
+          widths={[400, 640, 1024]}
+          sizes="(min-width: 64rem) 24rem, calc(100vw - 2rem)"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </figure>
     )
   }
 </header>
+
+<style>
+  .pagehead {
+    display: grid;
+    gap: 1.75rem;
+  }
+  .pagehead__photo {
+    order: -1;
+    margin: 0;
+    border: 1px solid var(--color-rule);
+  }
+  .pagehead__photo :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: var(--pos);
+  }
+  @media (min-width: 64rem) {
+    .pagehead {
+      grid-template-columns: minmax(0, 40rem) minmax(18rem, 24rem);
+      justify-content: space-between;
+      column-gap: 4rem;
+      align-items: start;
+    }
+    .pagehead__photo {
+      order: 0;
+      margin-top: 0.5rem;
+    }
+    .pagehead__photo :global(img) {
+      aspect-ratio: 1 / 1;
+    }
+  }
+</style>

@@ -9,6 +9,7 @@ export const coaching = {
   intro:
     "One-to-one online sessions for postgraduate students. We teach you how to plan your dissertation and how to run and report your own analysis. You do the work; we help you understand it.",
   cta: "Book a 60-minute session",
+  imageAlt: "A student in headphones on a video call, smiling and taking her own notes in a notebook at an evening desk.",
 
   sections: [
     {

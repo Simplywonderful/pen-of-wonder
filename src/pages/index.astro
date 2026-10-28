@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro:assets";
+import { Image, Picture } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import EditSpecimen from "../components/EditSpecimen.astro";
 import ReferenceList from "../components/ReferenceList.astro";
@@ -8,6 +8,12 @@ import { home } from "../data/pages/home";
 import { methodsSpecimen } from "../data/specimens";
 import { organisationLd, personLd, worksLd } from "../data/structured";
 import heroImage from "../assets/home-desk.webp";
+import doorPublication from "../assets/services/publication.webp";
+import doorEditing from "../assets/services/editing.webp";
+import doorCoaching from "../assets/services/coaching.webp";
+
+// One photo per door, in the same order as home.doors. Decorative: the titles carry the meaning.
+const doorImages = [doorPublication, doorEditing, doorCoaching];
 ---
 
 <BaseLayout title={home.title} description={home.description} jsonLd={[organisationLd, personLd, ...worksLd]}>
@@ -45,6 +51,18 @@ import heroImage from "../assets/home-desk.webp";
         home.doors.map((door, i) => (
           <li class="door">
             <span class="door__num nums" aria-hidden="true">{i + 1}</span>
+            <Image
+              class="door__thumb"
+              src={doorImages[i]}
+              alt=""
+              width={256}
+              height={192}
+              fit="cover"
+              position="center"
+              format="webp"
+              densities={[1, 2]}
+              loading="lazy"
+            />
             <div>
               <p class="text-sm text-muted">{door.audience}</p>
               <h3 class="mt-1 text-xl">
@@ -156,18 +174,34 @@ import heroImage from "../assets/home-desk.webp";
     margin-top: 0.5rem;
     font-weight: 600;
   }
+  /* Thumbnails only on wide screens, so phones stay light and the list stays a list. */
+  .door :global(.door__thumb) {
+    display: none;
+  }
   @media (min-width: 64rem) {
     .door {
-      grid-template-columns: 3rem minmax(0, 41rem) minmax(12rem, 15rem);
+      grid-template-columns: 3rem 8rem minmax(0, 32rem) minmax(12rem, 15rem);
       column-gap: 0;
+      align-items: start;
     }
     .door__num {
       grid-row: auto;
     }
+    .door :global(.door__thumb) {
+      display: block;
+      width: 8rem;
+      height: 6rem;
+      object-fit: cover;
+      margin-right: 1.5rem;
+      border: 1px solid var(--color-rule);
+    }
+    .door > div {
+      padding-left: 1.5rem;
+    }
     .door__link {
-      grid-column: 3;
+      grid-column: 4;
       align-self: end;
-      margin: 0 0 0.2rem 4rem;
+      margin: 0 0 0.2rem 3rem;
     }
   }
 </style>
