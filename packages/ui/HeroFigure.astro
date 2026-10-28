@@ -1,0 +1,48 @@
+---
+// A world's one photograph of its own work, set in the hero band: beside the headline on wide
+// screens, under the buttons on phones. The images are AI-generated still lifes approved by the
+// owner (no people, no readable text). It is the largest thing on screen, so it loads first.
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  class?: string;
+}
+const { src, alt, class: className } = Astro.props;
+const widths = [480, 768, 1100, src.width].filter((w, i, all) => w <= src.width && all.indexOf(w) === i);
+---
+
+<figure class:list={["hero-figure", className]}>
+  <Picture
+    src={src}
+    alt={alt}
+    formats={["avif", "webp"]}
+    fallbackFormat="jpg"
+    widths={widths}
+    sizes="(min-width: 64rem) 30rem, (min-width: 48rem) 42rem, 100vw"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+  />
+</figure>
+
+<style>
+  .hero-figure {
+    margin: 0;
+  }
+  .hero-figure :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border: 1px solid color-mix(in oklch, var(--color-on-world-accent) 35%, transparent);
+  }
+  @media (min-width: 64rem) {
+    .hero-figure :global(img) {
+      aspect-ratio: 4 / 3;
+    }
+  }
+</style>

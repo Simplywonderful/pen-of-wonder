@@ -4,11 +4,12 @@ import Layout from "@pow/ui/Layout.astro";
 import HoldingPage from "@pow/ui/HoldingPage.astro";
 import { world } from "@pow/config/worlds";
 import { worldServiceLd } from "@pow/config/structured";
+import heroDesk from "../assets/hero-desk.jpg";
 
 const w = world("writing");
 const h = w.holding!;
 ---
 
 <Layout world="writing" title={`${w.name}: opening soon`} description={`${h.headline} ${h.services.join(", ")}. Opening soon; message us on WhatsApp.`} jsonLd={[worldServiceLd("writing", h.services)]} note="Opening soon">
-  <HoldingPage world="writing" />
+  <HoldingPage world="writing" image={{ src: heroDesk, alt: "A folded letter on cream paper and its envelope on an olive-green folder, with a fountain pen and a paper clip." }} />
 </Layout>

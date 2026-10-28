@@ -15,6 +15,8 @@ import { worldUrl } from "@pow/config/worlds";
 import WorldDividers from "../components/WorldDividers.astro";
 import { home } from "../data/home";
 import portrait from "../assets/portrait-arms.png";
+import HeroFigure from "@pow/ui/HeroFigure.astro";
+import heroDesk from "../assets/hero-desk.jpg";
 
 const printed = proofEntry("publishing-readers");
 const covers = titles.filter((t) => t.coverImage);
@@ -23,12 +25,15 @@ const covers = titles.filter((t) => t.coverImage);
 <Layout world="main" title={home.title} description={home.description} jsonLd={[organisationLd()]} note="Marketing, writing, research and publishing, from Ibadan" emblem>
   <section class="hero" aria-labelledby="hero-heading">
     <div class="wrap hero__inner">
+      <div>
       <h1 id="hero-heading" class="hero__title">{home.h1}</h1>
       <p class="hero__lead">{home.lead}</p>
       <p class="hero__actions">
         <a class="btn btn-on-band" href="#worlds">Find your service</a>
         <WhatsAppButton world="main" class="btn-band-outline" />
       </p>
+      </div>
+      <HeroFigure src={heroDesk} alt="Papers laid out on a wooden desk: an advert proof, a folded letter, a manuscript with green-ink corrections and a sheet of graph paper, with a green fountain pen." />
     </div>
   </section>
 
@@ -119,6 +124,17 @@ const covers = titles.filter((t) => t.coverImage);
   }
   .hero__inner {
     padding-block: 3.5rem 4rem;
+  }
+  .hero__inner {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 64rem) {
+    .hero__inner {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 3rem;
+    }
   }
   .hero__title {
     max-width: 14ch;
