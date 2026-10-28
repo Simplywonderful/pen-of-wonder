@@ -4,6 +4,7 @@ export const contact = {
     "Send your manuscript for a free one-page review, ask about a test edit, or book a tutoring session. Replies within one working day.",
 
   h1: "Contact",
+  imageAlt: "A professional reading through a bound document at a table while someone beside her points to a passage.",
   intro: "Send a message here, on WhatsApp or by email. We reply within one working day.",
   // The words inside ring are circled by the one gold proof mark on this page.
   reviewBefore: "For a free review, send the manuscript as a share link, the target journal if you have one, and your deadline. We’ll reply with the ",
