@@ -9,7 +9,7 @@ series: guide
 serviceLink: /publication-support
 serviceLine: If your paper is drafted and you’d like a careful second reader on its structure before you submit, we offer a free one-page review of your manuscript with the three changes we’d make first.
 draft: false
-publishDate: 2026-11-23
+publishDate: 2026-06-08
 ---
 
 Picture yourself at your desk, surrounded by notes and data printouts. The research is done, and now you have to turn it into a paper. Organising that paper can feel as hard as the research itself.
@@ -176,4 +176,4 @@ Describe the analysis step by step: the statistical tests, the software and the 
 
 ## In short
 
-A clear structure lets your reader follow your argument from question to conclusion. Open with an introduction that draws the reader in and states your aims, build a literature review that analyses rather than lists, and write a methodology complete enough for others to judge and repeat your work. Part 2 of this guide covers the results, discussion, conclusion and references.
+A clear structure lets your reader follow your argument from question to conclusion. Open with an introduction that draws the reader in and states your aims, build a literature review that analyses rather than lists, and write a methodology complete enough for others to judge and repeat your work. [Part 2 of this guide](/blog/structuring-a-research-paper-results-discussion-conclusion-references) covers the results, discussion, conclusion and references.

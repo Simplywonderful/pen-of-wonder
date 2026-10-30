@@ -9,7 +9,7 @@ series: 30 Lessons
 serviceLink: /work-with-us
 serviceLine: Clear structure and plain language are what we edit for, whether we’re working on a researcher’s manuscript or editing for a firm or research team.
 draft: false
-publishDate: 2026-11-16
+publishDate: 2026-05-18
 ---
 
 In 2025 I shared thirty lessons from my years as a researcher, one at a time. This piece brings together four of them about writing: how to start, how to be understood, how to improve a draft, and how to keep going until it is finished.

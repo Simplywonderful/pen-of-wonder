@@ -9,7 +9,7 @@ series: guide
 serviceLink: /publication-support
 serviceLine: If your paper is drafted and you’d like a careful second reader on its results, discussion and references before you submit, we offer a free one-page review of your manuscript with the three changes we’d make first.
 draft: false
-publishDate: 2026-11-30
+publishDate: 2026-06-22
 ---
 
 This is the second half of my guide to structuring a research paper. [Part 1](/blog/structuring-a-research-paper-introduction-literature-methods) covered the overall shape of a paper, then the introduction, the literature review and the methodology. This part covers the rest: the results and discussion, the summary, conclusion and recommendations, and the references.

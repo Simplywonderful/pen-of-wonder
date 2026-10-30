@@ -9,7 +9,7 @@ series: guide
 serviceLink: /coaching
 serviceLine: If you’re learning to run your own analysis in SPSS, we offer one-to-one tutoring where you work on your data and we guide you through choosing, running and reporting the tests.
 draft: false
-publishDate: 2026-10-17
+publishDate: 2026-03-02
 ---
 
 Numbers can tell stories, but only if you know how to read them. As a researcher you will often face a spreadsheet full of figures and the question of what, if anything, they show. Quantitative data analysis is how you find the patterns, trends and relationships in that data, and how you tell real findings from noise.

@@ -9,7 +9,7 @@ series: guide
 serviceLink: /publication-support
 serviceLine: If you’re preparing a review article for a journal and would like a careful second reader on its method and structure, that is part of the publication support we offer.
 draft: false
-publishDate: 2026-10-26
+publishDate: 2026-04-06
 ---
 
 There is one step in a research project you can’t afford to skip or rush. Done badly, it can undermine everything that follows. That step is the literature review.
