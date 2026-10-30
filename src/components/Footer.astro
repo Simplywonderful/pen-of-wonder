@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import ThemeToggle from "./ThemeToggle.astro";
 import Todo from "./Todo.astro";
-import { site, placeholders } from "../data/site";
+import { site, placeholders, family } from "../data/site";
 import emblemGreen from "../assets/emblem-green.png";
 import emblemCream from "../assets/emblem-cream.png";
 
@@ -40,11 +40,37 @@ const year = new Date().getFullYear();
       </ul>
       <ThemeToggle />
     </div>
+    <nav class="family lg:col-span-2" aria-label={`Other ${family.name} sites`}>
+      <p>Part of <a href={family.main}>{family.name}</a></p>
+      <ul class="family__sisters">
+        {
+          family.sisters.map((s) => (
+            <li>
+              <a href={s.url}>{s.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
     <p class="text-muted lg:col-span-2">© {year} Pen of Wonder Consults</p>
   </div>
 </footer>
 
 <style>
+  .family {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  .family__sisters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    margin-top: 0.5rem;
+  }
+  .family a {
+    display: inline-block;
+    padding-block: 0.35rem;
+  }
   .emblem__dark {
     display: none;
   }

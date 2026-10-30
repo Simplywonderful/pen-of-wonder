@@ -1,5 +1,5 @@
 // JSON-LD for search engines. No social profiles in sameAs: those belong to a different brand.
-import { site } from "./site";
+import { site, family } from "./site";
 import { publications } from "./publications";
 
 const personId = `${site.url}/about#person`;
@@ -43,5 +43,5 @@ export const organisationLd = {
     { "@type": "Country", name: "United Kingdom" },
   ],
   founder: { "@id": personId },
-  parentOrganization: { "@type": "Organization", name: "Pen of Wonder Consults" },
+  parentOrganization: { "@type": "Organization", name: family.name, url: family.main },
 };

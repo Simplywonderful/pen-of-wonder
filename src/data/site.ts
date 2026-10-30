@@ -32,6 +32,17 @@ export const site = {
   showTestimonials: false,
 } as const;
 
+// The Pen of Wonder family of sites. Change these in one place when penofwonder.com is live.
+export const family = {
+  name: "Pen of Wonder",
+  main: "https://penofwonder.pages.dev/",
+  sisters: [
+    { label: "Marketing", url: "https://penofwondermarketing.pages.dev/" },
+    { label: "Writing", url: "https://penofwonderwriting.pages.dev/" },
+    { label: "Publishing", url: "https://penofwonderpublishing.pages.dev/" },
+  ],
+} as const;
+
 export const placeholders = {
   cacNumber: "CAC BN NUMBER, optional",
   formspreeId: "FORMSPREE FORM ID",
