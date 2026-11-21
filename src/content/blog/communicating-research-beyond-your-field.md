@@ -10,6 +10,20 @@ serviceLink: /publication-support
 serviceLine: If you’re turning a published paper into a summary, a talk or a piece for a wider audience and would like a careful second reader, that is part of the publication support we offer.
 draft: false
 publishDate: 2026-10-26
+metaTitle: "How to communicate research to a general audience"
+description: "How to make research clear and engaging for people outside your field: honest storytelling, plain language, good visuals and the mistakes that lose people."
+keyword: "how to communicate research to non-experts"
+answer: "Start with the problem and why it matters before you explain how you did the work. Tell an honest story, simplify the language without losing accuracy, use analogies and clear visuals, adapt the message to each channel, and invite questions. Never let the story or the design claim more than your data shows."
+faq:
+  - q: "How do I explain my research to non-experts?"
+    a: "Start with a real-world problem, explain why it matters, then present your findings as part of the answer. Use plain words, a good analogy and one clear visual."
+  - q: "Is storytelling appropriate for research?"
+    a: "Yes, if it is honest. Choose examples that represent your findings fairly and never let the story claim more than the data supports."
+  - q: "What are the biggest research communication mistakes?"
+    a: "Ignoring the audience’s perspective, listing results without a narrative, relying on text alone, being too formal, and not inviting a response."
+  - q: "Which channels should I use to share research?"
+    a: "Match the channel to the audience: a short social media post for one finding, a blog post for background, a policy brief with the recommendation first, a talk or community meeting for discussion."
+related: [clear-concise-research-writing, research-presentations, interpreting-your-findings]
 ---
 
 After months or years of work, you finally have findings to share. But how do you share them in a way that makes people outside your field understand, care and perhaps act?
@@ -18,7 +32,7 @@ Research communication often feels rigid: dense papers, long presentations and t
 
 Research communication means conveying the significance, implications and value of your work to different audiences, from fellow academics to policymakers, practitioners and the general public. This guide covers how to engage those audiences, the mistakes that lose them, and some techniques that go beyond “keep it simple”. The examples are illustrations.
 
-## Part 1: How to engage your audience
+## How to engage a non-specialist audience
 
 ### Treat your research as a story
 
@@ -54,7 +68,7 @@ Research communication isn’t confined to journals and conferences. Social medi
 
 **Example:** a short social media post might carry one clear finding and a link to the paper. A blog post or article can explain the background and implications in a more conversational tone. A policy brief needs the recommendation first.
 
-## Part 2: Mistakes to avoid
+## Research communication mistakes to avoid
 
 ### Ignoring your audience’s perspective
 
@@ -76,7 +90,7 @@ Some formality is right, but stiff, impersonal language puts distance between yo
 
 One-way communication limits your impact. Don’t end a presentation without inviting questions or comments. Hearing your audience’s reactions shows you what they understood, and what they found important.
 
-## Part 3: Techniques that go further
+## Techniques that go further
 
 ### Start with the problem
 
@@ -109,6 +123,8 @@ Researchers often launch into how they did the work, how the data were collected
 ### Break it into manageable pieces
 
 Present one idea at a time, in short sections or slides, so people can follow each step before the next one arrives. Visual metaphors, a simple image standing for a complex idea, can help each piece stick.
+
+For plain-writing habits that carry over to any audience, see [clear, concise research writing](/blog/clear-concise-research-writing).
 
 ## In short
 

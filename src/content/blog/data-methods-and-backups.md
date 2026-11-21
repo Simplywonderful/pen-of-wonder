@@ -10,6 +10,20 @@ serviceLink: /coaching
 serviceLine: If you’re learning to run your own analysis in SPSS, we offer one-to-one tutoring where you work on your own data and we guide you through choosing, running and reporting the tests.
 draft: false
 publishDate: 2026-07-20
+metaTitle: "Research data management: 4 lessons on data and backups"
+description: "Four lessons on research data: handling it with care, justifying your methods, backing up your files properly and learning enough statistics to read results."
+keyword: "research data management tips"
+answer: "Treat research data as your most valuable asset. Document how you collected it, keep an untouched raw copy, and log every change. Write a methodology that is clear, justified and aligned with your question. Keep at least two backups, one local and one in the cloud, and learn enough statistics to read your own results."
+faq:
+  - q: "How should I back up research data?"
+    a: "Keep at least two backups, one local such as an external drive and one in the cloud, automate them, and version your files. Check your ethics approval and university policy before storing participant data anywhere."
+  - q: "Is cloud sync the same as a backup?"
+    a: "Not quite. If you delete or overwrite a file, the change syncs too. Check that your service keeps earlier versions, or keep a separate backup."
+  - q: "Why keep a copy of the raw data?"
+    a: "So you can always retrace your steps. Clean and analyse a working copy, keep a short log of changes, and you can show exactly how you got from raw data to results."
+  - q: "What statistics should every researcher know?"
+    a: "At least averages, standard deviation and correlation, and how to read basic regression output, even if your own work is mainly qualitative."
+related: [quantitative-data-analysis, research-ethics-in-plain-english, asking-better-questions-and-planning]
 ---
 
 In 2025 I shared thirty lessons from my years as a researcher, one at a time. This piece brings together four of them about the evidence your research rests on: your data, your methods, the files that hold them, and your ability to make sense of the numbers.
@@ -83,6 +97,8 @@ Here is where to start:
 - **Don’t fear the maths.** Focus on understanding and interpreting the results, not on perfection.
 
 You don’t have to be a quantitative expert. But ignoring data completely limits what your research can do.
+
+Once you know the basics, my guide to [quantitative data analysis](/blog/quantitative-data-analysis) is a good next step.
 
 ## What ties these together
 

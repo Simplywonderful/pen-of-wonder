@@ -10,6 +10,20 @@ serviceLink: /coaching
 serviceLine: If you’re a postgraduate student preparing an ethics application for your dissertation, we offer one-to-one coaching. You write the application; we help you think through the risks, the consent process and the questions a committee will ask.
 draft: false
 publishDate: 2026-10-12
+metaTitle: "Research ethics in plain English: issues to avoid"
+description: "What research ethics involves beyond the consent form, and the problems that catch researchers out: authorship, predatory journals, data and plagiarism."
+keyword: "ethical issues in research"
+answer: "Research ethics means protecting the people behind your data, declaring conflicts of interest, being transparent about methods and limits, and thinking about your work’s wider effects. The problems that most often catch researchers out are authorship disputes, predatory journals, manipulating data, weak consent on sensitive topics, and plagiarism."
+faq:
+  - q: "What are the main ethical issues in research?"
+    a: "Informed consent, confidentiality, conflicts of interest, honest data handling, fair authorship, avoiding predatory journals, inclusion, and plagiarism."
+  - q: "Who qualifies as an author on a paper?"
+    a: "Under the ICMJE criteria followed by many journals, an author must contribute substantially to the work, help draft or revise it, approve the final version and agree to be accountable for it. Others are acknowledged."
+  - q: "What counts as research misconduct?"
+    a: "Fabrication (making up data or results), falsification (manipulating data or methods to give a false impression) and plagiarism are the core forms. Honest error is not misconduct."
+  - q: "Do I need ethics approval for a student project?"
+    a: "Usually, if it involves people or their data. Check your university’s process and get approval before you start collecting data."
+related: [research-interviews, choosing-a-journal-and-submitting, referencing-and-plagiarism]
 ---
 
 Like many researchers, I have had moments in my work that changed how I saw it. One of them was coming to understand, properly, how much responsible conduct and ethics matter in research.
@@ -18,7 +32,7 @@ When I started out, I met ethical questions I didn’t fully understand, and I f
 
 This guide covers two things: the parts of research ethics that go beyond the textbook, and the ethical problems that most often catch researchers out.
 
-## Part 1: What research ethics really involves
+## What does research ethics involve?
 
 ### The people behind the data
 
@@ -48,7 +62,7 @@ Transparency is at the core of research integrity. Report your methods, your pos
 
 Ethical research is a shared responsibility, not just an individual one. Seminars, open discussion and mentoring all help build a culture in which people raise concerns early and learn from each other’s mistakes.
 
-## Part 2: Ethical problems that catch researchers out
+## Ethical problems that catch researchers out
 
 ### Authorship disputes
 
@@ -77,6 +91,8 @@ Plagiarism defeats the purpose of research and destroys its integrity. It isn’
 ### People left out
 
 Not every voice gets equal weight in research. Where your question calls for it, make your sample as inclusive and diverse as you can, so that minority groups contribute to the story instead of appearing as footnotes.
+
+Plagiarism is covered in more depth in [referencing and plagiarism](/blog/referencing-and-plagiarism), and checking that a journal is genuine in [choosing a journal and getting your manuscript submitted](/blog/choosing-a-journal-and-submitting).
 
 ## In short
 

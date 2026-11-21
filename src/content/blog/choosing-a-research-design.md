@@ -10,19 +10,33 @@ serviceLink: /coaching
 serviceLine: If you’re a postgraduate student choosing the design for your dissertation, we offer one-to-one coaching. You make the decisions; we help you weigh the options and check the design fits your question.
 draft: false
 publishDate: 2026-12-07
+metaTitle: "Types of research design and how to choose one"
+description: "The main types of research design, experimental, correlational, descriptive, qualitative and mixed methods, and how to choose the right one for your study."
+keyword: "types of research design"
+answer: "A research design is the overall plan for collecting, analysing and interpreting your data. The main types are experimental, correlational, descriptive, qualitative and mixed methods. Choose the one that fits your question: experiments for cause and effect, correlational designs for relationships, qualitative designs for experiences, within your time and resources."
+faq:
+  - q: "What are the main types of research design?"
+    a: "Experimental, correlational, descriptive, qualitative and mixed methods. Each has its own strengths and limitations."
+  - q: "How do I choose a research design?"
+    a: "Match it to your question and hypotheses, take your context into account, think about how you will collect data, balance control and realism, be realistic about resources, and pilot it."
+  - q: "What is the difference between experimental and correlational research?"
+    a: "An experiment deliberately changes a variable and, with random assignment, can show cause and effect. A correlational study measures variables as they occur and shows relationships, not causes."
+  - q: "What is ecological validity?"
+    a: "How well a study’s findings apply to real-world settings. Tightly controlled designs often have less of it; field studies often have more."
+related: [research-questions-and-hypotheses, experimental-research, sampling-techniques]
 ---
 
 Imagine setting out to explore unfamiliar country. You have a strong sense of purpose and a map. In research, the map is your research design: the plan that guides you from your question to your answer.
 
 This guide covers what a research design is, the main types, and how to choose one that fits your study. The examples are illustrations.
 
-## What a research design is
+## What is a research design?
 
 A research design is the overall plan for your study: its strategy, its methods and how it is organised. It sets out how you will collect, analyse and interpret your data, and it shapes every decision that follows.
 
 Choosing a design is like choosing the right tool for a job. A good tool used for the wrong job still produces poor work.
 
-## The main types of research design
+## What are the main types of research design?
 
 ### Experimental
 
@@ -60,7 +74,7 @@ A mixed methods design combines quantitative and qualitative approaches in one s
 
 Each design has its own strengths and limitations. None is best in general. The question is which is best for your study.
 
-## How to choose
+## How to choose a research design
 
 ### Match the design to your question and hypotheses
 
@@ -85,6 +99,8 @@ Research never happens in a vacuum. Consider how much time you have, your budget
 ### Pilot it
 
 A small pilot study lets you test whether your design is feasible and works as intended. It shows up problems while they are still easy to fix, before you commit to the full study.
+
+Your design follows from your question, so start with [research questions and hypotheses](/blog/research-questions-and-hypotheses). For experiments in more detail, see [experimental research](/blog/experimental-research).
 
 ## In short
 

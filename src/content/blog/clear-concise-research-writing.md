@@ -10,17 +10,31 @@ serviceLink: /work-with-us
 serviceLine: These are the habits we edit for, whether we’re working on a researcher’s manuscript or editing for a firm or research team.
 draft: false
 publishDate: 2026-02-16
+metaTitle: "Clear, concise research writing: habits and mistakes"
+description: "Practical habits for clear research writing, the mistakes that make academic papers hard to read, and techniques that go beyond the usual tips."
+keyword: "how to write clearly in research"
+answer: "Write for a specific reader, state your argument early, and choose simple, precise words. Plan the structure before you draft, keep each paragraph to one idea with a clear topic sentence, prefer the active voice where it reads naturally, define key terms, and cut hard when you revise. Clarity is precision, not simplification."
+faq:
+  - q: "How do I make my academic writing clearer?"
+    a: "Know who you are writing for, state the main argument early, use plain and precise words, give each paragraph one idea and a clear topic sentence, and revise with the aim of cutting."
+  - q: "Should academic writing use the active voice?"
+    a: "Prefer it where it reads naturally, because it is usually shorter and clearer. Some methods sections and journals still prefer the passive, so check your target journal’s style."
+  - q: "What is the CARS model?"
+    a: "Swales’ Create a Research Space model for research article introductions: establish the territory, establish a niche or gap, then occupy the niche by saying what your study does."
+  - q: "How long should a research paper sentence be?"
+    a: "There is no fixed rule, but a sentence that carries one idea is easier to follow. If a sentence holds two or three ideas, split it."
+related: [writing-and-editing, structuring-a-research-paper-introduction-literature-methods, communicating-research-beyond-your-field]
 ---
 
 Research writing links the work of finding things out with the work of telling people what you found. Most papers follow a familiar structure: question, method, results, conclusions. But structure alone doesn’t make a paper readable. Clear and concise writing is what makes sure your message is understood.
 
 Many academics make the same mistake: they over-complicate their writing, lean on jargon and produce dense papers that are hard to get through. The challenge is to balance complexity with simplicity and thoroughness with clarity. This guide covers how to do that, the mistakes to avoid, and some techniques that go a little beyond the usual tips.
 
-## What research writing is for
+## What is research writing for?
 
 Research writing covers journal articles, conference papers, theses, dissertations and reports. Whatever the form, the aim is the same: to add something to a field by sharing new knowledge or a new perspective, in a way other people can check and build on. If readers can’t follow your writing, they can’t do either.
 
-## Part 1: Habits of clear research writing
+## Habits of clear research writing
 
 ### Know your audience and adjust your language
 
@@ -84,7 +98,9 @@ Tables, charts and graphs can make complex information easier to grasp. Label th
 
 For example, a graph showing how agricultural yields fall as temperatures rise, with a clear legend and a descriptive caption, can say in one glance what would take a paragraph to explain.
 
-## Part 2: Mistakes that make papers hard work
+For the habits behind good drafting and revising, see also [writing and editing](/blog/writing-and-editing), four lessons from my own work.
+
+## Mistakes that make research papers hard to read
 
 ### Not planning before writing
 
@@ -114,7 +130,7 @@ Mixed citation styles and inconsistent formatting confuse readers and make the w
 
 Rushing to submit without a thorough review leaves errors and weak claims in place. Plan for several rounds of editing: one for structure and argument, one for clarity, one for grammar and formatting. Ask a supervisor, colleague or mentor to read it too.
 
-## Part 3: Techniques beyond the usual tips
+## Techniques beyond the usual writing tips
 
 ### Open with an accurate hook
 

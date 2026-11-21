@@ -10,13 +10,27 @@ serviceLink: /publication-support
 serviceLine: If you’d like a careful second reader on the literature review in your manuscript before you submit, that is part of the publication support we offer.
 draft: false
 publishDate: 2026-05-04
+metaTitle: "How to do a literature review, step by step"
+description: "How to search, select, synthesise and write up the literature on your topic, with the common mistakes that weaken a literature review at each stage."
+keyword: "how to do a literature review"
+answer: "Define your research question, plan and record a search across several databases and grey literature, and select sources using clear criteria and an appraisal tool. Then synthesise rather than summarise: group studies by theme, method or period, compare their findings, and show where the evidence agrees, conflicts and runs out."
+faq:
+  - q: "What are the steps in a literature review?"
+    a: "Define your question, plan and run your search, assess and select sources, synthesise and analyse them, reflect critically, then write the review with a clear structure."
+  - q: "How do I synthesise literature rather than summarise it?"
+    a: "Compare studies instead of describing them one by one. Group them by theme or method, show where they agree and disagree, explain why, and point to the gaps. A synthesis matrix helps."
+  - q: "What is a synthesis matrix?"
+    a: "A table with one row per study and columns for what you are comparing, such as setting, sample, method and main finding. It shows at a glance where studies agree, differ or leave gaps."
+  - q: "Should I include grey literature?"
+    a: "Often, yes. Reports, theses and conference papers can hold findings that never reach the main databases. Appraise them as carefully as any other source."
+related: [types-of-literature-review, finding-and-judging-sources, structuring-a-research-paper-introduction-literature-methods]
 ---
 
 Starting a literature review can feel like setting sail on a very large sea. Every wave is another paper, and it is easy to lose your bearings. The review is also what gives your study its direction, so it pays to approach it with a method.
 
 This guide covers the process from first search to final write-up: how to find and select sources, how to synthesise and analyse them, the mistakes to watch for at each stage, and how to write the review so it moves your field’s conversation forward. If you are still deciding what kind of review you need, start with my guide to the [types of literature review](/blog/types-of-literature-review).
 
-## Part 1: The process
+## How to do a literature review, step by step
 
 ### 1. Define your research question
 
@@ -38,7 +52,7 @@ Use an established appraisal tool where one exists. The [CASP checklists](https:
 
 ### 4. Synthesise and analyse
 
-Look across your sources for recurring themes, trends and gaps. Depending on your question, you might organise the review by theme, by period or by method. Weigh the strengths and weaknesses of earlier research, and draw out what they mean for your question and where more work is needed. Part 2 goes into this in more detail.
+Look across your sources for recurring themes, trends and gaps. Depending on your question, you might organise the review by theme, by period or by method. Weigh the strengths and weaknesses of earlier research, and draw out what they mean for your question and where more work is needed. The next section goes into this in more detail.
 
 ### 5. Reflect critically
 
@@ -46,7 +60,7 @@ Engage with the literature rather than simply reporting it. Question assumptions
 
 A thorough review is not a collection of what is known. It is active engagement with ideas, evidence and points of view.
 
-## Part 2: Synthesis and analysis
+## How to synthesise and analyse the literature
 
 Synthesis is where a review earns its value. It is also the part most often done badly.
 
@@ -74,7 +88,7 @@ Weigh each study’s strengths and weaknesses. Question its assumptions, judge w
 
 **Example:** when you interpret studies of an educational intervention, look at the sample size, the design and any confounding variables that could explain the results.
 
-## Part 3: Mistakes to avoid
+## Literature review mistakes to avoid
 
 ### In the search
 
@@ -104,7 +118,9 @@ Weigh each study’s strengths and weaknesses. Question its assumptions, judge w
 
 Good synthesis balances openness with scepticism, detail with the big picture, and breadth with depth.
 
-## Part 4: Writing the review
+Judging which sources deserve a place is covered in [finding and judging sources](/blog/finding-and-judging-sources).
+
+## How to write up a literature review
 
 ### Start with a clear objective
 

@@ -10,6 +10,20 @@ serviceLink: /coaching
 serviceLine: If you’re a postgraduate student who would like steady support through a dissertation, we offer one-to-one coaching. You do the research and the writing; we help you plan, keep going and think problems through.
 draft: false
 publishDate: 2026-11-09
+metaTitle: "The researcher’s mindset: 9 lessons for researchers"
+description: "Nine lessons on the researcher’s mindset: living with uncertainty, taking feedback well, impostor feelings, curiosity, consistency and small wins."
+keyword: "researcher mindset"
+answer: "A good researcher’s mindset accepts uncertainty, treats feedback as a tool rather than a verdict, and recognises that impostor feelings are common. It reads widely across fields, follows curiosity, works steadily rather than in bursts, builds a network, presents work aloud and celebrates small wins along the way."
+faq:
+  - q: "Is impostor syndrome common in research?"
+    a: "Yes. A systematic review found impostor feelings reported across many professions, though estimates vary widely depending on how they are measured. If the feelings become overwhelming, talk to someone you trust."
+  - q: "How do I stay consistent with research work?"
+    a: "Block out small, regular slots, protect your focus with a timer such as the Pomodoro technique, and celebrate streaks as well as milestones."
+  - q: "How should I handle critical feedback?"
+    a: "Treat it as a tool, not a verdict. Good feedback shows blind spots, challenges weak arguments and offers perspectives you hadn’t considered."
+  - q: "How do I build an academic network?"
+    a: "Go to conferences to connect, get in touch with authors whose work helped you, and take part in academic communities online."
+related: [reviewer-feedback-peer-review-cover-letters, writing-and-editing, research-presentations]
 ---
 
 In 2025 I shared thirty lessons from my years as a researcher, one at a time. This piece brings together the last nine of them. They are less about methods and more about the person doing the research: how you think, how you keep going, and how you grow.
@@ -41,6 +55,8 @@ Good feedback:
 - offers perspectives you hadn’t considered.
 
 It isn’t personal; it’s professional. Use feedback as a tool, not a verdict. The right feedback doesn’t just fix mistakes. It strengthens the whole project.
+
+If your reviews have just come back, my guide to [responding to reviewer comments](/blog/reviewer-feedback-peer-review-cover-letters) shows how to answer them point by point.
 
 ## Lesson 20: Feeling like a fraud? You’re not alone
 

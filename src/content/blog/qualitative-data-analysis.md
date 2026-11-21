@@ -10,6 +10,20 @@ serviceLink: /coaching
 serviceLine: If you’re learning to analyse your own interviews or documents in NVivo, we offer one-to-one tutoring. You do the coding and the interpretation; we show you how to use the software and how to explain your process.
 draft: false
 publishDate: 2026-08-03
+metaTitle: "Qualitative data analysis: techniques and mistakes"
+description: "Thematic analysis, grounded theory and content analysis explained, how to make qualitative findings trustworthy, and the mistakes to avoid."
+keyword: "qualitative data analysis methods"
+answer: "Qualitative data analysis finds meanings, patterns and themes in text, images and audio. Common techniques are thematic analysis, grounded theory and content analysis. Make findings trustworthy through reflexivity, triangulation, member checking and an audit trail, and avoid ignoring context, misusing saturation, or letting software do the thinking."
+faq:
+  - q: "What are the main methods of qualitative data analysis?"
+    a: "Thematic analysis, which identifies patterns of meaning; grounded theory, which builds theory from the data; and content analysis, which examines text or images systematically and can count as well as interpret."
+  - q: "How do you make qualitative research trustworthy?"
+    a: "Use Lincoln and Guba’s criteria of credibility, transferability, dependability and confirmability, supported by reflexivity, triangulation, member checking, peer debriefing and a transparent audit trail."
+  - q: "What is data saturation?"
+    a: "The point at which new data stops producing new insights. It comes from grounded theory; not every approach uses it, so explain how you decided you had enough data."
+  - q: "Does NVivo analyse the data for you?"
+    a: "No. NVivo helps you organise, code, search and visualise data, but finding themes and interpreting them is your job."
+related: [research-interviews, interpreting-your-findings, quantitative-data-analysis]
 ---
 
 Qualitative data analysis is where participants’ stories come to life, and words build a picture.
@@ -18,7 +32,7 @@ Quantitative analysis looks for patterns and relationships in numbers, using sta
 
 This guide covers three common techniques, the practices that make qualitative findings trustworthy, and the mistakes to avoid.
 
-## Part 1: Three common techniques
+## What are the main qualitative analysis techniques?
 
 ### Thematic analysis
 
@@ -44,7 +58,9 @@ It suits documents, media coverage, social media posts, images and other materia
 
 **Example:** to study how climate change is portrayed in the media, you might analyse newspaper articles for recurring themes and ways of framing the issue.
 
-## Part 2: Practices that make your analysis trustworthy
+If your data come from interviews, my guide to [research interviews](/blog/research-interviews) covers planning and running them.
+
+## How to make qualitative findings trustworthy
 
 ### Practise reflexivity
 
@@ -72,7 +88,7 @@ Qualitative studies aren’t usually expected to be repeated exactly, as an expe
 
 **Example:** in a study of how a community views local pollution, you would describe exactly how participants were recruited, how interviews were conducted and how the themes were developed.
 
-## Part 3: Mistakes to avoid
+## Qualitative analysis mistakes to avoid
 
 ### Overlooking reflexivity
 

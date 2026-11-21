@@ -10,20 +10,34 @@ serviceLink: /coaching
 serviceLine: If you’ve collected survey data and are learning to analyse it yourself in SPSS, we offer one-to-one tutoring where you work on your own data and we guide you through choosing, running and reporting the tests.
 draft: false
 publishDate: 2026-08-17
+metaTitle: "Survey and questionnaire design: tips and mistakes"
+description: "How to design surveys and questionnaires that give usable data: what to decide first, common mistakes such as leading questions, and practical tips."
+keyword: "questionnaire design tips"
+answer: "A survey is the method; a questionnaire is the set of questions. Before you design one, settle your goals, use tested scales where possible, plan ethics and sampling, and think about non-response. Write clear, neutral questions with enough answer options, pilot the questionnaire, keep it short, and plan the analysis before you send it."
+faq:
+  - q: "What is the difference between a survey and a questionnaire?"
+    a: "A survey is the overall method of collecting data from a sample by asking structured questions. A questionnaire is the instrument itself, the written set of questions."
+  - q: "What is a leading question?"
+    a: "A question that pushes people towards an answer, such as “Do you agree that the policy is damaging the economy?” Ask neutrally instead, with balanced response options."
+  - q: "How do I increase survey response rates?"
+    a: "A large Cochrane review of randomised trials found that incentives, reminders, contacting people beforehand and shorter questionnaires all increased response to postal questionnaires."
+  - q: "Does a high response rate mean my results are unbiased?"
+    a: "Not on its own. What matters is whether the people who didn’t respond differ from those who did in ways that affect your answers."
+related: [quantitative-data-analysis, sampling-techniques, research-interviews]
 ---
 
 Surveys and questionnaires are among the most common ways to collect data in academic research, especially quantitative data. Used well, they tell you what large numbers of people think, believe and do. Used carelessly, they produce a spreadsheet full of answers nobody can rely on.
 
 This guide covers what these tools do well, what to decide before you design one, the most common mistakes, and practical tips for collecting data you can actually use.
 
-## Surveys and questionnaires: what’s the difference?
+## What is the difference between a survey and a questionnaire?
 
 The two words are often used interchangeably, but they mean slightly different things.
 
 - **A survey** is the overall method: a systematic way of collecting data from a sample of people by asking them a set of structured questions. It can be carried out face to face, by phone, on paper or online.
 - **A questionnaire** is the instrument: the written set of questions itself. It can be completed by respondents on their own or read out by a researcher. Many are now run online, using tools such as Google Forms or Qualtrics.
 
-## Part 1: What they do well
+## What surveys and questionnaires do well
 
 **Flexibility.** You can choose from many formats and ways of reaching people: in person, by phone or online. That lets you adapt to different research settings and to what suits your participants.
 
@@ -35,7 +49,7 @@ The two words are often used interchangeably, but they mean slightly different t
 
 **Adaptability.** You can shape the questions, wording, language and tone to suit your participants and your aims, and add images or other features where they help people understand.
 
-## Part 2: What to settle before you start
+## What to decide before you design a survey
 
 ### Your research goals and design
 
@@ -59,7 +73,9 @@ You want as many people as possible to respond, and you want the people who resp
 
 A high response rate on its own doesn’t guarantee unbiased results, though. A meta-analysis of studies that measured non-response bias directly found that response rates were only weakly linked to how biased the results were ([Groves and Peytcheva, 2008](https://doi.org/10.1093/poq/nfn011)). What matters is whether the people who didn’t respond differ from those who did, in ways that affect your answers.
 
-## Part 3: Common mistakes
+The ethics of collecting data from people is covered in more depth in [research ethics in plain English](/blog/research-ethics-in-plain-english).
+
+## Common survey and questionnaire mistakes
 
 ### Complex or leading questions
 
@@ -85,7 +101,7 @@ Assume the people who didn’t respond are just like those who did, and you may 
 
 Questions that don’t account for culture can be misunderstood, or can put off respondents from particular backgrounds. Check that your wording, examples and assumptions make sense to everyone in your sample. If you are translating a questionnaire, translate it carefully and test the translated version too.
 
-## Part 4: Tips for better surveys
+## Tips for designing a better survey
 
 ### Design for your audience
 

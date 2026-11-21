@@ -10,6 +10,20 @@ serviceLink: /publication-support
 serviceLine: If you’d like a careful second reader to check that your discussion says no more, and no less, than your results support, that is part of the publication support we offer.
 draft: false
 publishDate: 2026-08-31
+metaTitle: "How to interpret research findings without overclaiming"
+description: "How to interpret research findings: context, effect size versus statistical significance, limitations, and the mistakes that most often mislead readers."
+keyword: "how to interpret research findings"
+answer: "Interpreting findings means working out what your results mean for your question and your field. Compare them with earlier research, judge practical importance as well as statistical significance by reporting effect sizes, state your limitations, avoid claiming cause from correlation, and report null and negative results as clearly as positive ones."
+faq:
+  - q: "What is the difference between statistical significance and practical importance?"
+    a: "A significant result is unlikely to be due to chance alone under the test’s assumptions. It says nothing about how large or important the effect is, so report the effect size and its confidence interval."
+  - q: "How do I avoid overclaiming in my discussion?"
+    a: "Keep claims in proportion to your design and data, describe correlations as associations, state your limitations, and label unexpected findings as exploratory."
+  - q: "Should I report negative or null results?"
+    a: "Yes. Reporting only the successes gives a distorted picture of what works. Report what didn’t work as clearly as what did."
+  - q: "Can regression rule out confounding?"
+    a: "Only for confounders you measured and included. It cannot account for ones you didn’t measure, so it can’t by itself rule out other explanations."
+related: [quantitative-data-analysis, structuring-a-research-paper-results-discussion-conclusion-references, qualitative-data-analysis]
 ---
 
 Imagine you have spent months, perhaps years, collecting your data. The analysis is finished. Now comes a step that is crucial and often rushed: working out what your findings actually mean.
@@ -18,7 +32,7 @@ This is where data becomes something people can use, in practice, in policy and 
 
 This guide covers what interpretation involves, the most common mistakes, and the habits that keep it accurate. The examples are illustrations, not real studies.
 
-## What interpreting your findings means
+## What does interpreting research findings mean?
 
 Interpreting your findings means working out what your results mean for your research question and for your field. It goes beyond reporting statistics or noting what is statistically significant. It takes critical thinking: recognising patterns, judging how much the results matter, and drawing conclusions you can defend.
 
@@ -54,7 +68,7 @@ Results are easier to understand and remember when they are part of a clear acco
 
 Use stories to illustrate your evidence, never to replace it. A vivid case that is typical of your data helps the reader. One that is chosen because it is striking, when most of your data says something different, misleads them.
 
-## The mistakes to avoid
+## Mistakes to avoid when interpreting findings
 
 ### Ignoring the wider context
 
@@ -85,6 +99,8 @@ A good story helps people care about your findings. But an anecdote or testimoni
 Research often emphasises positive results and passes over negative or null findings. That distorts the picture.
 
 **Example:** if a new teaching method improved results in three of ten schools and made no difference in the other seven, reporting only the three successes would badly mislead anyone deciding whether to adopt it. Report what didn’t work as clearly as what did.
+
+The statistical side of these mistakes is covered in [quantitative data analysis: best practice and common mistakes](/blog/quantitative-data-analysis), and writing them up in [structuring a research paper, part 2](/blog/structuring-a-research-paper-results-discussion-conclusion-references).
 
 ## Habits that keep your interpretation honest
 

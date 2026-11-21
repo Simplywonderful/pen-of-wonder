@@ -10,13 +10,27 @@ serviceLink: /publication-support
 serviceLine: If your reviews have just come back and you’d like help answering them point by point, that is part of the publication support we offer.
 draft: false
 publishDate: 2026-01-19
+metaTitle: "How to respond to reviewer comments on a manuscript"
+description: "What common reviewer comments really mean, how to write a point-by-point response, why peer review helps, and what a good journal cover letter does."
+keyword: "how to respond to reviewer comments"
+answer: "Read the reviews calmly and work out what each comment is really asking. Then answer every point in a response document that quotes the comment, gives your reply and states exactly what you changed, with page and line numbers. Where you disagree, explain why politely, with evidence or a reference."
+faq:
+  - q: "How do I respond to reviewer comments?"
+    a: "Create a response document that lists every comment, followed by your reply and the exact change you made, with page and line numbers. It shows you took the reviewers seriously and makes their second reading easier."
+  - q: "Can I disagree with a reviewer?"
+    a: "Yes. Engage with the comment, explain your reasoning politely and, where you can, support it with evidence or a reference. What reviewers object to is a point that has been ignored."
+  - q: "What should a journal cover letter include?"
+    a: "The title, the main finding and why it suits this journal, any limitation the editor might worry about and why the study is still sound, and the declarations the journal requires. Keep it to one page."
+  - q: "What if two reviewers say opposite things?"
+    a: "Look for the common thread. If one says the topic is too broad and another too narrow, the real problem is often that the scope is not stated clearly. Fix that, and explain how it answers both."
+related: [choosing-a-journal-and-submitting, structuring-a-research-paper-results-discussion-conclusion-references, the-researchers-mindset]
 ---
 
 You pressed submit, waited weeks, and the email finally arrives. You open the reviewers’ comments and they aren’t what you hoped. Some are helpful, some are vague, and one or two feel unfair. How you respond decides whether the paper moves forward.
 
 This guide covers three things that belong together: the reviewer comments you are most likely to see and how to answer them, why peer review is worth engaging with properly, and how a good cover letter sets up the whole process.
 
-## Part 1: Common reviewer comments and how to answer them
+## Common reviewer comments and how to answer them
 
 General advice says “be polite and address every point”. That’s true, but it doesn’t tell you what to do with a specific comment. Here are the comments I see most often, what they usually mean, and how to respond.
 
@@ -69,7 +83,7 @@ It is tempting to make quick changes and resubmit. Reviewers can tell when their
 
 Create a response document that lists every comment, followed by your reply and exactly what you changed (with page and line numbers). It shows the editor and reviewers that you took their time seriously, and it makes their second reading much easier.
 
-## Part 2: Why peer review is worth taking seriously
+## Why peer review is worth taking seriously
 
 Peer review can feel like a hurdle. It is more useful to see it as a free, expert reading of your work. I used to dread reviewer comments; now I treat them as a shortcut to a better paper.
 
@@ -93,7 +107,9 @@ Good reviewers don’t only critique the current paper; they point to gaps worth
 
 Work that has been through rigorous review carries more weight with readers. And every round of reviews teaches you something about how your field reads and judges research, which makes your next paper stronger.
 
-## Part 3: Why the cover letter matters
+Learning to take criticism well is also one of the lessons in [the researcher’s mindset](/blog/the-researchers-mindset).
+
+## Why the cover letter matters
 
 Many researchers treat the cover letter as a formality: introduce the paper, summarise it, confirm it hasn’t been published elsewhere. Those things are needed, but a good cover letter does more. It is your chance to make a short, clear case for the paper.
 

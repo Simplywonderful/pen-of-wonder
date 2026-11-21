@@ -10,13 +10,27 @@ serviceLink: /publication-support
 serviceLine: If your paper is drafted and you’d like a careful second reader on its results, discussion and references before you submit, we offer a free one-page review of your manuscript with the three changes we’d make first.
 draft: false
 publishDate: 2026-06-22
+metaTitle: "How to write results, discussion and conclusion"
+description: "How to present research results, interpret them without overclaiming, write a conclusion that adds something, and format references in APA, MLA and more."
+keyword: "how to write results and discussion"
+answer: "Report your results clearly in the results section, with labelled tables and figures, and keep interpretation for the discussion. In the discussion, compare your findings with earlier research, explain their implications in proportion to the evidence, and state the limitations. End with a conclusion that returns to your objectives, and check every reference."
+faq:
+  - q: "What is the difference between results and discussion?"
+    a: "The results section reports what you found. The discussion explains what it means: how it compares with earlier research, its implications and its limitations."
+  - q: "What should a research paper conclusion include?"
+    a: "A short summary of the problem, method and main findings, how they meet your objectives, what they contribute, practical recommendations and directions for future research."
+  - q: "What is the APA 7 rule for et al.?"
+    a: "For works with three or more authors, cite the first author’s name followed by et al. from the very first citation, for example (Smith et al., 2020)."
+  - q: "Which referencing style should I use?"
+    a: "The one your journal or university specifies. APA is common in the social sciences, MLA in the humanities, Chicago in history, and Harvard in many UK universities."
+related: [structuring-a-research-paper-introduction-literature-methods, interpreting-your-findings, referencing-and-plagiarism]
 ---
 
 This is the second half of my guide to structuring a research paper. [Part 1](/blog/structuring-a-research-paper-introduction-literature-methods) covered the overall shape of a paper, then the introduction, the literature review and the methodology. This part covers the rest: the results and discussion, the summary, conclusion and recommendations, and the references.
 
 As in part 1, the quoted passages are written as they might appear in a paper. The studies, authors and figures in them are invented for illustration, not real research to cite.
 
-## Results and discussion
+## How to write the results and discussion
 
 Some journals want results and discussion as separate sections; others combine them. Check your target journal’s author guidelines. Either way, the two jobs are different. The results say what you found. The discussion says what it means.
 
@@ -46,7 +60,9 @@ Some journals want results and discussion as separate sections; others combine t
 
 > “This study relied on self-reported data, which may be subject to bias. Future research could follow participants over time and use objective measures of social media use, which would give stronger evidence about the direction of the relationship.”
 
-## Summary, conclusion and recommendations
+My guide to [interpreting your findings without overclaiming](/blog/interpreting-your-findings) goes deeper into what belongs in the discussion.
+
+## How to write the conclusion and recommendations
 
 This section is your last chance to show the reader why your research matters. It summarises what you found, draws out its importance and points to what should happen next. Journals differ in what they call this section and how long they want it, so check the guidelines.
 
@@ -78,7 +94,7 @@ This section is your last chance to show the reader why your research matters. I
 
 > “Future research could follow adolescents over several years, compare specific platforms and include a wider range of demographic groups.”
 
-## References
+## How to get the reference list right
 
 The reference list is easy to treat as an afterthought, but it is far more than a list of sources. It shows the range and depth of your reading, gives credit to the work you built on, and lets readers check your evidence for themselves.
 
@@ -140,6 +156,8 @@ Citation styles are updated from time to time, so follow the current edition. Fo
 ### Double-check before you submit
 
 Before submission, go through your references one last time. Check that every entry is accurate and complete, that the list matches your in-text citations exactly, and that the formatting is consistent from the first entry to the last.
+
+For why referencing matters beyond formatting, see [referencing and plagiarism](/blog/referencing-and-plagiarism).
 
 ## In short
 

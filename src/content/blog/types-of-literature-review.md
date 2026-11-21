@@ -10,6 +10,20 @@ serviceLink: /publication-support
 serviceLine: If you’re preparing a review article for a journal and would like a careful second reader on its method and structure, that is part of the publication support we offer.
 draft: false
 publishDate: 2026-04-06
+metaTitle: "Types of literature review: 15 kinds explained"
+description: "What a literature review does, and a plain guide to fifteen types, from narrative and systematic reviews to scoping and umbrella reviews, with examples."
+keyword: "types of literature review"
+answer: "A literature review is a critical synthesis of earlier research on a topic. The main types include narrative, systematic, meta-analysis, scoping, critical, rapid, integrative, umbrella and mixed methods reviews. Choose by your question: a systematic review for a focused question, a scoping review to map a broad field, a rapid review when evidence is needed quickly."
+faq:
+  - q: "What is the difference between a systematic review and a literature review?"
+    a: "A systematic review is one type of literature review. It uses a method set out in advance, with predefined inclusion and exclusion criteria, so the search and selection are transparent and repeatable. A narrative review summarises the literature more flexibly."
+  - q: "What is the difference between a scoping review and a systematic review?"
+    a: "A scoping review maps what exists on a broad topic and where the gaps are, often without rating study quality. A systematic review answers a focused question and usually appraises each included study."
+  - q: "Is a meta-analysis the same as a systematic review?"
+    a: "No. A meta-analysis is a statistical method for pooling results across studies. It is usually carried out as part of a systematic review."
+  - q: "Which type of literature review should I use for a dissertation?"
+    a: "Most dissertation literature chapters are narrative, thematic or critical reviews built around the research question. Check what your department expects, and name the type accurately."
+related: [doing-a-literature-review, finding-and-judging-sources, structuring-a-research-paper-introduction-literature-methods]
 ---
 
 There is one step in a research project you can’t afford to skip or rush. Done badly, it can undermine everything that follows. That step is the literature review.
@@ -18,7 +32,7 @@ A literature review is a critical synthesis of the earlier research that bears o
 
 “Literature review” is also a family name. A narrative review and a meta-analysis are both literature reviews, but they answer different questions in very different ways. This guide covers what a review does for your research, then walks through fifteen types, with an example of each.
 
-## What a literature review does
+## What does a literature review do?
 
 ### It establishes context and significance
 
@@ -140,7 +154,7 @@ An annotated bibliography is not a review in the full sense, but it is often the
 
 **Example:** an annotated bibliography on environmental sustainability in urban planning might include policy papers and peer-reviewed studies, each with a short summary and a note on how useful it is.
 
-## How to choose
+## How to choose the right type of review
 
 Your research question, your objectives and your methods decide which type of review you need. A few questions help:
 
@@ -151,3 +165,5 @@ Your research question, your objectives and your methods decide which type of re
 - **Are you writing the literature section of a thesis or paper?** Most of these are narrative, thematic or critical reviews, built around your research question.
 
 Whatever you choose, name it accurately and follow its method. A review that calls itself systematic but doesn’t report its search, its criteria and how studies were selected will not survive peer review, and it shouldn’t.
+
+Once you know which type you need, my guide to [doing a literature review](/blog/doing-a-literature-review) covers the search, synthesis and write-up.

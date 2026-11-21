@@ -1,31 +1,69 @@
 ---
 import { render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Faq from "../../components/Faq.astro";
 import { getLivePosts, formatDate } from "../../lib/blog";
 import { site } from "../../data/site";
 
 export async function getStaticPaths() {
   const posts = await getLivePosts();
-  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, posts } }));
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+const { post, posts } = Astro.props;
+const { Content, headings } = await render(post);
 const d = post.data;
+const url = `${site.url}/blog/${post.id}`;
+
+// Contents list from the piece's own H2s, shown only when there are enough to be worth it.
+const contents = headings.filter((h) => h.depth === 2);
+// Read next: the related pieces that are already live, in the order given.
+const readNext = d.related.map((slug) => posts.find((p) => p.id === slug)).filter((p) => p !== undefined);
+
+const author =
+  d.author === site.owner
+    ? { "@type": "Person", "@id": `${site.url}/about#person`, name: site.owner, url: `${site.url}/about` }
+    : { "@type": "Person", name: d.author };
 
 const articleLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: d.title,
-  description: d.summary,
+  description: d.description,
+  abstract: d.answer,
+  keywords: d.keyword,
+  inLanguage: "en-GB",
   datePublished: d.publishDate.toISOString(),
-  author: d.author === site.owner ? { "@id": `${site.url}/about#person`, "@type": "Person", name: site.owner } : { "@type": "Person", name: d.author },
-  publisher: { "@type": "Organization", name: site.name },
-  mainEntityOfPage: `${site.url}/blog/${post.id}`,
+  dateModified: (d.updated ?? d.publishDate).toISOString(),
+  image: `${site.url}/og.png`,
+  author,
+  publisher: { "@type": "Organization", name: site.name, url: site.url },
+  mainEntityOfPage: url,
+  isPartOf: { "@type": "Blog", name: `${site.name}: blog`, url: `${site.url}/blog` },
+};
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+    { "@type": "ListItem", position: 2, name: "Blog", item: `${site.url}/blog` },
+    { "@type": "ListItem", position: 3, name: d.title, item: url },
+  ],
+};
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: d.faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
 };
 ---
 
-<BaseLayout title={`${d.title} | ${site.name}`} description={d.summary} ogType="article" jsonLd={[articleLd]}>
+<BaseLayout title={d.metaTitle} description={d.description} ogType="article" jsonLd={[articleLd, breadcrumbLd, faqLd]}>
   <article class="sheet pt-10 md:pt-16 lg:pt-20">
     <header>
       <p class="text-sm text-muted">
@@ -40,9 +78,59 @@ const articleLd = {
         Adapted from posts first shared on LinkedIn between {formatDate(d.sourceDates.first)} and {formatDate(d.sourceDates.last)}.
       </p>
     </header>
+
+    <section class="answer mt-10 max-w-[65ch]" aria-labelledby="answer-heading">
+      <h2 id="answer-heading" class="text-lg">The short answer</h2>
+      <p class="mt-2">{d.answer}</p>
+    </section>
+
+    {
+      contents.length >= 3 && (
+        <nav class="margin-note toc" aria-labelledby="contents-heading">
+          <h2 id="contents-heading" class="toc__heading">On this page</h2>
+          <ol>
+            {contents.map((h) => (
+              <li>
+                <a href={`#${h.slug}`}>{h.text}</a>
+              </li>
+            ))}
+            <li>
+              <a href="#questions-heading">Common questions</a>
+            </li>
+          </ol>
+        </nav>
+      )
+    }
+
     <div class="prose mt-10">
       <Content />
     </div>
+
+    <section class="mt-16 max-w-[65ch]" aria-labelledby="questions-heading">
+      <h2 id="questions-heading" class="text-2xl">Common questions</h2>
+      <div class="mt-4">
+        <Faq items={d.faq} />
+      </div>
+    </section>
+
+    {
+      readNext.length > 0 && (
+        <section class="mt-16 max-w-[65ch]" aria-labelledby="next-heading">
+          <h2 id="next-heading" class="text-2xl">Read next</h2>
+          <ul class="mt-4 border-t border-rule">
+            {readNext.map((p) => (
+              <li class="border-b border-rule py-4">
+                <a href={`/blog/${p.id}`} class="text-lg font-semibold">
+                  {p.data.title}
+                </a>
+                <p class="mt-1 text-muted">{p.data.summary}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
     <footer class="mt-12 max-w-[65ch] border-t border-rule-strong pt-6">
       <p>
         {d.serviceLine} <a href={d.serviceLink}>{
@@ -57,3 +145,46 @@ const articleLd = {
     </footer>
   </article>
 </BaseLayout>
+
+<style>
+  /* The short answer: the same pinned-note panel as the Pro tip asides. */
+  .answer {
+    padding: 1rem 1.25rem;
+    background: var(--color-panel);
+    border: 1px solid var(--color-rule);
+  }
+  /* Contents sit in the sheet's right margin on wide screens, like an editor's note. */
+  .toc__heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: normal;
+    color: var(--color-text);
+  }
+  .toc ol {
+    margin-top: 0.5rem;
+    padding-left: 1.25rem;
+    list-style: decimal;
+  }
+  .toc li + li {
+    margin-top: 0.375rem;
+  }
+  .toc li::marker {
+    font-family: var(--font-mono);
+    color: var(--color-muted);
+  }
+  .toc a {
+    color: var(--color-muted);
+  }
+  .toc a:hover {
+    color: var(--color-text);
+  }
+  @media (min-width: 64rem) {
+    .toc {
+      position: sticky;
+      top: 2rem;
+      margin-top: 0;
+      grid-row: 2 / span 3;
+    }
+  }
+</style>

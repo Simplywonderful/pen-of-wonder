@@ -10,17 +10,31 @@ serviceLink: /coaching
 serviceLine: If you’re a postgraduate student preparing to present your dissertation research, we offer one-to-one coaching. You build and give the talk; we help you shape it, rehearse it and prepare for questions.
 draft: false
 publishDate: 2026-12-21
+metaTitle: "How to give a good research presentation"
+description: "How to structure a research presentation, the mistakes that lose an audience, and practical habits for slides, timing, rehearsal and questions."
+keyword: "how to give a research presentation"
+answer: "A good research presentation is a short, clear story, not your paper read aloud. Open with something that draws people in, state your aim, keep methods simple, show results visually and explain what they mean. Keep slides uncluttered, rehearse against the clock, speak to the audience rather than the screen, and leave time for questions."
+faq:
+  - q: "How should I structure a research presentation?"
+    a: "Introduction, background, methods, results, discussion and conclusion, adjusted to your time and audience, with one clear takeaway at the end."
+  - q: "How many slides should a 20-minute presentation have?"
+    a: "There is no fixed number. Plan time per section instead, for example 5 minutes for introduction and background, 10 for methods and results, and 5 for discussion and conclusion."
+  - q: "How much text should go on a slide?"
+    a: "Very little: a few key words or one clear visual. People can’t read a paragraph and listen to you at the same time."
+  - q: "What if I can’t answer a question?"
+    a: "Say so honestly and offer to follow up. Preparing short answers to likely questions, and a backup slide or two, makes this rarer."
+related: [communicating-research-beyond-your-field, the-researchers-mindset, clear-concise-research-writing]
 ---
 
 In research, being able to communicate your findings matters as much as the findings themselves. A good presentation engages your audience, gets your results across and stays with people after you have finished. Yet many researchers struggle to turn months of detailed work into a short, compelling talk.
 
 This guide covers how to structure a research presentation, the mistakes that most often lose an audience, and the habits that make a talk work. The example talk running through it is about a fictional study of brain plasticity after stroke; the study and its findings are invented for illustration.
 
-## What a research presentation is
+## What is a research presentation?
 
 A research presentation is a structured summary of your research: your objectives, methods, findings and conclusions, delivered to an audience. A paper can be long and detailed. A presentation has to be brief, clear and visual. Your job is to get the essence of your study across, accurately and persuasively, in the time you have.
 
-## Part 1: Structuring your presentation
+## How to structure a research presentation
 
 ### Open with something that draws people in
 
@@ -60,7 +74,7 @@ Summarise your key points and leave the audience with one clear takeaway, or a q
 
 A common structure for the whole talk is: introduction, background, methods, results, discussion and conclusion. Adjust it to fit your time and your audience.
 
-## Part 2: Mistakes to avoid
+## Presentation mistakes to avoid
 
 ### Overloading your slides
 
@@ -92,7 +106,7 @@ Poor timing leads to rushed endings and unfinished talks, and running over is on
 
 **Instead:** rehearse several times against the clock, and plan a time for each section. For a 20-minute talk, you might allow 5 minutes for the introduction and background, 10 for methods and results, and 5 for the discussion and conclusion.
 
-## Part 3: Habits that make a talk work
+## Habits that make a talk work
 
 ### Break complex ideas into steps
 
@@ -115,6 +129,8 @@ Think about the questions you are most likely to be asked, especially the diffic
 ### End by recapping
 
 Restate your main findings and the one thing you want people to remember. Close with a question that keeps them thinking after the talk is over.
+
+For explaining research to people outside your field, see [communicating research to people outside your field](/blog/communicating-research-beyond-your-field).
 
 ## In short
 

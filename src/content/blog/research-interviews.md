@@ -10,19 +10,33 @@ serviceLink: /coaching
 serviceLine: If you’re analysing your own interview data in NVivo, we offer one-to-one tutoring. You do the coding and the interpretation; we show you how to use the software and how to explain your process.
 draft: false
 publishDate: 2026-09-14
+metaTitle: "Research interviews: planning, running and mistakes"
+description: "How to plan and run research interviews: structured versus semi-structured formats, consent and ethics, and the mistakes that weaken interview data."
+keyword: "how to conduct research interviews"
+answer: "Research interviews collect qualitative data through conversation, giving depth that surveys cannot. Before you start, settle your goals, choose participants who can speak to your question, pick a structured, semi-structured or unstructured format, and plan consent. Then pilot your guide, build trust, avoid leading questions and reflect on your own position."
+faq:
+  - q: "What are the types of research interview?"
+    a: "Structured interviews use fixed questions; semi-structured interviews use a guide but let you follow up, and are the most common in qualitative research; unstructured interviews are open and conversational."
+  - q: "How many interviews do I need?"
+    a: "It depends on your question and approach. Qualitative studies aim for enough range and depth to answer the question rather than statistical representativeness; explain how you decided."
+  - q: "Should I pilot my interview guide?"
+    a: "Yes. One or two pilot interviews show up unclear or leading questions and practical problems before they affect your real data."
+  - q: "What is positionality in interviews?"
+    a: "Your own background, views and experiences, which shape how you run interviews and interpret what you hear. Reflect on it throughout the research."
+related: [qualitative-data-analysis, research-ethics-in-plain-english, surveys-and-questionnaires]
 ---
 
 Imagine sitting across from a research participant and having a deep, honest conversation. They tell you things you hadn’t thought to ask about: their ideas, feelings and experiences, in their own words. That is what makes interviews such a useful research method. They give you access to the complexity of people’s behaviour, beliefs and lived experience.
 
 This guide covers what interviews do well, what to consider before you start, and the mistakes to avoid. The examples are illustrations, not real studies.
 
-## The basics
+## What is a research interview?
 
 **Qualitative data collection** gathers non-numerical data to understand the depth and richness of human experience. It focuses on people’s experiences, the meanings they give them and how they interpret them.
 
 **Interviews** collect qualitative data through direct conversation with participants, whether tightly structured or more open. They let you explore a subject in depth and hear the detail of people’s accounts.
 
-## Part 1: What interviews do well
+## What interviews do well
 
 ### Depth and richness
 
@@ -46,7 +60,7 @@ Interviews with people carry ethical responsibilities throughout. You need infor
 
 **Example:** in a study with trauma survivors, you would need to take particular care to avoid causing distress, to let participants pause or stop at any time, and to have support information ready to share.
 
-## Part 2: What to settle before you start
+## What to settle before you start interviewing
 
 ### Your goals and design
 
@@ -78,7 +92,7 @@ Choose the format that fits your research goals and your participants.
 
 Before the interview, participants should know the aims of the research, what taking part involves, any risks and benefits, how their data will be stored and used, and that they can withdraw. Get their consent, including consent to record if you plan to, and get ethics approval before you start. Plan how you will respond if a conversation touches on something distressing.
 
-## Part 3: Mistakes to avoid
+## Interview mistakes to avoid
 
 ### Skipping the pilot
 
@@ -109,6 +123,8 @@ Questions that suggest the answer you expect distort your data.
 Your own background, views and experiences, your positionality, shape how you run interviews and how you interpret what you hear. Reflecting on it throughout the research reduces the risk of misunderstanding or misrepresenting participants.
 
 **Example:** before interviewing people about LGBTQ+ identity, consider how your own identity and assumptions might affect what participants are willing to tell you and how you read their answers.
+
+Once your interviews are done, see [qualitative data analysis](/blog/qualitative-data-analysis) for how to analyse them.
 
 ## In short
 

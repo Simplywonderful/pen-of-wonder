@@ -10,13 +10,27 @@ serviceLink: /coaching
 serviceLine: If you’re a postgraduate student planning the sample for your dissertation, we offer one-to-one coaching. You make the choices; we help you weigh them and explain them in your methodology.
 draft: false
 publishDate: 2027-01-04
+metaTitle: "Sampling techniques in research and how to choose"
+description: "Probability and non-probability sampling explained, from simple random, stratified and cluster sampling to purposive and snowball, and how to choose."
+keyword: "sampling techniques in research"
+answer: "Sampling is how you choose the people or cases you study from a wider population. Probability techniques, such as simple random, stratified, cluster and systematic sampling, let you generalise statistically. Non-probability techniques, such as purposive, convenience, quota and snowball sampling, are more practical but limit generalisation. Choose by your objectives, population and resources."
+faq:
+  - q: "What is the difference between probability and non-probability sampling?"
+    a: "In probability sampling every member of the population has a known chance of selection, which supports statistical generalisation. In non-probability sampling selection isn’t random; it is often more practical and is the norm in qualitative research."
+  - q: "When should I use stratified sampling?"
+    a: "When the population contains subgroups that matter for your question and you need each one represented, such as age groups or regions."
+  - q: "What sampling method is used in qualitative research?"
+    a: "Usually purposive sampling, choosing participants who can best inform the question, and sometimes snowball sampling for hard-to-reach groups."
+  - q: "How big should my sample be?"
+    a: "In quantitative research, use a power analysis or sample size calculation. In qualitative research, decide how much data is enough for your question and approach, and explain how you decided."
+related: [surveys-and-questionnaires, choosing-a-research-design, research-interviews]
 ---
 
 You can rarely study everyone you are interested in. Instead, you study a sample, and use it to say something about the wider group. How you choose that sample decides how far your findings can be trusted, and how far they can be applied beyond the people you studied.
 
 This guide covers the key terms, the most common sampling techniques and how to choose between them.
 
-## The key terms
+## What is sampling in research?
 
 - **Population:** the whole group you want to draw conclusions about, such as all nursing students in Nigeria, or all small businesses in one city.
 - **Sample:** the people, things or events you actually study, selected from that population.
@@ -26,7 +40,7 @@ This guide covers the key terms, the most common sampling techniques and how to 
 
 Sampling techniques fall into two broad families. In **probability sampling**, every member of the population has a known chance of being selected, which lets you generalise statistically to the population. In **non-probability sampling**, selection isn’t random; it is often more practical, and it is the norm in qualitative research, but it limits statistical generalisation.
 
-## Probability sampling techniques
+## What are the probability sampling techniques?
 
 ### Simple random sampling
 
@@ -52,7 +66,7 @@ You choose a random starting point on a list, then select every *n*th member aft
 
 It is easier to carry out than simple random sampling, and usually gives similar results. The risk is a hidden pattern in the list: if the list repeats in a cycle that matches your interval, your sample can be badly skewed.
 
-## Non-probability sampling techniques
+## What are the non-probability sampling techniques?
 
 ### Snowball sampling
 
@@ -68,7 +82,7 @@ Three other non-probability techniques are widely used:
 - **Convenience sampling:** recruiting whoever is easiest to reach, such as students in your own department. It is quick and cheap, but the most open to bias.
 - **Quota sampling:** recruiting until you have set numbers of people with particular characteristics, without random selection.
 
-## How to choose
+## How to choose a sampling technique
 
 ### Know your population
 
@@ -93,6 +107,8 @@ Some ways of collecting data go more naturally with some sampling techniques. A 
 ### Decide how many
 
 Sample size matters as much as technique. In quantitative research, a power analysis or sample size calculation tells you how many participants you need. In qualitative research, you decide how much data is enough for your question and approach, and explain how you decided.
+
+Sampling for surveys is covered further in [surveys and questionnaires](/blog/surveys-and-questionnaires), and for interviews in [research interviews](/blog/research-interviews).
 
 ## In short
 

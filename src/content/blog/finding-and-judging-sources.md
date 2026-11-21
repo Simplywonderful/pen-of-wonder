@@ -10,6 +10,20 @@ serviceLink: /publication-support
 serviceLine: If you’d like a second pair of eyes on the sources and literature review in your manuscript, we can help.
 draft: false
 publishDate: 2026-01-05
+metaTitle: "How to find and judge reliable sources for research"
+description: "Six lessons on searching beyond Google, reading papers efficiently and deciding which sources are credible enough to cite in your research."
+keyword: "how to find reliable sources for research"
+answer: "Start by defining exactly what you are looking for, then search beyond Google: Google Scholar, discipline databases such as PubMed, and your library’s databases. Skim abstracts and conclusions to sort papers quickly, read closely only the ones that matter, and judge every source by who wrote it, where it was published and when."
+faq:
+  - q: "Is Google Scholar reliable for academic research?"
+    a: "It is a good place to start, but it also indexes theses, books, abstracts and other material that has not been peer-reviewed. Check each source before you rely on it."
+  - q: "How do I know if a source is credible?"
+    a: "Ask who wrote it and what makes them credible on the topic, where it was published and whether that journal or publisher is reputable, and when it was written, since newer evidence may have replaced it."
+  - q: "Do I have to read every paper in full?"
+    a: "No. Skim the title, abstract, headings and conclusion to judge relevance, scan for the figures and terms you need, and save close reading for the papers that turn out to matter most."
+  - q: "When is a literature review finished?"
+    a: "Not until you submit. Set up search alerts for your key terms so new studies reach you while you work, and update the review as new evidence appears."
+related: [doing-a-literature-review, types-of-literature-review, referencing-and-plagiarism]
 ---
 
 In 2025 I shared thirty lessons from my years as a researcher, one at a time. This piece brings together six of them, all about the same thing: finding the right sources, reading them well, and knowing which ones to trust.
@@ -106,3 +120,5 @@ Your conclusions are only as strong as the sources they’re built on. Credible 
 ## What ties these together
 
 Every one of these lessons comes back to the same idea: good research starts long before you write. Know what you’re looking for, search beyond the obvious, read strategically, keep your reading current, and be strict about what earns a place in your reference list.
+
+When you are ready to turn your reading into a review, my guide to [doing a literature review](/blog/doing-a-literature-review) walks through the process from search to synthesis, and [referencing and plagiarism](/blog/referencing-and-plagiarism) covers giving your sources proper credit.

@@ -10,13 +10,27 @@ serviceLink: /publication-support
 serviceLine: If you’re writing up an experiment or trial for a journal and would like a careful second reader on how the design and analysis are reported, that is part of the publication support we offer.
 draft: false
 publishDate: 2026-11-23
+metaTitle: "Experimental research design: key considerations"
+description: "What experimental research is, how randomisation, power analysis and blinding protect your results, and good practice from pilot testing to reporting."
+keyword: "experimental research design"
+answer: "Experimental research tests cause and effect by changing an independent variable and measuring the effect on a dependent variable under controlled conditions. Make it trustworthy with testable hypotheses, random assignment, a power analysis for sample size, informed consent, a pilot, blinding where possible, and complete, transparent reporting."
+faq:
+  - q: "What is experimental research?"
+    a: "Research that investigates cause and effect by deliberately changing one or more independent variables, holding other influences constant and measuring the effect on dependent variables."
+  - q: "Why is random assignment important?"
+    a: "It spreads differences between participants, including ones you haven’t measured, by chance across the groups, so any difference in outcomes is more likely to come from your manipulation."
+  - q: "What is a power analysis?"
+    a: "A calculation, done before the study, of the sample size you need to detect the smallest effect you care about, given your significance level and the power you want."
+  - q: "What is the difference between single-blind and double-blind?"
+    a: "In a single-blind study, participants don’t know their condition. In a double-blind study, neither participants nor the researchers giving the treatment know."
+related: [choosing-a-research-design, quantitative-data-analysis, research-questions-and-hypotheses]
 ---
 
 Experiments are the foundation of much scientific inquiry. They let you test hypotheses, identify cause-and-effect relationships and build knowledge in your field. But an experiment is only as good as its design, and its conclusions are only as good as the analysis behind them.
 
 This guide covers what experimental research is, the key decisions to make before you start, and the practices that make an experiment’s results trustworthy. The examples are illustrations, not real studies.
 
-## The basics
+## What is experimental research?
 
 ### Experimental research
 
@@ -32,7 +46,7 @@ The usual tools are descriptive statistics (such as means and standard deviation
 
 **Example:** in the caffeine study, you might calculate the mean test score for each caffeine condition, test whether the differences between conditions are statistically significant, and report how big they are.
 
-## Part 1: Key considerations
+## Key considerations in experimental research
 
 ### Design and hypotheses
 
@@ -64,7 +78,9 @@ Use measures and instruments that are reliable and valid for what you want to me
 
 **Example:** to compare learning outcomes between two teaching methods, you might use a t-test; with three or more methods, analysis of variance (ANOVA).
 
-## Part 2: Good practice
+Writing clear hypotheses is covered in [research questions and hypotheses](/blog/research-questions-and-hypotheses), and the ethics of working with participants in [research ethics in plain English](/blog/research-ethics-in-plain-english).
+
+## Good practice in experimental research
 
 ### Pilot your procedures
 

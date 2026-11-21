@@ -10,13 +10,27 @@ serviceLink: /coaching
 serviceLine: If you’re a postgraduate student shaping the questions for your dissertation, we offer one-to-one coaching. You write the questions and hypotheses; we help you test them, sharpen them and check they fit your design.
 draft: false
 publishDate: 2026-07-06
+metaTitle: "Research questions and hypotheses: how to write them"
+description: "How to write a specific, answerable research question, turn it into a testable hypothesis, and keep the two aligned through your study, with examples."
+keyword: "how to write a research question and hypothesis"
+answer: "A good research question names the variables, population and setting precisely enough that you can see what data would answer it. A hypothesis is a clear, testable prediction that follows from the question. Fix your hypotheses before you see the data, and keep questions and hypotheses aligned so they tell one story."
+faq:
+  - q: "What makes a good research question?"
+    a: "It is specific, unambiguous and feasible: it names the variables, the population and the setting, and you can see what data would answer it."
+  - q: "What is the difference between a research question and a hypothesis?"
+    a: "A research question asks what you want to find out. A hypothesis is a testable prediction of the answer, usually about the relationship between variables."
+  - q: "Do qualitative studies need a hypothesis?"
+    a: "Usually not. Qualitative research mostly works from open research questions, and some approaches, such as grounded theory, generate hypotheses from the data rather than test them."
+  - q: "What is HARKing?"
+    a: "Hypothesising after the results are known: changing a hypothesis to fit the results and presenting it as if it had been predicted. Report new ideas as exploratory instead."
+related: [writing-a-research-proposal, asking-better-questions-and-planning, choosing-a-research-design]
 ---
 
 Most research projects begin with something that looks simple: a question. That question then becomes the basis of the whole study. It decides what you read, what data you collect, how you analyse it and what you can claim at the end.
 
 This guide covers how to write a good research question, how to develop a hypothesis from it, and how the two should fit together. The examples are illustrations I have written for this guide, not real studies.
 
-## Part 1: Research questions
+## How to write a good research question
 
 A research question is more than a query. It sets the goal, the scope and the direction of your study. A good one is focused enough to answer, and interesting enough to be worth answering.
 
@@ -58,7 +72,9 @@ Not every question needs to predict an answer. Open-ended questions, especially 
 
 Your research question is the ground your hypotheses grow from. Don’t narrow the question too early just to fit a hypothesis you already have in mind. Get the question right first.
 
-## Part 2: Hypotheses
+Lesson 6 in [asking better questions and planning the work](/blog/asking-better-questions-and-planning) shows how I narrow a question down in practice.
+
+## How to write a research hypothesis
 
 A hypothesis is not a wild guess, or even simply an educated one. It is a clear, testable statement of the relationship you expect to find between variables. It is the core of the investigation in most quantitative studies, and it sets up how you will test that relationship.
 
@@ -96,7 +112,7 @@ A hypothesis is only testable if you can measure its variables. Check that your 
 
 A good hypothesis is specific enough to test and general enough to matter. Too narrow, and the result tells you little beyond your own sample. Too broad, and you can’t design a test that would show it wrong.
 
-## Part 3: How questions and hypotheses fit together
+## How research questions and hypotheses fit together
 
 ### Questions come first
 
