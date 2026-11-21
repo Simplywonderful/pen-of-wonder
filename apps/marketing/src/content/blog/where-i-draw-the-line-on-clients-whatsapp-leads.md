@@ -1,6 +1,8 @@
 ---
 title: "Where I Draw the Line Between Advising on Leads and Running Them"
+seoTitle: "Advising on Leads vs Running Them: Where I Draw the Line"
 summary: "I advise clients on how leads should be handled: how fast to reply, what to say first, how to follow up and what a closing process looks like, and I keep asking how it's going. What I don't do is run it. That keeps my judgment clear, because I judge the ad on what I control."
+description: "Should your ads specialist manage your WhatsApp leads? Where I draw the line between advising on lead handling and running it, and why."
 publishDate: 2026-10-16
 topics: ["Client fit", "Lead management"]
 draft: false

@@ -50,7 +50,7 @@ Meta Ads Manager has six campaign objectives: Awareness, Traffic, Engagement, Le
 
 For most coaches and course creators, the choice is between **Leads** and **Sales**. If people book a call or message you before they pay, use Leads. If they can buy a course on your website, use Sales, with the Meta pixel installed so Meta can see the purchases.
 
-The common mistake is choosing Engagement, or [boosting a post](/blog/boosting-a-post-vs-running-a-campaign), because the results look good. Meta's own description says Engagement finds people likely to interact with your ad or Page. That's what you'll get: people who interact, not people who pay.
+The common mistake is choosing Engagement, or [boosting a post](/blog/boosting-vs-running-a-real-meta-campaign), because the results look good. Meta's own description says Engagement finds people likely to interact with your ad or Page. That's what you'll get: people who interact, not people who pay.
 
 ## Where should the ad send people?
 
@@ -64,7 +64,7 @@ Whichever you choose, don't send ad traffic to your homepage. If you need a page
 
 ## How many creatives should you launch with?
 
-Launch with three to five images and three to five short videos, each with a few headline and copy variations. That's the floor, not the target.
+Launch with three to five images and three to five short videos, each with a few headline and copy variations. That's the floor, not the target; on my own ads [I run at least twenty](/blog/why-you-need-twenty-ad-creatives-not-three).
 
 The reason is simple: you don't know in advance which message will land. One creative gives Meta nothing to compare. Several give it room to find the version your audience responds to. Once the campaign is running, keep adding new angles so it always has something fresh to test.
 
@@ -86,6 +86,8 @@ If your leads come through WhatsApp, ask every new contact where they saw you, a
 Wait about a week. Meta says an ad set usually leaves its learning phase after about 50 results in the week after its last significant edit. During that time results swing up and down, and costs are usually higher.
 
 Every significant edit restarts the clock. Changing the budget sharply, swapping the creative or narrowing the audience all count. So set the campaign up carefully, then leave it alone for seven days unless something is clearly broken.
+
+I explain my own rule of thumb in [How long should you let a Meta ad run before judging it?](/blog/how-long-to-let-a-meta-ad-run-before-judging-it)
 
 If you can't afford enough results in a week to get out of learning, Meta will mark the ad set "Learning limited". That's a sign to combine ad sets or raise the budget, not to keep editing.
 

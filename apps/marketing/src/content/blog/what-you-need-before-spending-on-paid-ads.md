@@ -1,6 +1,7 @@
 ---
 title: "What You Need in Place Before You Spend a Naira on Paid Ads"
 summary: "Four things should be in place before you run paid ads: an offer already sold to at least five people who have the problem, three to five fliers and three to five videos with several copy variations, a way to reply the moment someone shows interest, and a way to close. If you can fix only one this week, fix how fast you reply."
+description: "Four things to have before you spend on paid ads: a proven offer, enough creatives and copy, an instant reply system and a way to close."
 publishDate: 2026-10-14
 topics: ["Paid ads strategy", "Campaign setup"]
 draft: false

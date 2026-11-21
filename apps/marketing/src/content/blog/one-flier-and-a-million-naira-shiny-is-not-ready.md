@@ -1,6 +1,8 @@
 ---
 title: "One Flier and a ₦1 Million Budget: Shiny Is Not the Same as Ready"
+seoTitle: "One Flier and a ₦1 Million Budget: Shiny Isn't Ready"
 summary: "At a ₦1 million budget the ad isn't trial and error; it has to convert. A plan with one flier doesn't support that, so more creatives had to be made before any ad money moved. The wider lesson: explain what will work, but start by asking what the client expects."
+description: "A friend wanted to run ₦1 million of ads with one flier. Why one creative can't carry a large budget, and how I explain what will work."
 publishDate: 2026-10-12
 topics: ["Ad creative", "Client fit"]
 draft: false

@@ -2,7 +2,7 @@
 title: "What Is a Good Cost per Lead? How to Set Your Own Target"
 summary: "A good cost per lead is one your business can afford, and you can work it out yourself: take what a new client is worth to you, multiply by the share of leads who become clients, then decide how much of that you're willing to spend to win one."
 description: "What is a good cost per lead? Work out your own target from client value and close rate, with a worked example, instead of relying on industry averages."
-topics: ["Measurement", "Budgets"]
+topics: ["Measurement", "Budgeting"]
 draft: true
 questions:
   - q: "How do I calculate my maximum cost per lead?"
@@ -92,6 +92,6 @@ If your cost per lead is above your target, check these before cutting the budge
 1. **Is the offer clear?** Vague ads get clicks from the curious and leads from no one.
 2. **Is the landing page or form doing its job?** Many "expensive lead" problems are really page problems. See [Why your ads get clicks but no leads](/blog/why-your-ads-get-clicks-but-no-leads).
 3. **Are you testing enough creative?** One ad gives the system nothing to compare.
-4. **Are you replying fast?** A faster reply doesn't change cost per lead, but it raises your close rate, which raises what each lead is worth.
+4. **Are you replying fast?** ([How to reply to a new lead from your ads](/blog/how-to-reply-to-a-new-lead-from-whatsapp-ads).) A faster reply doesn't change cost per lead, but it raises your close rate, which raises what each lead is worth.
 
 The last one is the cheapest fix of all. A higher close rate makes every lead you've already paid for more valuable.

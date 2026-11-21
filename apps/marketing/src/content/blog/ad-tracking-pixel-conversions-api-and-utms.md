@@ -3,7 +3,7 @@ title: "Ad Tracking for Small Businesses: Pixel, Conversions API and UTMs"
 seoTitle: "Ad Tracking Explained: Pixel, Conversions API and UTMs"
 summary: "To know which ad brought each lead, use three tools together: the Meta pixel to record what people do on your website, the Conversions API to send the same events from your server, and UTM tags so your own analytics can name the campaign behind every visit."
 description: "How to track which ad brought each lead: the Meta pixel, the Conversions API and UTM tags explained, with a naming system and a test checklist."
-topics: ["Tracking", "Measurement"]
+topics: ["Campaign tracking", "Measurement"]
 draft: true
 questions:
   - q: "What is the difference between the Meta pixel and the Conversions API?"

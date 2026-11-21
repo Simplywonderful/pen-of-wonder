@@ -2,7 +2,7 @@
 title: "Why Your Ads Get Clicks but No Leads"
 summary: "When ads get clicks but no leads, the problem is usually after the click: a page that doesn't match the ad, a form that asks too much, a slow page, the wrong objective, or broken tracking. Check them in that order before you change the ad."
 description: "Ads getting clicks but no leads? Check five things after the click, in order, before you rewrite the ad: page, form, speed, objective and tracking."
-topics: ["Landing pages", "Troubleshooting"]
+topics: ["Landing pages", "Campaign diagnostics"]
 draft: true
 questions:
   - q: "Why do my Facebook ads get clicks but no conversions?"
@@ -50,7 +50,7 @@ Test your landing page on your own phone, on mobile data, not on your office Wi-
 
 If the campaign uses the **Traffic** objective, Meta is doing exactly what you asked: finding people likely to click. Meta describes Traffic as sending people to a destination such as your website. It doesn't promise they'll do anything once they get there.
 
-If you want leads, use the **Leads** objective, or **Sales** if people buy on your site. Then Meta looks for people likely to take that action, not just people likely to tap.
+If you want leads, use the **Leads** objective, or **Sales** if people buy on your site. I go through [a real first campaign with the wrong objective](/blog/why-your-first-meta-ads-campaign-isnt-getting-sign-ups) step by step. Then Meta looks for people likely to take that action, not just people likely to tap.
 
 ## 5. Are the leads arriving but not being counted?
 
