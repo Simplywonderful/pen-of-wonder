@@ -157,6 +157,7 @@ slop-check (17 Oct 2026): HIGH 0. WARNs kept on purpose:
 - **"Think. Check. Submit." (triad)** in the G23 blog guide is the real name of the publishing-industry checklist it links to, not a slogan.
 - **"State-of-the-art" (slop-word)** in the G7 blog guide is the established name of a review type (Grant and Booth, 2009), not marketing copy.
 - **Eyebrow labels:** two on the whole site, "Where to start" above the contents list on Home and "What I do and don't do" on the Coaching box.
+- **Blog post blocks (21 Nov 2026):** "The short answer" uses the same Cream panel and hairline border as the Pro tip asides; "On this page" sits in the sheet's right margin on wide screens (sticky) and below the answer on phones, with mono list numbers; "Common questions" reuses the site FAQ component; "Read next" is a plain ruled list, no cards. "On this page" is a navigation heading, not an eyebrow label. The class is `.toc`, because Tailwind's `contents` utility sets `display: contents`.
 
 ## Decisions confirmed by the owner (17 Oct 2026)
 
