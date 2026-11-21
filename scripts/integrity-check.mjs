@@ -78,7 +78,8 @@ function scan(paths, strict) {
       .split(/\r?\n/)
       .forEach((line, i) => {
         const where = `${relative(root, file)}:${i + 1}`;
-        const lower = line.toLowerCase();
+        // Meta's Business Help Centre is a source blog posts cite, not a social link, so it's allowed.
+        const lower = line.toLowerCase().replaceAll("facebook.com/business/help/", "");
         for (const phrase of banned) if (lower.includes(phrase)) hits.push(`${where}  banned phrase "${phrase}"`);
         if (line.includes(EM_DASH)) hits.push(`${where}  em dash`);
         // Exclamation marks in prose only: skip code operators like !== and !value.

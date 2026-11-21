@@ -4,11 +4,16 @@ import Layout from "@pow/ui/Layout.astro";
 import HoldingPage from "@pow/ui/HoldingPage.astro";
 import { world } from "@pow/config/worlds";
 import { worldServiceLd } from "@pow/config/structured";
+import { blogIsOn, formatDate, getPosts } from "@pow/ui/blog";
 
 const w = world("publishing");
 const h = w.holding!;
+const on = await blogIsOn("publishing");
+const posts = on
+  ? (await getPosts()).slice(0, 3).map((p) => ({ title: p.data.title, href: `/blog/${p.id}`, date: formatDate(p.data.publishDate) }))
+  : [];
 ---
 
-<Layout world="publishing" title={`${w.name}: opening soon`} description={`${h.headline} ${h.services.join(", ")}. Opening soon; message us on WhatsApp.`} jsonLd={[worldServiceLd("publishing", h.services)]} note="Opening soon">
-  <HoldingPage world="publishing" />
+<Layout world="publishing" title={`${w.name}: opening soon`} description={`${h.headline} ${h.services.join(", ")}. Opening soon; message us on WhatsApp.`} jsonLd={[worldServiceLd("publishing", h.services)]} note="Opening soon" localNav={on ? [{ href: "/blog", label: "Blog" }] : []} rss={on}>
+  <HoldingPage world="publishing" posts={posts} />
 </Layout>

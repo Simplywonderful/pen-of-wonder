@@ -1,0 +1,19 @@
+---
+// The post list at /blog. Writing is a holding site, so the page is only built once the blog has
+// enough live posts (blogIsOn); until then /blog doesn't exist and nothing links to it.
+import "../styles/global.css";
+import Layout from "@pow/ui/Layout.astro";
+import BlogIndex from "@pow/ui/BlogIndex.astro";
+import { blogs } from "@pow/config/blogs";
+import { blogIsOn, getPosts } from "@pow/ui/blog";
+
+export async function getStaticPaths() {
+  return (await blogIsOn("writing")) ? [{ params: { blog: "blog" } }] : [];
+}
+
+const posts = await getPosts();
+---
+
+<Layout world="writing" title={blogs.writing.metaTitle} description={blogs.writing.metaDescription} localNav={[{ href: "/blog", label: "Blog" }]} rss>
+  <BlogIndex world="writing" posts={posts} />
+</Layout>

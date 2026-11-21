@@ -13,7 +13,7 @@ import { worldServiceLd } from "@pow/config/structured";
 import { liveServices, adSpendLine } from "../data/services";
 import { steps } from "../data/process";
 import { questions } from "../data/faq";
-import { getLivePosts, formatDate } from "../lib/blog";
+import { getLivePosts, formatDate } from "@pow/ui/blog";
 import HeroFigure from "@pow/ui/HeroFigure.astro";
 import heroDesk from "../assets/hero-desk.jpg";
 
@@ -130,7 +130,7 @@ const homeQuestions = questions.filter((q) => q.home);
             <li>
               <a class="posts__title" href={`/blog/${p.id}`}>{p.data.title}</a>
               <span class="posts__meta">
-                By Wonderful Adebagbo, founder · <time datetime={p.data.publishDate.toISOString()}>{formatDate(p.data.publishDate)}</time>
+                By Wonderful Adebagbo, founder · <time datetime={p.data.publishDate?.toISOString()}>{formatDate(p.data.publishDate)}</time>
               </span>
             </li>
           ))}

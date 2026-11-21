@@ -189,10 +189,13 @@ export function worldOrigin(id: WorldId, mode: Mode = defaultMode): string {
   return mode === "local" ? `http://localhost:${w.port}` : `https://${domainLive ? w.host : w.interimHost}`;
 }
 
-/** A full URL to a page in a world. A `soon` world only has its holding page, so every path goes home. */
+/**
+ * A full URL to a page in a world. A `soon` world has only its holding page and its blog, so every
+ * other path goes home.
+ */
 export function worldUrl(id: WorldId, path = "/", mode: Mode = defaultMode): string {
   const w = world(id);
-  const target = w.status === "soon" ? "/" : path;
+  const target = w.status === "soon" && !path.startsWith("/blog") ? "/" : path;
   const url = new URL(target, worldOrigin(id, mode)).href;
   return target === "/" ? url.replace(/\/$/, "") : url;
 }

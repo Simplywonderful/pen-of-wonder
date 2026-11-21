@@ -11,8 +11,10 @@ interface Props {
   world: WorldId;
   /** The world's approved photograph of its work, if it has one. */
   image?: { src: ImageMetadata; alt: string };
+  /** The latest posts, once the world's blog is switched on (packages/ui/blog.ts, blogIsOn). */
+  posts?: { title: string; href: string; date: string }[];
 }
-const { world: id, image } = Astro.props;
+const { world: id, image, posts = [] } = Astro.props;
 const w = getWorld(id);
 const h = w.holding;
 if (!h) throw new Error(`${id} has no holding copy in worlds.ts`);
@@ -56,6 +58,23 @@ const boundary = "We don't write or edit academic or assessed work. For research
   <p class="holding__email">
     Prefer email? <a href={`${worldUrl("main", "/contact")}?world=${id}`}>Send us a message</a>.
   </p>
+
+  {
+    posts.length > 0 && (
+      <section aria-labelledby="holding-blog">
+        <h2 id="holding-blog" class="holding__h2">From the blog</h2>
+        <ul class="holding__services">
+          {posts.map((p) => (
+            <li>
+              <a href={p.href}>{p.title}</a>
+              <span class="holding__date">{p.date}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-3"><a href="/blog">All posts</a></p>
+      </section>
+    )
+  }
 
   {
     id === "writing" && (
@@ -138,6 +157,11 @@ const boundary = "We don't write or edit academic or assessed work. For research
   .holding__services li {
     padding-block: 0.75rem;
     border-bottom: 1px solid var(--color-rule);
+  }
+  .holding__date {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
   }
   .holding__email,
   .holding__aside,

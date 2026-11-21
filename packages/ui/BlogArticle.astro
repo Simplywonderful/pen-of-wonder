@@ -1,0 +1,178 @@
+---
+// One post: byline, title, summary, an "On this page" list, the text, the questions it answers,
+// the author, related posts and the WhatsApp button.
+// The text goes through withContactEmail, so a post can link to another world as {world:writing/blog/x},
+// and through linkBuiltPostsOnly, so a link to a post that isn't live yet stays plain text.
+import type { BlogWorld } from "@pow/config/blogs";
+import { blogs, authorBio } from "@pow/config/blogs";
+import { whatsappLink } from "@pow/config/contact";
+import { legal } from "@pow/config/legal";
+import { worldUrl } from "@pow/config/worlds";
+import Faq from "./Faq.astro";
+import WhatsAppButton from "./WhatsAppButton.astro";
+import { withContactEmail } from "./contact-email";
+import { formatDate, getPosts, linkBuiltPostsOnly, postSections, relatedPosts, type Post } from "./blog";
+
+interface Props {
+  world: BlogWorld;
+  post: Post;
+}
+const { world, post } = Astro.props;
+const d = post.data;
+const copy = blogs[world];
+const built = await getPosts();
+const html = linkBuiltPostsOnly(withContactEmail(post.rendered?.html ?? ""), new Set(built.map((p) => p.id)));
+const sections = postSections(post);
+const related = relatedPosts(post, built);
+---
+
+<article class="wrap pt-10 md:pt-16 lg:pt-20">
+  <header class="max-w-[48rem]">
+    {d.draft && <p class="draft">Draft: not on the live site until it's approved and dated.</p>}
+    <p class="text-sm text-muted">
+      By <a href={worldUrl("main", "/about")}>{legal.founder}, founder</a>
+      <span aria-hidden="true"> · </span>
+      <time datetime={d.publishDate?.toISOString()}>{formatDate(d.publishDate)}</time>
+      {
+        d.updated && (
+          <>
+            <span aria-hidden="true"> · </span>
+            Updated <time datetime={d.updated.toISOString()}>{formatDate(d.updated)}</time>
+          </>
+        )
+      }
+    </p>
+    <h1 class="mt-2 text-3xl tracking-(--tracking-display)">{d.title}</h1>
+    <p class="mt-5 max-w-[60ch] border-t border-rule pt-4 text-lg text-muted">{d.summary}</p>
+  </header>
+
+  {
+    sections.length >= 4 && (
+      <nav class="toc mt-8" aria-labelledby="toc-heading">
+        <h2 id="toc-heading" class="toc__heading">On this page</h2>
+        <ol>
+          {sections.map((s) => (
+            <li>
+              <a href={`#${s.slug}`}>{s.text}</a>
+            </li>
+          ))}
+          {d.questions.length > 0 && (
+            <li>
+              <a href="#post-questions">Questions this answers</a>
+            </li>
+          )}
+        </ol>
+      </nav>
+    )
+  }
+
+  <div class="prose mt-10" set:html={html} />
+  {
+    d.questions.length > 0 && (
+      <div class="mt-12">
+        <Faq items={d.questions} heading="Questions this answers" id="post-questions" />
+      </div>
+    )
+  }
+
+  <aside class="author mt-12" aria-labelledby="author-heading">
+    <h2 id="author-heading" class="author__heading">About the author</h2>
+    <p class="mt-2">
+      <a href={worldUrl("main", "/about")}>{legal.founder}</a> {authorBio}
+    </p>
+  </aside>
+
+  <footer class="mt-10 max-w-[65ch] border-t border-rule-strong pt-6">
+    {
+      d.closing ? (
+        <p>
+          {d.closing} <a href={whatsappLink(world, `your post "${d.title}"`)}>Tell me on WhatsApp</a>.
+        </p>
+      ) : (
+        <p class="flex flex-wrap gap-3">
+          <WhatsAppButton world={world} service={copy.cta.service} label={copy.cta.label} variant="primary" />
+        </p>
+      )
+    }
+    {copy.ctaNote && <p class="mt-3 text-sm text-muted">{copy.ctaNote}</p>}
+  </footer>
+
+  {
+    related.length > 0 && (
+      <section class="related mt-12" aria-labelledby="related-heading">
+        <h2 id="related-heading" class="text-xl">Related posts</h2>
+        <ul>
+          {related.map((p) => (
+            <li>
+              <a href={`/blog/${p.id}`}>{p.data.title}</a>
+              <span>{p.data.topics.join(", ")}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4 text-sm">
+          <a href="/blog">All posts</a>
+        </p>
+      </section>
+    )
+  }
+</article>
+
+<style>
+  .draft {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px dashed var(--color-rule-strong);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+  .toc {
+    max-width: 48rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--color-rule);
+    background: var(--color-panel);
+  }
+  .toc__heading,
+  .author__heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+  .toc ol {
+    margin-top: 0.5rem;
+    padding-left: 1.25rem;
+    list-style: decimal;
+    font-size: var(--text-sm);
+  }
+  .toc li + li {
+    margin-top: 0.3rem;
+  }
+  .author {
+    max-width: 65ch;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  .related {
+    max-width: 48rem;
+  }
+  .related ul {
+    margin-top: 0.75rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  .related li {
+    display: grid;
+    gap: 0.15rem;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .related a {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--color-heading);
+    text-decoration-color: var(--color-world-rule);
+  }
+  .related span {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+</style>

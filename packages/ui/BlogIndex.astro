@@ -1,0 +1,72 @@
+---
+// A world's post list: heading, intro and the posts newest first. Drafts appear only in development
+// and review builds, marked, so the owner can read them before choosing a date.
+import type { BlogWorld } from "@pow/config/blogs";
+import { blogs } from "@pow/config/blogs";
+import PageHead from "./PageHead.astro";
+import { formatDate, type Post } from "./blog";
+
+interface Props {
+  world: BlogWorld;
+  posts: Post[];
+}
+const { world, posts } = Astro.props;
+const copy = blogs[world];
+---
+
+<PageHead title={copy.heading} intro={copy.intro} />
+{
+  posts.length === 0 ? (
+    <p class="wrap mt-10 text-muted">The first guides are on their way.</p>
+  ) : (
+    <ul class="wrap posts mt-10">
+      {posts.map((p) => (
+        <li>
+          <p class="posts__meta">
+            {p.data.draft && <span class="posts__draft">Draft</span>}
+            <time datetime={p.data.publishDate?.toISOString()}>{formatDate(p.data.publishDate)}</time> · {p.data.topics.join(", ")}
+          </p>
+          <h2 class="posts__title">
+            <a href={`/blog/${p.id}`}>{p.data.title}</a>
+          </h2>
+          <p class="posts__summary">{p.data.summary}</p>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+<style>
+  .posts {
+    list-style: none;
+  }
+  .posts li {
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--color-rule);
+    max-width: 48rem;
+  }
+  .posts__meta {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .posts__draft {
+    margin-right: 0.5rem;
+    padding: 0.05rem 0.4rem;
+    border: 1px solid var(--color-rule-strong);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .posts__title {
+    margin-top: 0.35rem;
+    font-size: var(--text-xl);
+  }
+  .posts__title a {
+    text-decoration-color: var(--color-world-rule);
+  }
+  .posts__summary {
+    margin-top: 0.5rem;
+    max-width: 60ch;
+  }
+</style>
