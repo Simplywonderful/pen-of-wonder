@@ -3,7 +3,8 @@ title: "How to Write a Cover Letter That Gets Read"
 summary: "A cover letter that gets read is short, usually three to five paragraphs, written for one job and one person. It says which role you want, shows two or three pieces of evidence that you can do it, and ends by asking for the next step."
 description: "How to write a cover letter that gets read: a five-part structure, a stronger opening, the STAR method for evidence, and a checklist before you send."
 topics: ["Cover letters", "Job applications"]
-draft: true
+publishDate: 2026-11-21
+draft: false
 questions:
   - q: "How long should a cover letter be?"
     a: "Short. The UK National Careers Service says a cover letter is usually three to five paragraphs. On screen, that's usually well under one page. If yours is longer, cut anything that repeats your CV without adding to it."
@@ -60,8 +61,6 @@ Here's STAR in a single sentence or two:
 > When our team's complaint backlog reached two weeks (situation), I was asked to clear it (task). I set up a daily triage list and a set of standard replies for the five most common issues (action), and within a month we were answering every complaint within three days (result).
 
 One example like that is worth more than a paragraph of "I am hard-working, organised and a great team player".
-
-[YOUR STORY: a cover letter you helped rework, and what changed in the response]
 
 ## How do you show you know the employer?
 

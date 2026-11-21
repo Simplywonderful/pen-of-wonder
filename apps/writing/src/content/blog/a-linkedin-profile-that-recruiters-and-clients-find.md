@@ -3,7 +3,8 @@ title: "A LinkedIn Profile That Recruiters and Clients Find"
 summary: "A LinkedIn profile gets found when its headline says what you do and who for, its About section reads like a short conversation, its experience shows results, and it uses the words recruiters and clients actually search for."
 description: "How to improve your LinkedIn profile so recruiters and clients find you: headline, About section, experience and search keywords, with a quick check."
 topics: ["LinkedIn", "Personal branding"]
-draft: true
+publishDate: 2026-11-21
+draft: false
 questions:
   - q: "What should my LinkedIn headline say?"
     a: "Say what you do, who you do it for, and one thing that sets you apart, using the words people would search for. 'Grant writer for small health NGOs in West Africa' does more work than 'Passionate professional open to opportunities'."
@@ -49,8 +50,6 @@ A simple structure that works:
 4. **What you want next**, and how to contact you.
 
 Keep paragraphs short. Most people read LinkedIn on their phones, and long blocks of text are hard to read on a small screen.
-
-[YOUR STORY: a LinkedIn profile rewrite and the messages or opportunities that followed]
 
 ## How should the Experience section differ from your CV?
 

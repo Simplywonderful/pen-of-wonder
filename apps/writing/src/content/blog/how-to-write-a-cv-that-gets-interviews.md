@@ -3,7 +3,8 @@ title: "How to Write a CV That Gets Interviews"
 summary: "A CV that gets interviews is written for one job at a time: it opens with a short profile aimed at that role, shows results rather than duties, puts the most relevant experience first, and is easy for both a person and a screening system to read."
 description: "How to write a CV that gets interviews: what to include, a profile that gets read, turning duties into results, tailoring it, and a final checklist."
 topics: ["CVs", "Job applications"]
-draft: true
+publishDate: 2026-11-21
+draft: false
 questions:
   - q: "What sections should a CV have?"
     a: "The UK National Careers Service lists contact details, an introduction, your education history, your work history and references. Most CVs also have a skills section. Put your most recent work first, and leave out anything that doesn't help you get this particular job."
@@ -57,8 +58,6 @@ Most CVs list what the person was supposed to do. Strong CVs show what happened 
 | Managed the office budget | Kept a yearly office budget within limits for three years running |
 
 Use numbers where you honestly have them. Where you don't, describe the change in plain words. Never invent a figure; an interviewer will ask about it.
-
-[YOUR STORY: a CV you helped rewrite where turning duties into results made the difference]
 
 ## How do you tailor a CV to each job?
 

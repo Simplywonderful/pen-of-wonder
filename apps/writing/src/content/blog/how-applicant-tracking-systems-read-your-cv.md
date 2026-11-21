@@ -3,7 +3,8 @@ title: "How Applicant Tracking Systems Read Your CV"
 summary: "An applicant tracking system stores and sorts job applications so recruiters can search them. To get through one, use a plain layout, standard headings, the job advert's own words where they're true for you, and a file type the advert accepts."
 description: "What an applicant tracking system is, how it reads your CV, and how to format and word your CV so recruiters find it. With a quick checklist."
 topics: ["CVs", "Job applications"]
-draft: true
+publishDate: 2026-11-21
+draft: false
 questions:
   - q: "What is an applicant tracking system?"
     a: "An applicant tracking system (ATS) is software employers use to collect, store and sort job applications. Recruiters use it to search and filter candidates, often by keywords from the job advert, before a person reads the CVs that come out on top."
@@ -65,8 +66,6 @@ Recruiters search the system using words from the job advert, so your CV should 
 4. Put the most important matches in your profile and skills section, and show them in action in your work history.
 
 Never add a skill you don't have to beat the system. A person reads your CV next, and an interviewer after that.
-
-[YOUR STORY: a client whose CV was being overlooked until its words matched the roles they were applying for]
 
 ## Which file type should you send?
 

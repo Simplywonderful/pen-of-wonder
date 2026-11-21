@@ -3,7 +3,8 @@ title: "How to Write a Grant Proposal: A Guide for Small NGOs"
 summary: "A grant proposal for a small NGO follows the funder's own guidance first. Then it makes one clear case: a real problem, backed by evidence; a plan to change it, with measurable objectives; a budget that matches the plan; and proof your organisation can deliver."
 description: "How to write a grant proposal for a small NGO: checking your fit, the core sections, a problem statement with evidence, SMART objectives and a checklist."
 topics: ["Grants", "Proposals"]
-draft: true
+publishDate: 2026-11-21
+draft: false
 questions:
   - q: "What are the main sections of a grant proposal?"
     a: "Most proposals have an executive summary, a problem statement, objectives, activities and a timeline, a monitoring and evaluation plan, a budget with a short budget narrative, and a section on your organisation's capacity. Always use the funder's own headings and order if they give them."
@@ -53,8 +54,6 @@ Every funder has its own form, and you should always follow it. But most proposa
 Describe the problem as precisely as you can, for a specific group of people in a specific place, and show how you know. Good evidence includes government statistics, published studies, reports from other organisations, and your own records or surveys.
 
 Then narrow it down. Don't write as if your project will solve youth unemployment across a whole country. Write about the young people in your two local government areas who finish school without the skills local employers are asking for, and what you've seen of it.
-
-[YOUR STORY: a proposal where sharpening the problem statement changed how the funder responded]
 
 ## How do you write objectives a funder believes?
 
