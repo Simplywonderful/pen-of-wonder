@@ -85,3 +85,5 @@ Name the file clearly, with your name and "CV", so a recruiter can find it later
 - [ ] The file type matches what the advert asks for.
 
 None of this replaces a CV that shows real results; [How to write a CV that gets interviews](/blog/how-to-write-a-cv-that-gets-interviews) covers that part. It just makes sure the right person gets to read it.
+
+If you want a second pair of eyes on yours, our [CV writing service](/cvs) builds every CV to be read by both.

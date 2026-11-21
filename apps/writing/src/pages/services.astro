@@ -1,0 +1,72 @@
+---
+import WritingLayout from "../layouts/WritingLayout.astro";
+import PageHead from "@pow/ui/PageHead.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import { worldServiceLd } from "@pow/config/structured";
+import { worldUrl } from "@pow/config/worlds";
+import { services, quoteLine } from "../data/services";
+import { boundary } from "../data/faq";
+
+const [boundaryFirst] = boundary.split("Research team");
+---
+
+<WritingLayout
+  title="Writing Services | Pen of Wonder Writing"
+  description="CVs and cover letters, LinkedIn profiles, grant writing, business plans and proposals, ghostwriting, and editing and proofreading. Each quoted on request."
+  jsonLd={[worldServiceLd("writing", services.map((s) => s.name))]}
+>
+  <PageHead title="The documents we write, and the ones we don't." intro={quoteLine}>
+    <p class="mt-4 max-w-[60ch] text-muted">{boundaryFirst}<a href={worldUrl("research")}>Research team</a>.</p>
+  </PageHead>
+
+  <div class="wrap mt-12">
+    <ul class="list">
+      {
+        services.map((s) => (
+          <li>
+            <h2 class="list__name">
+              <a href={`/${s.slug}`}>{s.name}</a>
+            </h2>
+            <p class="list__summary">{s.summary}</p>
+            <ul class="list__includes">
+              {s.includes.map((i) => (
+                <li>{i.name}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-10"><WhatsAppButton world="writing" service="a writing job" label="Ask for a quote on WhatsApp" variant="primary" /></p>
+  </div>
+</WritingLayout>
+
+<style>
+  .list {
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+  .list > li {
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .list__name {
+    font-size: var(--text-xl);
+  }
+  .list__name a {
+    text-decoration-color: var(--color-world-rule);
+  }
+  .list__summary {
+    margin-top: 0.4rem;
+    max-width: 60ch;
+  }
+  .list__includes {
+    margin-top: 0.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.25rem;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+</style>

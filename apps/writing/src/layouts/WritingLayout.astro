@@ -1,0 +1,29 @@
+---
+// Writing's pages all sit in the shared layout with writing's own page nav. The Blog link appears once
+// the blog has a live post (blogIsOn).
+import "../styles/global.css";
+import Layout from "@pow/ui/Layout.astro";
+import { blogIsOn } from "@pow/ui/blog";
+
+interface Props {
+  title: string;
+  description: string;
+  ogType?: "website" | "article";
+  noindex?: boolean;
+  jsonLd?: object[];
+}
+
+const blogOn = await blogIsOn("writing");
+const nav = [
+  { href: "/services", label: "Services" },
+  { href: "/process", label: "How it works" },
+  ...(blogOn ? [{ href: "/blog", label: "Blog" }] : []),
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Request a quote" },
+];
+const props = Astro.props;
+---
+
+<Layout world="writing" {...props} localNav={nav} rss={blogOn}>
+  <slot />
+</Layout>

@@ -97,6 +97,8 @@ If you're over two pages, cut the oldest and least relevant roles down to one li
 
 Then write the letter that goes with it: [How to write a cover letter that gets read](/blog/how-to-write-a-cover-letter-that-gets-read). And check your [LinkedIn profile](/blog/a-linkedin-profile-that-recruiters-and-clients-find) tells the same story, because recruiters often look.
 
+If you would rather have it written with you, that is what our [CV writing service](/cvs) is for.
+
 ## Sources
 
 - National Careers Service, [How to write a CV](https://nationalcareers.service.gov.uk/careers-advice/cv-sections), checked 21 November 2026

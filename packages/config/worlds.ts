@@ -75,13 +75,17 @@ export const worlds: World[] = [
     host: "writing.penofwonder.com",
     interimHost: "penofwonderwriting.pages.dev",
     port: 4324,
-    status: "soon",
+    // Live from 21 Nov 2026, on the owner's instruction, ahead of the samples permission the brief
+    // waited for: the Samples page stays unbuilt until that permission is in.
+    status: "live",
     tagline: "Words that open doors.",
     menu: [
       { label: "CVs and cover letters", path: "/cvs" },
       { label: "LinkedIn profiles", path: "/linkedin" },
       { label: "Grant writing", path: "/grants" },
       { label: "Business plans and proposals", path: "/business-plans" },
+      { label: "Ghostwriting", path: "/ghostwriting" },
+      { label: "Editing and proofreading", path: "/editing" },
     ],
     holding: {
       headline: "CVs, grant applications and business plans that get read.",

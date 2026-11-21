@@ -93,3 +93,5 @@ If people in your field call it "monitoring and evaluation", don't call it "impa
 - [ ] Your profile URL uses your name.
 
 A profile that passes all seven won't guarantee messages. It will make sure that when someone looks, they understand what you do and how to reach you.
+
+If you would like it done with you, see our [LinkedIn profile service](/linkedin).

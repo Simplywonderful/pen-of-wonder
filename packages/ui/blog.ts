@@ -49,10 +49,14 @@ export async function getPosts(includeDrafts = showTodos): Promise<Post[]> {
 /** Live posts only, whatever the build: for feeds, llms.txt and the rule below. */
 export const getLivePosts = () => getPosts(false);
 
-/** Whether a world's blog is switched on: Marketing always; a holding site once it has enough posts. */
+/**
+ * Whether a world's blog is switched on: on a live site once it has one live post, on a holding site
+ * once it has enough. Development and review builds always show it, with the drafts.
+ */
 export async function blogIsOn(id: BlogWorld): Promise<boolean> {
-  if (world(id).status === "live" || showTodos) return true;
-  return (await getLivePosts()).length >= blogMinPosts;
+  if (showTodos) return true;
+  const live = (await getLivePosts()).length;
+  return world(id).status === "live" ? live > 0 : live >= blogMinPosts;
 }
 
 const longDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "Africa/Lagos" });

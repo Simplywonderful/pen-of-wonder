@@ -1,0 +1,81 @@
+---
+import WritingLayout from "../layouts/WritingLayout.astro";
+import PageHead from "@pow/ui/PageHead.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import HowWeWork from "@pow/ui/HowWeWork.astro";
+import { steps } from "../data/process";
+
+const howToLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How a writing job with Pen of Wonder Writing runs",
+  step: steps.map((s, i) => ({ "@type": "HowToStep", position: i + 1, name: s.name, text: s.line })),
+};
+---
+
+<WritingLayout
+  title="How It Works | Pen of Wonder Writing"
+  description="How a writing job runs, from your first message to the final files: a quote with a price and date, a short conversation, a draft you can change, then delivery."
+  jsonLd={[howToLd]}
+>
+  <PageHead title="From your first message to the final file." intro="Every job follows the same five steps, so you always know what happens next and what we need from you." />
+
+  <ol class="wrap log mt-12">
+    {
+      steps.map((s, i) => (
+        <li class="entry">
+          <p class="entry__n nums">Step {String(i + 1).padStart(2, "0")}</p>
+          <h2 class="entry__name">{s.name}</h2>
+          <div class="entry__body">
+            <p class="entry__line">{s.line}</p>
+            {s.detail.map((p) => (
+              <p>{p}</p>
+            ))}
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+
+  <div class="wrap mt-16">
+    <HowWeWork heading="How we start with anyone" />
+  </div>
+
+  <p class="wrap mt-12"><WhatsAppButton world="writing" service="a writing job" label="Ask for a quote on WhatsApp" variant="primary" /></p>
+</WritingLayout>
+
+<style>
+  .log {
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid var(--color-rule-strong);
+  }
+  .entry {
+    display: grid;
+    gap: 0.5rem;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .entry__n {
+    font-size: var(--text-sm);
+    color: var(--color-world-rule);
+  }
+  .entry__name {
+    font-size: var(--text-xl);
+  }
+  .entry__body {
+    display: grid;
+    gap: 0.6rem;
+    max-width: 60ch;
+  }
+  .entry__line {
+    font-weight: 600;
+  }
+  @media (min-width: 64rem) {
+    .entry {
+      grid-template-columns: 7rem 16rem minmax(0, 1fr);
+      gap: 2rem;
+      align-items: baseline;
+    }
+  }
+</style>

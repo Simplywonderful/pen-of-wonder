@@ -35,7 +35,7 @@ export const blogs: Record<BlogWorld, BlogCopy> = {
     cta: { label: "Chat about your ads", service: "paid ads" },
   },
   writing: {
-    metaTitle: "Blog: CVs, LinkedIn, grants and business writing | Pen of Wonder Writing",
+    metaTitle: "CV, LinkedIn and Grant Writing Guides | Pen of Wonder",
     metaDescription:
       "Plain guides from our founder on the documents that get people hired and funded: CVs, cover letters, LinkedIn profiles, grant proposals and business plans.",
     heading: "The documents that open doors, explained.",
@@ -43,10 +43,9 @@ export const blogs: Record<BlogWorld, BlogCopy> = {
       "Plain guides by our founder, Wonderful Adebagbo, on CVs, cover letters, LinkedIn profiles, grant proposals and business plans. Professional documents only: we don't write academic or assessed work.",
     feed: "Guides to CVs, LinkedIn profiles, grant proposals and business writing, by Wonderful Adebagbo, founder of Pen of Wonder.",
     cta: { label: "Ask about your document on WhatsApp", service: "a writing job" },
-    ctaNote: "Pen of Wonder Writing opens soon. Message us and we'll tell you honestly whether we can take your job on yet.",
   },
   publishing: {
-    metaTitle: "Blog: writing, publishing and selling a book | Pen of Wonder Publishing",
+    metaTitle: "Writing and Self-Publishing Guides | Pen of Wonder",
     metaDescription:
       "Plain guides from the author of the Hidden Treasures readers: writing children's books, self-publishing, ISBNs, printing, distribution and book marketing.",
     heading: "Making a book, from first page to first reader.",

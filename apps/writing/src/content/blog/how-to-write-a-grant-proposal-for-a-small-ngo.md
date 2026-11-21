@@ -96,3 +96,5 @@ Small organisations sometimes worry they have little to show. Be honest about yo
 - [ ] All requested documents are attached.
 - [ ] Someone outside the project has read it and understood it.
 - [ ] You're submitting before the deadline, not on it.
+
+If your organisation would like help with a live call, our [grant writing service](/grants) starts with an honest fit check.

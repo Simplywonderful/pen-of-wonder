@@ -1,0 +1,11 @@
+---
+import WritingLayout from "../../layouts/WritingLayout.astro";
+import PageHead from "@pow/ui/PageHead.astro";
+import { contact } from "@pow/config/contact";
+---
+
+<WritingLayout title="Request Sent | Pen of Wonder Writing" description="Thank you for your request to Pen of Wonder Writing." noindex>
+  <PageHead title="Thank you. Your request is on its way." intro={`We reply ${contact.replyTime}, with a quote or a question.`}>
+    <p class="mt-8"><a href="/">Back to the home page</a></p>
+  </PageHead>
+</WritingLayout>

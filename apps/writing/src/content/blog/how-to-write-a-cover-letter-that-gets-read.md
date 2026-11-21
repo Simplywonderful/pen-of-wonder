@@ -67,7 +67,7 @@ One example like that is worth more than a paragraph of "I am hard-working, orga
 
 Spend ten minutes on their website and recent news. The National Careers Service suggests researching through "their website", "recent news articles" and people you know who work there. Then write two or three sentences that show you understand what they do and why you want to do it with them.
 
-Be specific. "I admire your company's values" could be about anyone. "Your move into supplying schools last year caught my attention, because I spent three years in school procurement" could only be about them.
+Be specific. "I admire your organisation's values" could be about anyone. "Your move into supplying schools last year caught my attention, because I spent three years in school procurement" could only be about them.
 
 ## How should you end it?
 
@@ -92,6 +92,8 @@ Check your contact details are the same on the letter and the CV.
 - [ ] It's three to five paragraphs.
 - [ ] The font and size match your CV.
 - [ ] You've read it aloud and checked the spelling.
+
+Our [CV and cover letter service](/cvs) includes a cover letter written for a real advert, with notes on adapting it.
 
 ## Sources
 

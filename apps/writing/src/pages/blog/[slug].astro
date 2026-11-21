@@ -1,6 +1,5 @@
 ---
-import "../../styles/global.css";
-import Layout from "@pow/ui/Layout.astro";
+import WritingLayout from "../../layouts/WritingLayout.astro";
 import BlogArticle from "@pow/ui/BlogArticle.astro";
 import { getPosts, postDescription, postLd, postTitle, type Post } from "@pow/ui/blog";
 
@@ -12,15 +11,6 @@ export async function getStaticPaths() {
 const { post } = Astro.props as { post: Post };
 ---
 
-<Layout
-  world="writing"
-  title={postTitle("writing", post)}
-  description={postDescription(post)}
-  ogType="article"
-  noindex={post.data.draft}
-  jsonLd={postLd("writing", post)}
-  localNav={[{ href: "/blog", label: "Blog" }]}
-  rss
->
+<WritingLayout title={postTitle("writing", post)} description={postDescription(post)} ogType="article" noindex={post.data.draft} jsonLd={postLd("writing", post)}>
   <BlogArticle world="writing" post={post} />
-</Layout>
+</WritingLayout>

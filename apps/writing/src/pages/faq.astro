@@ -1,0 +1,20 @@
+---
+import WritingLayout from "../layouts/WritingLayout.astro";
+import PageHead from "@pow/ui/PageHead.astro";
+import Faq from "@pow/ui/Faq.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import { faqLd } from "@pow/ui/faq-ld";
+import { questions } from "../data/faq";
+---
+
+<WritingLayout
+  title="Questions | Pen of Wonder Writing"
+  description="Prices, timing, changes, privacy and what we do and don't write: answers to the questions people ask before hiring Pen of Wonder Writing."
+  jsonLd={[faqLd(questions)]}
+>
+  <PageHead title="Questions" intro="What people ask before they hire us. If yours isn't here, ask it on WhatsApp." />
+  <div class="wrap mt-10">
+    <Faq items={questions} heading="Frequently asked" />
+    <p class="mt-10"><WhatsAppButton world="writing" label="Ask your question on WhatsApp" variant="primary" /></p>
+  </div>
+</WritingLayout>
