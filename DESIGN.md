@@ -204,6 +204,15 @@ Carried from research (Inter as body face, `console.log` in scripts, en dashes i
 | [SELAR/AMAZON LINKS] | Publishing | Only when listings are live |
 | Approved testimonials per world | All worlds | `showTestimonials` off until supplied |
 | Legal review | Privacy, Terms, cookie notice | Section 13 lists what a lawyer should check |
+| [COMPANY SOCIAL ACCOUNTS] | Revamp R5, footer icons | Facebook Page, Instagram professional account, LinkedIn Page, all active |
+| [BUFFER ACCOUNT + API KEY] | Revamp R5 | Three channels connected |
+| [BREVO ACCOUNT + API KEY] | Revamp R4 | Sending waits for the domain and business email |
+| [TELEGRAM BOT TOKEN + CHAT ID] or [EMAIL ALERTS] | Revamp R3 | Owner alerts for new enquiries |
+| [CLOUDFLARE ACCOUNT CRON COUNT] | Revamp R3 | Cron triggers already used on the account (5 allowed) |
+| [TIMILEGIT REPO PATH, if available] | Revamp R3 to R6 | Reuse its real /api code |
+| [TURNSTILE ON?], [VIEW COUNT ON POSTS?] | Revamp R3, R6 | Defaults: off, off |
+| [RETENTION PERIOD] | Privacy notice | Suggested: enquiries deleted 24 months after last contact |
+| [LEGAL REVIEW] of the revamp privacy notice | Privacy | D1 storage, Brevo, Buffer, Telegram, aggregate counts |
 
 ## 11. Questions for the owner (Phase 0)
 
@@ -420,3 +429,73 @@ The owner asked to go live on Cloudflare's free addresses while penofwonder.com 
 - Writing's signature detail is the closing section set as the end of a letter, with a signature line.
 - Publishing stays a holding site until the book facts are in (owner's choice, 21 Nov 2026).
 - Marketing's blog now holds the founder's 45 ads posts from the portfolio, besides the first three. The portfolio still serves the same posts; its copies need rel="canonical" pointing here, or redirects, so search engines don't see duplicates. Details in `_source/fact-check-log-marketing.md`.
+
+## 20. Revamp, Nov 2026 (Phase R0, 25 Nov 2026)
+
+Source: `Pen of Wonder Consults/Website/pen-of-wonder-revamp-brief.md` (24 Nov 2026). The owner asked for Edunotech's page anatomy and TIMILEGIT's automations on the existing worlds. Copy, brand tokens, world structure and every non-negotiable in CLAUDE.md stay. This section records what the revamp changes; where it is silent, sections 1 to 19 still hold. Status: **proposed, waiting on the owner's go-ahead (end of Phase R0).** Nothing below is built yet.
+
+### 20.1 Rule changes (brief section 3), with the defaults applied
+
+| # | Rule today | Change | Default taken |
+|---|---|---|---|
+| D1 | Icons: none (4); no three identical icon cards (7) | Edunotech's card grid, one icon per card | Allowed. Hand-drawn single-weight line SVGs in one shared `Icon.astro`, no icon pack. One icon per world or service. On main, dev stays a narrower card so the five aren't identical |
+| D2 | Radius 0, 2px on buttons and inputs | Rounded cards, pill buttons | Cards and panels 12px, inputs 8px, buttons 999px: `--radius`, `--radius-sm`, `--radius-pill` in `packages/brand/tokens.css`. Replaces the "paper has square corners" line in 4 |
+| D3 | No shadows anywhere | Soft shadow | One `--shadow` token, used on card hover and on the floating WhatsApp button only. Never on a card at rest |
+| D4 | No scroll animation; motion limits | Decorative hero SVG with a slow pulse | One decorative hero SVG per world (section 20.3), slow CSS pulse on a few elements, no scroll-triggered animation, no counters, fully still under `prefers-reduced-motion` |
+| D5 | No social links or icons until company accounts exist | Share buttons and footer icons | Share buttons on blog posts allowed now (share intents, not company links). Footer social icons stay off until `packages/config/social.ts` holds real company URLs |
+| D6 | Forms store nothing on the site | Submissions in D1 | Storage in the Pen of Wonder D1 database allowed, with the privacy notice updated first (brief section 6). The CLAUDE.md line changes with it |
+| D7 | Eyebrow labels on research only | Eyebrow pills everywhere | Allowed on every world: an uppercase label in a pill, Spark Gold on green or dark grounds, the world accent on light grounds |
+| D8 | Gold once per layout, to mark the win | Edunotech uses its lime many times | Rule kept. Spark Gold carries only the hero's highlighted phrase. Eyebrow pills on dark grounds use a Cream outline or low-opacity Spark Gold, whichever passes `contrast-check` (reported in R1) |
+| D9 | `integrity-check` bans facebook.com outside Meta's help centre | Share buttons need the sharer URL | `facebook.com/sharer/sharer.php` added to the allow list. Nothing else |
+
+Sections 4, 7 and 9 will be edited to point here when R1 starts, so no two rules contradict each other.
+
+### 20.2 Components (brief 4.1), all in `packages/ui`
+
+| Component | New or reworked | Replaces |
+|---|---|---|
+| `Header.astro` | Reworked: sticky, hairline border once scrolled, pill "Chat on WhatsApp" in the world accent, drawer open and close icons | today's header (dropdown behaviour kept) |
+| `PageHero.astro` | New: dark band, eyebrow, H1, lead, up to two buttons | `PageHead.astro` on inner pages |
+| `HomeHero.astro` | New: Fraunces 700 sentence case, final phrase in Spark Gold, lead, two pill buttons, step-word strip, decorative SVG | each world's hand-built hero |
+| `Eyebrow.astro` | New (D7) | |
+| `SplitIntro.astro` | New: two-column intro | "problem and the turn" blocks, founder block |
+| `CardGrid.astro`, `Card.astro` | New (D1, D3): whole-card link, icon tile, title, two lines, "Go to … →" | `WorldDividers.astro`, service lists |
+| `Steps.astro` | New layout: numbered circles on a dashed line | `HowWeWork.astro` layout and each world's process list (same steps, same words) |
+| `FeatureBand.astro` | New: dark two-column band with a numbered panel | Hidden Treasures block, featured case |
+| `CtaPanel.astro` | New: closing call to action in a rounded dark panel | each page's final section |
+| `Footer.astro` | Reworked: dark band, brand block, columns, newsletter row, legal row | today's footer |
+| `WhatsAppFloat.astro` | New: fixed round button, `data-event="whatsapp_float"` | |
+| `ShareMenu.astro` | New (R5) | |
+| `Form.astro` primitives | New (R3): field, error, consent, honeypot, status | `ContactForm.astro` internals |
+| `Icon.astro` | New (D1) | |
+
+### 20.3 Decisions made in R0 (owner may reverse)
+
+- **Dark mode hero bands.** Main's band is Ink Green in light mode and Spark Gold in dark mode today. A Spark Gold phrase can't sit on a Spark Gold band, so in dark mode every HomeHero and PageHero band becomes Deep Ink (as the brief specifies for PageHero), with Spark Gold for the phrase.
+- **Hero motif.** Fine ruled lines with ink drops on them, one inline SVG per world in its accent at low opacity; main uses all five accents. Two variants shown in R1.
+- **Eyebrow and card-link wording** is new copy the layout needs. It will be drawn from words already on each page (section headings, world and service names) and listed for approval in R1, never invented claims.
+- **HomeHero step strip** uses the four How we work steps, shortened as the brief gives them: Message · Consult · Quote · Deliver.
+- **Before screenshots:** every page in each live sitemap, plus 404 and thank-you pages, plus two posts per blog (all posts share one layout), at 360 and 1440 px in light and dark: `_source/screenshots/revamp-before/`.
+
+### 20.4 Open questions for the owner (conflicts the brief doesn't settle)
+
+1. **Research's own rules. Answered 25 Nov 2026: revamp research too, overriding its rules.** The revamp's D1 to D9 apply inside research as everywhere else: eyebrows, icon cards, hover shadow, rounded corners, share buttons naming LinkedIn and Facebook, the decorative hero. In R2 `apps/research/DESIGN.md` section 7 and `apps/research/CLAUDE.md` (No social links) get a line pointing here. Not overridden, because the brief keeps them closed: research's academic-integrity rules, the "What we do and don't do" box, its proof line, its voice rules and its edit specimen. The live research site stays on the old repo until cutover.
+2. **Empty commits.** CLAUDE.md and the brief say never push one. On 21 Nov 2026 I pushed two, because Cloudflare built only main (then only main and writing) after pushes that changed marketing, writing and publishing. Those projects' build watch paths are probably not set as in 13.1. Please check them in the Cloudflare dashboard; the per-project deploy hooks in brief 5.10 give a safe fallback once they exist.
+
+### 20.5 Pages that will change
+
+Every page on every world changes through the shared header, footer (with the newsletter row) and the floating WhatsApp button. On top of that:
+
+| World | Page | What changes |
+|---|---|---|
+| Main | Home | HomeHero, world CardGrid, proof strip on Cream, Steps, Hidden Treasures FeatureBand, founder SplitIntro, testimonials (unchanged, flag-gated), CtaPanel |
+| Main | About, Contact, Academic Integrity, Privacy, Terms, contact thanks, 404 | PageHero; Contact gets details beside the form; Privacy rewritten for D6 (brief 6, legal review) |
+| Main | New: newsletter "check your email" and "confirmed" (R4) | New, `noindex` |
+| Marketing | Home | HomeHero (Raspberry), SplitIntro, service CardGrid, proof readings, Steps (five-step test log), Northern Star FeatureBand, FAQ, latest posts, CtaPanel |
+| Marketing | Services, five service pages, Work, Northern Star, Process, FAQ, Contact, thanks, 404 | PageHero; Services gets the jump index; Contact two-column |
+| Marketing | Blog index, 52 posts | PageHero, "Most read this month" rail (R6), ShareMenu (R5), newsletter block |
+| Writing | Home, Services, six service pages, How it works, FAQ, Request a quote, thanks, 404 | As marketing; the letter-ending signature stays as Writing's signature detail |
+| Writing | Blog index, 5 posts | As marketing |
+| Publishing | Holding page, 404 | PageHero, SplitIntro, "Notify me" form beside WhatsApp |
+| Dev | Holding page, 404 | As publishing |
+| Research (monorepo copy only) | All pages and 23 posts | Same anatomy as the other worlds (question 1); Ink Green buttons kept (26 Oct decision). The live research site stays on the old repo until cutover |
