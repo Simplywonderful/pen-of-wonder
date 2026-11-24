@@ -27,13 +27,14 @@ import { world as getWorld, worldUrl } from "@pow/config/worlds";
 import { legal } from "@pow/config/legal";
 import { home } from "../data/home";
 import portrait from "../assets/portrait-arms.png";
+import heroDesk from "../assets/hero-desk.jpg";
 
 const printed = proofEntry("publishing-readers");
 const covers = titles.filter((t) => t.coverImage);
 ---
 
 <Layout world="main" title={home.title} description={home.description} jsonLd={[organisationLd()]} note="Marketing, writing, research and publishing, from Ibadan" emblem>
-  <HomeHero eyebrow={legal.company} title={home.h1} highlight="win." lead={home.lead} steps={howWeWorkWords} family>
+  <HomeHero eyebrow={legal.company} title={home.h1} highlight="win." lead={home.lead} steps={howWeWorkWords} family image={{ src: heroDesk, alt: "Papers laid out on a wooden desk: an advert proof, a folded letter, a manuscript with green-ink corrections and a sheet of graph paper, with a green fountain pen." }}>
     <Fragment slot="actions">
       <a class="btn btn-on-band" href="#worlds" data-event="cta_hero_worlds">{"Find your service"} <span class="arrow" aria-hidden="true">→</span></a>
       <WhatsAppButton world="main" variant="band-outline" event="whatsapp_hero" />
