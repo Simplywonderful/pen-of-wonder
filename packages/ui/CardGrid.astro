@@ -1,0 +1,51 @@
+---
+// A grid of Cards (DESIGN.md 20.2): one column on phones, two on tablets, three (or four, for
+// main's worlds) from 64rem. A card marked narrow (dev on main) spans the full row on wide screens
+// as a slim strip, so the set is never five identical cards.
+interface Props {
+  label?: string;
+  columns?: 3 | 4;
+  class?: string;
+}
+const { label, columns = 3, class: className } = Astro.props;
+---
+
+<ul class:list={["card-grid", `card-grid--${columns}`, className]} aria-label={label}><slot /></ul>
+
+<style>
+  .card-grid {
+    list-style: none;
+    padding: 0;
+    margin-top: 2.5rem;
+    display: grid;
+    gap: 1.25rem;
+  }
+  @media (min-width: 40rem) {
+    .card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 64rem) {
+    .card-grid--3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .card-grid--4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .card-grid :global(.card-item--narrow) {
+      grid-column: 1 / -1;
+    }
+    .card-grid :global(.card-item--narrow .card) {
+      display: grid;
+      grid-template-columns: auto auto minmax(0, 1fr) auto;
+      align-items: center;
+      column-gap: 1.25rem;
+      padding-block: 1rem;
+    }
+    .card-grid :global(.card-item--narrow .card__title),
+    .card-grid :global(.card-item--narrow .card__link) {
+      margin: 0;
+      padding: 0;
+    }
+  }
+</style>

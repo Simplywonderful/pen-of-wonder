@@ -1,0 +1,95 @@
+---
+// The newsletter signup (revamp brief 5.3): one email field, a consent box and a honeypot. Until the
+// pow-api Worker exists (Phase R4) the fields are disabled and say signups open soon, so no address
+// is collected anywhere, not even in a URL.
+import { worldUrl, type WorldId } from "@pow/config/worlds";
+import { api, apiReady } from "@pow/config/api";
+
+interface Props {
+  world: WorldId;
+  /** "band" in the footer; "page" in a blog post. */
+  tone?: "band" | "page";
+}
+const { world, tone = "band" } = Astro.props;
+const ready = apiReady();
+const list = world === "main" || world === "dev" ? "general" : world;
+const id = `newsletter-${tone}`;
+---
+
+<form class:list={["newsletter", `newsletter--${tone}`]} action={ready ? `${api.origin}/subscribe` : undefined} method="post" data-event="newsletter_signup">
+  <fieldset disabled={!ready}>
+    <legend class="visually-hidden">Newsletter signup</legend>
+    <input type="hidden" name="list" value={list} />
+    <input type="hidden" name="world" value={world} />
+    <div class="newsletter__row">
+      <label class="visually-hidden" for={`${id}-email`}>Email address</label>
+      <input id={`${id}-email`} class="newsletter__email" type="email" name="email" autocomplete="email" placeholder="Your email address" required />
+      <button class="btn btn-primary newsletter__button" type="submit">Subscribe</button>
+    </div>
+    <label class="newsletter__consent">
+      <input type="checkbox" name="consent" required />
+      <span>I agree to receive the newsletter and can unsubscribe at any time. See our <a href={worldUrl("main", "/privacy")}>privacy notice</a>.</span>
+    </label>
+    <div class="newsletter__trap" aria-hidden="true">
+      <label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+    </div>
+  </fieldset>
+  {!ready && <p class="newsletter__soon">Newsletter signups open soon.</p>}
+</form>
+
+<style>
+  .newsletter fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+  .newsletter fieldset:disabled {
+    opacity: 0.6;
+  }
+  .newsletter__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .newsletter__email {
+    flex: 1 1 14rem;
+    min-height: 2.75rem;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--color-rule-strong);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+  .newsletter--band .newsletter__email {
+    border-color: var(--color-band-rule);
+    background: var(--color-band-panel);
+    color: var(--color-band-ink);
+  }
+  .newsletter--band .newsletter__email::placeholder {
+    color: var(--color-band-muted);
+  }
+  .newsletter--band .newsletter__button {
+    background: var(--color-band-ink);
+    color: var(--color-band);
+  }
+  .newsletter__consent {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    font-size: var(--text-sm);
+  }
+  .newsletter__consent input {
+    margin-top: 0.3rem;
+  }
+  .newsletter__trap {
+    position: absolute;
+    left: -9999px;
+  }
+  .newsletter__soon {
+    margin-top: 0.6rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+</style>

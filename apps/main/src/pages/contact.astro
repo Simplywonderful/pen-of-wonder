@@ -1,9 +1,11 @@
 ---
+// Contact, in the revamp's anatomy (DESIGN.md 20.5): PageHero, then the details beside the form.
 import "../styles/global.css";
 import Layout from "@pow/ui/Layout.astro";
-import PageHead from "@pow/ui/PageHead.astro";
+import PageHero from "@pow/ui/PageHero.astro";
 import ContactForm from "@pow/ui/ContactForm.astro";
 import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import Icon from "@pow/ui/Icon.astro";
 import Todo from "@pow/ui/Todo.astro";
 import { contact, contactPlaceholders } from "@pow/config/contact";
 ---
@@ -14,41 +16,71 @@ import { contact, contactPlaceholders } from "@pow/config/contact";
   description="Message Pen of Wonder about marketing, writing, research or publishing. WhatsApp or email; we reply within one working day."
   note="Marketing, writing, research and publishing, from Ibadan"
 >
-  <PageHead title="Contact" intro={`Send a message here or on WhatsApp. Tell us which part of Pen of Wonder it's for, or pick Not sure yet. We reply ${contact.replyTime}.`} />
+  <PageHero
+    eyebrow="Contact"
+    title="Contact"
+    lead={`Send a message here or on WhatsApp. Tell us which part of Pen of Wonder it's for, or pick Not sure yet. We reply ${contact.replyTime}.`}
+  />
 
-  <div class="wrap contact mt-12">
-    <section aria-labelledby="form-heading">
-      <h2 id="form-heading" class="text-2xl">Send a message</h2>
-      <ContactForm world="main" />
-    </section>
-    <aside class="direct" aria-labelledby="direct-heading">
-      <h2 id="direct-heading" class="font-serif text-lg">Or reach us directly</h2>
-      <p class="mt-3"><WhatsAppButton world="main" label={`WhatsApp ${contact.whatsapp.display}`} /></p>
-      <p class="mt-4">
-        Email: {contact.email ? <a href={`mailto:${contact.email}`} class="break-all">{contact.email}</a> : <Todo label={contactPlaceholders.email} />}
-      </p>
-      <p class="mt-4 text-muted">Ibadan, Nigeria, WAT (UTC+1). We reply {contact.replyTime}.</p>
-    </aside>
-  </div>
+  <section class="section" aria-label="Contact details and form">
+    <div class="wrap contact">
+      <aside class="direct" aria-labelledby="direct-heading">
+        <h2 id="direct-heading" class="contact__heading">Reach us directly</h2>
+        <p class="mt-5"><WhatsAppButton world="main" label={`WhatsApp ${contact.whatsapp.display}`} variant="primary" /></p>
+        <ul class="direct__list">
+          <li>
+            <Icon name="mail" />
+            <span>{contact.email ? <a href={`mailto:${contact.email}`} class="break-all" data-event="email_click">{contact.email}</a> : <Todo label={contactPlaceholders.email} />}</span>
+          </li>
+          <li><Icon name="pin" /><span>Ibadan, Nigeria</span></li>
+          <li><Icon name="clock" /><span>WAT (UTC+1). We reply {contact.replyTime}.</span></li>
+        </ul>
+      </aside>
+      <div class="form-card">
+        <h2 id="form-heading" class="contact__heading">Send a message</h2>
+        <ContactForm world="main" />
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
   .contact {
     display: grid;
-    gap: 3rem;
+    gap: 2.5rem;
   }
-  .direct {
-    font-size: var(--text-sm);
+  .contact__heading {
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+  }
+  .direct__list {
+    margin-top: 1.75rem;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+  }
+  .direct__list li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: start;
+  }
+  .direct__list :global(.icon) {
+    color: var(--color-world-accent);
+    margin-top: 0.15rem;
+  }
+  .form-card {
+    padding: clamp(1.25rem, 4vw, 2.25rem);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius);
+    background: var(--color-panel);
   }
   @media (min-width: 64rem) {
     .contact {
-      grid-template-columns: minmax(0, 40rem) minmax(12rem, 16rem);
-      column-gap: 5rem;
+      grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
+      column-gap: 4rem;
       align-items: start;
-    }
-    .direct {
-      padding-top: 0.75rem;
-      border-top: 1px solid var(--color-rule);
     }
   }
 </style>

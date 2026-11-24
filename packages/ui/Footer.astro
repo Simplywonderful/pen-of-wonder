@@ -1,106 +1,248 @@
 ---
-// The shared footer: links to every world, the policies, contact, the theme switch and the legal line.
-// The quill emblem needs 120 px or more, so it appears only where `emblem` is set (main and research).
+// The shared footer (DESIGN.md 20.2): a dark band on every world. The brand block (the quill emblem,
+// always at 120 px or more, the world's tagline and the legal line), then link columns, the
+// newsletter row, and the legal row with the policies and the theme switch. Social icons appear
+// only once company accounts exist (D5). Phones get extra room at the foot for the floating
+// WhatsApp button.
 import { Image } from "astro:assets";
 import { contact, contactPlaceholders, whatsappLink } from "@pow/config/contact";
 import { legal, academicIntegrity } from "@pow/config/legal";
 import { menuWorlds, world as getWorld, worldUrl, type WorldId } from "@pow/config/worlds";
-import emblemGreen from "@pow/brand/assets/emblem-green.png";
 import emblemCream from "@pow/brand/assets/emblem-cream.png";
 import ThemeToggle from "./ThemeToggle.astro";
 import Todo from "./Todo.astro";
+import NewsletterForm from "./NewsletterForm.astro";
 
 interface Props {
   world: WorldId;
   /** A world's own line about itself, shown before the shared legal line. */
   businessLine?: string;
+  /** Kept for older callers: the emblem now shows on every world. */
   emblem?: boolean;
   privacyHref?: string;
   termsHref?: string;
 }
 
-const {
-  world: id,
-  businessLine,
-  emblem = false,
-  privacyHref = worldUrl("main", "/privacy"),
-  termsHref = worldUrl("main", "/terms"),
-} = Astro.props;
+const { world: id, businessLine, privacyHref = worldUrl("main", "/privacy"), termsHref = worldUrl("main", "/terms") } = Astro.props;
 const here = getWorld(id);
 const year = new Date().getFullYear();
+const services = here.status === "live" ? here.menu.slice(0, 5) : [];
 ---
 
-<footer class="mt-24 border-t border-rule">
-  <div class="mx-auto grid max-w-(--container-sheet) gap-8 px-4 py-10 text-sm md:px-8 lg:grid-cols-[minmax(0,44rem)_minmax(12rem,15rem)] lg:gap-x-16 lg:px-12">
-    <div class="space-y-4">
-      {
-        emblem && (
-          <a href={worldUrl(id)} class="emblem block w-36" aria-label={`${here.name}, home`}>
-            <Image class="emblem__light" src={emblemGreen} alt="" width={144} height={144} densities={[1, 2]} loading="lazy" />
-            <Image class="emblem__dark" src={emblemCream} alt="" width={144} height={144} densities={[1, 2]} loading="lazy" />
-          </a>
-        )
-      }
-      <p class="font-serif text-lg text-heading">{here.name}</p>
-      <p class="max-w-[60ch] text-muted">
+<footer class="site-footer">
+  <div class="wrap footer__top">
+    <div class="footer__brand">
+      <a href={worldUrl(id)} class="footer__emblem" aria-label={`${here.name}, home`}>
+        <Image src={emblemCream} alt="" width={120} height={120} densities={[1, 2]} loading="lazy" />
+      </a>
+      <p class="footer__name">{here.name}</p>
+      <p class="footer__tagline">{here.tagline}</p>
+      <p class="footer__line">
         {businessLine && <>{businessLine} </>}
         {legal.legalLine}
       </p>
-      <p class="text-muted">
-        Based in {legal.city}, {legal.country}, {legal.timezone}. We reply {contact.replyTime}.
-      </p>
-      <nav aria-label="Pen of Wonder worlds">
-        <ul class="flex flex-wrap gap-x-5 gap-y-1">
-          <li><a href={worldUrl("main")}>Pen of Wonder</a></li>
-          {
-            menuWorlds.map((w) => (
-              <li>
-                <a href={worldUrl(w.id)} aria-current={w.id === id ? "true" : undefined}>
-                  {w.label}
-                </a>
-                {w.status === "soon" && <span class="text-muted"> (opening soon)</span>}
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
     </div>
-    <div class="space-y-6">
-      <ul class="space-y-2">
-        <li><a href={whatsappLink(id)}>WhatsApp {contact.whatsapp.display}</a></li>
-        <li>{contact.email ? <a href={`mailto:${contact.email}`}>{contact.email}</a> : <Todo label={contactPlaceholders.email} />}</li>
-      </ul>
-      <ul class="space-y-2">
+
+    <nav class="footer__col" aria-labelledby="footer-company">
+      <h2 id="footer-company" class="footer__heading">Pen of Wonder</h2>
+      <ul>
+        <li><a href={worldUrl("main")}>Home</a></li>
+        <li><a href={worldUrl("main", "/about")}>About</a></li>
+        <li><a href={worldUrl("main", "/contact")}>Contact</a></li>
         <li><a href={worldUrl(academicIntegrity.world, academicIntegrity.path)}>Academic Integrity Policy</a></li>
-        <li><a href={privacyHref}>Privacy notice</a></li>
-        <li><a href={termsHref}>Terms</a></li>
       </ul>
-      <ThemeToggle />
+    </nav>
+
+    <nav class="footer__col" aria-labelledby="footer-worlds">
+      <h2 id="footer-worlds" class="footer__heading">Worlds</h2>
+      <ul>
+        {
+          menuWorlds.map((w) => (
+            <li>
+              <a href={worldUrl(w.id)} aria-current={w.id === id ? "true" : undefined}>
+                {w.label}
+              </a>
+              {w.status === "soon" && <span class="footer__soon"> (opening soon)</span>}
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    {
+      services.length > 0 && (
+        <nav class="footer__col" aria-labelledby="footer-services">
+          <h2 id="footer-services" class="footer__heading">{here.label}</h2>
+          <ul>
+            {services.map((s) => (
+              <li>
+                <a href={worldUrl(id, s.path)}>{s.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+
+    <div class="footer__col">
+      <h2 class="footer__heading">Connect</h2>
+      <ul>
+        <li><a href={whatsappLink(id)} data-event="whatsapp_footer">WhatsApp {contact.whatsapp.display}</a></li>
+        <li>{contact.email ? <a href={`mailto:${contact.email}`} class="footer__email" data-event="email_click">{contact.email}</a> : <Todo label={contactPlaceholders.email} />}</li>
+        <li class="footer__where">Based in {legal.city}, {legal.country}, {legal.timezone}. We reply {contact.replyTime}.</li>
+      </ul>
     </div>
-    <p class="text-muted lg:col-span-2">© {year} {legal.company}</p>
+  </div>
+
+  <div class="wrap footer__news">
+    <div>
+      <h2 class="footer__heading">Newsletter</h2>
+      <p class="footer__news-text">New guides from our blogs, in one email a month.</p>
+    </div>
+    <NewsletterForm world={id} />
+  </div>
+
+  <div class="wrap footer__legal">
+    <p>© {year} {legal.company}</p>
+    <ul>
+      <li><a href={privacyHref}>Privacy notice</a></li>
+      <li><a href={termsHref}>Terms</a></li>
+      <li><ThemeToggle /></li>
+    </ul>
   </div>
 </footer>
 
 <style>
-  .emblem__dark {
-    display: none;
+  .site-footer {
+    margin-top: var(--section);
+    padding-bottom: 5rem;
+    background: var(--color-band);
+    color: var(--color-band-ink);
+    font-size: var(--text-sm);
   }
-  @media (prefers-color-scheme: dark) {
-    :global(:root:not([data-theme="light"])) .emblem__light {
-      display: none;
+  @media (min-width: 48rem) {
+    .site-footer {
+      padding-bottom: 1rem;
     }
-    :global(:root:not([data-theme="light"])) .emblem__dark {
-      display: block;
+  }
+  .site-footer a {
+    text-decoration-color: var(--color-band-rule);
+  }
+  .site-footer a:hover {
+    text-decoration-color: var(--color-band-ink);
+  }
+  .site-footer :focus-visible {
+    outline-color: var(--color-band-ink);
+  }
+  .footer__top {
+    display: grid;
+    gap: 2.5rem;
+    padding-top: clamp(3rem, 6vw, 4.5rem);
+    padding-bottom: 2.5rem;
+  }
+  .footer__emblem {
+    display: inline-block;
+    width: 120px;
+  }
+  .footer__name {
+    margin-top: 1rem;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: var(--text-lg);
+  }
+  .footer__tagline {
+    margin-top: 0.25rem;
+    color: var(--color-band-muted);
+  }
+  .footer__line {
+    margin-top: 1rem;
+    max-width: 44ch;
+    color: var(--color-band-muted);
+  }
+  .footer__heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-band-muted);
+  }
+  .footer__col ul {
+    margin-top: 0.9rem;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.55rem;
+  }
+  .footer__col a[aria-current] {
+    font-weight: 600;
+  }
+  .footer__email {
+    overflow-wrap: anywhere;
+  }
+  .footer__soon,
+  .footer__where {
+    color: var(--color-band-muted);
+  }
+  .footer__news {
+    display: grid;
+    gap: 1.25rem;
+    padding-block: 2rem;
+    border-top: 1px solid var(--color-band-rule);
+  }
+  .footer__news-text {
+    margin-top: 0.5rem;
+    color: var(--color-band-muted);
+  }
+  .footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--color-band-rule);
+    color: var(--color-band-muted);
+  }
+  /* Room on the right for the floating WhatsApp button, so it never covers a link. */
+  @media (min-width: 48rem) {
+    .footer__legal {
+      padding-right: calc(var(--gutter) + 4.5rem);
     }
   }
-  :global(:root[data-theme="dark"]) .emblem__light {
-    display: none;
+  .footer__legal ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 1.5rem;
   }
-  :global(:root[data-theme="dark"]) .emblem__dark {
-    display: block;
+  .footer__legal :global(.theme-toggle) {
+    color: var(--color-band-ink);
+    text-decoration-color: var(--color-band-rule);
   }
-  nav a[aria-current] {
-    text-decoration-color: var(--color-world-rule);
-    text-decoration-thickness: 2px;
+  @media (min-width: 48rem) {
+    .footer__top {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .footer__brand {
+      grid-column: 1 / -1;
+    }
+    .footer__news {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      align-items: start;
+      gap: 3rem;
+    }
+  }
+  @media (min-width: 64rem) {
+    .footer__top {
+      grid-template-columns: minmax(0, 1.5fr) repeat(auto-fit, minmax(11rem, 1fr));
+      gap: 2rem;
+    }
+    .footer__brand {
+      grid-column: auto;
+    }
   }
 </style>

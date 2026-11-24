@@ -1,0 +1,117 @@
+---
+// A process as numbered circles joined by a dashed line (DESIGN.md 20.2): across the page from
+// 64rem, down the page below it. Each step keeps its own words; only the layout is shared.
+import Eyebrow from "./Eyebrow.astro";
+
+interface Props {
+  id: string;
+  heading: string;
+  eyebrow?: string;
+  intro?: string;
+  steps: { title: string; body: string }[];
+  ground?: "page" | "panel";
+}
+const { id, heading, eyebrow, intro, steps, ground = "page" } = Astro.props;
+---
+
+<section class:list={["section", ground === "panel" && "section--panel"]} aria-labelledby={id}>
+  <div class="wrap">
+    {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+    <h2 id={id} class="steps__heading">{heading}</h2>
+    {intro && <p class="steps__intro">{intro}</p>}
+    <ol class="steps" style={`--count: ${steps.length}`}>
+      {
+        steps.map((s, i) => (
+          <li class="step">
+            <span class="step__n nums" aria-hidden="true">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div class="step__body">
+              <h3 class="step__title">{s.title}</h3>
+              <p class="step__text">{s.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .steps__heading {
+    margin-top: 1rem;
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    letter-spacing: var(--tracking-display);
+  }
+  .steps__intro {
+    margin-top: 1rem;
+    max-width: 60ch;
+    color: var(--color-muted);
+  }
+  .steps {
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin-top: 2.5rem;
+    display: grid;
+    gap: 1.75rem;
+  }
+  /* The dashed line runs through the circles' centres. */
+  .steps::before {
+    content: "";
+    position: absolute;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    border-left: 2px dashed var(--color-rule-strong);
+  }
+  .step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .step__n {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid var(--color-world-accent);
+    border-radius: 50%;
+    background: var(--color-bg);
+    color: var(--color-heading);
+    font-size: var(--text-sm);
+  }
+  .section--panel .step__n {
+    background: var(--color-panel);
+  }
+  .step__title {
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
+  }
+  .step__text {
+    margin-top: 0.35rem;
+    max-width: 48ch;
+  }
+  @media (min-width: 64rem) {
+    .steps {
+      grid-template-columns: repeat(var(--count), minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    .steps::before {
+      top: 1.5rem;
+      bottom: auto;
+      left: 1.5rem;
+      right: 1.5rem;
+      border-left: 0;
+      border-top: 2px dashed var(--color-rule-strong);
+    }
+    .step {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

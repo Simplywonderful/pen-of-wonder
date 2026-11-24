@@ -78,6 +78,15 @@ const family = [
   ["world-accent", "bg", 3, "world accent as a UI colour (buttons, hero band)"],
   ["world-accent", "panel", 3, "world accent on panels"],
   ["world-rule", "bg", 3, "rule under the logo, current menu item"],
+  ["band-ink", "band", 4.5, "text on dark bands (heroes, feature bands, footer)"],
+  ["band-muted", "band", 4.5, "secondary text on dark bands"],
+  ["band-ink", "band-panel", 4.5, "text on the panel inside a dark band"],
+  ["band-muted", "band-panel", 4.5, "secondary text on the panel inside a dark band"],
+  ["band-gold", "band", 3, "the hero's highlighted phrase (large text only)"],
+  ["band-rule", "band", 1.5, "hairlines on dark bands (decorative)"],
+  ["band", "band-ink", 4.5, "button label on a Cream button on a band"],
+  ["world-accent", "bg", 4.5, "eyebrow label text on the page"],
+  ["world-accent", "panel", 4.5, "eyebrow label text on panels"],
   ["world-rule", "panel", 3, "current menu item inside a panel"],
 ];
 const researchOnly = [

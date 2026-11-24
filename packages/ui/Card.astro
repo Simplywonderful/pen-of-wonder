@@ -1,0 +1,130 @@
+---
+// One card in a CardGrid (DESIGN.md 20.1, D1 and D3): the whole card is the link. An icon tile, a
+// title, a short line, an optional list, and "Go to … →" at the foot. At rest it has a hairline
+// border; on hover the border takes the accent and the one shadow appears. A card given an
+// `accent` (main's world cards) uses that world's colour for its tile and top edge.
+import Icon, { type IconName } from "./Icon.astro";
+
+interface Props {
+  href: string;
+  title: string;
+  text: string;
+  items?: string[];
+  link: string;
+  icon: IconName;
+  accent?: "marketing" | "writing" | "research" | "publishing" | "dev";
+  narrow?: boolean;
+  event?: string;
+}
+const { href, title, text, items = [], link, icon, accent, narrow = false, event } = Astro.props;
+---
+
+<li class:list={["card-item", narrow && "card-item--narrow"]}>
+  <a class="card" href={href} data-accent={accent} data-event={event}>
+    <span class="card__tile"><Icon name={icon} /></span>
+    <span class="card__title">{title}</span>
+    <span class="card__text">{text}</span>
+    {
+      items.length > 0 && (
+        <ul class="card__items">
+          {items.map((i) => (
+            <li>{i}</li>
+          ))}
+        </ul>
+      )
+    }
+    <span class="card__link">{link} <span class="arrow" aria-hidden="true">→</span></span>
+  </a>
+</li>
+
+<style>
+  .card-item {
+    display: flex;
+  }
+  .card {
+    --card-accent: var(--color-world-accent);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 1.5rem;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color var(--duration-ui) var(--ease-out), box-shadow var(--duration-ui) var(--ease-out);
+  }
+  .card[data-accent] {
+    border-top: 3px solid var(--card-accent);
+  }
+  .card:hover {
+    border-color: var(--card-accent);
+    box-shadow: var(--shadow);
+  }
+  .card:focus-visible {
+    outline-offset: 4px;
+  }
+  .card[data-accent="marketing"] { --card-accent: var(--raspberry); }
+  .card[data-accent="writing"] { --card-accent: var(--olive); }
+  .card[data-accent="research"] { --card-accent: var(--sage); }
+  .card[data-accent="publishing"] { --card-accent: var(--terracotta); }
+  .card[data-accent="dev"] { --card-accent: var(--graphite); }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .card[data-accent="marketing"] { --card-accent: var(--raspberry-night); }
+    :global(:root:not([data-theme="light"])) .card[data-accent="writing"] { --card-accent: var(--olive-night); }
+    :global(:root:not([data-theme="light"])) .card[data-accent="research"] { --card-accent: var(--sage-night); }
+    :global(:root:not([data-theme="light"])) .card[data-accent="publishing"] { --card-accent: var(--terracotta-night); }
+    :global(:root:not([data-theme="light"])) .card[data-accent="dev"] { --card-accent: var(--graphite-night); }
+  }
+  :global(:root[data-theme="dark"]) .card[data-accent="marketing"] { --card-accent: var(--raspberry-night); }
+  :global(:root[data-theme="dark"]) .card[data-accent="writing"] { --card-accent: var(--olive-night); }
+  :global(:root[data-theme="dark"]) .card[data-accent="research"] { --card-accent: var(--sage-night); }
+  :global(:root[data-theme="dark"]) .card[data-accent="publishing"] { --card-accent: var(--terracotta-night); }
+  :global(:root[data-theme="dark"]) .card[data-accent="dev"] { --card-accent: var(--graphite-night); }
+
+  .card__tile {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-sm);
+    background: color-mix(in oklch, var(--card-accent) 14%, transparent);
+    color: var(--card-accent);
+  }
+  .card__title {
+    margin-top: 0.4rem;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
+    color: var(--color-heading);
+  }
+  .card__text {
+    color: var(--color-muted);
+  }
+  .card__items {
+    margin: 0.25rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-sm);
+    border-top: 1px solid var(--color-rule);
+  }
+  .card__items li {
+    padding-block: 0.45rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .card__link {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+  .card__link .arrow {
+    display: inline-block;
+    transition: transform var(--duration-ui) var(--ease-out);
+  }
+  .card:hover .card__link .arrow {
+    transform: translateX(3px);
+  }
+</style>

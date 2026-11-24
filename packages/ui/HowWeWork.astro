@@ -1,6 +1,6 @@
 ---
 // The same four steps on every world, in order, because the order is the point.
-import { contact } from "@pow/config/contact";
+import { howWeWorkSteps as steps } from "./how-we-work";
 
 interface Props {
   heading?: string;
@@ -8,12 +8,6 @@ interface Props {
 }
 const { heading = "How we work", class: className } = Astro.props;
 
-const steps = [
-  { title: "Message us.", body: `Tell us on WhatsApp or by email what you need. We reply ${contact.replyTime}.` },
-  { title: "Free consultation.", body: "A short chat to understand the job, and an honest answer on whether we're the right fit." },
-  { title: "Written quote.", body: "What we'll do, what it costs and when you'll have it. Nothing starts until you agree." },
-  { title: "Delivery and revisions.", body: "The work arrives on the agreed date, with the revisions your quote sets out." },
-];
 ---
 
 <section class:list={["how", className]} aria-labelledby="how-heading">

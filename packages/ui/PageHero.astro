@@ -1,0 +1,52 @@
+---
+// The top of every inner page (DESIGN.md 20.2): a dark band with an eyebrow, the H1, a lead and up
+// to two buttons (default slot). Ink Green by day, deep ink at night, on every world.
+import Eyebrow from "./Eyebrow.astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+}
+const { eyebrow, title, lead } = Astro.props;
+---
+
+<header class="page-hero">
+  <div class="wrap page-hero__inner">
+    {eyebrow && <Eyebrow tone="band">{eyebrow}</Eyebrow>}
+    <h1 class="page-hero__title">{title}</h1>
+    {lead && <p class="page-hero__lead">{lead}</p>}
+    {Astro.slots.has("default") && <div class="page-hero__actions"><slot /></div>}
+  </div>
+</header>
+
+<style>
+  .page-hero {
+    background: var(--color-band);
+    color: var(--color-band-ink);
+  }
+  .page-hero__inner {
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+  .page-hero__title {
+    margin-top: 1rem;
+    max-width: 22ch;
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    letter-spacing: var(--tracking-display);
+    color: inherit;
+  }
+  .page-hero__lead {
+    margin-top: 1.25rem;
+    max-width: 60ch;
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+    color: var(--color-band-muted);
+  }
+  .page-hero__actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+</style>

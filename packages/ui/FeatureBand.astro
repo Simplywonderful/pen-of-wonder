@@ -1,0 +1,93 @@
+---
+// A dark two-column band (DESIGN.md 20.2): eyebrow, heading, text and buttons on the left (default
+// slot), and a darker rounded panel with a numbered list on the right.
+import Eyebrow from "./Eyebrow.astro";
+
+interface Props {
+  id: string;
+  eyebrow?: string;
+  heading: string;
+  listLabel: string;
+  items: { label: string; detail: string }[];
+}
+const { id, eyebrow, heading, listLabel, items } = Astro.props;
+---
+
+<section class="section section--band feature" aria-labelledby={id}>
+  <div class="wrap feature__inner">
+    <div class="feature__text">
+      {eyebrow && <Eyebrow tone="band">{eyebrow}</Eyebrow>}
+      <h2 id={id} class="feature__heading">{heading}</h2>
+      <slot />
+    </div>
+    <ol class="feature__panel" aria-label={listLabel}>
+      {
+        items.map((item, i) => (
+          <li>
+            <span class="feature__n nums">{String(i + 1).padStart(2, "0")}</span>
+            <span class="feature__label">{item.label}</span>
+            <span class="feature__detail">{item.detail}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .feature__inner {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .feature__heading {
+    margin-top: 1rem;
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    letter-spacing: var(--tracking-display);
+  }
+  .feature__text :global(p:not(.eyebrow)) {
+    margin-top: 1rem;
+    max-width: 56ch;
+    color: var(--color-band-muted);
+  }
+  .feature__text :global(a:not(.btn)) {
+    text-decoration-color: var(--color-band-muted);
+  }
+  .feature__panel {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius);
+    background: var(--color-band-panel);
+    align-self: start;
+  }
+  .feature__panel li {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.15rem 1rem;
+    padding-block: 1rem;
+  }
+  .feature__panel li + li {
+    border-top: 1px solid var(--color-band-rule);
+  }
+  .feature__n {
+    grid-row: span 2;
+    color: var(--color-band-muted);
+  }
+  .feature__label {
+    font-size: var(--text-sm);
+    color: var(--color-band-muted);
+  }
+  .feature__detail {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: var(--text-lg);
+    color: var(--color-band-ink);
+  }
+  @media (min-width: 64rem) {
+    .feature__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 4rem;
+    }
+  }
+</style>

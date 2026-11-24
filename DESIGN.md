@@ -52,12 +52,12 @@ Brand v1 tokens are unchanged. Everything below the brand comes from research's 
 - **Heading font:** Fraunces 700, optical size 72 (brand). **Body:** Inter 400 to 600 plus a 400 italic (brand; on the skill's over-used list, kept for brand consistency). **Numbers and proof:** IBM Plex Mono 400. Research's subset WOFF2 files move to `packages/brand/fonts`, split basic and extended Latin with `unicode-range`; they cover ₦, £ and the Yoruba diacritics research tested. No Google Fonts request.
 - **Type scale:** research's 1.25 fluid scale, shared. Headings `text-wrap: balance`, paragraphs `text-wrap: pretty`, body measure about 65ch, tabular figures for prices and proof.
 - **Spacing:** airy, on a 4px step. Marketing runs slightly denser (its test log and proof tables), publishing slightly looser.
-- **Radius:** 0, with 2px on buttons and inputs. Paper has square corners.
-- **Borders vs shadows:** hairline rules only. No shadows anywhere.
-- **Icons:** none, except a WhatsApp glyph on WhatsApp buttons, the arrow character in text links, and a small chevron on menu disclosure buttons.
+- **Radius:** since the revamp, cards and panels 12px, inputs 8px, buttons fully round (section 20.1, D2). Before it: 0, with 2px on buttons and inputs.
+- **Borders vs shadows:** hairline rules, plus one soft shadow on card hover and the floating WhatsApp button (section 20.1, D3).
+- **Icons:** the hand-drawn set in `packages/ui/Icon.astro`, one per world and a few for contact details (section 20.1, D1), plus the WhatsApp glyph, the arrow character and the menu chevron.
 - **Marks:** the POW wordmark (ink drop as the O) in every header and the ink-drop icon as favicon; the quill emblem only at 120px or larger (footer of main and research).
 - **Imagery:** no stock photos of people, no AI-generated people, nobody posed who could be mistaken for staff. The founder's two studio portraits are the only photos of a person. Each world may use an approved AI-generated or owner-made still life of the work itself, no people, no readable text, approved image by image. Proposed styles: main, a desk with the five kinds of paper; marketing, a printed ad proof beside a phone showing a results screen with no readable numbers; writing, an envelope and a folded CV on good paper; publishing, the printed readers themselves (real photos once supplied); dev, none. Until approved, a sized placeholder box, never a stock image.
-- **Motion:** 150 to 250ms colour and transform transitions on buttons, menu panels and FAQs. No scroll animation, no animated counters. Full `prefers-reduced-motion` handling.
+- **Motion:** 150 to 250ms colour and transform transitions on buttons, menu panels and FAQs, and the hero motif's slow pulse (section 20.1, D4). No scroll animation, no animated counters. Full `prefers-reduced-motion` handling.
 
 ### 4.1 World accents (approved 26 Oct 2026)
 
@@ -151,7 +151,7 @@ Everything in `apps/research/DESIGN.md` section 7, family-wide, plus:
 - No carousels of any kind, rotating testimonials included.
 - No animated counters. Proof numbers are static, in Plex Mono, each linked to its case study or evidence.
 - No gradient CTA bands, no gradients at all.
-- No three identical icon cards. "Choose your world" uses dividers of different content and height, each in its own accent, with a smaller fifth for dev.
+- No five identical cards: "Choose your world" is a card grid since the revamp (D1), four world cards each in its own accent, and dev as a slim full-width strip.
 - No "trusted by" strips, client logos or star ratings.
 - No accent on body text, no more than one accent per world, no world accent on another world's pages (main's dividers excepted).
 - No stock photos of people, no AI people.
@@ -171,7 +171,7 @@ Carried from research (Inter as body face, `console.log` in scripts, en dashes i
 - **slop-check WARNs in research's blog** (26 Oct 2026): "state-of-the-art review" is the established name of a literature review type, and "streamlined" sits inside the standard definition of a rapid review (`types-of-literature-review.md`). Kept: the guide teaches those terms.
 - **`_redirects` to another world** is written at build time from `worlds.ts` (research's `astro.config.mjs`), not typed into `public/_redirects`.
 - **The canonical Academic Integrity Policy** (`apps/main/src/content/pages/academic-integrity.md`) is exempt from the academic-terms check outside research. It has to name assignments, dissertations and exams to say we refuse them. Nothing else on main is exempt.
-- **slop-check "stripe-border" WARN on main's world dividers** (`WorldDividers.astro`, 27 Oct 2026). The 3px top edge in each world's accent is the edge of a binder divider under its tab: the concept itself, not a decorative callout stripe. Kept.
+- **slop-check "stripe-border" WARN on cards with a world accent** (`packages/ui/Card.astro`, revamp, 25 Nov 2026; before it `WorldDividers.astro`). The 3px top edge in each world's accent is the binder divider's edge carried into the card grid: it is how main tells the five worlds apart. Only cards given a world `accent` have it. Kept.
 - **Hex values in `scripts/make-og.py`.** An image can't read CSS, so the OG script writes the brand and accent colours out again. They must match `packages/brand/tokens.css`.
 
 ## 10. Open TODOs for the owner
@@ -499,3 +499,14 @@ Every page on every world changes through the shared header, footer (with the ne
 | Publishing | Holding page, 404 | PageHero, SplitIntro, "Notify me" form beside WhatsApp |
 | Dev | Holding page, 404 | As publishing |
 | Research (monorepo copy only) | All pages and 23 posts | Same anatomy as the other worlds (question 1); Ink Green buttons kept (26 Oct decision). The live research site stays on the old repo until cutover |
+
+### 20.6 Phase R1: built on main (25 Nov 2026)
+
+- **Tokens** (`packages/brand/tokens.css`): `--radius-sm` 8px, `--radius` 12px, `--radius-pill`, one `--shadow`, `--section` and `--gutter` (Edunotech's spacing), the container widened to 75rem, and a band palette (`band`, `band-panel`, `band-ink`, `band-muted`, `band-rule`, `band-gold`): Ink Green by day, a deeper ink than the page at night. Buttons are pills; `.btn-on-band` and `.btn-band-outline` sit on bands.
+- **Contrast:** every new pairing added to `scripts/contrast-check.mjs` (text and secondary text on bands and band panels, the gold phrase on the band, Cream buttons on bands, eyebrow text on page and panels). All pass across six worlds in both modes; the gold phrase is 4.80:1 on Ink Green (large text needs 3). D8: eyebrows on bands are a Cream outline, so Spark Gold appears once, in the hero. In dark mode main's world accent is already Spark Gold (26 Oct decision), so its buttons and page eyebrows are gold too; that predates the revamp and is unchanged.
+- **Components** in `packages/ui`: Icon, Eyebrow, InkMotif, HomeHero, PageHero, SplitIntro, Card, CardGrid, Steps, FeatureBand, CtaPanel, WhatsAppFloat, NewsletterForm, plus the reworked Header (sticky, hairline once scrolled, pill WhatsApp button, drawer icons, `data-menu-open` hides the float) and Footer (dark band, brand block with the emblem on every world, columns, newsletter row, legal row with room for the float). `how-we-work.ts` holds the four steps for both the old and new layouts. `packages/config/api.ts` holds the pow-api origin, `null` until R3, so the newsletter row is shown disabled with "Newsletter signups open soon." and collects nothing.
+- **Main:** home, About and Contact rebuilt in the new anatomy. `WorldDividers.astro` removed (the world cards replace it).
+- **Shared, so visible on every world now:** the header, footer, newsletter row, floating WhatsApp button, pill buttons, 8px form fields and the wider container. The inner pages of the other worlds change in R2.
+- **Hero variants for the owner** (development only, `/design/ruled`, `/design/trail`, `/design/photo`): ruled lines with drops; one pen stroke with drops; the approved desk photograph with the motif faint behind the band. Main's home uses "ruled" until the owner picks.
+- **New wording the layout needed, for approval:** hero eyebrow "Pen of Wonder Consults"; eyebrows "Pen of Wonder" (worlds), "Hidden Treasures" (books), "Our founder", "About", "How we think", "P-E-N", "Contact"; the founder section's heading "Wonderful Adebagbo" (was "Our founder", now its eyebrow); About's "That way of working comes from a lab." moved from the first sentence of a paragraph into a heading; card links "Go to Marketing →" and "Opening soon: see what's coming"; hero step strip "Message · Consult · Quote · Deliver"; footer headings "Pen of Wonder", "Worlds", "Connect", "Newsletter", the link "Home", the line "New guides from our blogs, in one email a month.", the newsletter consent "I agree to receive the newsletter and can unsubscribe at any time. See our privacy notice.", and "Newsletter signups open soon."; Contact's "Reach us directly".
+- **Screenshots:** `_source/screenshots/revamp-r1/` (before and after for home, About and Contact at 360 and 1440 px, light and dark; the three hero variants).

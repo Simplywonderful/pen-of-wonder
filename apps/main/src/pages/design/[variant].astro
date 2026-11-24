@@ -1,0 +1,36 @@
+---
+// Phase R1 review only: main's hero in each motif variant, for the owner to choose (DESIGN.md 20.3).
+// Built in development and review builds, never in production.
+import "../../styles/global.css";
+import Layout from "@pow/ui/Layout.astro";
+import HomeHero from "@pow/ui/HomeHero.astro";
+import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import { howWeWorkWords } from "@pow/ui/how-we-work";
+import { showTodos } from "@pow/ui/todos";
+import { home } from "../../data/home";
+import heroDesk from "../../assets/hero-desk.jpg";
+
+export function getStaticPaths() {
+  return showTodos ? ["ruled", "trail", "photo"].map((variant) => ({ params: { variant } })) : [];
+}
+const { variant } = Astro.params;
+---
+
+<Layout world="main" title={`Hero variant: ${variant} | Pen of Wonder`} description="Review page for the revamp's hero variants." noindex>
+  <HomeHero
+    eyebrow="Pen of Wonder Consults"
+    title={home.h1}
+    highlight="win."
+    lead={home.lead}
+    steps={howWeWorkWords}
+    family
+    motif={variant === "trail" ? "trail" : "ruled"}
+    image={variant === "photo" ? { src: heroDesk, alt: "Papers laid out on a wooden desk: an advert proof, a folded letter, a manuscript with green-ink corrections and a sheet of graph paper, with a green fountain pen." } : undefined}
+  >
+    <Fragment slot="actions">
+      <a class="btn btn-on-band" href="/#worlds">Find your service <span class="arrow" aria-hidden="true">→</span></a>
+      <WhatsAppButton world="main" variant="band-outline" />
+    </Fragment>
+  </HomeHero>
+  <p class="wrap section">Variant: <strong>{variant}</strong>. <a href="/design/ruled">Ruled</a> · <a href="/design/trail">Trail</a> · <a href="/design/photo">Photo with motif</a></p>
+</Layout>

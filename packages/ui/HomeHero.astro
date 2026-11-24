@@ -1,0 +1,152 @@
+---
+// A world's home hero (DESIGN.md 20.2): a band in the world's colour by day and deep ink at night,
+// an eyebrow, the H1 in Fraunces sentence case with its last phrase in Spark Gold, a lead, two
+// buttons (slot "actions"), the How we work steps as a strip, and the ink motif or the world's
+// approved photograph on the right.
+import type { ImageMetadata } from "astro";
+import Eyebrow from "./Eyebrow.astro";
+import InkMotif from "./InkMotif.astro";
+import HeroFigure from "./HeroFigure.astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  /** The end of the title to set in gold. Must be the title's last words. */
+  highlight?: string;
+  lead: string;
+  steps?: string[];
+  motif?: "ruled" | "trail";
+  family?: boolean;
+  image?: { src: ImageMetadata; alt: string };
+}
+const { eyebrow, title, highlight, lead, steps = [], motif = "ruled", family = false, image } = Astro.props;
+const split = highlight && title.endsWith(highlight) ? title.length - highlight.length : title.length;
+const [before, gold] = [title.slice(0, split), title.slice(split)];
+---
+
+<section class="home-hero" aria-labelledby="hero-heading">
+  <div class="wrap home-hero__inner">
+    <div class="home-hero__text">
+      {eyebrow && <Eyebrow tone="band">{eyebrow}</Eyebrow>}
+      <h1 id="hero-heading" class="home-hero__title">
+        {before}{gold && <span class="home-hero__gold">{gold}</span>}
+      </h1>
+      <p class="home-hero__lead">{lead}</p>
+      <div class="home-hero__actions"><slot name="actions" /></div>
+      {
+        steps.length > 0 && (
+          <ol class="home-hero__steps" aria-label="How we work">
+            {steps.map((s) => (
+              <li>{s}</li>
+            ))}
+          </ol>
+        )
+      }
+    </div>
+    <div class="home-hero__art">
+      {image ? <HeroFigure src={image.src} alt={image.alt} /> : <InkMotif variant={motif} family={family} />}
+    </div>
+  </div>
+  {image && <InkMotif variant={motif} family={family} class="home-hero__ghost" />}
+</section>
+
+<style>
+  .home-hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-world-accent);
+    color: var(--color-on-world-accent);
+  }
+  /* At night every hero is deep ink, so the gold phrase and the world's buttons both read. */
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .home-hero {
+      background: var(--color-band);
+      color: var(--color-band-ink);
+    }
+  }
+  :global(:root[data-theme="dark"]) .home-hero {
+    background: var(--color-band);
+    color: var(--color-band-ink);
+  }
+  .home-hero__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 2.5rem;
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+  }
+  .home-hero__title {
+    margin-top: 1.25rem;
+    max-width: 15ch;
+    font-size: clamp(2.6rem, 1.8rem + 3.6vw, 4.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: inherit;
+  }
+  .home-hero__gold {
+    color: var(--color-band-gold);
+  }
+  .home-hero__lead {
+    margin-top: 1.5rem;
+    max-width: 52ch;
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+  }
+  .home-hero__actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .home-hero__steps {
+    margin-top: 2.25rem;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .home-hero__steps li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .home-hero__steps li::before {
+    content: "";
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.6;
+  }
+  .home-hero__art {
+    align-self: center;
+  }
+  .home-hero__art :global(.motif) {
+    max-width: 30rem;
+    margin-inline: auto;
+  }
+  /* With a photograph, the motif sits faintly behind the whole band. */
+  .home-hero :global(.home-hero__ghost) {
+    position: absolute;
+    inset: auto -4rem -6rem auto;
+    width: 38rem;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  @media (max-width: 63.99rem) {
+    .home-hero__art:has(:global(.motif)) {
+      display: none;
+    }
+  }
+  @media (min-width: 64rem) {
+    .home-hero__inner {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 3rem;
+    }
+  }
+</style>

@@ -7,13 +7,15 @@ interface Props {
   world: WorldId;
   service?: string;
   label?: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "on-band" | "band-outline";
   class?: string;
+  /** The click event name for the revamp's counter (brief 5.8). */
+  event?: string;
 }
-const { world, service, label = "Chat on WhatsApp", variant = "secondary", class: className } = Astro.props;
+const { world, service, label = "Chat on WhatsApp", variant = "secondary", class: className, event = "whatsapp_cta" } = Astro.props;
 ---
 
-<a class:list={["btn", variant === "primary" ? "btn-primary" : "btn-secondary", className]} href={whatsappLink(world, service)}>
+<a class:list={["btn", `btn-${variant}`, className]} href={whatsappLink(world, service)} data-event={event}>
   <svg class="wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
     <path
       d="M12 2.6a9.4 9.4 0 0 0-8.1 14.1L2.6 21.4l4.8-1.3A9.4 9.4 0 1 0 12 2.6Z"

@@ -2,7 +2,8 @@
 // The family letterhead: identical on every world, with the world named under the mark and its
 // accent ruled beneath. World labels open disclosure panels (buttons with aria-expanded, not ARIA
 // menus); without JavaScript each label is a plain link to its world. A world's own pages sit in a
-// second row on wide screens and first in the drawer on phones.
+// second row on wide screens and first in the drawer on phones. Since the revamp (DESIGN.md 20.2) it
+// sticks to the top, gains its hairline once the page scrolls, and its WhatsApp button is a pill.
 import { menuWorlds, world as getWorld, worldUrl, type WorldId } from "@pow/config/worlds";
 import PowWordmark from "./PowWordmark.astro";
 import WhatsAppButton from "./WhatsAppButton.astro";
@@ -22,6 +23,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
 ---
 
 <header class="site-header" data-header>
+  <span class="scroll-sentinel" aria-hidden="true" data-scroll-sentinel></span>
   <div class="bar">
     <a href={worldUrl(id)} class="brand" aria-label={`${here.name}, home`}>
       <PowWordmark class="brand__mark" />
@@ -32,7 +34,13 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     </a>
 
     <button type="button" class="menu-button" aria-expanded="false" aria-controls="site-menu" data-menu-button>
-      Menu
+      <svg class="menu-button__icon menu-button__icon--open" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
+      <svg class="menu-button__icon menu-button__icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M6 6l12 12M18 6 6 18" />
+      </svg>
+      <span data-menu-label>Menu</span>
     </button>
 
     <div id="site-menu" class="menu" data-menu>
@@ -105,16 +113,29 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
         </ul>
       </nav>
 
-      <WhatsAppButton world={id} variant="primary" class="menu__whatsapp" />
+      <WhatsAppButton world={id} variant="primary" class="menu__whatsapp" event="whatsapp_header" />
     </div>
   </div>
 </header>
 
 <style>
   .site-header {
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 40;
-    border-bottom: 1px solid var(--color-rule);
+    background: var(--color-bg);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--duration-ui) var(--ease-out);
+  }
+  .site-header[data-scrolled] {
+    border-bottom-color: var(--color-rule);
+  }
+  /* A 1px marker at the top of the page: when it scrolls out of view, the header gains its rule. */
+  .scroll-sentinel {
+    position: absolute;
+    top: 0;
+    height: 1px;
+    width: 1px;
   }
   .bar {
     max-width: var(--container-sheet);
@@ -158,11 +179,29 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
 
   .menu-button {
     display: none;
+    align-items: center;
+    gap: 0.4rem;
     min-height: 2.75rem;
-    padding-inline: 0.85rem;
+    padding-inline: 0.85rem 1rem;
     border: 1px solid var(--color-rule-strong);
+    border-radius: var(--radius-pill);
     font-size: var(--text-sm);
     font-weight: 600;
+  }
+  .menu-button__icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+  .menu-button__icon--close,
+  .menu-button[aria-expanded="true"] .menu-button__icon--open {
+    display: none;
+  }
+  .menu-button[aria-expanded="true"] .menu-button__icon--close {
+    display: block;
   }
 
   .menu ul {
@@ -246,6 +285,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     padding: 0.75rem 1rem 1rem;
     background: var(--color-panel);
     border: 1px solid var(--color-rule);
+    border-radius: var(--radius);
     font-size: var(--text-sm);
     line-height: var(--text-sm--line-height);
   }
@@ -271,7 +311,13 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
   /* Phones and tablets: one drawer. The world's own pages first, then the other worlds as groups. */
   @media (max-width: 63.99rem) {
     :global(html.js) .menu-button {
-      display: inline-block;
+      display: inline-flex;
+    }
+    /* The open drawer scrolls on its own, below the sticky bar. */
+    :global(html.js) .menu[data-open] {
+      max-height: calc(100dvh - 5rem);
+      overflow-y: auto;
+      padding-bottom: 1rem;
     }
     .menu-group {
       display: block;
@@ -315,7 +361,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
       grid-template-areas:
         "brand worlds worlds"
         "local local whatsapp";
-      padding-inline: 3rem;
+      padding-inline: var(--gutter);
       row-gap: 0;
     }
     .brand {
@@ -396,8 +442,10 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
   const setMenu = (open: boolean) => {
     if (!menuButton || !menu) return;
     menuButton.setAttribute("aria-expanded", String(open));
-    menuButton.textContent = open ? "Close" : "Menu";
+    const label = menuButton.querySelector("[data-menu-label]");
+    if (label) label.textContent = open ? "Close" : "Menu";
     menu.toggleAttribute("data-open", open);
+    document.documentElement.toggleAttribute("data-menu-open", open);
     if (!open) closePanels();
   };
 
@@ -427,4 +475,10 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     const open = openToggle();
     if (open && !open.parentElement?.contains(e.target as Node)) setPanel(open, false);
   });
+
+  // The header's hairline appears once the page has scrolled past the top.
+  const sentinel = header?.querySelector("[data-scroll-sentinel]");
+  if (header && sentinel && "IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => header.toggleAttribute("data-scrolled", !entry.isIntersecting)).observe(sentinel);
+  }
 </script>

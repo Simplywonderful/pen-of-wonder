@@ -1,0 +1,50 @@
+---
+// Two columns (DESIGN.md 20.2): an eyebrow and a large heading on the left, the text on the right
+// (default slot). Slot "aside" adds something under the heading, such as a portrait.
+import Eyebrow from "./Eyebrow.astro";
+
+interface Props {
+  id: string;
+  eyebrow?: string;
+  heading: string;
+  ground?: "page" | "panel";
+}
+const { id, eyebrow, heading, ground = "page" } = Astro.props;
+---
+
+<section class:list={["section split", ground === "panel" && "section--panel"]} aria-labelledby={id}>
+  <div class="wrap split__inner">
+    <div class="split__head">
+      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+      <h2 id={id} class="split__heading">{heading}</h2>
+      <slot name="aside" />
+    </div>
+    <div class="split__body"><slot /></div>
+  </div>
+</section>
+
+<style>
+  .split__inner {
+    display: grid;
+    gap: 2rem;
+  }
+  .split__heading {
+    margin-top: 1rem;
+    max-width: 16ch;
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    letter-spacing: var(--tracking-display);
+  }
+  .split__body {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    max-width: 60ch;
+  }
+  @media (min-width: 64rem) {
+    .split__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: 4rem;
+    }
+  }
+</style>

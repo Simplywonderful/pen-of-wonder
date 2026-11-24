@@ -1,0 +1,103 @@
+---
+// The hero motif (DESIGN.md 20.3): the family concept, one pen and its paper, drawn as fine ruled
+// lines with ink drops. Two variants for the owner to choose from in R1:
+//   "ruled": drops resting on the lines of a ruled sheet;
+//   "trail": one pen stroke across the sheet, with drops along it.
+// Main colours its drops in all five world accents; a world uses Cream. A few drops pulse slowly;
+// under prefers-reduced-motion nothing moves. Purely decorative: no text, aria-hidden.
+interface Props {
+  variant?: "ruled" | "trail";
+  /** Five-colour drops for main; one colour for a world. */
+  family?: boolean;
+  class?: string;
+}
+const { variant = "ruled", family = false, class: className } = Astro.props;
+
+// A drop pointing up, centred on its own origin, 20 units wide.
+const drop = "M0 -15C5 -7 10 -1 10 5a10 10 0 0 1 -20 0c0 -6 5 -12 10 -20Z";
+const accents = ["marketing", "writing", "research", "publishing", "dev"];
+const lines = [60, 110, 160, 210, 260, 310];
+
+const ruledDrops = [
+  { x: 330, y: 60, s: 0.7, pulse: false },
+  { x: 410, y: 110, s: 1, pulse: true },
+  { x: 250, y: 160, s: 0.55, pulse: false },
+  { x: 370, y: 210, s: 0.85, pulse: true },
+  { x: 440, y: 260, s: 0.6, pulse: false },
+  { x: 300, y: 310, s: 0.9, pulse: true },
+];
+const trailDrops = [
+  { x: 150, y: 250, s: 0.55, pulse: false },
+  { x: 235, y: 205, s: 0.7, pulse: true },
+  { x: 315, y: 170, s: 0.85, pulse: false },
+  { x: 390, y: 120, s: 1, pulse: true },
+  { x: 445, y: 70, s: 0.6, pulse: false },
+];
+const drops = variant === "ruled" ? ruledDrops : trailDrops;
+// Drops are drawn 20 units wide; this sets their size on the sheet.
+const size = 1.7;
+---
+
+<svg class:list={["motif", family && "motif--family", className]} viewBox="0 0 480 360" aria-hidden="true" focusable="false">
+  <g class="motif__lines">
+    {lines.map((y) => <line x1="0" y1={y} x2="480" y2={y} />)}
+    {variant === "ruled" && <line class="motif__margin" x1="210" y1="20" x2="210" y2="340" />}
+  </g>
+  {variant === "trail" && <path class="motif__stroke" d="M60 300C140 280 200 230 260 195S370 120 470 40" />}
+  {
+    drops.map((d, i) => (
+      <g transform={`translate(${d.x} ${d.y - 15 * d.s * size}) scale(${d.s * size})`}>
+        <path class:list={["motif__drop", d.pulse && "motif__drop--pulse"]} data-accent={family ? accents[i % accents.length] : undefined} d={drop} style={`animation-delay: ${i * 0.9}s`} />
+      </g>
+    ))
+  }
+</svg>
+
+<style>
+  .motif {
+    width: 100%;
+    height: auto;
+    color: var(--color-band-ink);
+  }
+  .motif__lines line {
+    stroke: currentColor;
+    stroke-width: 1;
+    opacity: 0.18;
+  }
+  .motif__lines .motif__margin {
+    opacity: 0.3;
+  }
+  .motif__stroke {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    opacity: 0.45;
+  }
+  .motif__drop {
+    fill: currentColor;
+    opacity: 0.75;
+    transform-box: fill-box;
+    transform-origin: center bottom;
+  }
+  /* Main's drops take the five world accents, at their night values so they read on the band. */
+  .motif--family .motif__drop[data-accent="marketing"] { fill: var(--raspberry-night); }
+  .motif--family .motif__drop[data-accent="writing"] { fill: var(--olive-night); }
+  .motif--family .motif__drop[data-accent="research"] { fill: var(--sage-night); }
+  .motif--family .motif__drop[data-accent="publishing"] { fill: var(--terracotta-night); }
+  .motif--family .motif__drop[data-accent="dev"] { fill: var(--graphite-night); }
+  .motif--family .motif__drop { opacity: 0.95; }
+
+  .motif__drop--pulse {
+    animation: drop-pulse 4.5s var(--ease-out) infinite;
+  }
+  @keyframes drop-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.14); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .motif__drop--pulse {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+// The closing call to action (DESIGN.md 20.2): a heading, a line and the buttons (default slot) in
+// a rounded dark panel.
+interface Props {
+  id: string;
+  heading: string;
+  text?: string;
+}
+const { id, heading, text } = Astro.props;
+---
+
+<section class="section cta" aria-labelledby={id}>
+  <div class="wrap">
+    <div class="cta__panel">
+      <h2 id={id} class="cta__heading">{heading}</h2>
+      {text && <p class="cta__text">{text}</p>}
+      <div class="cta__actions"><slot /></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* The footer's own top margin gives the space below. */
+  .cta {
+    padding-bottom: 0;
+  }
+  .cta__panel {
+    padding: clamp(2rem, 5vw, 3.5rem);
+    border-radius: var(--radius);
+    background: var(--color-band);
+    color: var(--color-band-ink);
+  }
+  .cta__heading {
+    max-width: 22ch;
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    letter-spacing: var(--tracking-display);
+    color: inherit;
+  }
+  .cta__text {
+    margin-top: 1rem;
+    max-width: 60ch;
+    color: var(--color-band-muted);
+  }
+  .cta__actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+</style>

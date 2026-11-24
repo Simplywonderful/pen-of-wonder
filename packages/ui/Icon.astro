@@ -1,0 +1,47 @@
+---
+// The family's only icons (DESIGN.md 20.1, D1): hand-drawn single-weight line drawings, one per
+// world, plus a few for contact details. No icon pack. Always decorative: the text beside the icon
+// carries the meaning, so every icon is aria-hidden.
+export type IconName = "marketing" | "writing" | "research" | "publishing" | "dev" | "main" | "mail" | "pin" | "clock";
+
+interface Props {
+  name: IconName;
+  class?: string;
+  size?: number;
+}
+const { name, class: className, size = 24 } = Astro.props;
+
+const paths: Record<IconName, string[]> = {
+  // A loudhailer: marketing speaks to a crowd.
+  marketing: ["M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1Z", "M17 9.2a4 4 0 0 1 0 5.6", "M19.3 6.8a7.3 7.3 0 0 1 0 10.4", "M8 15.2 9 20h2"],
+  // A sealed letter: writing ends as a document someone opens.
+  writing: ["M3.5 6.5h17v11h-17z", "m3.8 6.8 8.2 6.4 8.2-6.4", "M3.8 17.2 9.6 11.4", "m20.2 17.2-5.8-5.8"],
+  // A manuscript under a reading glass: research reads closely.
+  research: ["M6 3.5h8l4 4V14", "M14 3.5V7.5h4", "M6 3.5v17h6", "M8.5 9.5h5", "M8.5 12.5h3.5", "M17 16a2.8 2.8 0 1 1-5.6 0 2.8 2.8 0 0 1 5.6 0Z", "m16.3 18 2.7 2.7"],
+  // An open book: publishing.
+  publishing: ["M12 6.5C10 5 7.5 4.5 4 4.5v13c3.5 0 6 .5 8 2", "M12 6.5c2-1.5 4.5-2 8-2v13c-3.5 0-6 .5-8 2", "M12 6.5v13"],
+  // Angle brackets on graph paper: dev.
+  dev: ["m8.5 8.5-4 3.5 4 3.5", "m15.5 8.5 4 3.5-4 3.5", "m13.2 6.5-2.4 11"],
+  // The ink drop of the POW mark: the family.
+  main: ["M12 3.5c3 4 5.5 7 5.5 10a5.5 5.5 0 0 1-11 0c0-3 2.5-6 5.5-10Z"],
+  mail: ["M3.5 6.5h17v11h-17z", "m3.8 6.8 8.2 6.4 8.2-6.4"],
+  pin: ["M12 20.5s6-5.4 6-10.5a6 6 0 0 0-12 0c0 5.1 6 10.5 6 10.5Z", "M14 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"],
+  clock: ["M20.5 12a8.5 8.5 0 1 1-17 0 8.5 8.5 0 0 1 17 0Z", "M12 7.5V12l3 2"],
+};
+---
+
+<svg
+  class:list={["icon", className]}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+>
+  {paths[name].map((d) => <path d={d} />)}
+</svg>
