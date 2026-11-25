@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { getCollection } from "astro:content";
 import Layout from "@pow/ui/Layout.astro";
+import PageHero from "@pow/ui/PageHero.astro";
 import { withContactEmail } from "@pow/ui/contact-email";
 
 export async function getStaticPaths() {
@@ -16,10 +17,10 @@ const updated = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long"
 ---
 
 <Layout world="main" title={d.metaTitle} description={d.description} note="Marketing, writing, research and publishing, from Ibadan">
-  <article class="wrap pt-10 md:pt-16 lg:pt-20">
+  <PageHero title={d.title} />
+  <article class="wrap section">
     <header>
-      <h1 class="max-w-[22ch] text-3xl tracking-(--tracking-display)">{d.title}</h1>
-      <p class="mt-4 text-sm text-muted">
+      <p class="text-sm text-muted">
         Last updated <time datetime={d.updated.toISOString().slice(0, 10)}>{updated}</time>
       </p>
     </header>

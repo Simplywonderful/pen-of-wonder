@@ -1,8 +1,12 @@
 ---
 // The family's only icons (DESIGN.md 20.1, D1): hand-drawn single-weight line drawings, one per
-// world, plus a few for contact details. No icon pack. Always decorative: the text beside the icon
-// carries the meaning, so every icon is aria-hidden.
-export type IconName = "marketing" | "writing" | "research" | "publishing" | "dev" | "main" | "mail" | "pin" | "clock";
+// world and one per service, plus a few for contact details. No icon pack. Always decorative: the
+// text beside the icon carries the meaning, so every icon is aria-hidden.
+export type IconName =
+  | "marketing" | "writing" | "research" | "publishing" | "dev" | "main" | "mail" | "pin" | "clock"
+  | "paid-ads" | "ad-creative" | "landing-pages" | "copywriting" | "content-and-seo" | "social-media"
+  | "cvs" | "linkedin" | "grants" | "business-plans" | "ghostwriting" | "editing"
+  | "coaching";
 
 interface Props {
   name: IconName;
@@ -27,6 +31,22 @@ const paths: Record<IconName, string[]> = {
   mail: ["M3.5 6.5h17v11h-17z", "m3.8 6.8 8.2 6.4 8.2-6.4"],
   pin: ["M12 20.5s6-5.4 6-10.5a6 6 0 0 0-12 0c0 5.1 6 10.5 6 10.5Z", "M14 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"],
   clock: ["M20.5 12a8.5 8.5 0 1 1-17 0 8.5 8.5 0 0 1 17 0Z", "M12 7.5V12l3 2"],
+  // Marketing services.
+  "paid-ads": ["M19.5 12a7.5 7.5 0 1 1-7.5-7.5", "M15.5 12a3.5 3.5 0 1 1-3.5-3.5", "m12 12 7-7", "M16.5 4.5h3v3"],
+  "ad-creative": ["M4 5.5h16v13H4z", "m4.5 15.5 4.5-4.5 3.5 3.5 2.5-2.5 5 5", "M16 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"],
+  "landing-pages": ["M3.5 5h17v14h-17z", "M3.5 8.5h17", "M7 12h6", "M7 15h4", "M15 12h2.5v3H15z"],
+  copywriting: ["m15.5 4.5 4 4L9 19H5v-4L15.5 4.5Z", "m13.5 6.5 4 4"],
+  "content-and-seo": ["M5 4.5h9", "M5 8h12", "M5 11.5h6", "M17 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z", "m16.2 18.2 2.8 2.8"],
+  "social-media": ["M4 5.5h16v10H10l-4 3.5v-3.5H4z", "M8 10.5h8"],
+  // Writing services.
+  cvs: ["M6.5 3.5h11v17h-11z", "M9 7h6", "M9 10h6", "M9 13h4", "M9 16h5"],
+  linkedin: ["M3.5 6h17v12h-17z", "M9.5 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z", "M5 15.5c.6-1.4 1.6-2 2.5-2s1.9.6 2.5 2", "M13 10h5", "M13 13h4"],
+  grants: ["M12 3.5 19.5 7v1.5h-15V7L12 3.5Z", "M6.5 10.5v6", "M10 10.5v6", "M14 10.5v6", "M17.5 10.5v6", "M4 19h16"],
+  "business-plans": ["M4.5 19.5h15", "M6.5 16v-4", "M11 16v-7", "M15.5 16V6", "m5.5 9.5 5-4 4 2 4.5-3.5"],
+  ghostwriting: ["M19.5 4.5c-6 0-11 4-12.5 11l-1.5 4", "M19.5 4.5c-.5 5-3.5 9-9.5 10.5", "M10 11.5h3.5"],
+  // Research coaching: a board with a chart on it, teaching not doing.
+  coaching: ["M4 4.5h16v11H4z", "M12 15.5v4", "M8.5 19.5h7", "m7 12 3-3 2.5 2 4-4"],
+  editing: ["M5 5h9", "M5 9h11", "M5 13h5", "m13 19 1-3.5 5-5 2.5 2.5-5 5L13 19Z"],
 };
 ---
 

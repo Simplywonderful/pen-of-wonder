@@ -33,3 +33,6 @@ export const steps = [
     detail: ["Usually a PDF to send and a Word file you can update yourself."],
   },
 ];
+
+/** One word per step, for the hero's strip (revamp brief 4.1). */
+export const stepWords = ["Brief", "Quote", "Talk", "Draft", "Deliver"];

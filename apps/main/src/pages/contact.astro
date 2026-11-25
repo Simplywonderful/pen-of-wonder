@@ -3,11 +3,8 @@
 import "../styles/global.css";
 import Layout from "@pow/ui/Layout.astro";
 import PageHero from "@pow/ui/PageHero.astro";
-import ContactForm from "@pow/ui/ContactForm.astro";
-import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
-import Icon from "@pow/ui/Icon.astro";
-import Todo from "@pow/ui/Todo.astro";
-import { contact, contactPlaceholders } from "@pow/config/contact";
+import ContactSection from "@pow/ui/ContactSection.astro";
+import { contact } from "@pow/config/contact";
 ---
 
 <Layout
@@ -21,66 +18,5 @@ import { contact, contactPlaceholders } from "@pow/config/contact";
     title="Contact"
     lead={`Send a message here or on WhatsApp. Tell us which part of Pen of Wonder it's for, or pick Not sure yet. We reply ${contact.replyTime}.`}
   />
-
-  <section class="section" aria-label="Contact details and form">
-    <div class="wrap contact">
-      <aside class="direct" aria-labelledby="direct-heading">
-        <h2 id="direct-heading" class="contact__heading">Reach us directly</h2>
-        <p class="mt-5"><WhatsAppButton world="main" label={`WhatsApp ${contact.whatsapp.display}`} variant="primary" /></p>
-        <ul class="direct__list">
-          <li>
-            <Icon name="mail" />
-            <span>{contact.email ? <a href={`mailto:${contact.email}`} class="break-all" data-event="email_click">{contact.email}</a> : <Todo label={contactPlaceholders.email} />}</span>
-          </li>
-          <li><Icon name="pin" /><span>Ibadan, Nigeria</span></li>
-          <li><Icon name="clock" /><span>WAT (UTC+1). We reply {contact.replyTime}.</span></li>
-        </ul>
-      </aside>
-      <div class="form-card">
-        <h2 id="form-heading" class="contact__heading">Send a message</h2>
-        <ContactForm world="main" />
-      </div>
-    </div>
-  </section>
+  <ContactSection world="main" askWorld />
 </Layout>
-
-<style>
-  .contact {
-    display: grid;
-    gap: 2.5rem;
-  }
-  .contact__heading {
-    font-size: var(--text-2xl);
-    line-height: var(--text-2xl--line-height);
-  }
-  .direct__list {
-    margin-top: 1.75rem;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    gap: 1rem;
-  }
-  .direct__list li {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.75rem;
-    align-items: start;
-  }
-  .direct__list :global(.icon) {
-    color: var(--color-world-accent);
-    margin-top: 0.15rem;
-  }
-  .form-card {
-    padding: clamp(1.25rem, 4vw, 2.25rem);
-    border: 1px solid var(--color-rule);
-    border-radius: var(--radius);
-    background: var(--color-panel);
-  }
-  @media (min-width: 64rem) {
-    .contact {
-      grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
-      column-gap: 4rem;
-      align-items: start;
-    }
-  }
-</style>

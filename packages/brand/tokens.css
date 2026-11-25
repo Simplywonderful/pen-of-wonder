@@ -110,6 +110,12 @@
   --band-night: oklch(0.205 0.013 166);
   --band-night-panel: var(--night-panel);
 
+  /* The hero's highlighted phrase: Spark Gold where it reaches 3:1 on the hero band. On the
+     Raspberry, Olive and Terracotta bands it doesn't (2.9:1), so there the phrase is Cream with a
+     Spark Gold underline: gold still marks the win, once. */
+  --hero-highlight: var(--spark-gold);
+  --hero-underline: transparent;
+
   /* Revamp shape tokens (DESIGN.md 20.1, D2 and D3). */
   --radius-sm: 8px;
   --radius: 12px;
@@ -120,10 +126,10 @@
 }
 
 /* Research keeps its Ink Green buttons (owner decision, 26 Oct 2026); Sage marks only the rule and menu. */
-:root[data-world="marketing"] { --world-accent: var(--raspberry); --world-rule: var(--raspberry); }
-:root[data-world="writing"] { --world-accent: var(--olive); --world-rule: var(--olive); }
+:root[data-world="marketing"] { --world-accent: var(--raspberry); --world-rule: var(--raspberry); --hero-highlight: var(--cream); --hero-underline: var(--spark-gold); }
+:root[data-world="writing"] { --world-accent: var(--olive); --world-rule: var(--olive); --hero-highlight: var(--cream); --hero-underline: var(--spark-gold); }
 :root[data-world="research"] { --world-accent: var(--ink-green); --world-rule: var(--sage); }
-:root[data-world="publishing"] { --world-accent: var(--terracotta); --world-rule: var(--terracotta); }
+:root[data-world="publishing"] { --world-accent: var(--terracotta); --world-rule: var(--terracotta); --hero-highlight: var(--cream); --hero-underline: var(--spark-gold); }
 :root[data-world="dev"] { --world-accent: var(--graphite); --world-rule: var(--graphite); }
 
 @theme {
@@ -148,6 +154,11 @@
   --color-band-rule: var(--band-day-rule);
   /* The hero's highlighted phrase: Spark Gold, on bands only (gold once per layout, D8). */
   --color-band-gold: var(--spark-gold);
+  /* The home hero: the world's band by day, deep ink at night (DESIGN.md 20.3). */
+  --color-hero-bg: var(--world-accent);
+  --color-hero-ink: var(--world-on-accent);
+  --color-hero-highlight: var(--hero-highlight);
+  --color-hero-underline: var(--hero-underline);
   /* Photo mounts stay paper-coloured in both modes, so a white-backed portrait reads as a print. */
   --color-mount: var(--cream);
   --color-mount-ink: var(--deep-ink);
@@ -203,6 +214,10 @@
     --color-band-panel: var(--band-night-panel);
     --color-band-muted: var(--night-muted);
     --color-band-rule: var(--night-rule);
+    --color-hero-bg: var(--band-night);
+    --color-hero-ink: var(--cream);
+    --color-hero-highlight: var(--spark-gold);
+    --color-hero-underline: transparent;
     --world-accent: var(--spark-gold);
     --world-on-accent: var(--deep-ink);
     --world-rule: var(--spark-gold);
@@ -229,6 +244,10 @@
   --color-band-panel: var(--band-night-panel);
   --color-band-muted: var(--night-muted);
   --color-band-rule: var(--night-rule);
+  --color-hero-bg: var(--band-night);
+  --color-hero-ink: var(--cream);
+  --color-hero-highlight: var(--spark-gold);
+  --color-hero-underline: transparent;
   --world-accent: var(--spark-gold);
   --world-on-accent: var(--deep-ink);
   --world-rule: var(--spark-gold);

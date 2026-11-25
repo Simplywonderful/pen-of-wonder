@@ -1,17 +1,26 @@
 ---
-// Writing's home: the documents we write, the boundary sentence near the top (CLAUDE.md), how a job
-// runs, the latest guides, questions and the quote request. No proof strip: writing has no register
-// entry yet, and the brief says no filler.
+// Writing's home in the revamp's anatomy (DESIGN.md 20.5): the hero, the boundary sentence near the
+// top (CLAUDE.md), the problem, the documents we write, how a job runs, the latest guides, questions
+// and the quote request, closed like a letter (Writing's signature detail). No proof strip: writing
+// has no register entry yet, and the brief says no filler.
 import WritingLayout from "../layouts/WritingLayout.astro";
 import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
-import HeroFigure from "@pow/ui/HeroFigure.astro";
 import Faq from "@pow/ui/Faq.astro";
+import HomeHero from "@pow/ui/HomeHero.astro";
+import SplitIntro from "@pow/ui/SplitIntro.astro";
+import Eyebrow from "@pow/ui/Eyebrow.astro";
+import CardGrid from "@pow/ui/CardGrid.astro";
+import Card from "@pow/ui/Card.astro";
+import Steps from "@pow/ui/Steps.astro";
+import LatestPosts from "@pow/ui/LatestPosts.astro";
+import CtaPanel from "@pow/ui/CtaPanel.astro";
+import type { IconName } from "@pow/ui/Icon.astro";
 import { faqLd } from "@pow/ui/faq-ld";
 import { worldServiceLd } from "@pow/config/structured";
 import { worldUrl } from "@pow/config/worlds";
-import { getLivePosts, formatDate } from "@pow/ui/blog";
+import { getLivePosts } from "@pow/ui/blog";
 import { services } from "../data/services";
-import { steps } from "../data/process";
+import { steps, stepWords } from "../data/process";
 import { questions, boundary } from "../data/faq";
 import heroDesk from "../assets/hero-desk.jpg";
 
@@ -25,290 +34,105 @@ const [boundaryFirst] = boundary.split("Research team");
   description="CVs and cover letters, LinkedIn profiles, grant applications, business plans, ghostwriting and editing for job seekers, founders and NGOs. Quoted on request."
   jsonLd={[worldServiceLd("writing", services.map((s) => s.name)), faqLd(homeQuestions)]}
 >
-  <section class="hero" aria-labelledby="hero-heading">
-    <div class="wrap hero__inner">
-      <div>
-        <p class="hero__kicker">Words that open doors</p>
-        <h1 id="hero-heading" class="hero__title">Documents that get read, and get you through the door.</h1>
-        <p class="hero__lead">
-          CVs, LinkedIn profiles, grant applications and business plans for job seekers, founders and NGOs, written from your real
-          evidence and aimed at the person who decides.
-        </p>
-        <p class="hero__actions">
-          <WhatsAppButton world="writing" service="a writing job" label="Ask for a quote on WhatsApp" class="btn-on-band" />
-          <a class="btn btn-band-outline" href="/services">See what we write</a>
-        </p>
-      </div>
-      <HeroFigure src={heroDesk} alt="A folded letter on cream paper and its envelope on an olive-green folder, with a fountain pen and a paper clip." />
-    </div>
-  </section>
+  <HomeHero
+    eyebrow="Words that open doors"
+    title="Documents that get read, and get you through the door."
+    highlight="through the door."
+    lead="CVs, LinkedIn profiles, grant applications and business plans for job seekers, founders and NGOs, written from your real evidence and aimed at the person who decides."
+    steps={stepWords}
+    image={{ src: heroDesk, alt: "A folded letter on cream paper and its envelope on an olive-green folder, with a fountain pen and a paper clip." }}
+  >
+    <Fragment slot="actions">
+      <WhatsAppButton world="writing" service="a writing job" label="Ask for a quote on WhatsApp" variant="on-band" event="whatsapp_hero" />
+      <a class="btn btn-band-outline" href="/services">See what we write</a>
+    </Fragment>
+  </HomeHero>
 
-  <p class="wrap boundary mt-8">
-    {boundaryFirst}<a href={worldUrl("research")}>Research team</a>.
-  </p>
-
-  <section class="wrap mt-16" aria-labelledby="services-heading">
-    <h2 id="services-heading" class="text-2xl">What we write</h2>
-    <ul class="services">
-      {
-        services.map((s) => (
-          <li>
-            <a class="services__name" href={`/${s.slug}`}>{s.name}</a>
-            <span class="services__summary">{s.summary}</span>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
-  <section class="wrap problem mt-16" aria-labelledby="problem-heading">
-    <h2 id="problem-heading" class="text-2xl">Most documents are read for seconds before a decision.</h2>
-    <div class="problem__text">
-      <p>
-        A recruiter skims a CV. A funder scores a proposal against a checklist. A lender turns to the numbers. Each one is looking for
-        a reason to say yes, and most documents make them work too hard to find it.
-      </p>
-      <p>
-        We start with what that reader needs to see, then find the evidence in your work that shows it, and write it so it can't be
-        missed. Nothing is invented: every claim is one you can stand behind.
-      </p>
-    </div>
-  </section>
-
-  <section class="wrap mt-16" aria-labelledby="steps-heading">
-    <h2 id="steps-heading" class="text-2xl">How a job runs</h2>
-    <ol class="steps">
-      {
-        steps.map((s, i) => (
-          <li>
-            <span class="steps__n nums">{String(i + 1).padStart(2, "0")}</span>
-            <span class="steps__name">{s.name}</span>
-            <span class="steps__line">{s.line}</span>
-          </li>
-        ))
-      }
-    </ol>
-    <p class="mt-4"><a href="/process">How it works, in full</a></p>
-  </section>
-
-  {
-    posts.length > 0 && (
-      <section class="wrap mt-16" aria-labelledby="blog-heading">
-        <h2 id="blog-heading" class="text-2xl">From the blog</h2>
-        <ul class="posts">
-          {posts.map((p) => (
-            <li>
-              <a class="posts__title" href={`/blog/${p.id}`}>{p.data.title}</a>
-              <span class="posts__meta">
-                By Wonderful Adebagbo, founder · <time datetime={p.data.publishDate?.toISOString()}>{formatDate(p.data.publishDate)}</time>
-              </span>
-            </li>
-          ))}
-        </ul>
-      </section>
-    )
-  }
-
-  <div class="wrap mt-16">
-    <Faq items={homeQuestions} />
-    <p class="mt-4"><a href="/faq">More questions</a></p>
+  <div class="wrap">
+    <p class="boundary">
+      {boundaryFirst}<a href={worldUrl("research")}>Research team</a>.
+    </p>
   </div>
 
-  <p class="wrap aside mt-12">
-    Need copy that sells? <a href={worldUrl("marketing")}>That's our Marketing team</a>.
-  </p>
+  <SplitIntro id="problem-heading" eyebrow="The problem" heading="Most documents are read for seconds before a decision.">
+    <p>
+      A recruiter skims a CV. A funder scores a proposal against a checklist. A lender turns to the numbers. Each one is looking for a
+      reason to say yes, and most documents make them work too hard to find it.
+    </p>
+    <p>
+      We start with what that reader needs to see, then find the evidence in your work that shows it, and write it so it can't be
+      missed. Nothing is invented: every claim is one you can stand behind.
+    </p>
+  </SplitIntro>
 
-  <section class="wrap mt-16" aria-labelledby="final-heading">
-    <div class="letter">
-      <h2 id="final-heading" class="text-2xl">Tell us what you're sending, and to whom.</h2>
-      <p class="mt-3 max-w-[60ch]">
-        Send the document you have, or a few lines about the one you need, and the date it's due. We'll reply with a quote, or tell you
-        honestly if we're not the right fit.
-      </p>
-      <p class="mt-6 flex flex-wrap gap-3">
-        <WhatsAppButton world="writing" service="a writing job" label="Ask for a quote on WhatsApp" variant="primary" />
-        <a class="btn btn-secondary" href="/contact">Request a quote by email</a>
-      </p>
-      <p class="letter__sign">
-        <span>Yours sincerely,</span>
-        <span class="letter__name">Pen of Wonder Writing</span>
-      </p>
+  <section class="section section--panel" aria-labelledby="services-heading">
+    <div class="wrap">
+      <Eyebrow>Services</Eyebrow>
+      <h2 id="services-heading" class="section-heading">What we write</h2>
+      <CardGrid label="What we write">
+        {services.map((s) => <Card href={`/${s.slug}`} title={s.name} text={s.summary} link="See what's included" icon={s.slug as IconName} event="service_card" />)}
+      </CardGrid>
     </div>
   </section>
+
+  <Steps id="steps-heading" eyebrow="How it works" heading="How a job runs" steps={steps.map((s) => ({ title: s.name, body: s.line }))}>
+    <p class="mt-8"><a href="/process">How it works, in full</a></p>
+  </Steps>
+
+  <LatestPosts posts={posts} ground="panel" />
+
+  <section class="section" aria-label="Questions">
+    <div class="wrap">
+      <Faq items={homeQuestions} />
+      <p class="mt-6"><a href="/faq">More questions</a></p>
+      <p class="aside">Need copy that sells? <a href={worldUrl("marketing")}>That's our Marketing team</a>.</p>
+    </div>
+  </section>
+
+  <CtaPanel
+    id="final-heading"
+    heading="Tell us what you're sending, and to whom."
+    text="Send the document you have, or a few lines about the one you need, and the date it's due. We'll reply with a quote, or tell you honestly if we're not the right fit."
+  >
+    <WhatsAppButton world="writing" service="a writing job" label="Ask for a quote on WhatsApp" variant="on-band" />
+    <a class="btn btn-band-outline" href="/contact">Request a quote by email</a>
+    <p slot="after" class="sign">
+      <span>Yours sincerely,</span>
+      <span class="sign__name">Pen of Wonder Writing</span>
+    </p>
+  </CtaPanel>
 </WritingLayout>
 
 <style>
-  .hero {
-    background: var(--color-world-accent);
-    color: var(--color-on-world-accent);
-  }
-  .hero__inner {
-    display: grid;
-    gap: 2rem;
-    padding-block: 3rem 3.5rem;
-  }
-  @media (min-width: 64rem) {
-    .hero__inner {
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-      align-items: center;
-      gap: 3rem;
-    }
-  }
-  .hero__kicker {
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-  }
-  .hero__title {
-    margin-top: 0.75rem;
-    max-width: 18ch;
-    font-size: clamp(2.2rem, 1.6rem + 3vw, 3.75rem);
-    line-height: 1.05;
-    letter-spacing: var(--tracking-display);
-    color: inherit;
-  }
-  .hero__lead {
-    margin-top: 1.25rem;
-    max-width: 54ch;
-    font-size: var(--text-lg);
-    line-height: var(--text-lg--line-height);
-  }
-  .hero__actions {
-    margin-top: 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-  .hero :global(.btn-on-band) {
-    background: var(--color-on-world-accent);
-    color: var(--color-world-accent);
-    border: 0;
-  }
-  .hero :global(.btn-band-outline) {
-    border: 1px solid var(--color-on-world-accent);
-    color: var(--color-on-world-accent);
-  }
   .boundary {
+    margin-top: 2rem;
     max-width: 60ch;
-    padding: 0.75rem 1rem;
+    padding: 0.9rem 1.1rem;
     border: 1px solid var(--color-rule);
+    border-radius: var(--radius);
     background: var(--color-panel);
   }
-  .services {
-    list-style: none;
-    padding: 0;
-    margin-top: 1.25rem;
-    border-top: 1px solid var(--color-rule);
-  }
-  .services li {
-    display: grid;
-    gap: 0.25rem;
-    padding-block: 0.9rem;
-    border-bottom: 1px solid var(--color-rule);
-  }
-  .services__name {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: var(--text-xl);
-    color: var(--color-heading);
-    text-decoration-color: var(--color-world-rule);
-  }
-  .services__summary {
-    max-width: 60ch;
-    color: var(--color-muted);
-  }
-  .problem {
-    display: grid;
-    gap: 1rem;
-  }
-  .problem__text {
-    display: grid;
-    gap: 1rem;
-    max-width: 60ch;
-  }
-  .steps {
-    list-style: none;
-    padding: 0;
-    margin-top: 1.25rem;
-    border-top: 1px solid var(--color-rule-strong);
-  }
-  .steps li {
-    display: grid;
-    grid-template-columns: 2.5rem minmax(0, 1fr);
-    gap: 0.25rem 1rem;
-    padding-block: 0.8rem;
-    border-bottom: 1px solid var(--color-rule);
-  }
-  .steps__n {
-    grid-row: span 2;
-    color: var(--color-world-rule);
-  }
-  .steps__name {
-    font-weight: 600;
-    color: var(--color-heading);
-  }
-  .steps__line {
-    color: var(--color-muted);
-  }
-  .posts {
-    list-style: none;
-    padding: 0;
-    margin-top: 1.25rem;
-    border-top: 1px solid var(--color-rule);
-  }
-  .posts li {
-    display: grid;
-    gap: 0.25rem;
-    padding-block: 0.9rem;
-    border-bottom: 1px solid var(--color-rule);
-  }
-  .posts__title {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: var(--text-lg);
-    color: var(--color-heading);
-  }
-  .posts__meta {
-    font-size: var(--text-sm);
-    color: var(--color-muted);
+  .section-heading {
+    margin-top: 1rem;
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    letter-spacing: var(--tracking-display);
   }
   .aside {
+    margin-top: 2rem;
     color: var(--color-muted);
   }
-  /* The signature detail: the closing section is set like the end of a letter. */
-  .letter {
-    max-width: 44rem;
-    padding: 2rem 1.75rem;
-    border: 1px solid var(--color-rule);
-    background: var(--color-panel);
-  }
-  .letter__sign {
+  /* Writing's signature detail: the closing panel ends like a letter, with a signature line. */
+  .sign {
     margin-top: 2.5rem;
     display: grid;
     gap: 0.25rem;
     font-family: var(--font-serif);
   }
-  .letter__name {
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--color-rule-strong);
+  .sign__name {
     max-width: 16rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--color-band-rule);
     font-weight: 700;
-    color: var(--color-heading);
-  }
-  @media (min-width: 64rem) {
-    .problem {
-      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-      gap: 3rem;
-    }
-    .services li {
-      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-      gap: 2rem;
-      align-items: baseline;
-    }
-    .steps li {
-      grid-template-columns: 2.5rem 14rem minmax(0, 1fr);
-    }
-    .steps__n {
-      grid-row: auto;
-    }
   }
 </style>

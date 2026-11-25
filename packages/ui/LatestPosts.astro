@@ -1,0 +1,116 @@
+---
+// The latest posts on a world's home (revamp brief 4.2): three cards, each the whole link, with the
+// date, the title and the summary, then a link to the blog. Hidden when the blog has no live post.
+import Eyebrow from "./Eyebrow.astro";
+import { formatDate, type Post } from "./blog";
+
+interface Props {
+  posts: Post[];
+  heading?: string;
+  ground?: "page" | "panel";
+}
+const { posts, heading = "From the blog", ground = "page" } = Astro.props;
+---
+
+{
+  posts.length > 0 && (
+    <section class:list={["section", ground === "panel" && "section--panel"]} aria-labelledby="latest-heading">
+      <div class="wrap">
+        <Eyebrow>Blog</Eyebrow>
+        <h2 id="latest-heading" class="latest__heading">{heading}</h2>
+        <ul class="latest">
+          {posts.map((p) => (
+            <li>
+              <a class="latest__card" href={`/blog/${p.id}`}>
+                <span class="latest__meta">
+                  <time datetime={p.data.publishDate?.toISOString()}>{formatDate(p.data.publishDate)}</time>
+                  {p.data.topics[0] && <> · {p.data.topics[0]}</>}
+                </span>
+                <span class="latest__title">{p.data.title}</span>
+                <span class="latest__summary">{p.data.description ?? p.data.summary}</span>
+                <span class="latest__go">
+                  Read the post <span class="arrow" aria-hidden="true">→</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="latest__all">
+          <a class="btn btn-secondary" href="/blog">
+            All posts <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </p>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .latest__heading {
+    margin-top: 1rem;
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    letter-spacing: var(--tracking-display);
+  }
+  .latest {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .latest li {
+    display: flex;
+  }
+  .latest__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 1.5rem;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    text-decoration: none;
+    transition: border-color var(--duration-ui) var(--ease-out), box-shadow var(--duration-ui) var(--ease-out);
+  }
+  .latest__card:hover {
+    border-color: var(--color-world-accent);
+    box-shadow: var(--shadow);
+  }
+  .latest__meta {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .latest__title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
+    color: var(--color-heading);
+  }
+  .latest__summary {
+    color: var(--color-muted);
+  }
+  .latest__go {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+  .latest__go .arrow {
+    display: inline-block;
+    transition: transform var(--duration-ui) var(--ease-out);
+  }
+  .latest__card:hover .latest__go .arrow {
+    transform: translateX(3px);
+  }
+  .latest__all {
+    margin-top: 2rem;
+  }
+  @media (min-width: 64rem) {
+    .latest {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

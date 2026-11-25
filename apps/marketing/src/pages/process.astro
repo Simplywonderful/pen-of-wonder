@@ -2,7 +2,9 @@
 import MarketingLayout from "../layouts/MarketingLayout.astro";
 import PageHead from "@pow/ui/PageHead.astro";
 import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
-import HowWeWork from "@pow/ui/HowWeWork.astro";
+import Steps from "@pow/ui/Steps.astro";
+import CtaPanel from "@pow/ui/CtaPanel.astro";
+import { howWeWorkHeadings } from "@pow/ui/how-we-work";
 import { steps } from "../data/process";
 ---
 
@@ -11,11 +13,12 @@ import { steps } from "../data/process";
   description="How we run a paid ads campaign, as a test log: diagnose, hypothesise, build, test, then scale and report in plain English."
 >
   <PageHead
+    eyebrow="Process"
     title="Run like an experiment."
     intro="Every campaign follows the same five steps, in this order, because each one depends on the one before."
   />
 
-  <ol class="wrap log mt-12">
+  <div class="section"><ol class="wrap log">
     {
       steps.map((s, i) => (
         <li class="entry">
@@ -30,9 +33,9 @@ import { steps } from "../data/process";
         </li>
       ))
     }
-  </ol>
+  </ol></div>
 
-  <section class="wrap mt-16" aria-labelledby="need-heading">
+  <section class="section section--panel" aria-labelledby="need-heading"><div class="wrap">
     <h2 id="need-heading" class="text-2xl">What we need from you</h2>
     <ul class="need">
       <li>Access to your ad accounts, or permission to set them up in your name.</li>
@@ -40,26 +43,29 @@ import { steps } from "../data/process";
       <li>Someone who replies to new leads quickly.</li>
       <li>A decision-maker who can answer questions within a day or two.</li>
     </ul>
-  </section>
+  </div></section>
 
-  <div class="wrap mt-16">
-    <HowWeWork heading="Before any of that: how we start" />
-  </div>
+  <Steps id="how-heading" heading="Before any of that: how we start" steps={howWeWorkHeadings} />
 
-  <p class="wrap mt-12"><WhatsAppButton world="marketing" service="paid ads" label="Chat about your ads" variant="primary" /></p>
+  <CtaPanel id="next-heading" heading="Make your ad spend accountable." text="Tell us about your offer and your goal. If ads are the right move, we'll show you how we'd test it. If they aren't yet, we'll say so.">
+    <WhatsAppButton world="marketing" service="paid ads" label="Chat about your ads" variant="on-band" />
+  </CtaPanel>
 </MarketingLayout>
 
 <style>
   .log {
     list-style: none;
     display: grid;
-    gap: 0;
   }
   .entry {
     display: grid;
     gap: 0.4rem;
-    padding-block: 1.5rem;
-    border-top: 1px solid var(--color-rule-strong);
+    padding: 1.5rem;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius);
+  }
+  .log {
+    gap: 1.25rem;
   }
   .entry__n {
     color: var(--color-world-rule);

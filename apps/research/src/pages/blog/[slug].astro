@@ -3,6 +3,7 @@ import { render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getLivePosts, formatDate } from "../../lib/blog";
 import { site } from "../../data/site";
+import NewsletterForm from "@pow/ui/NewsletterForm.astro";
 
 export async function getStaticPaths() {
   const posts = await getLivePosts();
@@ -43,6 +44,11 @@ const articleLd = {
     <div class="prose mt-10">
       <Content />
     </div>
+    <aside class="news mt-12" aria-labelledby="news-heading">
+      <h2 id="news-heading" class="news__heading">Get new guides by email</h2>
+      <p class="mt-2 text-muted">One email a month with the new posts from our blogs.</p>
+      <div class="mt-4"><NewsletterForm world="research" tone="page" /></div>
+    </aside>
     <footer class="mt-12 max-w-[65ch] border-t border-rule-strong pt-6">
       <p>
         {d.serviceLine} <a href={d.serviceLink}>{
@@ -57,3 +63,17 @@ const articleLd = {
     </footer>
   </article>
 </BaseLayout>
+
+<style>
+  .news {
+    max-width: 48rem;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius);
+    background: var(--color-panel);
+  }
+  .news__heading {
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
+  }
+</style>

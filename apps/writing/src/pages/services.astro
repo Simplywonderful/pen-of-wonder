@@ -1,7 +1,13 @@
 ---
+// Services, in the revamp's anatomy (DESIGN.md 20.5): PageHero with the boundary sentence, a jump
+// index, one section per service, the shared steps and a closing panel.
 import WritingLayout from "../layouts/WritingLayout.astro";
 import PageHead from "@pow/ui/PageHead.astro";
 import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
+import ServiceSections from "@pow/ui/ServiceSections.astro";
+import Steps from "@pow/ui/Steps.astro";
+import CtaPanel from "@pow/ui/CtaPanel.astro";
+import { howWeWorkHeadings } from "@pow/ui/how-we-work";
 import { worldServiceLd } from "@pow/config/structured";
 import { worldUrl } from "@pow/config/worlds";
 import { services, quoteLine } from "../data/services";
@@ -15,58 +21,16 @@ const [boundaryFirst] = boundary.split("Research team");
   description="CVs and cover letters, LinkedIn profiles, grant writing, business plans and proposals, ghostwriting, and editing and proofreading. Each quoted on request."
   jsonLd={[worldServiceLd("writing", services.map((s) => s.name))]}
 >
-  <PageHead title="The documents we write, and the ones we don't." intro={quoteLine}>
-    <p class="mt-4 max-w-[60ch] text-muted">{boundaryFirst}<a href={worldUrl("research")}>Research team</a>.</p>
+  <PageHead eyebrow="Services" title="The documents we write, and the ones we don't." intro={quoteLine}>
+    <p class="text-muted">{boundaryFirst}<a href={worldUrl("research")}>Research team</a>.</p>
   </PageHead>
 
-  <div class="wrap mt-12">
-    <ul class="list">
-      {
-        services.map((s) => (
-          <li>
-            <h2 class="list__name">
-              <a href={`/${s.slug}`}>{s.name}</a>
-            </h2>
-            <p class="list__summary">{s.summary}</p>
-            <ul class="list__includes">
-              {s.includes.map((i) => (
-                <li>{i.name}</li>
-              ))}
-            </ul>
-          </li>
-        ))
-      }
-    </ul>
-    <p class="mt-10"><WhatsAppButton world="writing" service="a writing job" label="Ask for a quote on WhatsApp" variant="primary" /></p>
-  </div>
-</WritingLayout>
+  <ServiceSections services={services} />
 
-<style>
-  .list {
-    list-style: none;
-    padding: 0;
-    border-top: 1px solid var(--color-rule);
-  }
-  .list > li {
-    padding-block: 1.25rem;
-    border-bottom: 1px solid var(--color-rule);
-  }
-  .list__name {
-    font-size: var(--text-xl);
-  }
-  .list__name a {
-    text-decoration-color: var(--color-world-rule);
-  }
-  .list__summary {
-    margin-top: 0.4rem;
-    max-width: 60ch;
-  }
-  .list__includes {
-    margin-top: 0.6rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem 1.25rem;
-    font-size: var(--text-sm);
-    color: var(--color-muted);
-  }
-</style>
+  <Steps id="how-heading" eyebrow="How to work with us" heading="How we work" steps={howWeWorkHeadings} ground={services.length % 2 === 1 ? "panel" : "page"} />
+
+  <CtaPanel id="next-heading" heading="Ask for a quote" text="Tell us what you have, who will read it and when it's due. We'll reply with a price and a date, or tell you honestly if we're not the right fit.">
+    <WhatsAppButton world="writing" service="a writing job" label="Ask for a quote on WhatsApp" variant="on-band" />
+    <a class="btn btn-band-outline" href="/contact">Request a quote by email</a>
+  </CtaPanel>
+</WritingLayout>

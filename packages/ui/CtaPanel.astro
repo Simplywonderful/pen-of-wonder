@@ -15,6 +15,7 @@ const { id, heading, text } = Astro.props;
       <h2 id={id} class="cta__heading">{heading}</h2>
       {text && <p class="cta__text">{text}</p>}
       <div class="cta__actions"><slot /></div>
+      <slot name="after" />
     </div>
   </div>
 </section>

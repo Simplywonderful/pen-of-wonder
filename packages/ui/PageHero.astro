@@ -1,6 +1,7 @@
 ---
-// The top of every inner page (DESIGN.md 20.2): a dark band with an eyebrow, the H1, a lead and up
-// to two buttons (default slot). Ink Green by day, deep ink at night, on every world.
+// The top of every inner page (DESIGN.md 20.2): a dark band with an eyebrow, the H1, a lead and
+// whatever is slotted after it (buttons, a short note). Ink Green by day, deep ink at night, on
+// every world. Slotted text, links and primary buttons are restyled to read on the band.
 import Eyebrow from "./Eyebrow.astro";
 
 interface Props {
@@ -14,9 +15,9 @@ const { eyebrow, title, lead } = Astro.props;
 <header class="page-hero">
   <div class="wrap page-hero__inner">
     {eyebrow && <Eyebrow tone="band">{eyebrow}</Eyebrow>}
-    <h1 class="page-hero__title">{title}</h1>
+    <h1 class:list={["page-hero__title", eyebrow && "page-hero__title--after"]}>{title}</h1>
     {lead && <p class="page-hero__lead">{lead}</p>}
-    {Astro.slots.has("default") && <div class="page-hero__actions"><slot /></div>}
+    {Astro.slots.has("default") && <div class="page-hero__extra"><slot /></div>}
   </div>
 </header>
 
@@ -29,12 +30,14 @@ const { eyebrow, title, lead } = Astro.props;
     padding-block: clamp(3rem, 6vw, 5rem);
   }
   .page-hero__title {
-    margin-top: 1rem;
     max-width: 22ch;
     font-size: var(--text-3xl);
     line-height: var(--text-3xl--line-height);
     letter-spacing: var(--tracking-display);
     color: inherit;
+  }
+  .page-hero__title--after {
+    margin-top: 1rem;
   }
   .page-hero__lead {
     margin-top: 1.25rem;
@@ -43,10 +46,37 @@ const { eyebrow, title, lead } = Astro.props;
     line-height: var(--text-lg--line-height);
     color: var(--color-band-muted);
   }
-  .page-hero__actions {
-    margin-top: 2rem;
+  .page-hero__extra {
+    margin-top: 1.75rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    align-items: center;
+    gap: 0.75rem 1rem;
+  }
+  .page-hero__extra :global(> p) {
+    flex-basis: 100%;
+  }
+  .page-hero__extra :global(.text-muted) {
+    color: var(--color-band-muted);
+  }
+  .page-hero__extra :global(a:not(.btn)) {
+    text-decoration-color: var(--color-band-muted);
+  }
+  .page-hero__extra :global(a:not(.btn):hover) {
+    text-decoration-color: var(--color-band-ink);
+  }
+  .page-hero__extra :global(.btn-primary) {
+    background: var(--color-band-ink);
+    color: var(--color-band);
+  }
+  .page-hero__extra :global(.btn-secondary) {
+    border-color: var(--color-band-ink);
+    color: var(--color-band-ink);
+  }
+  .page-hero__extra :global(.btn-secondary:hover) {
+    background: var(--color-band-panel);
+  }
+  .page-hero :global(:focus-visible) {
+    outline-color: var(--color-band-ink);
   }
 </style>

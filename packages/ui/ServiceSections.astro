@@ -1,0 +1,138 @@
+---
+// A world's Services page body (revamp brief 4.2): a jump index of every service, then one section
+// per service on alternating grounds, each linking to its own page.
+import Icon, { type IconName } from "./Icon.astro";
+import Todo from "./Todo.astro";
+
+interface Props {
+  services: { slug: string; name: string; summary: string; includes: { name: string }[]; confirmed?: boolean }[];
+}
+const { services } = Astro.props;
+---
+
+<nav class="jump" aria-label="Services on this page">
+  <div class="wrap">
+    <ul>
+      {
+        services.map((s) => (
+          <li>
+            <a href={`#${s.slug}`}>{s.name}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+{
+  services.map((s, i) => (
+    <section id={s.slug} class:list={["section service", i % 2 === 1 && "section--panel"]} aria-labelledby={`${s.slug}-heading`}>
+      <div class="wrap service__inner">
+        <div>
+          <span class="service__tile">
+            <Icon name={s.slug as IconName} />
+          </span>
+          <h2 id={`${s.slug}-heading`} class="service__name">
+            {s.name}
+          </h2>
+          {s.confirmed === false && (
+            <p class="mt-2">
+              <Todo label="CONFIRM THIS SERVICE IS OFFERED" />
+            </p>
+          )}
+          <p class="service__summary">{s.summary}</p>
+          <p class="service__go">
+            <a class="btn btn-secondary" href={`/${s.slug}`}>
+              See what's included <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </p>
+        </div>
+        <ul class="service__includes" aria-label={`${s.name}: what's included`}>
+          {s.includes.map((x) => (
+            <li>{x.name}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  ))
+}
+
+<style>
+  .jump {
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .jump ul {
+    margin: 0;
+    padding: 1.25rem 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .jump a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0.35rem 1rem;
+    border: 1px solid var(--color-rule-strong);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .jump a:hover {
+    border-color: var(--color-world-accent);
+  }
+  .service {
+    scroll-margin-top: 6rem;
+  }
+  .service__inner {
+    display: grid;
+    gap: 2rem;
+  }
+  .service__tile {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-sm);
+    background: color-mix(in oklch, var(--color-world-accent) 14%, transparent);
+    color: var(--color-world-accent);
+  }
+  .service__name {
+    margin-top: 1rem;
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    letter-spacing: var(--tracking-display);
+  }
+  .service__summary {
+    margin-top: 1rem;
+    max-width: 56ch;
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+  }
+  .service__go {
+    margin-top: 1.75rem;
+  }
+  .service__includes {
+    margin: 0;
+    padding: 0.5rem 1.5rem;
+    list-style: none;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    align-self: start;
+  }
+  .service__includes li {
+    padding-block: 0.8rem;
+  }
+  .service__includes li + li {
+    border-top: 1px solid var(--color-rule);
+  }
+  @media (min-width: 64rem) {
+    .service__inner {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 4rem;
+    }
+  }
+</style>

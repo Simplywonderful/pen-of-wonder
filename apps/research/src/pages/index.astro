@@ -1,67 +1,52 @@
 ---
-import { Picture } from "astro:assets";
+// Research's home in the family's revamp anatomy (root DESIGN.md 20, owner's decision 25 Nov 2026),
+// with the approved words unchanged: the hero, where to start, the edit specimen (research's
+// signature), the founder's published work, the free review as the closing panel, testimonials.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import EditSpecimen from "../components/EditSpecimen.astro";
 import ReferenceList from "../components/ReferenceList.astro";
 import Testimonials from "../components/Testimonials.astro";
+import HomeHero from "@pow/ui/HomeHero.astro";
+import Eyebrow from "@pow/ui/Eyebrow.astro";
+import CardGrid from "@pow/ui/CardGrid.astro";
+import Card from "@pow/ui/Card.astro";
+import SplitIntro from "@pow/ui/SplitIntro.astro";
+import CtaPanel from "@pow/ui/CtaPanel.astro";
+import type { IconName } from "@pow/ui/Icon.astro";
+import { howWeWorkWords } from "@pow/ui/how-we-work";
 import { home } from "../data/pages/home";
 import { methodsSpecimen } from "../data/specimens";
 import { organisationLd, personLd, worksLd } from "../data/structured";
 import heroImage from "../assets/home-desk.webp";
+
+const doorIcons: Record<string, IconName> = { "/publication-support": "research", "/work-with-us": "editing", "/coaching": "coaching" };
 ---
 
 <BaseLayout title={home.title} description={home.description} jsonLd={[organisationLd, personLd, ...worksLd]}>
-  <section class="opening mx-auto max-w-(--container-sheet) px-4 pt-6 pb-4 md:px-8 md:pt-12 lg:px-12 lg:pt-20">
-    <div class="opening__text">
-      <h1 class="text-3xl tracking-(--tracking-display)">{home.h1}</h1>
-      <p class="mt-6 max-w-[58ch] text-lg text-muted">{home.intro}</p>
-      <p class="mt-8">
-        <a class="btn btn-primary" href="/contact?as=researcher">{home.primaryCta}</a>
-      </p>
+  <HomeHero
+    eyebrow="Pen of Wonder Research"
+    title={home.h1}
+    highlight="through peer review."
+    lead={home.intro}
+    steps={howWeWorkWords}
+    image={{ src: heroImage, alt: home.heroAlt }}
+  >
+    <Fragment slot="actions">
+      <a class="btn btn-on-band" href="/contact?as=researcher" data-event="cta_hero_review">{home.primaryCta}</a>
+    </Fragment>
+  </HomeHero>
+
+  <section class="section section--panel" aria-labelledby="doors-heading">
+    <div class="wrap">
+      <Eyebrow>Research</Eyebrow>
+      <h2 id="doors-heading" class="section-heading">{home.doorsHeading}</h2>
+      <CardGrid label={home.doorsHeading}>
+        {home.doors.map((door) => <Card href={door.href} kicker={door.audience} title={door.title} text={door.text} link={door.link} icon={doorIcons[door.href] ?? "research"} event="service_card" />)}
+      </CardGrid>
     </div>
-    <figure class="hero">
-      <Picture
-        src={heroImage}
-        alt={home.heroAlt}
-        width={941}
-        height={941}
-        fit="cover"
-        position="center"
-        formats={["avif", "webp"]}
-        fallbackFormat="jpg"
-        widths={[400, 640, 941]}
-        sizes="(min-width: 64rem) 24rem, calc(100vw - 2rem)"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </figure>
   </section>
 
-  <section class="sheet mt-16 md:mt-20" aria-labelledby="doors-heading">
-    <h2 id="doors-heading" class="text-sm font-sans font-semibold tracking-normal text-muted">{home.doorsHeading}</h2>
-    <ol class="doors wide mt-3 border-y border-rule">
-      {
-        home.doors.map((door, i) => (
-          <li class="door">
-            <span class="door__num nums" aria-hidden="true">{i + 1}</span>
-            <div>
-              <p class="text-sm text-muted">{door.audience}</p>
-              <h3 class="mt-1 text-xl">
-                <a href={door.href} class="no-underline hover:underline">{door.title}</a>
-              </h3>
-              <p class="mt-2 max-w-[60ch]">{door.text}</p>
-            </div>
-            <p class="door__link">
-              <a href={door.href}>{door.link}<span aria-hidden="true"> →</span></a>
-            </p>
-          </li>
-        ))
-      }
-    </ol>
-  </section>
-
-  <section class="sheet mt-20 md:mt-28" aria-labelledby="specimen-heading">
+  <section class="sheet section" aria-labelledby="specimen-heading">
     <h2 id="specimen-heading" class="text-2xl">{home.specimenHeading}</h2>
     <aside class="margin-note">{home.specimenAside}</aside>
     <p class="mt-3 max-w-[60ch]">{home.specimenIntro}</p>
@@ -70,104 +55,33 @@ import heroImage from "../assets/home-desk.webp";
     </div>
   </section>
 
-  <section class="sheet mt-20 md:mt-28" aria-labelledby="published-heading">
-    <h2 id="published-heading" class="text-2xl">{home.publishedHeading}</h2>
-    <div class="mt-6 max-w-[65ch]">
-      <ReferenceList />
-    </div>
-    <p class="mt-8 max-w-[65ch] border-t border-rule pt-6">{home.background}</p>
-  </section>
-
-  <section class="sheet mt-20 md:mt-28" aria-labelledby="review-heading">
-    <div class="border-t border-rule-strong pt-8">
-      <h2 id="review-heading" class="text-2xl">{home.reviewHeading}</h2>
-      <p class="mt-4 max-w-[60ch] text-lg">{home.review}</p>
-      <p class="mt-8">
-        <a class="btn btn-primary" href="/contact?as=researcher">{home.primaryCta}</a>
-      </p>
-      <p class="mt-6 text-sm text-muted">{home.sampleReview}</p>
-    </div>
-  </section>
+  <SplitIntro id="published-heading" eyebrow="Our founder" heading={home.publishedHeading} ground="panel">
+    <ReferenceList />
+    <p class="published__background">{home.background}</p>
+  </SplitIntro>
 
   <Testimonials />
+
+  <CtaPanel id="review-heading" heading={home.reviewHeading} text={home.review}>
+    <a class="btn btn-on-band" href="/contact?as=researcher">{home.primaryCta}</a>
+    <p slot="after" class="cta-note">{home.sampleReview}</p>
+  </CtaPanel>
 </BaseLayout>
 
 <style>
-  /*
-    A photo of the work itself, not of people (see DESIGN.md, Imagery). On phones it sits above
-    the headline as a short strip so the button stays near the top; on wide screens it takes
-    the place the founder's portrait used to have, beside the text.
-  */
-  .opening {
-    display: grid;
-    gap: 1.75rem;
+  .section-heading {
+    margin-top: 1rem;
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    letter-spacing: var(--tracking-display);
   }
-  .hero {
-    order: -1;
-    margin: 0;
-    border: 1px solid var(--color-rule);
-  }
-  .hero :global(img) {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 5 / 2;
-    object-fit: cover;
-    object-position: 50% 62%;
-  }
-  @media (min-width: 48rem) {
-    .hero :global(img) {
-      aspect-ratio: 16 / 9;
-    }
-  }
-  @media (min-width: 64rem) {
-    .opening {
-      grid-template-columns: minmax(0, 40rem) minmax(18rem, 24rem);
-      justify-content: space-between;
-      column-gap: 4rem;
-      align-items: center;
-    }
-    .hero {
-      order: 0;
-    }
-    .hero :global(img) {
-      aspect-ratio: 1 / 1;
-    }
-  }
-
-  .door {
-    display: grid;
-    grid-template-columns: 2rem minmax(0, 1fr);
-    gap: 0.25rem 1rem;
-    padding-block: 1.5rem;
-  }
-  .door + .door {
+  .published__background {
+    padding-top: 1.25rem;
     border-top: 1px solid var(--color-rule);
   }
-  .door__num {
-    font-family: var(--font-mono);
-    font-size: var(--text-lg);
-    line-height: 1.3;
-    color: var(--color-muted);
-    grid-row: span 2;
-  }
-  .door__link {
-    grid-column: 2;
-    margin-top: 0.5rem;
-    font-weight: 600;
-  }
-  @media (min-width: 64rem) {
-    .door {
-      grid-template-columns: 3rem minmax(0, 41rem) minmax(12rem, 15rem);
-      column-gap: 0;
-    }
-    .door__num {
-      grid-row: auto;
-    }
-    .door__link {
-      grid-column: 3;
-      align-self: end;
-      margin: 0 0 0.2rem 4rem;
-    }
+  .cta-note {
+    margin-top: 1.25rem;
+    font-size: var(--text-sm);
+    color: var(--color-band-muted);
   }
 </style>

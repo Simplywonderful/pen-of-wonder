@@ -1,10 +1,12 @@
 ---
-// One page per service. Unconfirmed services are built only in development and review builds.
+// One page per service, in the revamp's anatomy (DESIGN.md 20.5). Unconfirmed services are built
+// only in development and review builds.
 import MarketingLayout from "../layouts/MarketingLayout.astro";
 import PageHead from "@pow/ui/PageHead.astro";
 import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
 import Faq from "@pow/ui/Faq.astro";
 import Todo from "@pow/ui/Todo.astro";
+import CtaPanel from "@pow/ui/CtaPanel.astro";
 import { faqLd } from "@pow/ui/faq-ld";
 import { showTodos } from "@pow/ui/todos";
 import { worldOrigin } from "@pow/config/worlds";
@@ -26,86 +28,111 @@ const serviceLd = {
 ---
 
 <MarketingLayout title={s.title} description={s.description} jsonLd={s.questions.length ? [serviceLd, faqLd(s.questions)] : [serviceLd]} noindex={!s.confirmed}>
-  <PageHead title={s.name} intro={s.intro}>
-    {!s.confirmed && <p class="mt-4"><Todo label="CONFIRM THIS SERVICE IS OFFERED: this page stays out of the menu and production until then" /></p>}
-    <p class="mt-8"><WhatsAppButton world="marketing" service={s.ask} label={`Chat about ${s.ask}`} variant="primary" /></p>
+  <PageHead eyebrow="Service" title={s.name} intro={s.intro}>
+    {!s.confirmed && <p><Todo label="CONFIRM THIS SERVICE IS OFFERED: this page stays out of the menu and production until then" /></p>}
+    <WhatsAppButton world="marketing" service={s.ask} label={`Chat about ${s.ask}`} variant="primary" />
   </PageHead>
 
-  <section class="wrap mt-16" aria-labelledby="includes-heading">
-    <h2 id="includes-heading" class="text-2xl">What's included</h2>
-    <dl class="includes">
+  <section class="section" aria-labelledby="includes-heading">
+    <div class="wrap">
+      <h2 id="includes-heading" class="section-heading">What's included</h2>
+      <dl class="includes">
+        {
+          s.includes.map((i) => (
+            <div>
+              <dt>{i.name}</dt>
+              <dd>{i.detail}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section--panel" aria-label="How it works">
+    <div class="wrap notes">
       {
-        s.includes.map((i) => (
+        s.notes.map((n, i) => (
           <div>
-            <dt>{i.name}</dt>
-            <dd>{i.detail}</dd>
+            <h2 id={`note-${i}`} class="notes__heading">
+              {n.heading}
+            </h2>
+            <p class="mt-3">{n.body}</p>
           </div>
         ))
       }
-    </dl>
-  </section>
-
-  {
-    s.notes.map((n, i) => (
-      <section class="wrap mt-12" aria-labelledby={`note-${i}`}>
-        <h2 id={`note-${i}`} class="text-xl">
-          {n.heading}
-        </h2>
-        <p class="mt-3 max-w-[60ch]">{n.body}</p>
-      </section>
-    ))
-  }
-
-  <section class="wrap mt-12" aria-labelledby="how-heading">
-    <h2 id="how-heading" class="text-xl">How it runs</h2>
-    <p class="mt-3 max-w-[60ch]">
-      Every job follows the same test log: diagnose, hypothesise, build, test, then scale and report. <a href="/process">See the process</a>.
-    </p>
+      <div>
+        <h2 class="notes__heading">How it runs</h2>
+        <p class="mt-3">
+          Every job follows the same test log: diagnose, hypothesise, build, test, then scale and report. <a href="/process">See the process</a>.
+        </p>
+      </div>
+    </div>
   </section>
 
   {
     s.questions.length > 0 && (
-      <div class="wrap mt-12">
-        <Faq items={s.questions} />
-      </div>
+      <section class="section" aria-label="Questions">
+        <div class="wrap">
+          <Faq items={s.questions} />
+        </div>
+      </section>
     )
   }
 
-  <section class="wrap mt-16" aria-labelledby="next-heading">
-    <div class="next">
-      <h2 id="next-heading" class="text-2xl">Talk it through first</h2>
-      <p class="mt-3 max-w-[60ch]">Tell us what you're selling and what you've tried. The first conversation is free, and we'll say plainly whether this is the right service for you.</p>
-      <p class="mt-6"><WhatsAppButton world="marketing" service={s.ask} label={`Chat about ${s.ask}`} variant="primary" /></p>
-    </div>
-  </section>
+  <CtaPanel
+    id="next-heading"
+    heading="Talk it through first"
+    text="Tell us what you're selling and what you've tried. The first conversation is free, and we'll say plainly whether this is the right service for you."
+  >
+    <WhatsAppButton world="marketing" service={s.ask} label={`Chat about ${s.ask}`} variant="on-band" />
+  </CtaPanel>
 </MarketingLayout>
 
 <style>
+  .section-heading {
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    letter-spacing: var(--tracking-display);
+  }
   .includes {
-    margin-top: 1.25rem;
-    border-top: 1px solid var(--color-rule);
+    margin-top: 2rem;
+    display: grid;
+    gap: 1.25rem;
   }
   .includes > div {
-    display: grid;
-    gap: 0.25rem;
-    padding-block: 0.9rem;
-    border-bottom: 1px solid var(--color-rule);
+    padding: 1.5rem;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius);
   }
   .includes dt {
-    font-weight: 600;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: var(--text-xl);
     color: var(--color-heading);
   }
   .includes dd {
+    margin-top: 0.4rem;
+    color: var(--color-muted);
+  }
+  .notes {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .notes > div {
     max-width: 60ch;
   }
-  .next {
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-rule-strong);
+  .notes__heading {
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
   }
   @media (min-width: 64rem) {
-    .includes > div {
-      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-      gap: 2rem;
+    .includes {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .notes {
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      gap: 3rem;
     }
   }
 </style>

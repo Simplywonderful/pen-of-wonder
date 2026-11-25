@@ -2,7 +2,9 @@
 import WritingLayout from "../layouts/WritingLayout.astro";
 import PageHead from "@pow/ui/PageHead.astro";
 import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
-import HowWeWork from "@pow/ui/HowWeWork.astro";
+import Steps from "@pow/ui/Steps.astro";
+import CtaPanel from "@pow/ui/CtaPanel.astro";
+import { howWeWorkHeadings } from "@pow/ui/how-we-work";
 import { steps } from "../data/process";
 
 const howToLd = {
@@ -18,9 +20,9 @@ const howToLd = {
   description="How a writing job runs, from your first message to the final files: a quote with a price and date, a short conversation, a draft you can change, then delivery."
   jsonLd={[howToLd]}
 >
-  <PageHead title="From your first message to the final file." intro="Every job follows the same five steps, so you always know what happens next and what we need from you." />
+  <PageHead eyebrow="How it works" title="From your first message to the final file." intro="Every job follows the same five steps, so you always know what happens next and what we need from you." />
 
-  <ol class="wrap log mt-12">
+  <div class="section"><ol class="wrap log">
     {
       steps.map((s, i) => (
         <li class="entry">
@@ -35,26 +37,27 @@ const howToLd = {
         </li>
       ))
     }
-  </ol>
+  </ol></div>
 
-  <div class="wrap mt-16">
-    <HowWeWork heading="How we start with anyone" />
-  </div>
+  <Steps id="how-heading" heading="How we start with anyone" steps={howWeWorkHeadings} ground="panel" />
 
-  <p class="wrap mt-12"><WhatsAppButton world="writing" service="a writing job" label="Ask for a quote on WhatsApp" variant="primary" /></p>
+  <CtaPanel id="next-heading" heading="Tell us what you're sending, and to whom." text="Send the document you have, or a few lines about the one you need, and the date it's due. We'll reply with a quote, or tell you honestly if we're not the right fit.">
+    <WhatsAppButton world="writing" service="a writing job" label="Ask for a quote on WhatsApp" variant="on-band" />
+  </CtaPanel>
 </WritingLayout>
 
 <style>
   .log {
     list-style: none;
-    padding: 0;
-    border-top: 1px solid var(--color-rule-strong);
+    display: grid;
+    gap: 1.25rem;
   }
   .entry {
     display: grid;
     gap: 0.5rem;
-    padding-block: 1.5rem;
-    border-bottom: 1px solid var(--color-rule);
+    padding: 1.5rem;
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius);
   }
   .entry__n {
     font-size: var(--text-sm);

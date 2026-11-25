@@ -22,13 +22,15 @@ interface Props {
 const { eyebrow, title, highlight, lead, steps = [], motif = "ruled", family = false, image } = Astro.props;
 const split = highlight && title.endsWith(highlight) ? title.length - highlight.length : title.length;
 const [before, gold] = [title.slice(0, split), title.slice(split)];
+// A long headline (research's is a full sentence) steps down a size so it stays a headline.
+const long = title.length > 48;
 ---
 
 <section class="home-hero" aria-labelledby="hero-heading">
   <div class="wrap home-hero__inner">
     <div class="home-hero__text">
       {eyebrow && <Eyebrow tone="band">{eyebrow}</Eyebrow>}
-      <h1 id="hero-heading" class="home-hero__title">
+      <h1 id="hero-heading" class:list={["home-hero__title", long && "home-hero__title--long"]}>
         {before}{gold && <span class="home-hero__gold">{gold}</span>}
       </h1>
       <p class="home-hero__lead">{lead}</p>
@@ -54,19 +56,9 @@ const [before, gold] = [title.slice(0, split), title.slice(split)];
   .home-hero {
     position: relative;
     overflow: hidden;
-    background: var(--color-world-accent);
-    color: var(--color-on-world-accent);
-  }
-  /* At night every hero is deep ink, so the gold phrase and the world's buttons both read. */
-  @media (prefers-color-scheme: dark) {
-    :global(:root:not([data-theme="light"])) .home-hero {
-      background: var(--color-band);
-      color: var(--color-band-ink);
-    }
-  }
-  :global(:root[data-theme="dark"]) .home-hero {
-    background: var(--color-band);
-    color: var(--color-band-ink);
+    /* The world's band by day, deep ink at night, from the tokens (DESIGN.md 20.3). */
+    background: var(--color-hero-bg);
+    color: var(--color-hero-ink);
   }
   .home-hero__inner {
     position: relative;
@@ -83,8 +75,17 @@ const [before, gold] = [title.slice(0, split), title.slice(split)];
     letter-spacing: -0.025em;
     color: inherit;
   }
+  .home-hero__title--long {
+    max-width: 24ch;
+    font-size: clamp(2.1rem, 1.6rem + 2.2vw, 3.3rem);
+    line-height: 1.08;
+  }
   .home-hero__gold {
-    color: var(--color-band-gold);
+    color: var(--color-hero-highlight);
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-hero-underline);
+    text-decoration-thickness: 0.07em;
+    text-underline-offset: 0.12em;
   }
   .home-hero__lead {
     margin-top: 1.5rem;

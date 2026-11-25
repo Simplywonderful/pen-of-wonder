@@ -15,13 +15,16 @@ interface Props {
   accent?: "marketing" | "writing" | "research" | "publishing" | "dev";
   narrow?: boolean;
   event?: string;
+  /** A short line above the title, such as who the card is for. */
+  kicker?: string;
 }
-const { href, title, text, items = [], link, icon, accent, narrow = false, event } = Astro.props;
+const { href, title, text, items = [], link, icon, accent, narrow = false, event, kicker } = Astro.props;
 ---
 
 <li class:list={["card-item", narrow && "card-item--narrow"]}>
   <a class="card" href={href} data-accent={accent} data-event={event}>
     <span class="card__tile"><Icon name={icon} /></span>
+    {kicker && <span class="card__kicker">{kicker}</span>}
     <span class="card__title">{title}</span>
     <span class="card__text">{text}</span>
     {
@@ -91,6 +94,14 @@ const { href, title, text, items = [], link, icon, accent, narrow = false, event
     border-radius: var(--radius-sm);
     background: color-mix(in oklch, var(--card-accent) 14%, transparent);
     color: var(--card-accent);
+  }
+  .card__kicker {
+    margin-top: 0.4rem;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .card__kicker + .card__title {
+    margin-top: 0;
   }
   .card__title {
     margin-top: 0.4rem;

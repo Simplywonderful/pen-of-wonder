@@ -38,6 +38,7 @@ The site uses the Pen of Wonder Consults brand. The family's colours, fonts and 
 
 ### No social links
 - No LinkedIn, Facebook, social icons or link to wonderfuladebagbo.link. The blog's "Adapted from posts first shared on LinkedIn" line has no link.
+- Revamp exception (owner, 25 Nov 2026; root DESIGN.md 20): share buttons on blog posts may name LinkedIn, Facebook, X and Telegram. They are share intents, not company links. Footer social icons stay off until company accounts exist.
 
 ### Contact details
 - WhatsApp: +234 704 641 8092, `https://wa.me/2347046418092` with a short prefilled message.

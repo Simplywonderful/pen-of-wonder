@@ -85,7 +85,7 @@ const errors = {
 
   <div class="field">
     <label for="cf-message">Message</label>
-    <p id="cf-message-hint" class="field__hint">What you need, and any deadline.</p>
+    <p id="cf-message-hint" class="field__hint">{intent === "notify" ? "What you'd like to hear about when we open." : "What you need, and any deadline."}</p>
     <textarea id="cf-message" name="message" rows="6" required aria-describedby="cf-message-hint cf-message-error"></textarea>
     <p id="cf-message-error" class="field__error" hidden></p>
   </div>

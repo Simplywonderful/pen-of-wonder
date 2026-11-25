@@ -9,6 +9,7 @@ import { whatsappLink } from "@pow/config/contact";
 import { legal } from "@pow/config/legal";
 import { worldUrl } from "@pow/config/worlds";
 import Faq from "./Faq.astro";
+import NewsletterForm from "./NewsletterForm.astro";
 import WhatsAppButton from "./WhatsAppButton.astro";
 import { withContactEmail } from "./contact-email";
 import { formatDate, getPosts, linkBuiltPostsOnly, postSections, relatedPosts, type Post } from "./blog";
@@ -97,6 +98,12 @@ const related = relatedPosts(post, built);
     {copy.ctaNote && <p class="mt-3 text-sm text-muted">{copy.ctaNote}</p>}
   </footer>
 
+  <aside class="news mt-12" aria-labelledby="news-heading">
+    <h2 id="news-heading" class="news__heading">Get new guides by email</h2>
+    <p class="mt-2 text-muted">One email a month with the new posts from our blogs.</p>
+    <div class="mt-4"><NewsletterForm world={world} tone="page" /></div>
+  </aside>
+
   {
     related.length > 0 && (
       <section class="related mt-12" aria-labelledby="related-heading">
@@ -151,6 +158,17 @@ const related = relatedPosts(post, built);
     max-width: 65ch;
     padding-top: 1.25rem;
     border-top: 1px solid var(--color-rule);
+  }
+  .news {
+    max-width: 48rem;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius);
+    background: var(--color-panel);
+  }
+  .news__heading {
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
   }
   .related {
     max-width: 48rem;

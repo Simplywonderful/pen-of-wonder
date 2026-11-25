@@ -1,24 +1,29 @@
 ---
-// The top of an inner page: the H1, an intro paragraph, and an optional button.
+// The top of an inner page. Since the revamp (root DESIGN.md 20, owner's decision 25 Nov 2026) it is
+// the family's dark PageHero band; the optional button sits inside the band.
+import PageHero from "@pow/ui/PageHero.astro";
+
 interface Props {
   title: string;
   intro?: string;
   cta?: { href: string; label: string };
+  eyebrow?: string;
 }
-const { title, intro, cta } = Astro.props;
+const { title, intro, cta, eyebrow } = Astro.props;
+const hasExtra = Astro.slots.has("default") || Boolean(cta);
 ---
 
-<header class="sheet pt-10 md:pt-16 lg:pt-20">
-  <h1 class="text-3xl tracking-(--tracking-display)">{title}</h1>
-  {intro && <p class="mt-6 max-w-[60ch] text-lg text-muted">{intro}</p>}
-  <slot />
-  {
-    cta && (
-      <p class="mt-8">
+{
+  hasExtra ? (
+    <PageHero title={title} lead={intro} eyebrow={eyebrow}>
+      <slot />
+      {cta && (
         <a class="btn btn-primary" href={cta.href}>
           {cta.label}
         </a>
-      </p>
-    )
-  }
-</header>
+      )}
+    </PageHero>
+  ) : (
+    <PageHero title={title} lead={intro} eyebrow={eyebrow} />
+  )
+}

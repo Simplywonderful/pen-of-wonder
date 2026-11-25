@@ -1,0 +1,85 @@
+---
+// The body of every Contact page (revamp brief 4.2): the direct details on the left (WhatsApp,
+// email, place and reply time) and the shared form on the right, in a panel.
+import { contact, contactPlaceholders } from "@pow/config/contact";
+import type { WorldId } from "@pow/config/worlds";
+import ContactForm from "./ContactForm.astro";
+import WhatsAppButton from "./WhatsAppButton.astro";
+import Icon from "./Icon.astro";
+import Todo from "./Todo.astro";
+
+interface Props {
+  world: WorldId;
+  /** Ask which world the message is for (main only). */
+  askWorld?: boolean;
+  /** What the WhatsApp message asks about. */
+  service?: string;
+  formHeading?: string;
+}
+const { world, askWorld = false, service, formHeading = "Send a message" } = Astro.props;
+---
+
+<section class="section" aria-label="Contact details and form">
+  <div class="wrap contact">
+    <aside aria-labelledby="direct-heading">
+      <h2 id="direct-heading" class="contact__heading">Reach us directly</h2>
+      <p class="mt-5"><WhatsAppButton world={world} service={service} label={`WhatsApp ${contact.whatsapp.display}`} variant="primary" /></p>
+      <ul class="direct">
+        <li>
+          <Icon name="mail" />
+          <span>{contact.email ? <a href={`mailto:${contact.email}`} class="direct__email" data-event="email_click">{contact.email}</a> : <Todo label={contactPlaceholders.email} />}</span>
+        </li>
+        <li><Icon name="pin" /><span>Ibadan, Nigeria</span></li>
+        <li><Icon name="clock" /><span>WAT (UTC+1). We reply {contact.replyTime}.</span></li>
+      </ul>
+    </aside>
+    <div class="form-card">
+      <h2 id="form-heading" class="contact__heading">{formHeading}</h2>
+      <ContactForm world={world} askWorld={askWorld} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .contact__heading {
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+  }
+  .direct {
+    margin-top: 1.75rem;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+  }
+  .direct li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: start;
+  }
+  .direct :global(.icon) {
+    color: var(--color-world-accent);
+    margin-top: 0.15rem;
+  }
+  .direct__email {
+    overflow-wrap: anywhere;
+  }
+  .form-card {
+    padding: clamp(1.25rem, 4vw, 2.25rem);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius);
+    background: var(--color-panel);
+  }
+  @media (min-width: 64rem) {
+    .contact {
+      grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
+      column-gap: 4rem;
+      align-items: start;
+    }
+  }
+</style>

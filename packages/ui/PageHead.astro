@@ -1,14 +1,19 @@
 ---
-// The top of an inner page: the H1, an intro paragraph and anything slotted after it.
+// The top of an inner page. Since the revamp (DESIGN.md 20.2) it is the dark PageHero band on every
+// world; this wrapper keeps the older title/intro names working, with anything slotted after the
+// intro placed inside the band.
+import PageHero from "./PageHero.astro";
+
 interface Props {
   title: string;
   intro?: string;
+  eyebrow?: string;
 }
-const { title, intro } = Astro.props;
+const { title, intro, eyebrow } = Astro.props;
 ---
 
-<header class="wrap pt-10 md:pt-16 lg:pt-20">
-  <h1 class="max-w-[22ch] text-3xl tracking-(--tracking-display)">{title}</h1>
-  {intro && <p class="mt-6 max-w-[60ch] text-lg text-muted">{intro}</p>}
-  <slot />
-</header>
+{Astro.slots.has("default") ? (
+  <PageHero title={title} lead={intro} eyebrow={eyebrow}><slot /></PageHero>
+) : (
+  <PageHero title={title} lead={intro} eyebrow={eyebrow} />
+)}

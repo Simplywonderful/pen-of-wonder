@@ -126,6 +126,9 @@ Other pages follow section 5 of the build prompt. Footer on every page: the busi
 
 ## 7. What this site will NOT do
 
+**Revamp, Nov 2026:** the owner chose to revamp research with the rest of the family (25 Nov 2026). Where this section bans eyebrows, icons on cards, hover lift, shadows or rounded corners, root DESIGN.md section 20 (D1 to D9) now wins. Research's academic-integrity rules, its "What we do and don't do" box, its proof line, its voice and its edit specimen are unchanged.
+
+
 - No purple or blue, and no gradients.
 - No glowing blobs, glassmorphism, aurora, noise textures, marquees, WebGL, 3D or shader effects (`immersive-effects.md` read only to confirm none is needed).
 - No badge pill above the H1. No eyebrow labels, except at most two on the whole site.

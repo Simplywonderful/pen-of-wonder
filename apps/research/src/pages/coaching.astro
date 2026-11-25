@@ -13,12 +13,12 @@ const priceRows = [prices.single, prices.analysis, prices.dissertation];
 ---
 
 <BaseLayout title={c.title} description={c.description}>
-  <PageHead title={c.h1} intro={c.intro}>
-    <DoDontBox />
-    <p class="mt-2">
-      <a class="btn btn-primary" href={bookHref}>{c.cta}</a>
-    </p>
+  <PageHead eyebrow="Coaching" title={c.h1} intro={c.intro}>
+    <a class="btn btn-primary" href={bookHref}>{c.cta}</a>
   </PageHead>
+  <div class="sheet mt-10">
+    <DoDontBox />
+  </div>
 
   {
     c.sections.map((s) => (

@@ -1,8 +1,13 @@
 ---
+// Services, in the revamp's anatomy (DESIGN.md 20.5): PageHero, a jump index, one section per
+// service, the ad-spend line, the shared steps and a closing panel.
 import MarketingLayout from "../layouts/MarketingLayout.astro";
 import PageHead from "@pow/ui/PageHead.astro";
 import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
-import Todo from "@pow/ui/Todo.astro";
+import ServiceSections from "@pow/ui/ServiceSections.astro";
+import Steps from "@pow/ui/Steps.astro";
+import CtaPanel from "@pow/ui/CtaPanel.astro";
+import { howWeWorkHeadings } from "@pow/ui/how-we-work";
 import { showTodos } from "@pow/ui/todos";
 import { worldServiceLd } from "@pow/config/structured";
 import { liveServices, adSpendLine } from "../data/services";
@@ -16,82 +21,34 @@ const services = liveServices(showTodos);
   jsonLd={[worldServiceLd("marketing", services.map((s) => s.name))]}
 >
   <PageHead
+    eyebrow="Services"
     title="Everything your ads need, and nothing they don't."
     intro="Each service can be bought on its own or as part of a campaign. All of them are quoted after a free consultation."
   />
 
-  <div class="wrap mt-12">
-    <ul class="list">
-      {
-        services.map((s) => (
-          <li>
-            <h2 class="list__name">
-              <a href={`/${s.slug}`}>{s.name}</a>
-              {!s.confirmed && <Todo label="CONFIRM THIS SERVICE IS OFFERED" />}
-            </h2>
-            <p class="list__summary">{s.summary}</p>
-            <ul class="list__includes">
-              {s.includes.map((i) => (
-                <li>{i.name}</li>
-              ))}
-            </ul>
-          </li>
-        ))
-      }
-    </ul>
-    {showTodos && <p class="mt-4 text-sm text-muted">Development view: unconfirmed services show here; production builds leave them out.</p>}
+  <ServiceSections services={services} />
 
-    <p class="spend mt-12">{adSpendLine}</p>
-    <p class="mt-8"><WhatsAppButton world="marketing" service="your services" label="Ask which service fits" variant="primary" /></p>
-  </div>
+  {showTodos && <p class="wrap mt-6 text-sm text-muted">Development view: unconfirmed services show here; production builds leave them out.</p>}
+
+  <Steps id="how-heading" eyebrow="How to work with us" heading="How we work" steps={howWeWorkHeadings} ground={services.length % 2 === 1 ? "panel" : "page"}>
+    <p class="spend">{adSpendLine}</p>
+  </Steps>
+
+  <CtaPanel id="next-heading" heading="Not sure which service fits?" text="Tell us what you sell and what you've tried, and we'll say which service would help first.">
+    <WhatsAppButton world="marketing" service="your services" label="Ask which service fits" variant="on-band" />
+  </CtaPanel>
 </MarketingLayout>
 
 <style>
-  .list {
-    list-style: none;
-    padding: 0;
-    border-top: 1px solid var(--color-rule);
-  }
-  .list > li {
-    display: grid;
-    gap: 0.5rem;
-    padding-block: 1.25rem;
-    border-bottom: 1px solid var(--color-rule);
-  }
-  .list__name {
-    font-size: var(--text-xl);
-  }
-  .list__name a {
-    text-decoration-color: var(--color-world-rule);
-  }
-  .list__summary {
-    max-width: 60ch;
-  }
-  .list__includes {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem 1.25rem;
-    font-size: var(--text-sm);
-    color: var(--color-muted);
-  }
   .spend {
+    margin-top: 2.5rem;
     max-width: 60ch;
     padding: 1rem 1.25rem;
-    background: var(--color-panel);
+    border-radius: var(--radius);
+    background: var(--color-bg);
     border: 1px solid var(--color-rule);
     font-family: var(--font-mono);
     font-size: var(--text-sm);
     line-height: 1.6;
-  }
-  @media (min-width: 64rem) {
-    .list > li {
-      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-      column-gap: 2rem;
-    }
-    .list__name {
-      grid-row: span 2;
-    }
   }
 </style>
