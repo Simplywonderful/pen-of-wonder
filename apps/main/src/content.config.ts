@@ -11,6 +11,8 @@ const pages = defineCollection({
     metaTitle: z.string(),
     description: z.string(),
     updated: z.coerce.date(),
+    /** Shows a "waiting for a lawyer's review" note at the top, as research's policy pages do. */
+    legalReview: z.boolean().default(false),
   }),
 });
 

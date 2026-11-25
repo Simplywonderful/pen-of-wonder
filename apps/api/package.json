@@ -1,0 +1,19 @@
+{
+  "name": "@pow/api",
+  "private": true,
+  "type": "module",
+  "description": "pow-api: the one Cloudflare Worker behind every world's forms and scheduled jobs (revamp brief 5.1).",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:migrate:local": "wrangler d1 migrations apply pow --local",
+    "db:migrate": "wrangler d1 migrations apply pow --remote",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "1.8.2",
+    "@cloudflare/workers-types": "5.20261115.1",
+    "vitest": "4.1.12",
+    "wrangler": "4.151.3"
+  }
+}

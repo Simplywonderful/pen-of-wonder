@@ -1,0 +1,26 @@
+// pow-api (revamp brief 5.1). Deploy steps are in the root DEPLOY.md ("pow-api"). Secrets are set
+// with `npx wrangler secret put NAME` and never written here.
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "pow-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  "observability": { "enabled": true },
+  // One trigger, hourly; jobs are dispatched inside by West Africa Time (the free plan allows five
+  // cron triggers per account, shared with any other project on it).
+  "triggers": { "crons": ["0 * * * *"] },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "pow",
+      // Replace with the id printed by `npx wrangler d1 create pow` (DEPLOY.md, step 2).
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    // Social posting (R5) starts as drafts; the newsletter digest (R4) stays off until the domain works.
+    "SOCIAL_MODE": "draft",
+    "DIGEST_MODE": "off"
+  }
+}

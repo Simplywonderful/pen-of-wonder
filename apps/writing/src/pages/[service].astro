@@ -104,7 +104,7 @@ const crumbs = {
 
   <CtaPanel id="next-heading" heading="Ask for a quote" text="Tell us what you have, who will read it and when it's due. We'll reply with a price and a date, or tell you honestly if we're not the right fit.">
     <WhatsAppButton world="writing" service={s.ask} label={`Ask about ${s.ask} on WhatsApp`} variant="on-band" />
-    <a class="btn btn-band-outline" href="/contact">Request a quote by email</a>
+    <a class="btn btn-band-outline" href={`/contact?service=${encodeURIComponent(s.name)}`}>Request a quote by email</a>
   </CtaPanel>
 </WritingLayout>
 

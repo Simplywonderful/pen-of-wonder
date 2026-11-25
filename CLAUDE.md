@@ -51,7 +51,7 @@ If a request seems to conflict with a rule below, point it out before doing it.
 - Footer on every world: "Pen of Wonder Consults, a registered business name in Nigeria, CAC Business Name No. 7809965."
 - Publishing: the Hidden Treasures imprint is the trading name of Wonderful Adebagbo personally. Pen of Wonder provides the services but is never named as the publisher, in copy, schema or metadata.
 - Publishing pages say "This is general guidance, not legal advice" wherever copyright or ISBNs come up.
-- Forms store nothing on the site. The privacy notice says where emails and WhatsApp messages go and who processes them.
+- Forms post to Formspree until the owner switches them to the pow-api Worker (`apps/api`), which stores them in Pen of Wonder's D1 database (DESIGN.md 20.1, D6). The privacy notice says where messages go and who processes them, and changes in the same push as the switch. Every form needs the consent box ticked.
 - Every world is cookie-free except marketing, and marketing only if the Meta Pixel decision in DESIGN.md says so.
 
 ## Working rules

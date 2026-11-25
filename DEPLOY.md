@@ -53,3 +53,22 @@ If GitHub isn't reachable, `node scripts/prepare-upload.mjs` still builds upload
 3. Move research here. Pages allows five Git-connected projects per repository, so dev moves to a Worker first (`apps/dev/wrangler.jsonc` is ready; DESIGN.md section 13.1), then research gets a Pages project (`npm run build -w apps/research`, output `apps/research/dist`), a deploy hook, and the `CF_DEPLOY_HOOK_RESEARCH` repository secret for the weekly rebuild.
 4. Cut the old research site over to a redirect, as DESIGN.md section 14 and the build prompt describe.
 5. Redirect each `pages.dev` address to its custom domain (Cloudflare Bulk Redirects), so search engines don't see two copies.
+
+## 4. pow-api: the shared backend (revamp Phase R3)
+
+One Cloudflare Worker, `pow-api`, takes every world's forms and runs the hourly jobs. Its code is in `apps/api`; the tests run with `npm test -w apps/api`. You run these steps once, on your own computer, from the repository folder. Commands that start with `npx wrangler` sign in to your Cloudflare account the first time.
+
+1. **Sign in:** `npx wrangler login` (from `apps/api`), and approve in the browser.
+2. **Create the database:** `npx wrangler d1 create pow`. Copy the `database_id` it prints into `apps/api/wrangler.jsonc`, replacing the zeros.
+3. **Create the tables:** `npm run db:migrate -w apps/api`.
+4. **Add the secrets**, one at a time (`npx wrangler secret put NAME`, then paste the value):
+   - `HASH_SALT`: any long random phrase. It scrambles IP addresses before they're counted. Keep it secret; don't change it later.
+   - `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`, for new-enquiry alerts. Create the bot by messaging @BotFather on Telegram (`/newbot`), which gives the token. Then send your new bot any message, open `https://api.telegram.org/bot<TOKEN>/getUpdates` in a browser, and copy the `chat` `id` from the reply.
+   - Later phases add `BREVO_API_KEY` (R4), `BUFFER_API_KEY` (R5), `ADMIN_KEY` and the `CF_DEPLOY_HOOK_*` secrets (R6). Leave them out for now.
+5. **Check the cron count.** The Worker uses one cron trigger (hourly). The free plan allows five per account, shared with every other Worker on it ([CLOUDFLARE ACCOUNT CRON COUNT]).
+6. **Deploy:** `npm run deploy -w apps/api`. Wrangler prints the address, `https://pow-api.<your-subdomain>.workers.dev`.
+7. **Check it:** open `<address>/health`. It should show `"db": true` and `"telegram": true`. It shows only true or false, never a secret.
+8. **Tell me the address.** I set `api.origin` in `packages/config/api.ts`, switch `forms` to `"api"`, publish the updated privacy notice from `drafts/privacy-after-pow-api.md` in the same push (it describes the database and Telegram alerts, so it must not go live before them), and send a test message from every world. You confirm each Telegram alert arrives.
+9. **One week later,** if `/submit` has run without errors, I remove Formspree from the code, `contact.ts` and the privacy notice.
+
+After the domain is registered, add `api.penofwonder.com` as a custom domain on the Worker (**Workers & Pages → pow-api → Settings → Domains & Routes**) and change `api.origin` to it.

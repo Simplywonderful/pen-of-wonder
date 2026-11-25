@@ -23,6 +23,13 @@ const updated = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long"
       <p class="text-sm text-muted">
         Last updated <time datetime={d.updated.toISOString().slice(0, 10)}>{updated}</time>
       </p>
+      {
+        d.legalReview && (
+          <p class="mt-6 max-w-[60ch] rounded-[var(--radius-sm)] border border-rule-strong bg-panel px-4 py-3 text-sm">
+            <strong class="font-semibold">Draft.</strong> This page is awaiting review by a lawyer and may change.
+          </p>
+        )
+      }
     </header>
     <div class="prose mt-10">
       <Fragment set:html={html} />

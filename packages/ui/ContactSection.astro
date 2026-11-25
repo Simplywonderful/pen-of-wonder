@@ -15,8 +15,9 @@ interface Props {
   /** What the WhatsApp message asks about. */
   service?: string;
   formHeading?: string;
+  intent?: "enquiry" | "quote" | "notify";
 }
-const { world, askWorld = false, service, formHeading = "Send a message" } = Astro.props;
+const { world, askWorld = false, service, formHeading = "Send a message", intent = "enquiry" } = Astro.props;
 ---
 
 <section class="section" aria-label="Contact details and form">
@@ -35,7 +36,7 @@ const { world, askWorld = false, service, formHeading = "Send a message" } = Ast
     </aside>
     <div class="form-card">
       <h2 id="form-heading" class="contact__heading">{formHeading}</h2>
-      <ContactForm world={world} askWorld={askWorld} />
+      <ContactForm world={world} askWorld={askWorld} intent={intent} />
     </div>
   </div>
 </section>
