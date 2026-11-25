@@ -56,6 +56,7 @@ const long = title.length > 48;
   .home-hero {
     position: relative;
     overflow: hidden;
+    overflow: clip;
     /* The world's band by day, deep ink at night, from the tokens (DESIGN.md 20.3). */
     background: var(--color-hero-bg);
     color: var(--color-hero-ink);
@@ -141,6 +142,12 @@ const long = title.length > 48;
   }
   @media (max-width: 63.99rem) {
     .home-hero__art:has(:global(.motif)) {
+      display: none;
+    }
+  }
+  /* On phones the faint motif behind a photograph would only crowd the band. */
+  @media (max-width: 47.99rem) {
+    .home-hero :global(.home-hero__ghost) {
       display: none;
     }
   }

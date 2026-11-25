@@ -28,6 +28,16 @@ const { id, eyebrow, heading, ground = "page" } = Astro.props;
     display: grid;
     gap: 2rem;
   }
+  /* Long words and links (a DOI, an email address) must wrap, not widen the page. */
+  .split__inner > * {
+    min-width: 0;
+  }
+  .split__body {
+    overflow-wrap: anywhere;
+  }
+  .split__body > :global(*) {
+    min-width: 0;
+  }
   .split__heading {
     margin-top: 1rem;
     max-width: 16ch;
