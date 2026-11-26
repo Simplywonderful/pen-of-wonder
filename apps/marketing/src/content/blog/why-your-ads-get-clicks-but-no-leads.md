@@ -32,8 +32,6 @@ Open your ad and your landing page side by side and check three things:
 
 If someone has to scroll or search to find the thing the ad promised, most won't.
 
-[YOUR STORY: an ad and a landing page that didn't match, and what happened after they were brought into line]
-
 ## 2. Is the form asking for too much?
 
 Every field you add is a reason to stop. A form that asks for name, email, phone, company, budget, timeline and a paragraph about the problem will get fewer completions than one that asks for name and WhatsApp number.

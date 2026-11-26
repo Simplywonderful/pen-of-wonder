@@ -59,8 +59,6 @@ Yes. A common setup is:
 
 If you do this, use your own ISBN rather than KDP's free one ([what an ISBN is, and where to buy one](/blog/what-is-an-isbn-and-do-you-need-one)). KDP's free ISBNs "can only be used on KDP". Check each platform's help pages for how to set up the same book on both without conflicts.
 
-[YOUR STORY: how the Hidden Treasures readers were printed, and what you'd choose now for a book like them]
-
 ## Which should you choose?
 
 Ask where your readers will buy the book.

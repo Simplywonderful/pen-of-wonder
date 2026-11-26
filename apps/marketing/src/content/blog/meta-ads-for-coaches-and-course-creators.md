@@ -33,8 +33,6 @@ Your offer should have sold to real clients without ads. Ads make a working offe
 
 You also need someone ready to answer when the leads arrive. A coaching client who messages you at 9pm and hears nothing until the next afternoon has usually moved on.
 
-[YOUR STORY: a coaching or course client whose results changed once their offer or reply speed was fixed]
-
 ## Which campaign objective should you choose?
 
 Meta Ads Manager has six campaign objectives: Awareness, Traffic, Engagement, Leads, App promotion and Sales. The objective tells Meta which people to look for, so it shapes who sees your ad.

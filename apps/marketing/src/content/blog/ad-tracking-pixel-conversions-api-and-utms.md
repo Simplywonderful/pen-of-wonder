@@ -49,8 +49,6 @@ Meta describes the Conversions API as "a direct and more reliable connection" be
 
 Meta says "many integrations don't require a developer". Many website builders and e-commerce platforms have a Conversions API setting you can switch on and connect to your pixel.
 
-[YOUR STORY: a campaign where results looked poor until tracking was fixed, or the reverse]
-
 ## What are UTM tags?
 
 UTM tags are short labels added to the end of a link. When someone clicks it, your analytics tool reads the labels and records where the visit came from. They look like this:

@@ -58,8 +58,6 @@ KDP offers free ISBNs for paperbacks and hardcovers. They're convenient, but the
 
 If you only plan to sell on Amazon, a free KDP ISBN is often fine. If you want your book in bookshops, libraries or schools under your own publishing name, buy your own. I compare the two main print platforms in [KDP or IngramSpark?](/blog/kdp-or-ingramspark)
 
-[YOUR STORY: how you chose an ISBN route for the Hidden Treasures readers, and why]
-
 ## Where do you buy an ISBN?
 
 From the official ISBN agency for the country where you, as the publisher, are based. Each country has one. Buying from anyone else risks a number that doesn't list you as the publisher.

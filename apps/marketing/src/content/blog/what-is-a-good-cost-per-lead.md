@@ -56,8 +56,6 @@ So in this example, leads under 7.50 are comfortably profitable, leads between 7
 
 The numbers work the same in any currency. Use your own.
 
-[YOUR STORY: a client whose "expensive" leads turned out to be the profitable ones once close rate was counted]
-
 ## Why cost per client matters more
 
 Cost per lead tells you what you paid for a contact. Cost per client tells you what you paid for a sale. The second is the one that pays your bills.

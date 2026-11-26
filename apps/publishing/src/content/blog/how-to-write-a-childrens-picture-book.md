@@ -51,8 +51,6 @@ Ask yourself three questions about your idea:
 
 If you can't answer all three in a sentence each, the story isn't ready yet.
 
-[YOUR STORY: how the idea for one of the Hidden Treasures readers started, and how it changed as you wrote it]
-
 ## How do you write so the pictures can do their part?
 
 In a picture book, the words and the pictures share the work. Penguin's editors put it this way: picture book writers "don't need to show everything in the story, but should also not rely on the illustrations to do all of the storytelling work".

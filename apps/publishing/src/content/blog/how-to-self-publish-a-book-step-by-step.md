@@ -65,8 +65,6 @@ You have two main options:
 
 Which one fits depends on where you'll sell. If you're not sure, read [KDP or IngramSpark?](/blog/kdp-or-ingramspark) for the print-on-demand side.
 
-[YOUR STORY: what printing the Hidden Treasures readers taught you about choosing a printer]
-
 ## Step 7: Check a printed proof
 
 Order a printed proof copy and read every page of it. Screens hide problems that paper shows: colours that print darker than expected, text too close to the edge, a page out of order, a spine that's slightly off.

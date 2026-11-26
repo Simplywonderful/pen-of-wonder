@@ -60,8 +60,6 @@ Self-publishing suits you if:
 
 That last point matters more than people think. A book written for one community, one profession or one curriculum can do very well self-published, because the author knows exactly where its readers are.
 
-[YOUR STORY: why you chose to publish the Hidden Treasures readers yourself rather than through a publisher]
-
 ## What about hybrid publishers and vanity presses?
 
 Between the two sits a third option: companies that charge the author to publish the book.
