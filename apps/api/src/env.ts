@@ -24,3 +24,9 @@ export interface Env {
 
 /** Outbound calls go through this, so tests can swap in a fake and never reach a real API. */
 export type Fetcher = typeof fetch;
+
+/**
+ * The real fetch, wrapped. Passing the global `fetch` around as a value and calling it later throws
+ * "Illegal invocation" in the Workers runtime, so every default goes through this instead.
+ */
+export const liveFetch: Fetcher = (input, init) => fetch(input, init);

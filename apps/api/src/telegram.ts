@@ -1,16 +1,18 @@
 // Owner alerts through a Telegram bot (revamp brief 5.7): free, official, and independent of the
 // domain and of Brevo's daily cap. Plain text only, so nothing a visitor types can be read as markup.
-import type { Env, Fetcher } from "./env";
+import { liveFetch, type Env, type Fetcher } from "./env";
 
 export const telegramReady = (env: Env) => Boolean(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_CHAT_ID);
 
-export async function sendTelegram(env: Env, text: string, fetcher: Fetcher = fetch): Promise<boolean> {
+export async function sendTelegram(env: Env, text: string, fetcher: Fetcher = liveFetch): Promise<boolean> {
   if (!telegramReady(env)) return false;
   const res = await fetcher(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text: text.slice(0, 4000), disable_web_page_preview: true }),
   });
+  // Telegram explains a refusal (a revoked token, an unknown chat) in its reply; log it, never the token.
+  if (!res.ok) console.warn("telegram refused the alert:", res.status, (await res.text().catch(() => "")).slice(0, 200));
   return res.ok;
 }
 

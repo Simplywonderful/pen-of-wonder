@@ -1,7 +1,7 @@
 // The one cron trigger (hourly, brief 5.1: the free plan allows five per account) dispatches every
 // scheduled job by the hour in West Africa Time. R3 has only housekeeping; later phases add the
 // social poster (R5), the digests and scheduled publishing (R4, R6) here.
-import type { Env, Fetcher } from "./env";
+import { liveFetch, type Env, type Fetcher } from "./env";
 import { nowIso, watHour } from "./util";
 
 export type Job = { name: string; due: (now: Date) => boolean; run: (env: Env, fetcher: Fetcher) => Promise<string> };
@@ -20,7 +20,7 @@ export const jobs: Job[] = [
 ];
 
 /** Runs every job due this hour and records each result in `jobs`, so /health can show it. */
-export async function runScheduled(env: Env, now: Date = new Date(), fetcher: Fetcher = fetch): Promise<Record<string, string>> {
+export async function runScheduled(env: Env, now: Date = new Date(), fetcher: Fetcher = liveFetch): Promise<Record<string, string>> {
   const results: Record<string, string> = {};
   for (const job of jobs.filter((j) => j.due(now))) {
     let result: string;

@@ -1,7 +1,7 @@
 // POST /submit: every world's forms (revamp brief 5.2). JSON from the page's script, or a normal form
 // post when JavaScript is off. Spam control: a honeypot, the time taken to fill the form, and a
 // per-IP hourly limit. A good message is stored in D1, then the owner is alerted.
-import type { Env, Fetcher } from "./env";
+import { liveFetch, type Env, type Fetcher } from "./env";
 import { corsHeaders, isWorld, thanksUrl } from "./cors";
 import { enquiryAlert, sendTelegram } from "./telegram";
 import { hash, json, nowIso } from "./util";
@@ -78,7 +78,7 @@ async function underLimit(env: Env, ip: string): Promise<boolean> {
   return (row?.count ?? 1) <= HOURLY_LIMIT;
 }
 
-export async function handleSubmit(request: Request, env: Env, ctx: ExecutionContext, fetcher: Fetcher = fetch): Promise<Response> {
+export async function handleSubmit(request: Request, env: Env, ctx: ExecutionContext, fetcher: Fetcher = liveFetch): Promise<Response> {
   const origin = request.headers.get("Origin");
   const cors = corsHeaders(origin);
   const { fields, wantsJson } = await readFields(request);
@@ -120,7 +120,10 @@ export async function handleSubmit(request: Request, env: Env, ctx: ExecutionCon
     // The alert runs after the reply, so a slow Telegram never slows the visitor down.
     ctx.waitUntil(
       (async () => {
-        const sent = await sendTelegram(env, enquiryAlert(v), fetcher).catch(() => false);
+        const sent = await sendTelegram(env, enquiryAlert(v), fetcher).catch((e) => {
+          console.warn("telegram alert failed:", e instanceof Error ? e.message : String(e));
+          return false;
+        });
         if (sent && row) await env.DB.prepare("UPDATE submissions SET notified_at = ?1 WHERE id = ?2").bind(nowIso(), row.id).run();
       })(),
     );

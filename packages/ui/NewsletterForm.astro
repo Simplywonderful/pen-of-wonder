@@ -1,9 +1,9 @@
 ---
-// The newsletter signup (revamp brief 5.3): one email field, a consent box and a honeypot. Until the
-// pow-api Worker exists (Phase R4) the fields are disabled and say signups open soon, so no address
-// is collected anywhere, not even in a URL.
+// The newsletter signup (revamp brief 5.3): one email field, a consent box and a honeypot. Until
+// pow-api's /subscribe exists and packages/config/api.ts switches it on (Phase R4), the fields are
+// disabled and say signups open soon, so no address is collected anywhere, not even in a URL.
 import { worldUrl, type WorldId } from "@pow/config/worlds";
-import { api, apiReady } from "@pow/config/api";
+import { api, newsletterReady } from "@pow/config/api";
 
 interface Props {
   world: WorldId;
@@ -11,7 +11,7 @@ interface Props {
   tone?: "band" | "page";
 }
 const { world, tone = "band" } = Astro.props;
-const ready = apiReady();
+const ready = newsletterReady();
 const list = world === "main" || world === "dev" ? "general" : world;
 const id = `newsletter-${tone}`;
 ---
