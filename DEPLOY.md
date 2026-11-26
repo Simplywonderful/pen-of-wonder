@@ -69,6 +69,7 @@ One Cloudflare Worker, `pow-api`, takes every world's forms and runs the hourly 
 6. **Deploy:** `npm run deploy -w apps/api`. Wrangler prints the address, `https://pow-api.<your-subdomain>.workers.dev`.
 7. **Check it:** open `<address>/health`. It should show `"db": true` and `"telegram": true`. It shows only true or false, never a secret.
 8. **Tell me the address.** I set `api.origin` in `packages/config/api.ts`, switch `forms` to `"api"`, publish the updated privacy notice from `drafts/privacy-after-pow-api.md` in the same push (it describes the database and Telegram alerts, so it must not go live before them), and send a test message from every world. You confirm each Telegram alert arrives.
-9. **One week later,** if `/submit` has run without errors, I remove Formspree from the code, `contact.ts` and the privacy notice.
+   Done on 26 Nov 2026: the forms post to `https://pow-api.wonderfuladebagbo.workers.dev`, and the notice is live.
+9. **One week later** (3 Dec 2026), if `/submit` has run without errors, I remove Formspree from the code, `contact.ts` and the privacy notice.
 
 After the domain is registered, add `api.penofwonder.com` as a custom domain on the Worker (**Workers & Pages → pow-api → Settings → Domains & Routes**) and change `api.origin` to it.
