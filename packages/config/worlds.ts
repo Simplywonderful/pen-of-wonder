@@ -6,8 +6,8 @@
 // penofwonder.com isn't registered yet (owner, 27 Oct 2026), so the live sites run on Cloudflare's
 // free addresses: each world's interimHost. Every canonical URL, sitemap and cross-world link uses
 // them until domainLive is switched on. Research moved into this repo on 26 Nov 2026 (owner
-// decision): it has its own Pages project here, and the old penofwonderresearch.pages.dev redirects
-// to it. Dev became a Worker to free that Pages slot (five per repository), so it is on workers.dev.
+// decision): the owner recreated its Pages project under the same name, so its address is unchanged.
+// Dev became a Worker to free that Pages slot (five per repository), so it is on workers.dev.
 export const domainLive = false;
 
 export type WorldId = "main" | "marketing" | "writing" | "research" | "publishing" | "dev";
@@ -106,7 +106,7 @@ export const worlds: World[] = [
     label: "Research",
     name: "Pen of Wonder Research",
     host: "research.penofwonder.com",
-    interimHost: "penofwonder-research.pages.dev",
+    interimHost: "penofwonderresearch.pages.dev",
     port: 4323,
     status: "live",
     tagline: "Quiet, on request.",
@@ -149,7 +149,7 @@ export const worlds: World[] = [
     label: "Dev",
     name: "Pen of Wonder Dev",
     host: "dev.penofwonder.com",
-    interimHost: "penofwonder-dev.wonderfuladebagbo.workers.dev",
+    interimHost: "penofwonderdev.wonderfuladebagbo.workers.dev",
     port: 4326,
     status: "soon",
     badge: "Soon",
