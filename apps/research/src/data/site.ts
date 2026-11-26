@@ -32,6 +32,13 @@ export const site = {
   meetingPlatform: "Google Meet" as string | null,
 } as const;
 
+// The parent brand, for the Organization JSON-LD. The shared footer links every world, and both
+// follow packages/config/worlds.ts, so they move to penofwonder.com with domainLive.
+export const family = {
+  name: "Pen of Wonder",
+  main: worldOrigin("main", "production"),
+} as const;
+
 export const placeholders = {
   email: contactPlaceholders.email,
   formspreeId: contactPlaceholders.formspreeId,

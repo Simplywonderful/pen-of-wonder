@@ -9,14 +9,28 @@ series: guide
 serviceLink: /publication-support
 serviceLine: If you’d like a careful second reader before you submit, we offer a free one-page review of your manuscript with the three changes we’d make first.
 draft: false
-publishDate: 2024-09-27
+publishDate: 2026-02-02
+metaTitle: "How to choose a journal and submit your manuscript"
+description: "How to pick a journal that fits your paper, avoid the mistakes behind desk rejection and prepare a submission an editor can send out for review."
+keyword: "how to choose a journal to publish in"
+answer: "Choose a journal by its scope and readers, not its prestige: read its aims and scope page and several recent papers, check its review times, and confirm it is genuine with the Think. Check. Submit. checklist. Then shape your paper to that journal’s guidelines from the start, and submit with a short, specific cover letter."
+faq:
+  - q: "How do I choose the right journal for my paper?"
+    a: "Match the journal’s scope and readers to your paper. Read its aims and scope, read three to five recent articles, ask colleagues which journals carry weight in your field, and check how long it takes to reach a decision."
+  - q: "How can I tell if a journal is predatory?"
+    a: "Work through the Think. Check. Submit. checklist: is the publisher identified and contactable, is peer review explained, are fees stated openly, and is the journal indexed where your field searches? Promises of acceptance or very fast review are warning signs."
+  - q: "Should I cite papers from the journal I am submitting to?"
+    a: "Only where they are genuinely relevant to your argument. Requiring citations regardless of relevance is coercive citation, which COPE treats as citation manipulation, and you can decline such a request politely."
+  - q: "What is a pre-submission enquiry?"
+    a: "A short email to the editor with your title, abstract and a sentence on why the paper fits the journal. It takes minutes and can save months of waiting for a rejection."
+related: [reviewer-feedback-peer-review-cover-letters, structuring-a-research-paper-introduction-literature-methods, research-ethics-in-plain-english]
 ---
 
 You’ve done the hard part. The research is complete and the findings are worth sharing. Now you have to get the work into the right journal, and that is more complicated than it looks. It isn’t only about impact factors or prestige. It’s about matching your paper to a journal’s readers, and then giving the editor no easy reason to say no.
 
 This guide covers both halves: choosing the journal, and preparing the manuscript and submission.
 
-## Part 1: Choosing the journal
+## How to choose the right journal
 
 ### Choose by scope and audience, not prestige
 
@@ -56,7 +70,7 @@ Predatory journals take a fee and publish almost anything, with little or no pee
 
 A pre-submission enquiry is a short email to the editor asking whether your paper fits the journal. Include your title, abstract and a sentence on why you think it fits. It costs you ten minutes, and it can save months of waiting for a rejection.
 
-## Part 2: Preparing the manuscript
+## How to prepare your manuscript for submission
 
 ### Choose the journal before you write the paper
 
@@ -103,7 +117,9 @@ It is tempting to submit as soon as the paper is finished. Don’t. A colleague 
 
 Your paper will be read by people for whom English is a second or third language, and by people outside your country. Define local terms, avoid idioms, and give context a foreign reader would need, such as what a “local government area” is in Nigeria.
 
-## Part 3: The submission package
+For a section-by-section guide to the paper itself, see [structuring a research paper, part 1](/blog/structuring-a-research-paper-introduction-literature-methods) and [part 2](/blog/structuring-a-research-paper-results-discussion-conclusion-references).
+
+## What goes in the submission package
 
 ### Follow the author guidelines exactly
 

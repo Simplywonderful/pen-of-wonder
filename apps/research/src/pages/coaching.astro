@@ -5,6 +5,7 @@ import DoDontBox from "../components/DoDontBox.astro";
 import Todo from "@pow/ui/Todo.astro";
 import WhatsAppButton from "@pow/ui/WhatsAppButton.astro";
 import { coaching as c } from "../data/pages/coaching";
+import photo from "../assets/services/coaching.webp";
 import { site, placeholders, prices } from "../data/site";
 
 const bookHref = site.calendlyUrl ?? "/contact?as=student";
@@ -13,7 +14,7 @@ const priceRows = [prices.single, prices.analysis, prices.dissertation];
 ---
 
 <BaseLayout title={c.title} description={c.description}>
-  <PageHead eyebrow="Coaching" title={c.h1} intro={c.intro}>
+  <PageHead eyebrow="Coaching" title={c.h1} intro={c.intro} image={photo} imageAlt={c.imageAlt} imagePosition="50% 35%">
     <a class="btn btn-primary" href={bookHref}>{c.cta}</a>
   </PageHead>
   <div class="sheet mt-10">

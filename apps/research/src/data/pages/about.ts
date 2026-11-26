@@ -6,6 +6,7 @@ export const about = {
     "Pen of Wonder Research is a research writing, editing and tutoring service in Ibadan, Nigeria, founded by research writer Wonderful Adebagbo.",
 
   h1: "About us",
+  companyImageAlt: "A researcher smiling as she turns the pages of a marked-up manuscript with coloured tabs, at a wooden desk by a window.",
   paragraphs: [
     "Pen of Wonder Research is the research service of Pen of Wonder Consults, a registered business name in Nigeria, based in Ibadan. We help researchers get their work published, edit for firms and research teams, and teach postgraduate students to do their own research well.",
     "We work the way a careful editor does. Every change comes with a reason, the author stays the author, and we say plainly when a paper, a journal or a request isn’t right. That includes turning down anything that would break a university’s or journal’s rules.",

@@ -1,6 +1,8 @@
 ---
 // The top of an inner page. Since the revamp (root DESIGN.md 20, owner's decision 25 Nov 2026) it is
-// the family's dark PageHero band; the optional button sits inside the band.
+// the family's dark PageHero band; the optional button sits inside the band, and the optional
+// service photo (DESIGN.md, Imagery) sits beside the text on wide screens.
+import type { ImageMetadata } from "astro";
 import PageHero from "@pow/ui/PageHero.astro";
 
 interface Props {
@@ -8,14 +10,18 @@ interface Props {
   intro?: string;
   cta?: { href: string; label: string };
   eyebrow?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  /** CSS object-position for the crop, so faces stay in frame. */
+  imagePosition?: string;
 }
-const { title, intro, cta, eyebrow } = Astro.props;
+const { title, intro, cta, eyebrow, image, imageAlt, imagePosition } = Astro.props;
 const hasExtra = Astro.slots.has("default") || Boolean(cta);
 ---
 
 {
   hasExtra ? (
-    <PageHero title={title} lead={intro} eyebrow={eyebrow}>
+    <PageHero title={title} lead={intro} eyebrow={eyebrow} image={image} imageAlt={imageAlt} imagePosition={imagePosition}>
       <slot />
       {cta && (
         <a class="btn btn-primary" href={cta.href}>
@@ -24,6 +30,6 @@ const hasExtra = Astro.slots.has("default") || Boolean(cta);
       )}
     </PageHero>
   ) : (
-    <PageHero title={title} lead={intro} eyebrow={eyebrow} />
+    <PageHero title={title} lead={intro} eyebrow={eyebrow} image={image} imageAlt={imageAlt} imagePosition={imagePosition} />
   )
 }

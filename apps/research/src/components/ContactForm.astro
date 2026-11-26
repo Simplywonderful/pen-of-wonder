@@ -1,26 +1,33 @@
 ---
-// Posts to Formspree. Without JavaScript it is a normal POST (Formspree's free plan then shows
-// its own thank-you page). With JavaScript it validates in place, sends with fetch, keeps what
-// was typed if anything fails, and goes to /contact/thanks on success.
-// reCAPTCHA stays off in Formspree's settings: it sets Google cookies. The _gotcha field is the honeypot.
+// Research's contact form, with its "I am a" choice. It posts to pow-api's /submit once
+// packages/config/api.ts switches the forms (revamp brief 5.2), otherwise to Formspree. The choice is
+// sent as the service, so the alert says who is writing. Without JavaScript it is a normal POST:
+// pow-api redirects to /contact/thanks, or back with ?sent=error. With JavaScript it validates in
+// place, sends JSON with the time taken to fill it in, keeps what was typed if anything fails, and
+// goes to /contact/thanks on success. _gotcha is the honeypot. The consent box must be ticked.
 import Todo from "@pow/ui/Todo.astro";
+import { api, formsUseApi } from "@pow/config/api";
+import { worldUrl } from "@pow/config/worlds";
 import { contact } from "../data/pages/contact";
 import { roles, site, placeholders } from "../data/site";
 
 const f = contact.form;
-const action = `https://formspree.io/f/${site.formspreeId ?? "not-connected"}`;
+const useApi = formsUseApi();
+const action = useApi ? `${api.origin}/submit` : `https://formspree.io/f/${site.formspreeId ?? "not-connected"}`;
+const connected = useApi || Boolean(site.formspreeId);
 ---
 
 <form
   class="contact-form"
   action={action}
   method="POST"
-  data-connected={site.formspreeId ? "true" : "false"}
+  data-connected={connected ? "true" : "false"}
+  data-backend={useApi ? "api" : "formspree"}
   data-errors={JSON.stringify(f.errors)}
   data-sending={f.sending}
 >
   {
-    !site.formspreeId && (
+    !connected && (
       <p class="mb-6 text-sm">
         <Todo label={placeholders.formspreeId} />
       </p>
@@ -55,7 +62,7 @@ const action = `https://formspree.io/f/${site.formspreeId ?? "not-connected"}`;
       {
         roles.map((r, i) => (
           <label class="choice">
-            <input type="radio" name="role" value={r.value} required={i === 0} />
+            <input type="radio" name="service" value={r.value} required={i === 0} />
             <span>{r.label}</span>
           </label>
         ))
@@ -91,6 +98,16 @@ const action = `https://formspree.io/f/${site.formspreeId ?? "not-connected"}`;
     <label for="cf-gotcha">Leave this empty</label>
     <input id="cf-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
   </div>
+  <div class="field consent">
+    <label class="choice consent__label">
+      <input id="cf-consent" type="checkbox" name="consent" required aria-describedby="cf-consent-error" />
+      <span>{f.consent} <a href={worldUrl("main", "/privacy")}>{f.consentLink}</a>.</span>
+    </label>
+    <p id="cf-consent-error" class="field__error" hidden></p>
+  </div>
+
+  <input type="hidden" name="world" value="research" />
+  <input type="hidden" name="formType" value="enquiry" />
   <input type="hidden" name="_subject" value="New message from the Pen of Wonder Research website" />
 
   <p class="mt-8">
@@ -128,7 +145,7 @@ const action = `https://formspree.io/f/${site.formspreeId ?? "not-connected"}`;
     padding: 0.55rem 0.75rem;
     background: var(--color-bg);
     border: 1px solid var(--color-rule-strong);
-    border-radius: var(--radius-xs);
+    border-radius: var(--radius-sm);
   }
   .field textarea {
     resize: vertical;
@@ -168,6 +185,14 @@ const action = `https://formspree.io/f/${site.formspreeId ?? "not-connected"}`;
     width: 1.15rem;
     height: 1.15rem;
   }
+  .consent__label {
+    align-items: flex-start;
+    font-size: var(--text-sm);
+  }
+  .consent__label input {
+    flex: none;
+    margin-top: 0.15rem;
+  }
   .form-summary {
     padding: 0.9rem 1rem;
     border: 2px solid var(--color-text);
@@ -192,11 +217,12 @@ const action = `https://formspree.io/f/${site.formspreeId ?? "not-connected"}`;
     const summary = form.querySelector<HTMLElement>(".form-summary")!;
     const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     const buttonLabel = button.textContent;
+    const startedAt = Date.now();
     form.noValidate = true;
 
     // Each door's button sends people here as ?as=researcher, editing-firm or student.
     const preset = new URLSearchParams(location.search).get("as");
-    const presetInput = form.querySelector<HTMLInputElement>(`input[name="role"][value="${CSS.escape(preset ?? "")}"]`);
+    const presetInput = form.querySelector<HTMLInputElement>(`input[name="service"][value="${CSS.escape(preset ?? "")}"]`);
     if (presetInput) presetInput.checked = true;
 
     const setError = (id: string, control: HTMLElement | null, message: string | null) => {
@@ -212,8 +238,9 @@ const action = `https://formspree.io/f/${site.formspreeId ?? "not-connected"}`;
       const email = form.elements.namedItem("email") as HTMLInputElement;
       const message = form.elements.namedItem("message") as HTMLTextAreaElement;
       const link = form.elements.namedItem("file_link") as HTMLInputElement;
-      const role = form.querySelector<HTMLInputElement>('input[name="role"]:checked');
-      const firstRole = form.querySelector<HTMLInputElement>('input[name="role"]');
+      const consent = form.elements.namedItem("consent") as HTMLInputElement;
+      const role = form.querySelector<HTMLInputElement>('input[name="service"]:checked');
+      const firstRole = form.querySelector<HTMLInputElement>('input[name="service"]');
 
       const checks: [string, HTMLElement | null, string | null][] = [
         ["cf-name", name, name.value.trim() ? null : errors.name],
@@ -224,7 +251,8 @@ const action = `https://formspree.io/f/${site.formspreeId ?? "not-connected"}`;
         ],
         ["cf-role", firstRole, role ? null : errors.role],
         ["cf-message", message, message.value.trim() ? null : errors.message],
-        ["cf-link", link, link.value.trim() && !/^https?:\/\/\S+\.\S+/.test(link.value.trim()) ? errors.link : null],
+        ["cf-link", link, link.value.trim() && !/^https:\/\/\S+\.\S+/.test(link.value.trim()) ? errors.link : null],
+        ["cf-consent", consent, consent.checked ? null : errors.consent],
       ];
       checks.forEach(([id, control, msg]) => setError(id, control, msg));
       const firstBad = checks.find(([, , msg]) => msg);
@@ -236,6 +264,9 @@ const action = `https://formspree.io/f/${site.formspreeId ?? "not-connected"}`;
       summary.hidden = !message;
       if (message) summary.focus();
     };
+
+    // Back from a form post without JavaScript that pow-api couldn't accept.
+    if (new URLSearchParams(location.search).get("sent") === "error") showSummary(errors.sentError);
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -253,15 +284,25 @@ const action = `https://formspree.io/f/${site.formspreeId ?? "not-connected"}`;
       button.disabled = true;
       button.textContent = form.dataset.sending ?? buttonLabel;
       try {
-        const response = await fetch(form.action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: { Accept: "application/json" },
-        });
-        if (!response.ok) throw new Error(String(response.status));
+        let response: Response;
+        if (form.dataset.backend === "api") {
+          const data = Object.fromEntries(new FormData(form).entries());
+          response = await fetch(form.action, {
+            method: "POST",
+            body: JSON.stringify({ ...data, consent: data.consent ? "on" : "", elapsedMs: String(Date.now() - startedAt) }),
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+          });
+        } else {
+          response = await fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+        }
+        if (!response.ok) {
+          const body = (await response.json().catch(() => ({}))) as { error?: string };
+          throw new Error(body.error ?? String(response.status));
+        }
         location.assign("/contact/thanks");
-      } catch {
-        showSummary(errors.network);
+      } catch (error) {
+        const code = error instanceof Error ? error.message : "";
+        showSummary(code === "too_fast" ? errors.tooFast : code === "rate_limited" ? errors.rateLimited : code === "invalid" ? errors.summary : errors.network);
         button.disabled = false;
         button.textContent = buttonLabel;
       }

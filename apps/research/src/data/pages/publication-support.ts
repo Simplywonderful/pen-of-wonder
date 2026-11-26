@@ -8,6 +8,7 @@ export const publicationSupport = {
   intro:
     "You’ve done the research. We help you turn it into a paper a journal will take seriously: clear structure, complete reporting, the right journal, and calm answers to reviewers. You stay the author throughout.",
   cta: "Send your manuscript for a free one-page review",
+  imageAlt: "A researcher in glasses reading a printed paper, pen in hand, at a desk in a book-lined office.",
 
   helpHeading: "What we help with",
   help: [

@@ -6,10 +6,11 @@ import PageHero from "@pow/ui/PageHero.astro";
 import { about as a } from "../data/pages/about";
 import { organisationLd, personLd, worksLd } from "../data/structured";
 import portrait from "../assets/portrait-arms.png";
+import companyPhoto from "../assets/services/all-services.webp";
 ---
 
 <BaseLayout title={a.title} description={a.description} jsonLd={[organisationLd, personLd, ...worksLd]}>
-  <PageHero eyebrow="About" title={a.h1} lead={a.paragraphs[0]} />
+  <PageHero eyebrow="About" title={a.h1} lead={a.paragraphs[0]} image={companyPhoto} imageAlt={a.companyImageAlt} imagePosition="60% 40%" />
   {
     a.paragraphs.length > 1 && (
       <div class="sheet prose mt-12">

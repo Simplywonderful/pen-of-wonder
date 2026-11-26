@@ -9,8 +9,21 @@ series: guide
 serviceLink: /publication-support
 serviceLine: If your paper is drafted and you’d like a careful second reader on its structure before you submit, we offer a free one-page review of your manuscript with the three changes we’d make first.
 draft: false
-publishDate: 2024-06-28
-releaseDate: 2026-11-23
+publishDate: 2026-06-08
+metaTitle: "Research paper structure: introduction to methods"
+description: "The standard structure of a research paper, and how to write the introduction, literature review and methodology, with example wording for each."
+keyword: "research paper structure"
+answer: "Most research papers follow the same shape: title and abstract, introduction, literature review, methodology, results, discussion, conclusion and references. A strong introduction draws the reader in, gives background, shows the gap and states the aim. The literature review analyses rather than lists, and the methodology gives enough detail for others to judge and repeat the study."
+faq:
+  - q: "What is the structure of a research paper?"
+    a: "Usually title and abstract, introduction, literature review, methodology, results, discussion, conclusion, and references, with acknowledgements and declarations as the journal requires. Always follow your target journal’s author guidelines."
+  - q: "What should a research paper introduction include?"
+    a: "An opening that draws the reader in, brief background and context, the research gap, and the aim and objectives of the study."
+  - q: "How do I organise the literature review section?"
+    a: "By theme, by method, or around a detailed analysis of a few key studies, or a combination. Organise it so your argument is easy to follow."
+  - q: "What goes in the methodology section?"
+    a: "A full description of your methods, the reasons for each choice, the limitations and how you reduced them, ethics approval and consent, and your data analysis procedures."
+related: [structuring-a-research-paper-results-discussion-conclusion-references, doing-a-literature-review, choosing-a-journal-and-submitting]
 ---
 
 Picture yourself at your desk, surrounded by notes and data printouts. The research is done, and now you have to turn it into a paper. Organising that paper can feel as hard as the research itself.
@@ -19,7 +32,7 @@ Plenty of guides cover the basics of introduction, methods, results and conclusi
 
 A note on the examples: the quoted passages are written as they might appear in a paper. The studies, authors and figures in them are invented for illustration. They are not real research to cite.
 
-## What a research paper is, and how it fits together
+## What is the structure of a research paper?
 
 A research paper presents your argument, analysis or findings on a question. It brings together evidence, analyses it and sets out the results in a logical order.
 
@@ -69,7 +82,7 @@ Summarise your main findings, say what they mean, and suggest what future resear
 
 Most papers also need acknowledgements and references, and some need appendices, a funding statement, a declaration of interests or a data availability statement. Check what your journal asks for.
 
-## The introduction
+## How to write the introduction of a research paper
 
 The introduction is more than a formality. It draws the reader in, sets the scene and states the purpose and significance of your research. Unlike the more technical sections, it is where you tell the story of why your study matters and what gap it fills.
 
@@ -103,7 +116,7 @@ Finally, state the aim of the study and its specific objectives or hypotheses, s
 
 The introduction is your first impression. Draw the reader in, give the background, show the gap and state your aims, and the rest of the paper has firm ground to stand on.
 
-## The literature review
+## How to write the literature review section
 
 The literature review shows your reader how your question fits into the wider field. It is your chance to show that you are adding something new, not repeating what others have said.
 
@@ -141,7 +154,9 @@ A clear structure helps your reader and strengthens your case. Three common appr
 
 You can combine these approaches: themes for the overall structure, with detailed analysis of the key studies within each theme.
 
-## The methodology
+For the wider process of searching for and synthesising sources, see my guide to [doing a literature review](/blog/doing-a-literature-review).
+
+## How to write the methodology section
 
 The methodology section describes the procedures, methods and tools you used to collect and analyse your data. It should give enough detail for another researcher to repeat the study, and for readers to judge how far the findings can be trusted. Five things make it strong.
 
@@ -177,4 +192,4 @@ Describe the analysis step by step: the statistical tests, the software and the 
 
 ## In short
 
-A clear structure lets your reader follow your argument from question to conclusion. Open with an introduction that draws the reader in and states your aims, build a literature review that analyses rather than lists, and write a methodology complete enough for others to judge and repeat your work. Part 2 of this guide covers the results, discussion, conclusion and references.
+A clear structure lets your reader follow your argument from question to conclusion. Open with an introduction that draws the reader in and states your aims, build a literature review that analyses rather than lists, and write a methodology complete enough for others to judge and repeat your work. [Part 2 of this guide](/blog/structuring-a-research-paper-results-discussion-conclusion-references) covers the results, discussion, conclusion and references.

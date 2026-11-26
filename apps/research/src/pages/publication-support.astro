@@ -5,12 +5,13 @@ import EditSpecimen from "../components/EditSpecimen.astro";
 import Faq from "../components/Faq.astro";
 import { publicationSupport as p } from "../data/pages/publication-support";
 import { resultsSpecimen } from "../data/specimens";
+import photo from "../assets/services/publication.webp";
 
 const cta = { href: "/contact?as=researcher", label: p.cta };
 ---
 
 <BaseLayout title={p.title} description={p.description}>
-  <PageHead eyebrow="Publication support" title={p.h1} intro={p.intro} cta={cta} />
+  <PageHead eyebrow="Publication support" title={p.h1} intro={p.intro} cta={cta} image={photo} imageAlt={p.imageAlt} imagePosition="60% 35%" />
 
   <section class="sheet mt-20" aria-labelledby="help-heading">
     <h2 id="help-heading" class="text-2xl">{p.helpHeading}</h2>

@@ -9,7 +9,21 @@ series: guide
 serviceLink: /coaching
 serviceLine: If you’re a postgraduate student working on your proposal, we offer one-to-one dissertation coaching. You write the proposal; we help you plan it, question it and strengthen it, within what your university allows.
 draft: false
-publishDate: 2024-02-28
+publishDate: 2026-03-16
+metaTitle: "How to write a research proposal you can defend"
+description: "What a research proposal must show, how to structure it so reviewers can follow your plan, and five mistakes that most often get proposals sent back."
+keyword: "how to write a research proposal"
+answer: "A research proposal is a plan for a study that persuades a supervisor, ethics committee or funder to approve it. It must show clear research questions, a real grasp of the literature, sound and feasible methods, why the study matters, and how you will handle ethics. Follow any set template, and respect the word limit."
+faq:
+  - q: "What are the main parts of a research proposal?"
+    a: "Usually a title and abstract, introduction, literature review, methodology, significance, ethical considerations, and a timeline and resources section. Follow your university’s or funder’s template if it sets one."
+  - q: "How long is a research proposal?"
+    a: "It depends entirely on your university or funder, so check the word limit and stay within it. Going over can cost marks or get the proposal returned."
+  - q: "Why do research proposals get rejected?"
+    a: "Most often for unclear objectives, a thin literature review, vague methods, missing ethics, or careless presentation."
+  - q: "Can someone write my research proposal for me?"
+    a: "No. Your proposal must be your own work. A supervisor or coach can help you plan it, question it and strengthen it, within what your university allows."
+related: [research-questions-and-hypotheses, research-ethics-in-plain-english, choosing-a-research-design]
 ---
 
 An architect sketches every detail of a building before anyone lays a foundation. A research proposal does the same job for a study. It sets out what you will investigate, how, and why it matters, before you collect a single piece of data.
@@ -18,13 +32,13 @@ A proposal can feel like a hurdle between you and the “real” research. It is
 
 This guide covers what a proposal must show, how to structure it, and the mistakes that most often send proposals back for revision.
 
-## What a research proposal is
+## What is a research proposal?
 
 A proposal, in general, is a formal plan put forward for others to consider: for a project, a business or a piece of research.
 
 A **research proposal** is a detailed plan that sets out the objectives, methods and significance of a study you intend to carry out. It does two jobs. It guides your own research, and it persuades others (a supervisor, an ethics committee, a funder or an admissions panel) to approve or fund it.
 
-## Part 1: Five things a proposal must show
+## What must a research proposal show?
 
 ### 1. Clear research questions
 
@@ -46,7 +60,9 @@ Say clearly what your research will contribute. How does it fill a gap or move k
 
 Explain how you will protect participants’ rights, obtain informed consent, keep data confidential and secure, and handle any risks or adverse events. Ethics is not a box to tick at the end; committees will read this section closely.
 
-## Part 2: Structuring the proposal
+Your proposal stands on its research question: my guide to [research questions and hypotheses](/blog/research-questions-and-hypotheses) covers how to write one, and [research ethics in plain English](/blog/research-ethics-in-plain-english) covers what an ethics committee will look for.
+
+## How to structure a research proposal
 
 A well-structured proposal does more than look tidy. It makes your plan easy to follow, shows reviewers you can organise a project, and makes it easier for them to give you useful feedback.
 
@@ -90,7 +106,7 @@ Your university or funder may set its own template, and if so, follow it exactly
 
 Respect the word limit. Going over it can cost marks or get the proposal returned, and staying within it forces you to be clear.
 
-## Part 3: Five common mistakes
+## Five common research proposal mistakes
 
 ### 1. Unclear objectives
 

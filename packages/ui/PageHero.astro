@@ -2,22 +2,52 @@
 // The top of every inner page (DESIGN.md 20.2): a dark band with an eyebrow, the H1, a lead and
 // whatever is slotted after it (buttons, a short note). Ink Green by day, deep ink at night, on
 // every world. Slotted text, links and primary buttons are restyled to read on the band.
+// An optional photo sits to the right on wide screens and under the text on phones (research's
+// service images, owner request 28 Oct 2026: clients and the work, never posed staff).
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import Eyebrow from "./Eyebrow.astro";
 
 interface Props {
   eyebrow?: string;
   title: string;
   lead?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  /** CSS object-position for the crop, so faces stay in frame. */
+  imagePosition?: string;
 }
-const { eyebrow, title, lead } = Astro.props;
+const { eyebrow, title, lead, image, imageAlt = "", imagePosition = "50% 40%" } = Astro.props;
 ---
 
 <header class="page-hero">
-  <div class="wrap page-hero__inner">
-    {eyebrow && <Eyebrow tone="band">{eyebrow}</Eyebrow>}
-    <h1 class:list={["page-hero__title", eyebrow && "page-hero__title--after"]}>{title}</h1>
-    {lead && <p class="page-hero__lead">{lead}</p>}
-    {Astro.slots.has("default") && <div class="page-hero__extra"><slot /></div>}
+  <div class:list={["wrap page-hero__inner", image && "page-hero__inner--photo"]}>
+    <div class="page-hero__text">
+      {eyebrow && <Eyebrow tone="band">{eyebrow}</Eyebrow>}
+      <h1 class:list={["page-hero__title", eyebrow && "page-hero__title--after"]}>{title}</h1>
+      {lead && <p class="page-hero__lead">{lead}</p>}
+      {Astro.slots.has("default") && <div class="page-hero__extra"><slot /></div>}
+    </div>
+    {
+      image && (
+        <figure class="page-hero__photo" style={`--pos: ${imagePosition}`}>
+          <Picture
+            src={image}
+            alt={imageAlt}
+            width={1024}
+            height={1024}
+            fit="cover"
+            position="center"
+            formats={["avif", "webp"]}
+            fallbackFormat="jpg"
+            widths={[400, 640, 1024]}
+            sizes="(min-width: 64rem) 24rem, calc(100vw - 2rem)"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
+      )
+    }
   </div>
 </header>
 
@@ -28,6 +58,36 @@ const { eyebrow, title, lead } = Astro.props;
   }
   .page-hero__inner {
     padding-block: clamp(3rem, 6vw, 5rem);
+  }
+  .page-hero__inner--photo {
+    display: grid;
+    gap: 2rem;
+  }
+  .page-hero__text {
+    min-width: 0;
+  }
+  .page-hero__photo {
+    margin: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .page-hero__photo :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: var(--pos);
+  }
+  @media (min-width: 64rem) {
+    .page-hero__inner--photo {
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
+      column-gap: 4rem;
+      align-items: center;
+    }
+    .page-hero__photo :global(img) {
+      aspect-ratio: 1 / 1;
+    }
   }
   .page-hero__title {
     max-width: 22ch;

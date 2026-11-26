@@ -9,18 +9,32 @@ series: guide
 serviceLink: /coaching
 serviceLine: If you’re learning to run your own analysis in SPSS, we offer one-to-one tutoring where you work on your data and we guide you through choosing, running and reporting the tests.
 draft: false
-publishDate: 2024-05-13
+publishDate: 2026-03-02
+metaTitle: "Quantitative data analysis: best practice and mistakes"
+description: "The main approaches to quantitative data analysis, the habits that make an analysis trustworthy, and four common mistakes that quietly undermine results."
+keyword: "quantitative data analysis"
+answer: "Quantitative data analysis uses statistics to describe numerical data and test relationships in it. Set clear objectives, check data quality before analysing, choose techniques that suit your data and question, and report clearly. Avoid four common mistakes: ignoring test assumptions, p-hacking, treating correlation as causation, and not checking whether results hold up."
+faq:
+  - q: "What is quantitative data analysis?"
+    a: "The use of statistical techniques to describe numerical data and to test relationships and differences in it, through descriptive statistics, inferential statistics and data visualisation."
+  - q: "What is the difference between descriptive and inferential statistics?"
+    a: "Descriptive statistics summarise your data, such as averages and spread. Inferential statistics use a sample to draw conclusions about a wider population, such as whether a difference between groups is larger than chance would explain."
+  - q: "What is p-hacking?"
+    a: "Trying many analyses until one gives a statistically significant result, then reporting only that one. It produces findings that are unlikely to hold up. Planning your analysis in advance, or pre-registering it, guards against it."
+  - q: "Does correlation mean causation?"
+    a: "No. Two variables can move together because a third factor drives both, as ice cream sales and drownings both rise in hot weather. Ask what else could explain the relationship."
+related: [interpreting-your-findings, surveys-and-questionnaires, data-methods-and-backups]
 ---
 
 Numbers can tell stories, but only if you know how to read them. As a researcher you will often face a spreadsheet full of figures and the question of what, if anything, they show. Quantitative data analysis is how you find the patterns, trends and relationships in that data, and how you tell real findings from noise.
 
 This guide covers the main approaches, the habits that make an analysis trustworthy, and the mistakes that quietly undermine results.
 
-## What quantitative data analysis is
+## What is quantitative data analysis?
 
 Quantitative data analysis is the systematic process of organising, summarising and analysing numerical data to answer a research question. Its goal is conclusions that are supported by the evidence, and honest about what the evidence can’t show.
 
-## Part 1: The main approaches
+## What are the main approaches to quantitative analysis?
 
 ### Descriptive statistics
 
@@ -50,7 +64,7 @@ Quantitative content analysis applies counting and statistics to text or images.
 
 **Example:** in a study of how newspapers cover environmental issues, you might code articles for topic and tone, then measure how coverage changed over time.
 
-## Part 2: Habits of a trustworthy analysis
+## How to make your analysis trustworthy
 
 ### Begin with clear objectives
 
@@ -84,7 +98,7 @@ When you write up, use plain language and explain technical terms. Report the st
 
 **Example:** when presenting to a non-technical audience, a simple bar chart showing how groups differed, with a one-sentence explanation, will do more than a table of coefficients.
 
-## Part 3: Four common mistakes
+## Four common mistakes in quantitative analysis
 
 ### 1. Ignoring the assumptions of your tests
 
@@ -107,6 +121,8 @@ Correlation does not show causation, yet this is one of the most common errors i
 ### 4. Not checking whether results hold up
 
 A result found once, in one sample, may not hold elsewhere. Where you can, check your findings: test them on a separate sample, use cross-validation for predictive models, or see whether they are consistent with similar studies. Be cautious about generalising beyond the population you sampled.
+
+Interpreting results without overclaiming is covered in more depth in my guide to [interpreting your findings](/blog/interpreting-your-findings). If your data come from a questionnaire, see [surveys and questionnaires that give you usable data](/blog/surveys-and-questionnaires).
 
 ## In short
 

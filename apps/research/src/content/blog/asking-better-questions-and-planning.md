@@ -9,8 +9,21 @@ series: 30 Lessons
 serviceLink: /coaching
 serviceLine: If you’re a student planning a dissertation or thesis, we offer one-to-one coaching on questions, outlines and timelines. You do the research and the writing; we help you plan it and keep it on track.
 draft: false
-publishDate: 2025-10-17
-releaseDate: 2026-11-02
+publishDate: 2026-04-20
+metaTitle: "Better research questions and planning: 5 lessons"
+description: "Five lessons on research groundwork: sharpening your question, using old notes, outlining before you write, planning backwards and organising files."
+keyword: "how to plan a research project"
+answer: "Good research rests on groundwork. Narrow a broad topic into a precise, testable question, make full use of notes and data you already have, outline before you write, plan your timeline backwards from the deadline, and keep sources, data and drafts organised with a reference manager and a clear folder structure."
+faq:
+  - q: "How do I narrow down a research question?"
+    a: "Start broad to understand the landscape, then narrow by defining your variables, timeframe and context. Test the result: if someone could misunderstand the question, refine it again."
+  - q: "How do I plan a dissertation timeline?"
+    a: "Work backwards from the deadline. Give revisions, drafting, analysis and data collection each a date, and build in time for things you don’t control, such as ethics approval and feedback."
+  - q: "Which reference manager should I use?"
+    a: "Zotero, EndNote and Mendeley Reference Manager are all widely used. Each stores your sources and formats citations in your chosen style; check what your university supports."
+  - q: "Is it worth outlining before writing?"
+    a: "Yes. An outline shows you the big picture, puts your arguments in order and reveals gaps early. It doesn’t need to be perfect; start messy and refine it."
+related: [research-questions-and-hypotheses, writing-a-research-proposal, data-methods-and-backups]
 ---
 
 In 2025 I shared thirty lessons from my years as a researcher, one at a time. This piece brings together five of them about the groundwork: asking the right question, using what you already have, outlining, planning your time and keeping your research organised. None of it is glamorous, but it is what makes the rest of the work possible.
@@ -48,6 +61,8 @@ Here is my process for improving a research question:
 For example, “How does social media affect students?” is a starting point, not a research question. “Is daily time on social media associated with exam performance among first-year undergraduates at one university?” names the variables, the group and the setting, and it is clear what an answer would look like.
 
 A well-crafted question works like a laser. It cuts through the noise to what you need to know.
+
+For a fuller guide, see [research questions and hypotheses, and how they fit together](/blog/research-questions-and-hypotheses).
 
 ## Lesson 7: Start with a simple outline
 

@@ -1,12 +1,11 @@
-# Rebuilds the research site every Monday morning so blog pieces whose releaseDate has passed go live.
+# Rebuilds the research site every Monday morning so blog pieces whose publishDate has arrived go live.
 # It calls a Cloudflare Pages deploy hook for the research project only. An empty commit would make
 # Cloudflare rebuild all six projects, because Pages builds every project on a push with no file changes.
 # The hook URL is stored as the repository secret CF_DEPLOY_HOOK_RESEARCH.
-# It only calls the hook when a piece is scheduled (draft: false with a releaseDate).
+# It only calls the hook when a piece is due this week or scheduled later (publishDate on or after
+# six days ago, not a draft), so nothing runs when nothing is waiting.
 # Run it by hand from the Actions tab with "Run workflow".
-# Until research moves to this repo (at the domain cutover), the live research site is still built
-# from the old pen-of-wonder-research repo and its own weekly rebuild, so the secret isn't set here
-# and this job just says so instead of failing every Monday.
+# Until the hook is set, the job says so instead of failing every Monday.
 name: Research weekly rebuild
 
 on:
@@ -22,16 +21,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Call the research deploy hook if a piece is scheduled
+      - name: Call the research deploy hook if a piece is due
         env:
           HOOK: ${{ secrets.CF_DEPLOY_HOOK_RESEARCH }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || grep -l "^releaseDate:" apps/research/src/content/blog/*.md 2>/dev/null | xargs -r grep -L "^draft: true" | grep -q .; then
+          cutoff=$(date -u -d "6 days ago" +%F)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || grep -L "^draft: true" apps/research/src/content/blog/*.md | xargs -r grep -h "^publishDate:" | awk -v c="$cutoff" '$2 >= c' | grep -q .; then
             if [ -z "$HOOK" ]; then
-              echo "CF_DEPLOY_HOOK_RESEARCH is not set yet; research still deploys from the old repo."
+              echo "CF_DEPLOY_HOOK_RESEARCH is not set yet, so nothing was rebuilt."
               exit 0
             fi
             curl --fail --silent --show-error -X POST "$HOOK"
           else
-            echo "No scheduled pieces; nothing to rebuild."
+            echo "No piece is due; nothing to rebuild."
           fi

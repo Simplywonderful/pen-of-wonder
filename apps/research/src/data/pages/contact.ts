@@ -4,6 +4,7 @@ export const contact = {
     "Send your manuscript for a free one-page review, ask about a test edit, or book a tutoring session. Replies within one working day.",
 
   h1: "Contact",
+  imageAlt: "A professional reading through a bound document at a table while someone beside her points to a passage.",
   intro: "Send a message here, on WhatsApp or by email. We reply within one working day.",
   // The words inside ring are circled by the one gold proof mark on this page.
   reviewBefore: "For a free review, send the manuscript as a share link, the target journal if you have one, and your deadline. We’ll reply with the ",
@@ -19,6 +20,8 @@ export const contact = {
     messageHint: "What you need, and any deadline.",
     link: "Link to your file (optional)",
     linkHint: "A Google Drive, Dropbox or OneDrive link with view access.",
+    consent: "I agree that Pen of Wonder may store this message to reply to me. See our",
+    consentLink: "privacy notice",
     submit: "Send message",
     sending: "Sending…",
     errors: {
@@ -28,6 +31,11 @@ export const contact = {
       role: "Please choose the option that describes you best.",
       message: "Please add a short message, even one line.",
       link: "That link doesn’t look complete. It should start with https://",
+      consent: "Please tick the box so we can keep your message and reply to it.",
+      tooFast: "That was very quick. Please check the form and send it again.",
+      rateLimited:
+        "We’ve had several messages from this connection in the last hour. Please try again later, or message us on WhatsApp; nothing you typed has been lost.",
+      sentError: "Your message didn’t send. Please check the form and try again, or message us on WhatsApp.",
       summary: "A few things need fixing before this can be sent.",
       network: "Your message didn’t send. Please check your connection and try again; nothing you typed has been lost.",
       notConnected:

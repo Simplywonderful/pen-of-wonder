@@ -9,8 +9,21 @@ series: 30 Lessons
 serviceLink: /work-with-us
 serviceLine: Clear structure and plain language are what we edit for, whether we’re working on a researcher’s manuscript or editing for a firm or research team.
 draft: false
-publishDate: 2025-10-06
-releaseDate: 2026-11-16
+publishDate: 2026-05-18
+metaTitle: "Research writing and editing: 4 lessons that help"
+description: "Four lessons on research writing: an introduction that earns attention, writing plainly, revising hard and pacing yourself to finish the draft."
+keyword: "academic writing tips"
+answer: "Strong research writing comes from habits, not talent. Open with an introduction that frames the problem and says why it matters, write as plainly as your ideas allow, treat the first draft as raw material and give revision real time, and write a little every day so you reach the end without burning out."
+faq:
+  - q: "Should I write the introduction first or last?"
+    a: "Many researchers write it last, or at least revise it last. Once you know exactly what the paper found and argues, it is much easier to introduce it well."
+  - q: "How much time should I spend editing?"
+    a: "As much as you spend drafting. Editing is where ideas sharpen, repetition disappears and the argument becomes clear."
+  - q: "How many words should I write a day?"
+    a: "Whatever you can sustain. Even 200 words a day adds up, and steady progress beats occasional marathons that end in burnout."
+  - q: "How do I stop procrastinating on writing?"
+    a: "Aim for completion, not perfection, in the first draft. Write a little every day and accept that revision will fix what the draft gets wrong."
+related: [clear-concise-research-writing, structuring-a-research-paper-introduction-literature-methods, the-researchers-mindset]
 ---
 
 In 2025 I shared thirty lessons from my years as a researcher, one at a time. This piece brings together four of them about writing: how to start, how to be understood, how to improve a draft, and how to keep going until it is finished.
@@ -30,6 +43,8 @@ A strong introduction:
 Think of it as an elevator pitch for your research: short, compelling and precise. Your reader should finish it feeling both informed and curious to read on.
 
 > **Pro tip:** many researchers write the introduction last, or at least revise it last. Once you know exactly what your paper found and argues, it is much easier to introduce it well.
+
+My guide to [structuring a research paper](/blog/structuring-a-research-paper-introduction-literature-methods) sets out the four parts of a strong introduction, with examples.
 
 ## Lesson 9: Clarity beats complexity
 

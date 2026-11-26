@@ -7,10 +7,11 @@ import RedPen from "../components/RedPen.astro";
 import { contact as c } from "../data/pages/contact";
 import Todo from "@pow/ui/Todo.astro";
 import { placeholders, site } from "../data/site";
+import photo from "../assets/services/consultation.webp";
 ---
 
 <BaseLayout title={c.title} description={c.description}>
-  <PageHead eyebrow="Contact" title={c.h1} intro={c.intro} />
+  <PageHead eyebrow="Contact" title={c.h1} intro={c.intro} image={photo} imageAlt={c.imageAlt} imagePosition="55% 35%" />
   <p class="sheet mt-10 max-w-[60ch]">
     {c.reviewBefore}<RedPen mark="ring">{c.reviewRing}</RedPen>{c.reviewAfter}
   </p>

@@ -2,12 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHead from "../components/PageHead.astro";
 import { workWithUs as w } from "../data/pages/work-with-us";
+import photo from "../assets/services/editing.webp";
 
 const cta = { href: "/contact?as=editing-firm", label: w.cta };
 ---
 
 <BaseLayout title={w.title} description={w.description}>
-  <PageHead eyebrow="Work with us" title={w.h1} intro={w.intro} cta={cta} />
+  <PageHead eyebrow="Work with us" title={w.h1} intro={w.intro} cta={cta} image={photo} imageAlt={w.imageAlt} imagePosition="55% 60%" />
 
   <section class="sheet mt-16" aria-labelledby="details-heading">
     <h2 id="details-heading" class="text-2xl">{w.detailsHeading}</h2>
