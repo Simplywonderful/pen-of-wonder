@@ -13,8 +13,8 @@
     {
       "binding": "DB",
       "database_name": "pow",
-      // Replace with the id printed by `npx wrangler d1 create pow` (DEPLOY.md, step 2).
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      // The id `npx wrangler d1 create pow` printed (created 25 Nov 2026). Not a secret.
+      "database_id": "e49533cb-dc77-43b3-a6b6-b7bd765491d2",
       "migrations_dir": "migrations"
     }
   ],
