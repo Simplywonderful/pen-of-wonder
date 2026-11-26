@@ -1,6 +1,6 @@
 # Deploying to Cloudflare (interim, before the domain)
 
-penofwonder.com isn't registered yet, so the worlds go live on Cloudflare's free `pages.dev` addresses. Cloudflare builds each site from the private GitHub repo `Simplywonderful/pen-of-wonder` whenever `main` is pushed (owner's choice, 27 Oct 2026). Research stays on its existing site (penofwonderresearch.pages.dev, built from the old repo) until the domain arrives.
+penofwonder.com isn't registered yet, so the worlds go live on Cloudflare's free `pages.dev` addresses. Cloudflare builds each site from the private GitHub repo `Simplywonderful/pen-of-wonder` whenever `main` is pushed (owner's choice, 27 Oct 2026). Research moved here on 26 Nov 2026 (owner decision, section 1A): it builds from this repo at penofwonder-research.pages.dev, and the old penofwonderresearch.pages.dev only redirects to it. Dev is a Worker at penofwonder-dev.wonderfuladebagbo.workers.dev, because Pages allows five projects per repository.
 
 You must be signed in to GitHub as **Simplywonderful** to see the repo, and when Cloudflare asks to connect to GitHub.
 
@@ -40,6 +40,22 @@ Finally, in each project, **Metrics → Web Analytics → Enable**. It's cookie-
 
 **Check each address.** It's shown at the top of the project, normally `<project name>.pages.dev`. If Cloudflare added anything to a name (it does when a name is taken), tell me: every link between the worlds uses these addresses (`packages/config/worlds.ts`).
 
+## 1A. Moving research here, and dev to a Worker (26 Nov 2026)
+
+Pages takes five Git-connected projects per repository and we have six sites, so dev becomes a Worker first. Do the steps in this order: the old dev address keeps working until step 2.
+
+1. **Dev as a Worker.** **Workers & Pages → Create → Workers → Import a repository**, pick `pen-of-wonder`, and set:
+   - **Project name:** `penofwonder-dev` (exactly; it must match `apps/dev/wrangler.jsonc`)
+   - **Build command:** `npm run build -w apps/dev`
+   - **Deploy command:** `npx wrangler deploy --config apps/dev/wrangler.jsonc`
+   - **Root directory:** leave empty. **Production branch:** `main`.
+
+   Deploy, then open `https://penofwonder-dev.wonderfuladebagbo.workers.dev`: it should show the Dev page. In the Worker's **Settings → Build → Build watch paths**, use the include list from section 1 with `apps/dev/*` first.
+2. **Delete the old dev Pages project.** Open `penofwonderdev` → **Settings** → **Delete project**. This frees its place for research.
+3. **Research as a Pages project.** As in section 1: project name `penofwonder-research`, build command `npm run build -w apps/research`, output `apps/research/dist`, production branch `main`, watch paths with `apps/research/*` first, and **Metrics → Web Analytics → Enable**. Check the address is `penofwonder-research.pages.dev`; if Cloudflare added anything to it, tell me.
+4. **The weekly rebuild hook.** In `penofwonder-research`: **Settings → Build → Deploy hooks → Add deploy hook**, name `weekly rebuild`, branch `main`, and copy the address it shows. On GitHub, open `pen-of-wonder` → **Settings → Secrets and variables → Actions → New repository secret**, name `CF_DEPLOY_HOOK_RESEARCH`, and paste the address. Keep it private: anyone with it can trigger builds.
+5. **Tell me it's done.** I push the new addresses (every site's links, the sitemap and canonical URLs), update pow-api so it accepts the research and dev forms from their new addresses, and push the old research repo, which now builds only a permanent redirect (same path, new address). Then I check every old research page lands on its new address.
+
 ## 2. Updating the sites
 
 Push to `main` on GitHub. Each project rebuilds when its own files change. Push in batches of fewer than 20 commits: a push of 20 or more, or one with no file changes, rebuilds every project.
@@ -50,9 +66,8 @@ If GitHub isn't reachable, `node scripts/prepare-upload.mjs` still builds upload
 
 1. Add each custom domain in its project (**Custom domains → Set up a domain**).
 2. Set `domainLive = true` in `packages/config/worlds.ts` and push.
-3. Move research here. Pages allows five Git-connected projects per repository, so dev moves to a Worker first (`apps/dev/wrangler.jsonc` is ready; DESIGN.md section 13.1), then research gets a Pages project (`npm run build -w apps/research`, output `apps/research/dist`), a deploy hook, and the `CF_DEPLOY_HOOK_RESEARCH` repository secret for the weekly rebuild.
-4. Cut the old research site over to a redirect, as DESIGN.md section 14 and the build prompt describe.
-5. Redirect each `pages.dev` address to its custom domain (Cloudflare Bulk Redirects), so search engines don't see two copies.
+3. Research and dev already moved (section 1A). Change `TARGET` in the old research repo's `scripts/redirect-build.mjs` to `https://research.penofwonder.com` and push it, so the old address skips a hop.
+4. Redirect each `pages.dev` address to its custom domain (Cloudflare Bulk Redirects), so search engines don't see two copies.
 
 ## 4. pow-api: the shared backend (revamp Phase R3)
 
