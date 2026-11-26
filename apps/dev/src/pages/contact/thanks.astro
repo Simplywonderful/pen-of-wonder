@@ -1,0 +1,16 @@
+---
+// Where pow-api sends a visitor after the "hear when we open" form (no index, not in the sitemap).
+import "../../styles/global.css";
+import Layout from "@pow/ui/Layout.astro";
+import PageHead from "@pow/ui/PageHead.astro";
+import { world } from "@pow/config/worlds";
+import { contact } from "@pow/config/contact";
+
+const w = world("dev");
+---
+
+<Layout world="dev" title={`Message sent | ${w.name}`} description={`Thank you for your message to ${w.name}.`} noindex note="Opening soon">
+  <PageHead title="Thank you. Your message is on its way." intro={`We'll tell you when ${w.name} opens, and we reply to any question ${contact.replyTime}.`}>
+    <p class="mt-8"><a href="/">Back to the home page</a></p>
+  </PageHead>
+</Layout>
