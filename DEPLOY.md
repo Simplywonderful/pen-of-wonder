@@ -23,18 +23,15 @@ Dev is a Worker, not a Pages project (section 1A). For all five:
 - **Environment variables:** none. The Node version comes from `.node-version` in the repo.
 - **Save and Deploy.** The first build takes a few minutes. Check it says **Success** under **Deployments**; if it fails, send me the build log.
 
-Then in each project, **Settings → Build → Build watch paths → Include paths**, one per line, with that project's own app in the first line:
+Then in each project, **Settings → Build → Build watch paths → Include paths**, separated by commas, with that project's own app first:
 
 ```
-apps/main/*
-packages/*
-scripts/*
-package.json
-package-lock.json
-.node-version
+apps/main/*, packages/*, scripts/*, package.json, package-lock.json, .node-version
 ```
 
-(`apps/marketing/*` for marketing, `apps/dev/*` for dev, and so on.) Leave **Exclude paths** empty. A change to one world then rebuilds only that world; a change under `packages/` or `scripts/` rebuilds all five, which is intended.
+(`apps/marketing/*` for marketing, `apps/dev/*` for dev, and so on.) Leave **Exclude paths** empty. A change to one world then rebuilds only that world; a change under `packages/` or `scripts/` rebuilds them all, which is intended.
+
+Use commas, not new lines or spaces. On 27 Nov 2026 the paths were entered one per line, and Cloudflare stored each project's list as one entry with spaces in it, which matches no file, so marketing, writing, publishing and research skipped every build. The dashboard shows the paths the same way either way, so check through the API that `source.config.path_includes` holds six separate entries. They were set that way through the API the same day. The main project still has the default `*`, so it rebuilds on every push; that's harmless.
 
 Finally, in each project, **Metrics → Web Analytics → Enable**. It's cookie-free.
 
