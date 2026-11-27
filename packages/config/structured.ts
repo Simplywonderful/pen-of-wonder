@@ -1,7 +1,8 @@
 // JSON-LD for search engines, built from the shared config so every world describes the company
-// the same way. No sameAs social profiles: there are no company accounts yet.
+// the same way. The company's own social accounts go in sameAs, from social.ts.
 import { contact } from "./contact.ts";
 import { legal } from "./legal.ts";
+import { social } from "./social.ts";
 import { world, worldOrigin, worlds, type WorldId } from "./worlds.ts";
 
 const address = {
@@ -27,6 +28,7 @@ export function organisationLd() {
     address,
     ...(contact.email ? { email: contact.email } : {}),
     telephone: `+${contact.whatsapp.number}`,
+    ...(social.length ? { sameAs: social.map((s) => s.url) } : {}),
     subOrganization: worlds
       .filter((w) => w.id !== "main" && w.status === "live")
       .map((w) => ({ "@type": "ProfessionalService", name: w.name, url: worldOrigin(w.id, "production") })),

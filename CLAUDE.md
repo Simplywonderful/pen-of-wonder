@@ -45,7 +45,7 @@ If a request seems to conflict with a rule below, point it out before doing it.
 - Never use the old number +234 903 572 2959, in any spacing. Don't copy either number printed on the book covers.
 - Email: the address in `packages/config/contact.ts`, and nowhere else. Until penofwonder.com has a working business address, the owner chose penofwonder@gmail.com (27 Oct 2026); that replaces the earlier "no Gmail fallback" rule for now. Don't use any other Gmail address.
 - Reply time: within one working day.
-- No social links or icons on any world until the owner supplies company accounts. No link to wonderfuladebagbo.link.
+- Social links: only the company accounts in `packages/config/social.ts` (LinkedIn Page, Facebook Page, Instagram; supplied 27 Nov 2026), shown as text links in the shared footer and as `sameAs` in the company's structured data. No brand logo icons. Never Wonderful's personal profiles, and no link to wonderfuladebagbo.link.
 
 ### Legal and compliance
 - Footer on every world: "Pen of Wonder Consults, a registered business name in Nigeria, CAC Business Name No. 7809965."

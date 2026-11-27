@@ -193,7 +193,6 @@ Carried from research (Inter as body face, `console.log` in scripts, en dashes i
 | Plex Mono × glyph | `packages/brand/public/fonts` | The Plex subset has no ×; "3.4×" would fall back to another font for that one character. Re-subset when the figure goes live |
 | [RESEARCH PROOF EVIDENCE] | `_source/proof/research/two-manuscripts-2026/` | The acceptance or publication emails behind "two manuscripts through to publication in 2026". The local build fails until it's there |
 | [CV EMAIL] | Research `/files/Wonderful-Adebagbo-CV.pdf` | The web CV still shows the Gmail address; rebuild it from `_source/research/cv/` once the business email exists |
-| [SOCIAL LINKS] | Footers | Waiting for Instagram (27 Nov 2026). LinkedIn and Facebook are supplied, see the row below |
 | [BUSINESS PLAN CLIENT PERMISSION] | Writing Samples | Phase 2 |
 | [PRICES OR QUOTE ONLY] | Writing | Settled 21 Nov 2026: quote on request |
 | Book facts Q1 to Q27 | `_source/books/intake.md` → `books.ts` | From the owner's mother; section 12 |
@@ -204,7 +203,7 @@ Carried from research (Inter as body face, `console.log` in scripts, en dashes i
 | [SELAR/AMAZON LINKS] | Publishing | Only when listings are live |
 | Approved testimonials per world | All worlds | `showTestimonials` off until supplied |
 | Legal review | Privacy, Terms, cookie notice | Section 13 lists what a lawyer should check |
-| [COMPANY SOCIAL ACCOUNTS] | Revamp R5, footer icons | Supplied 27 Nov 2026: LinkedIn Page https://www.linkedin.com/company/pen-of-wonder/ and Facebook Page https://www.facebook.com/penofwonderconsult/. Instagram still to be created. Not on the sites yet: they go into `packages/config/social.ts` with R5 |
+| [COMPANY SOCIAL ACCOUNTS] | Footers, structured data | Done 27 Nov 2026: LinkedIn Page, Facebook Page and Instagram in `packages/config/social.ts`, shown in every footer |
 | [BUFFER ACCOUNT + API KEY] | Revamp R5 | Three channels connected |
 | [BREVO ACCOUNT + API KEY] | Revamp R4 | Sending waits for the domain and business email |
 | [TELEGRAM BOT TOKEN + CHAT ID] or [EMAIL ALERTS] | Revamp R3 | Owner alerts for new enquiries |
@@ -442,7 +441,7 @@ Source: `Pen of Wonder Consults/Website/pen-of-wonder-revamp-brief.md` (24 Nov 2
 | D2 | Radius 0, 2px on buttons and inputs | Rounded cards, pill buttons | Cards and panels 12px, inputs 8px, buttons 999px: `--radius`, `--radius-sm`, `--radius-pill` in `packages/brand/tokens.css`. Replaces the "paper has square corners" line in 4 |
 | D3 | No shadows anywhere | Soft shadow | One `--shadow` token, used on card hover and on the floating WhatsApp button only. Never on a card at rest |
 | D4 | No scroll animation; motion limits | Decorative hero SVG with a slow pulse | One decorative hero SVG per world (section 20.3), slow CSS pulse on a few elements, no scroll-triggered animation, no counters, fully still under `prefers-reduced-motion` |
-| D5 | No social links or icons until company accounts exist | Share buttons and footer icons | Share buttons on blog posts allowed now (share intents, not company links). Footer social icons stay off until `packages/config/social.ts` holds real company URLs |
+| D5 | No social links or icons until company accounts exist | Share buttons and footer icons | Share buttons on blog posts allowed (share intents, not company links). The company accounts arrived 27 Nov 2026 and show in every footer as text links, not logo icons, and as `sameAs` on the main site |
 | D6 | Forms store nothing on the site | Submissions in D1 | Storage in the Pen of Wonder D1 database allowed, with the privacy notice updated first (brief section 6). The CLAUDE.md line changes with it |
 | D7 | Eyebrow labels on research only | Eyebrow pills everywhere | Allowed on every world: an uppercase label in a pill, Spark Gold on green or dark grounds, the world accent on light grounds |
 | D8 | Gold once per layout, to mark the win | Edunotech uses its lime many times | Rule kept. Spark Gold carries only the hero's highlighted phrase. Eyebrow pills on dark grounds use a Cream outline or low-opacity Spark Gold, whichever passes `contrast-check` (reported in R1) |

@@ -79,7 +79,11 @@ function scan(paths, strict) {
       .forEach((line, i) => {
         const where = `${relative(root, file)}:${i + 1}`;
         // Meta's Business Help Centre is a source blog posts cite, not a social link, so it's allowed.
-        const lower = line.toLowerCase().replaceAll("facebook.com/business/help/", "");
+        // So is the company's own Facebook Page (packages/config/social.ts, supplied 27 Nov 2026).
+        const lower = line
+          .toLowerCase()
+          .replaceAll("facebook.com/business/help/", "")
+          .replaceAll("facebook.com/penofwonderconsult/", "");
         for (const phrase of banned) if (lower.includes(phrase)) hits.push(`${where}  banned phrase "${phrase}"`);
         if (line.includes(EM_DASH)) hits.push(`${where}  em dash`);
         // Exclamation marks in prose only: skip code operators like !== and !value.

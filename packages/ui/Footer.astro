@@ -1,12 +1,14 @@
 ---
 // The shared footer (DESIGN.md 20.2): a dark band on every world. The brand block (the quill emblem,
 // always at 120 px or more, the world's tagline and the legal line), then link columns, the
-// newsletter row, and the legal row with the policies and the theme switch. Social icons appear
-// only once company accounts exist (D5). Phones get extra room at the foot for the floating
-// WhatsApp button.
+// newsletter row, and the legal row with the policies and the theme switch. The company's social
+// accounts (packages/config/social.ts) sit under Connect as plain text links: no brand logos, since
+// the family has only its own hand-drawn icons (D1). Phones get extra room at the foot for the
+// floating WhatsApp button.
 import { Image } from "astro:assets";
 import { contact, contactPlaceholders, whatsappLink } from "@pow/config/contact";
 import { legal, academicIntegrity } from "@pow/config/legal";
+import { social } from "@pow/config/social";
 import { menuWorlds, world as getWorld, worldUrl, type WorldId } from "@pow/config/worlds";
 import emblemCream from "@pow/brand/assets/emblem-cream.png";
 import ThemeToggle from "./ThemeToggle.astro";
@@ -89,6 +91,21 @@ const services = here.status === "live" ? here.menu.slice(0, 5) : [];
       <ul>
         <li><a href={whatsappLink(id)} data-event="whatsapp_footer">WhatsApp {contact.whatsapp.display}</a></li>
         <li>{contact.email ? <a href={`mailto:${contact.email}`} class="footer__email" data-event="email_click">{contact.email}</a> : <Todo label={contactPlaceholders.email} />}</li>
+        {
+          social.length > 0 && (
+            <li>
+              <ul class="footer__social" aria-label="Pen of Wonder on social media">
+                {social.map((s) => (
+                  <li>
+                    <a href={s.url} rel="me noopener" data-event={`social_${s.label.toLowerCase()}`}>
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          )
+        }
         <li class="footer__where">Based in {legal.city}, {legal.country}, {legal.timezone}. We reply {contact.replyTime}.</li>
       </ul>
     </div>
@@ -179,6 +196,14 @@ const services = here.status === "live" ? here.menu.slice(0, 5) : [];
   }
   .footer__email {
     overflow-wrap: anywhere;
+  }
+  .footer__col .footer__social {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
   }
   .footer__soon,
   .footer__where {
